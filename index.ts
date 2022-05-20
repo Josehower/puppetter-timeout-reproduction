@@ -53,6 +53,46 @@ export async function puppeteerWorkflow(urlToTest: string) {
   await page.waitForNetworkIdle();
   console.log('network check 10 pass');
 
+  await element.type('lol');
+  await page.waitForNetworkIdle();
+  console.log('network check 11 pass');
+
+  await element.type('lol');
+  await page.waitForNetworkIdle();
+  console.log('network check 12 pass');
+
+  await element.type('lol');
+  await page.waitForNetworkIdle();
+  console.log('network check 13 pass');
+
+  await element.type('lol');
+  await page.waitForNetworkIdle();
+  console.log('network check 14 pass');
+
+  await element.type('lol');
+  await page.waitForNetworkIdle();
+  console.log('network check 15 pass');
+
+  await element.type('lol');
+  await page.waitForNetworkIdle();
+  console.log('network check 16 pass');
+
+  await element.type('lol');
+  await page.waitForNetworkIdle();
+  console.log('network check 17 pass');
+
+  await element.type('lol');
+  await page.waitForNetworkIdle();
+  console.log('network check 18 pass');
+
+  await element.type('lol');
+  await page.waitForNetworkIdle();
+  console.log('network check 19 pass');
+
+  await element.type('lol');
+  await page.waitForNetworkIdle();
+  console.log('network check 20 pass');
+
   await page.close();
   await browser.close();
 }
