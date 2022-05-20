@@ -10,12 +10,12 @@ export async function puppeteerWorkflow(urlToTest: string) {
   });
   const page = await browser.newPage();
 
-  await page.goto(urlToTest);
-  const img = await page.$('[data-test-id="meme-image"]');
-  img.click();
-  const [element] = await page.$x(`//label[contains(text(), 'Top text')]`);
-  element.type('lol');
-  img.click();
+  // await page.goto(urlToTest);
+  // const img = await page.$('[data-test-id="meme-image"]');
+  // img.click();
+  // const [element] = await page.$x(`//label[contains(text(), 'Top text')]`);
+  // element.type('lol');
+  // img.click();
 
   await page.waitForNetworkIdle();
   await page.waitForNetworkIdle();
@@ -45,4 +45,4 @@ export async function puppeteerWorkflow(urlToTest: string) {
   await browser.close();
 }
 
-puppeteerWorkflow('https://drone-break-test.netlify.app/');
+// puppeteerWorkflow('https://drone-break-test.netlify.app/');
