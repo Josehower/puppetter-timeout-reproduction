@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 
-export async function puppeteerWorkflow(urlToTest: string) {
+export async function puppeteerWorkflow() {
   const browser = await puppeteer.launch({
     executablePath: '/usr/bin/google-chrome-stable',
   });
@@ -54,3 +54,5 @@ export async function puppeteerWorkflow(urlToTest: string) {
   await page.close();
   await browser.close();
 }
+
+await puppeteerWorkflow();
