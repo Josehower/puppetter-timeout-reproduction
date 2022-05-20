@@ -6,6 +6,7 @@ export async function puppeteerWorkflow(urlToTest: string) {
   });
   const page = await browser.newPage();
 
+  console.log('network test start...');
   await page.waitForNetworkIdle();
   console.log('network check 1 pass');
   await page.waitForNetworkIdle();
