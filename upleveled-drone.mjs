@@ -1,4 +1,4 @@
-import { createRequire as topLevelCreateRequire } from 'module'; import { dirname } from 'node:path'; import { fileURLToPath } from 'node:url'; const __filename = fileURLToPath(import.meta.url); const __dirname = dirname(__filename); const require = topLevelCreateRequire(import.meta.url);
+import { createRequire as topLevelCreateRequire } from 'module'; const require = topLevelCreateRequire(import.meta.url);
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __defProps = Object.defineProperties;
@@ -22,7 +22,6 @@ var __spreadValues = (a, b) => {
   return a;
 };
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
-var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
   get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
 }) : x)(function(x) {
@@ -42,1686 +41,25 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
+var __esm = (fn, res) => function __init() {
+  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+};
 var __commonJS = (cb, mod) => function __require2() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
-var __reExport = (target, module, copyDefault, desc) => {
-  if (module && typeof module === "object" || typeof module === "function") {
-    for (let key of __getOwnPropNames(module))
-      if (!__hasOwnProp.call(target, key) && (copyDefault || key !== "default"))
-        __defProp(target, key, { get: () => module[key], enumerable: !(desc = __getOwnPropDesc(module, key)) || desc.enumerable });
-  }
-  return target;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __toESM = (module, isNodeMode) => {
-  return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", !isNodeMode && module && module.__esModule ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
 };
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/Errors.js
-var require_Errors = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/Errors.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.puppeteerErrors = exports.ProtocolError = exports.TimeoutError = exports.CustomError = void 0;
-    var CustomError = class extends Error {
-      constructor(message) {
-        super(message);
-        this.name = this.constructor.name;
-        Error.captureStackTrace(this, this.constructor);
-      }
-    };
-    exports.CustomError = CustomError;
-    var TimeoutError = class extends CustomError {
-    };
-    exports.TimeoutError = TimeoutError;
-    var ProtocolError = class extends CustomError {
-      constructor() {
-        super(...arguments);
-        this.originalMessage = "";
-      }
-    };
-    exports.ProtocolError = ProtocolError;
-    exports.puppeteerErrors = {
-      TimeoutError
-    };
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/DeviceDescriptors.js
-var require_DeviceDescriptors = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/DeviceDescriptors.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.devicesMap = void 0;
-    var devices = [
-      {
-        name: "Blackberry PlayBook",
-        userAgent: "Mozilla/5.0 (PlayBook; U; RIM Tablet OS 2.1.0; en-US) AppleWebKit/536.2+ (KHTML like Gecko) Version/7.2.1.0 Safari/536.2+",
-        viewport: {
-          width: 600,
-          height: 1024,
-          deviceScaleFactor: 1,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Blackberry PlayBook landscape",
-        userAgent: "Mozilla/5.0 (PlayBook; U; RIM Tablet OS 2.1.0; en-US) AppleWebKit/536.2+ (KHTML like Gecko) Version/7.2.1.0 Safari/536.2+",
-        viewport: {
-          width: 1024,
-          height: 600,
-          deviceScaleFactor: 1,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "BlackBerry Z30",
-        userAgent: "Mozilla/5.0 (BB10; Touch) AppleWebKit/537.10+ (KHTML, like Gecko) Version/10.0.9.2372 Mobile Safari/537.10+",
-        viewport: {
-          width: 360,
-          height: 640,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "BlackBerry Z30 landscape",
-        userAgent: "Mozilla/5.0 (BB10; Touch) AppleWebKit/537.10+ (KHTML, like Gecko) Version/10.0.9.2372 Mobile Safari/537.10+",
-        viewport: {
-          width: 640,
-          height: 360,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Galaxy Note 3",
-        userAgent: "Mozilla/5.0 (Linux; U; Android 4.3; en-us; SM-N900T Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
-        viewport: {
-          width: 360,
-          height: 640,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Galaxy Note 3 landscape",
-        userAgent: "Mozilla/5.0 (Linux; U; Android 4.3; en-us; SM-N900T Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
-        viewport: {
-          width: 640,
-          height: 360,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Galaxy Note II",
-        userAgent: "Mozilla/5.0 (Linux; U; Android 4.1; en-us; GT-N7100 Build/JRO03C) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
-        viewport: {
-          width: 360,
-          height: 640,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Galaxy Note II landscape",
-        userAgent: "Mozilla/5.0 (Linux; U; Android 4.1; en-us; GT-N7100 Build/JRO03C) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
-        viewport: {
-          width: 640,
-          height: 360,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Galaxy S III",
-        userAgent: "Mozilla/5.0 (Linux; U; Android 4.0; en-us; GT-I9300 Build/IMM76D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
-        viewport: {
-          width: 360,
-          height: 640,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Galaxy S III landscape",
-        userAgent: "Mozilla/5.0 (Linux; U; Android 4.0; en-us; GT-I9300 Build/IMM76D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
-        viewport: {
-          width: 640,
-          height: 360,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Galaxy S5",
-        userAgent: "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 360,
-          height: 640,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Galaxy S5 landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 640,
-          height: 360,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Galaxy S8",
-        userAgent: "Mozilla/5.0 (Linux; Android 7.0; SM-G950U Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36",
-        viewport: {
-          width: 360,
-          height: 740,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Galaxy S8 landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 7.0; SM-G950U Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36",
-        viewport: {
-          width: 740,
-          height: 360,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Galaxy S9+",
-        userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; SM-G965U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.111 Mobile Safari/537.36",
-        viewport: {
-          width: 320,
-          height: 658,
-          deviceScaleFactor: 4.5,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Galaxy S9+ landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; SM-G965U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.111 Mobile Safari/537.36",
-        viewport: {
-          width: 658,
-          height: 320,
-          deviceScaleFactor: 4.5,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Galaxy Tab S4",
-        userAgent: "Mozilla/5.0 (Linux; Android 8.1.0; SM-T837A) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Safari/537.36",
-        viewport: {
-          width: 712,
-          height: 1138,
-          deviceScaleFactor: 2.25,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Galaxy Tab S4 landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 8.1.0; SM-T837A) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Safari/537.36",
-        viewport: {
-          width: 1138,
-          height: 712,
-          deviceScaleFactor: 2.25,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPad",
-        userAgent: "Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1",
-        viewport: {
-          width: 768,
-          height: 1024,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPad landscape",
-        userAgent: "Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1",
-        viewport: {
-          width: 1024,
-          height: 768,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPad (gen 6)",
-        userAgent: "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 768,
-          height: 1024,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPad (gen 6) landscape",
-        userAgent: "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 1024,
-          height: 768,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPad (gen 7)",
-        userAgent: "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 810,
-          height: 1080,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPad (gen 7) landscape",
-        userAgent: "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 1080,
-          height: 810,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPad Mini",
-        userAgent: "Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1",
-        viewport: {
-          width: 768,
-          height: 1024,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPad Mini landscape",
-        userAgent: "Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1",
-        viewport: {
-          width: 1024,
-          height: 768,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPad Pro",
-        userAgent: "Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1",
-        viewport: {
-          width: 1024,
-          height: 1366,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPad Pro landscape",
-        userAgent: "Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1",
-        viewport: {
-          width: 1366,
-          height: 1024,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPad Pro 11",
-        userAgent: "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 834,
-          height: 1194,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPad Pro 11 landscape",
-        userAgent: "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 1194,
-          height: 834,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 4",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_2 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D257 Safari/9537.53",
-        viewport: {
-          width: 320,
-          height: 480,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 4 landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_2 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D257 Safari/9537.53",
-        viewport: {
-          width: 480,
-          height: 320,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 5",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
-        viewport: {
-          width: 320,
-          height: 568,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 5 landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
-        viewport: {
-          width: 568,
-          height: 320,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 6",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 375,
-          height: 667,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 6 landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 667,
-          height: 375,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 6 Plus",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 414,
-          height: 736,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 6 Plus landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 736,
-          height: 414,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 7",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 375,
-          height: 667,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 7 landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 667,
-          height: 375,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 7 Plus",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 414,
-          height: 736,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 7 Plus landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 736,
-          height: 414,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 8",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 375,
-          height: 667,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 8 landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 667,
-          height: 375,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 8 Plus",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 414,
-          height: 736,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 8 Plus landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 736,
-          height: 414,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone SE",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
-        viewport: {
-          width: 320,
-          height: 568,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone SE landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
-        viewport: {
-          width: 568,
-          height: 320,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone X",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 375,
-          height: 812,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone X landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-        viewport: {
-          width: 812,
-          height: 375,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone XR",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 414,
-          height: 896,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone XR landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 896,
-          height: 414,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 11",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 414,
-          height: 828,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 11 landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 828,
-          height: 414,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 11 Pro",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 375,
-          height: 812,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 11 Pro landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 812,
-          height: 375,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 11 Pro Max",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 414,
-          height: 896,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 11 Pro Max landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 896,
-          height: 414,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 12",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 390,
-          height: 844,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 12 landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 844,
-          height: 390,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 12 Pro",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 390,
-          height: 844,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 12 Pro landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 844,
-          height: 390,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 12 Pro Max",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 428,
-          height: 926,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 12 Pro Max landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 926,
-          height: 428,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 12 Mini",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 375,
-          height: 812,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 12 Mini landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 812,
-          height: 375,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 13",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 390,
-          height: 844,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 13 landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 844,
-          height: 390,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 13 Pro",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 390,
-          height: 844,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 13 Pro landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 844,
-          height: 390,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 13 Pro Max",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 428,
-          height: 926,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 13 Pro Max landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 926,
-          height: 428,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "iPhone 13 Mini",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 375,
-          height: 812,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "iPhone 13 Mini landscape",
-        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
-        viewport: {
-          width: 812,
-          height: 375,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "JioPhone 2",
-        userAgent: "Mozilla/5.0 (Mobile; LYF/F300B/LYF-F300B-001-01-15-130718-i;Android; rv:48.0) Gecko/48.0 Firefox/48.0 KAIOS/2.5",
-        viewport: {
-          width: 240,
-          height: 320,
-          deviceScaleFactor: 1,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "JioPhone 2 landscape",
-        userAgent: "Mozilla/5.0 (Mobile; LYF/F300B/LYF-F300B-001-01-15-130718-i;Android; rv:48.0) Gecko/48.0 Firefox/48.0 KAIOS/2.5",
-        viewport: {
-          width: 320,
-          height: 240,
-          deviceScaleFactor: 1,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Kindle Fire HDX",
-        userAgent: "Mozilla/5.0 (Linux; U; en-us; KFAPWI Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Silk/3.13 Safari/535.19 Silk-Accelerated=true",
-        viewport: {
-          width: 800,
-          height: 1280,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Kindle Fire HDX landscape",
-        userAgent: "Mozilla/5.0 (Linux; U; en-us; KFAPWI Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Silk/3.13 Safari/535.19 Silk-Accelerated=true",
-        viewport: {
-          width: 1280,
-          height: 800,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "LG Optimus L70",
-        userAgent: "Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; LGMS323 Build/KOT49I.MS32310c) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 384,
-          height: 640,
-          deviceScaleFactor: 1.25,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "LG Optimus L70 landscape",
-        userAgent: "Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; LGMS323 Build/KOT49I.MS32310c) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 640,
-          height: 384,
-          deviceScaleFactor: 1.25,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Microsoft Lumia 550",
-        userAgent: "Mozilla/5.0 (Windows Phone 10.0; Android 4.2.1; Microsoft; Lumia 550) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Mobile Safari/537.36 Edge/14.14263",
-        viewport: {
-          width: 640,
-          height: 360,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Microsoft Lumia 950",
-        userAgent: "Mozilla/5.0 (Windows Phone 10.0; Android 4.2.1; Microsoft; Lumia 950) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Mobile Safari/537.36 Edge/14.14263",
-        viewport: {
-          width: 360,
-          height: 640,
-          deviceScaleFactor: 4,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Microsoft Lumia 950 landscape",
-        userAgent: "Mozilla/5.0 (Windows Phone 10.0; Android 4.2.1; Microsoft; Lumia 950) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Mobile Safari/537.36 Edge/14.14263",
-        viewport: {
-          width: 640,
-          height: 360,
-          deviceScaleFactor: 4,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Nexus 10",
-        userAgent: "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 10 Build/MOB31T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Safari/537.36",
-        viewport: {
-          width: 800,
-          height: 1280,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Nexus 10 landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 10 Build/MOB31T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Safari/537.36",
-        viewport: {
-          width: 1280,
-          height: 800,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Nexus 4",
-        userAgent: "Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 384,
-          height: 640,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Nexus 4 landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 640,
-          height: 384,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Nexus 5",
-        userAgent: "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 360,
-          height: 640,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Nexus 5 landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 640,
-          height: 360,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Nexus 5X",
-        userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; Nexus 5X Build/OPR4.170623.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 412,
-          height: 732,
-          deviceScaleFactor: 2.625,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Nexus 5X landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; Nexus 5X Build/OPR4.170623.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 732,
-          height: 412,
-          deviceScaleFactor: 2.625,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Nexus 6",
-        userAgent: "Mozilla/5.0 (Linux; Android 7.1.1; Nexus 6 Build/N6F26U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 412,
-          height: 732,
-          deviceScaleFactor: 3.5,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Nexus 6 landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 7.1.1; Nexus 6 Build/N6F26U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 732,
-          height: 412,
-          deviceScaleFactor: 3.5,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Nexus 6P",
-        userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; Nexus 6P Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 412,
-          height: 732,
-          deviceScaleFactor: 3.5,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Nexus 6P landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; Nexus 6P Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 732,
-          height: 412,
-          deviceScaleFactor: 3.5,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Nexus 7",
-        userAgent: "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 7 Build/MOB30X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Safari/537.36",
-        viewport: {
-          width: 600,
-          height: 960,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Nexus 7 landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 7 Build/MOB30X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Safari/537.36",
-        viewport: {
-          width: 960,
-          height: 600,
-          deviceScaleFactor: 2,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Nokia Lumia 520",
-        userAgent: "Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 520)",
-        viewport: {
-          width: 320,
-          height: 533,
-          deviceScaleFactor: 1.5,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Nokia Lumia 520 landscape",
-        userAgent: "Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 520)",
-        viewport: {
-          width: 533,
-          height: 320,
-          deviceScaleFactor: 1.5,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Nokia N9",
-        userAgent: "Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13",
-        viewport: {
-          width: 480,
-          height: 854,
-          deviceScaleFactor: 1,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Nokia N9 landscape",
-        userAgent: "Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13",
-        viewport: {
-          width: 854,
-          height: 480,
-          deviceScaleFactor: 1,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Pixel 2",
-        userAgent: "Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 411,
-          height: 731,
-          deviceScaleFactor: 2.625,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Pixel 2 landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 731,
-          height: 411,
-          deviceScaleFactor: 2.625,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Pixel 2 XL",
-        userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 411,
-          height: 823,
-          deviceScaleFactor: 3.5,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Pixel 2 XL landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
-        viewport: {
-          width: 823,
-          height: 411,
-          deviceScaleFactor: 3.5,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Pixel 3",
-        userAgent: "Mozilla/5.0 (Linux; Android 9; Pixel 3 Build/PQ1A.181105.017.A1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.158 Mobile Safari/537.36",
-        viewport: {
-          width: 393,
-          height: 786,
-          deviceScaleFactor: 2.75,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Pixel 3 landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 9; Pixel 3 Build/PQ1A.181105.017.A1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.158 Mobile Safari/537.36",
-        viewport: {
-          width: 786,
-          height: 393,
-          deviceScaleFactor: 2.75,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Pixel 4",
-        userAgent: "Mozilla/5.0 (Linux; Android 10; Pixel 4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36",
-        viewport: {
-          width: 353,
-          height: 745,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Pixel 4 landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 10; Pixel 4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36",
-        viewport: {
-          width: 745,
-          height: 353,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Pixel 4a (5G)",
-        userAgent: "Mozilla/5.0 (Linux; Android 11; Pixel 4a (5G)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4812.0 Mobile Safari/537.36",
-        viewport: {
-          width: 353,
-          height: 745,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Pixel 4a (5G) landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 11; Pixel 4a (5G)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4812.0 Mobile Safari/537.36",
-        viewport: {
-          width: 745,
-          height: 353,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Pixel 5",
-        userAgent: "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4812.0 Mobile Safari/537.36",
-        viewport: {
-          width: 393,
-          height: 851,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Pixel 5 landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4812.0 Mobile Safari/537.36",
-        viewport: {
-          width: 851,
-          height: 393,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      },
-      {
-        name: "Moto G4",
-        userAgent: "Mozilla/5.0 (Linux; Android 7.0; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4812.0 Mobile Safari/537.36",
-        viewport: {
-          width: 360,
-          height: 640,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: false
-        }
-      },
-      {
-        name: "Moto G4 landscape",
-        userAgent: "Mozilla/5.0 (Linux; Android 7.0; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4812.0 Mobile Safari/537.36",
-        viewport: {
-          width: 640,
-          height: 360,
-          deviceScaleFactor: 3,
-          isMobile: true,
-          hasTouch: true,
-          isLandscape: true
-        }
-      }
-    ];
-    exports.devicesMap = {};
-    for (const device of devices)
-      exports.devicesMap[device.name] = device;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/AriaQueryHandler.js
-var require_AriaQueryHandler = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/AriaQueryHandler.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ariaHandler = void 0;
-    async function queryAXTree(client, element, accessibleName, role) {
-      const { nodes } = await client.send("Accessibility.queryAXTree", {
-        objectId: element._remoteObject.objectId,
-        accessibleName,
-        role
-      });
-      const filteredNodes = nodes.filter((node) => node.role.value !== "StaticText");
-      return filteredNodes;
-    }
-    var normalizeValue = (value) => value.replace(/ +/g, " ").trim();
-    var knownAttributes = /* @__PURE__ */ new Set(["name", "role"]);
-    var attributeRegexp = /\[\s*(?<attribute>\w+)\s*=\s*(?<quote>"|')(?<value>\\.|.*?(?=\k<quote>))\k<quote>\s*\]/g;
-    function parseAriaSelector(selector) {
-      const queryOptions = {};
-      const defaultName = selector.replace(attributeRegexp, (_, attribute, quote, value) => {
-        attribute = attribute.trim();
-        if (!knownAttributes.has(attribute))
-          throw new Error(`Unknown aria attribute "${attribute}" in selector`);
-        queryOptions[attribute] = normalizeValue(value);
-        return "";
-      });
-      if (defaultName && !queryOptions.name)
-        queryOptions.name = normalizeValue(defaultName);
-      return queryOptions;
-    }
-    var queryOne = async (element, selector) => {
-      const exeCtx = element.executionContext();
-      const { name, role } = parseAriaSelector(selector);
-      const res = await queryAXTree(exeCtx._client, element, name, role);
-      if (res.length < 1) {
-        return null;
-      }
-      return exeCtx._adoptBackendNodeId(res[0].backendDOMNodeId);
-    };
-    var waitFor = async (domWorld, selector, options) => {
-      const binding = {
-        name: "ariaQuerySelector",
-        pptrFunction: async (selector2) => {
-          const root = options.root || await domWorld._document();
-          const element = await queryOne(root, selector2);
-          return element;
-        }
-      };
-      return domWorld.waitForSelectorInPage((_, selector2) => globalThis.ariaQuerySelector(selector2), selector, options, binding);
-    };
-    var queryAll = async (element, selector) => {
-      const exeCtx = element.executionContext();
-      const { name, role } = parseAriaSelector(selector);
-      const res = await queryAXTree(exeCtx._client, element, name, role);
-      return Promise.all(res.map((axNode) => exeCtx._adoptBackendNodeId(axNode.backendDOMNodeId)));
-    };
-    var queryAllArray = async (element, selector) => {
-      const elementHandles = await queryAll(element, selector);
-      const exeCtx = element.executionContext();
-      const jsHandle = exeCtx.evaluateHandle((...elements) => elements, ...elementHandles);
-      return jsHandle;
-    };
-    exports.ariaHandler = {
-      queryOne,
-      waitFor,
-      queryAll,
-      queryAllArray
-    };
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/QueryHandler.js
-var require_QueryHandler = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/QueryHandler.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getQueryHandlerAndSelector = exports.clearCustomQueryHandlers = exports.customQueryHandlerNames = exports.unregisterCustomQueryHandler = exports.registerCustomQueryHandler = void 0;
-    var AriaQueryHandler_js_1 = require_AriaQueryHandler();
-    function makeQueryHandler(handler) {
-      const internalHandler = {};
-      if (handler.queryOne) {
-        internalHandler.queryOne = async (element, selector) => {
-          const jsHandle = await element.evaluateHandle(handler.queryOne, selector);
-          const elementHandle = jsHandle.asElement();
-          if (elementHandle)
-            return elementHandle;
-          await jsHandle.dispose();
-          return null;
-        };
-        internalHandler.waitFor = (domWorld, selector, options) => domWorld.waitForSelectorInPage(handler.queryOne, selector, options);
-      }
-      if (handler.queryAll) {
-        internalHandler.queryAll = async (element, selector) => {
-          const jsHandle = await element.evaluateHandle(handler.queryAll, selector);
-          const properties = await jsHandle.getProperties();
-          await jsHandle.dispose();
-          const result = [];
-          for (const property of properties.values()) {
-            const elementHandle = property.asElement();
-            if (elementHandle)
-              result.push(elementHandle);
-          }
-          return result;
-        };
-        internalHandler.queryAllArray = async (element, selector) => {
-          const resultHandle = await element.evaluateHandle(handler.queryAll, selector);
-          const arrayHandle = await resultHandle.evaluateHandle((res) => Array.from(res));
-          return arrayHandle;
-        };
-      }
-      return internalHandler;
-    }
-    var _defaultHandler = makeQueryHandler({
-      queryOne: (element, selector) => element.querySelector(selector),
-      queryAll: (element, selector) => element.querySelectorAll(selector)
-    });
-    var pierceHandler = makeQueryHandler({
-      queryOne: (element, selector) => {
-        let found = null;
-        const search = (root) => {
-          const iter = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
-          do {
-            const currentNode = iter.currentNode;
-            if (currentNode.shadowRoot) {
-              search(currentNode.shadowRoot);
-            }
-            if (currentNode instanceof ShadowRoot) {
-              continue;
-            }
-            if (!found && currentNode.matches(selector)) {
-              found = currentNode;
-            }
-          } while (!found && iter.nextNode());
-        };
-        if (element instanceof Document) {
-          element = element.documentElement;
-        }
-        search(element);
-        return found;
-      },
-      queryAll: (element, selector) => {
-        const result = [];
-        const collect = (root) => {
-          const iter = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
-          do {
-            const currentNode = iter.currentNode;
-            if (currentNode.shadowRoot) {
-              collect(currentNode.shadowRoot);
-            }
-            if (currentNode instanceof ShadowRoot) {
-              continue;
-            }
-            if (currentNode.matches(selector)) {
-              result.push(currentNode);
-            }
-          } while (iter.nextNode());
-        };
-        if (element instanceof Document) {
-          element = element.documentElement;
-        }
-        collect(element);
-        return result;
-      }
-    });
-    var _builtInHandlers = /* @__PURE__ */ new Map([
-      ["aria", AriaQueryHandler_js_1.ariaHandler],
-      ["pierce", pierceHandler]
-    ]);
-    var _queryHandlers = new Map(_builtInHandlers);
-    function registerCustomQueryHandler(name, handler) {
-      if (_queryHandlers.get(name))
-        throw new Error(`A custom query handler named "${name}" already exists`);
-      const isValidName = /^[a-zA-Z]+$/.test(name);
-      if (!isValidName)
-        throw new Error(`Custom query handler names may only contain [a-zA-Z]`);
-      const internalHandler = makeQueryHandler(handler);
-      _queryHandlers.set(name, internalHandler);
-    }
-    exports.registerCustomQueryHandler = registerCustomQueryHandler;
-    function unregisterCustomQueryHandler(name) {
-      if (_queryHandlers.has(name) && !_builtInHandlers.has(name)) {
-        _queryHandlers.delete(name);
-      }
-    }
-    exports.unregisterCustomQueryHandler = unregisterCustomQueryHandler;
-    function customQueryHandlerNames() {
-      return [..._queryHandlers.keys()].filter((name) => !_builtInHandlers.has(name));
-    }
-    exports.customQueryHandlerNames = customQueryHandlerNames;
-    function clearCustomQueryHandlers() {
-      customQueryHandlerNames().forEach(unregisterCustomQueryHandler);
-    }
-    exports.clearCustomQueryHandlers = clearCustomQueryHandlers;
-    function getQueryHandlerAndSelector(selector) {
-      const hasCustomQueryHandler = /^[a-zA-Z]+\//.test(selector);
-      if (!hasCustomQueryHandler)
-        return { updatedSelector: selector, queryHandler: _defaultHandler };
-      const index = selector.indexOf("/");
-      const name = selector.slice(0, index);
-      const updatedSelector = selector.slice(index + 1);
-      const queryHandler = _queryHandlers.get(name);
-      if (!queryHandler)
-        throw new Error(`Query set to use "${name}", but no query handler of that name was found`);
-      return {
-        updatedSelector,
-        queryHandler
-      };
-    }
-    exports.getQueryHandlerAndSelector = getQueryHandlerAndSelector;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js
-var require_assert = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.assertNever = exports.assert = void 0;
-    var assert = (value, message) => {
-      if (!value)
-        throw new Error(message);
-    };
-    exports.assert = assert;
-    var assertNever = (value, message) => {
-      if (value)
-        throw new Error(message);
-    };
-    exports.assertNever = assertNever;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/environment.js
-var require_environment = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/environment.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isNode = void 0;
-    exports.isNode = !!(typeof process !== "undefined" && process.version);
-  }
-});
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
 
 // node_modules/ms/index.js
 var require_ms = __commonJS({
@@ -1736,13 +74,13 @@ var require_ms = __commonJS({
       options = options || {};
       var type = typeof val;
       if (type === "string" && val.length > 0) {
-        return parse(val);
+        return parse2(val);
       } else if (type === "number" && isFinite(val)) {
         return options.long ? fmtLong(val) : fmtShort(val);
       }
       throw new Error("val is not a non-empty string or a valid number. val=" + JSON.stringify(val));
     };
-    function parse(str) {
+    function parse2(str) {
       str = String(str);
       if (str.length > 100) {
         return;
@@ -1867,11 +205,11 @@ var require_common = __commonJS({
         let enableOverride = null;
         let namespacesCache;
         let enabledCache;
-        function debug(...args) {
-          if (!debug.enabled) {
+        function debug2(...args) {
+          if (!debug2.enabled) {
             return;
           }
-          const self = debug;
+          const self = debug2;
           const curr = Number(new Date());
           const ms = curr - (prevTime || curr);
           self.diff = ms;
@@ -1883,12 +221,12 @@ var require_common = __commonJS({
             args.unshift("%O");
           }
           let index = 0;
-          args[0] = args[0].replace(/%([a-zA-Z%])/g, (match, format) => {
+          args[0] = args[0].replace(/%([a-zA-Z%])/g, (match, format2) => {
             if (match === "%%") {
               return "%";
             }
             index++;
-            const formatter = createDebug.formatters[format];
+            const formatter = createDebug.formatters[format2];
             if (typeof formatter === "function") {
               const val = args[index];
               match = formatter.call(self, val);
@@ -1901,12 +239,12 @@ var require_common = __commonJS({
           const logFn = self.log || createDebug.log;
           logFn.apply(self, args);
         }
-        debug.namespace = namespace;
-        debug.useColors = createDebug.useColors();
-        debug.color = createDebug.selectColor(namespace);
-        debug.extend = extend;
-        debug.destroy = createDebug.destroy;
-        Object.defineProperty(debug, "enabled", {
+        debug2.namespace = namespace;
+        debug2.useColors = createDebug.useColors();
+        debug2.color = createDebug.selectColor(namespace);
+        debug2.extend = extend;
+        debug2.destroy = createDebug.destroy;
+        Object.defineProperty(debug2, "enabled", {
           enumerable: true,
           configurable: false,
           get: () => {
@@ -1924,9 +262,9 @@ var require_common = __commonJS({
           }
         });
         if (typeof createDebug.init === "function") {
-          createDebug.init(debug);
+          createDebug.init(debug2);
         }
-        return debug;
+        return debug2;
       }
       function extend(namespace, delimiter) {
         const newDebug = createDebug(this.namespace + (typeof delimiter === "undefined" ? ":" : delimiter) + namespace);
@@ -1947,7 +285,7 @@ var require_common = __commonJS({
           }
           namespaces = split[i].replace(/\*/g, ".*?");
           if (namespaces[0] === "-") {
-            createDebug.skips.push(new RegExp("^" + namespaces.substr(1) + "$"));
+            createDebug.skips.push(new RegExp("^" + namespaces.slice(1) + "$"));
           } else {
             createDebug.names.push(new RegExp("^" + namespaces + "$"));
           }
@@ -2167,14 +505,14 @@ var require_browser = __commonJS({
 var require_node = __commonJS({
   "node_modules/debug/src/node.js"(exports, module) {
     var tty = __require("tty");
-    var util = __require("util");
+    var util2 = __require("util");
     exports.init = init;
     exports.log = log;
     exports.formatArgs = formatArgs;
     exports.save = save;
     exports.load = load;
     exports.useColors = useColors;
-    exports.destroy = util.deprecate(() => {
+    exports.destroy = util2.deprecate(() => {
     }, "Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
     exports.colors = [6, 2, 3, 4, 5, 1];
     try {
@@ -2302,7 +640,7 @@ var require_node = __commonJS({
       return new Date().toISOString() + " ";
     }
     function log(...args) {
-      return process.stderr.write(util.format(...args) + "\n");
+      return process.stderr.write(util2.format(...args) + "\n");
     }
     function save(namespaces) {
       if (namespaces) {
@@ -2314,22 +652,22 @@ var require_node = __commonJS({
     function load() {
       return process.env.DEBUG;
     }
-    function init(debug) {
-      debug.inspectOpts = {};
+    function init(debug2) {
+      debug2.inspectOpts = {};
       const keys = Object.keys(exports.inspectOpts);
       for (let i = 0; i < keys.length; i++) {
-        debug.inspectOpts[keys[i]] = exports.inspectOpts[keys[i]];
+        debug2.inspectOpts[keys[i]] = exports.inspectOpts[keys[i]];
       }
     }
     module.exports = require_common()(exports);
     var { formatters } = module.exports;
     formatters.o = function(v) {
       this.inspectOpts.colors = this.useColors;
-      return util.inspect(v, this.inspectOpts).split("\n").map((str) => str.trim()).join(" ");
+      return util2.inspect(v, this.inspectOpts).split("\n").map((str) => str.trim()).join(" ");
     };
     formatters.O = function(v) {
       this.inspectOpts.colors = this.useColors;
-      return util.inspect(v, this.inspectOpts);
+      return util2.inspect(v, this.inspectOpts);
     };
   }
 });
@@ -2342,6179 +680,6 @@ var require_src = __commonJS({
     } else {
       module.exports = require_node();
     }
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/Debug.js
-var require_Debug = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/Debug.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.debug = void 0;
-    var environment_js_1 = require_environment();
-    var debug = (prefix) => {
-      if (environment_js_1.isNode) {
-        return require_src()(prefix);
-      }
-      return (...logArgs) => {
-        const debugLevel = globalThis.__PUPPETEER_DEBUG;
-        if (!debugLevel)
-          return;
-        const everythingShouldBeLogged = debugLevel === "*";
-        const prefixMatchesDebugLevel = everythingShouldBeLogged || (debugLevel.endsWith("*") ? prefix.startsWith(debugLevel) : prefix === debugLevel);
-        if (!prefixMatchesDebugLevel)
-          return;
-        console.log(`${prefix}:`, ...logArgs);
-      };
-    };
-    exports.debug = debug;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/helper.js
-var require_helper = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/helper.js"(exports) {
-    "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      Object.defineProperty(o, k2, { enumerable: true, get: function() {
-        return m[k];
-      } });
-    } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      o[k2] = m[k];
-    });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
-      Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
-      o["default"] = v;
-    });
-    var __importStar = exports && exports.__importStar || function(mod) {
-      if (mod && mod.__esModule)
-        return mod;
-      var result = {};
-      if (mod != null) {
-        for (var k in mod)
-          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
-            __createBinding(result, mod, k);
-      }
-      __setModuleDefault(result, mod);
-      return result;
-    };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.helper = exports.debugError = void 0;
-    var Errors_js_1 = require_Errors();
-    var Debug_js_1 = require_Debug();
-    var assert_js_1 = require_assert();
-    var environment_js_1 = require_environment();
-    exports.debugError = (0, Debug_js_1.debug)("puppeteer:error");
-    function getExceptionMessage(exceptionDetails) {
-      if (exceptionDetails.exception)
-        return exceptionDetails.exception.description || exceptionDetails.exception.value;
-      let message = exceptionDetails.text;
-      if (exceptionDetails.stackTrace) {
-        for (const callframe of exceptionDetails.stackTrace.callFrames) {
-          const location = callframe.url + ":" + callframe.lineNumber + ":" + callframe.columnNumber;
-          const functionName = callframe.functionName || "<anonymous>";
-          message += `
-    at ${functionName} (${location})`;
-        }
-      }
-      return message;
-    }
-    function valueFromRemoteObject(remoteObject) {
-      (0, assert_js_1.assert)(!remoteObject.objectId, "Cannot extract value when objectId is given");
-      if (remoteObject.unserializableValue) {
-        if (remoteObject.type === "bigint" && typeof BigInt !== "undefined")
-          return BigInt(remoteObject.unserializableValue.replace("n", ""));
-        switch (remoteObject.unserializableValue) {
-          case "-0":
-            return -0;
-          case "NaN":
-            return NaN;
-          case "Infinity":
-            return Infinity;
-          case "-Infinity":
-            return -Infinity;
-          default:
-            throw new Error("Unsupported unserializable value: " + remoteObject.unserializableValue);
-        }
-      }
-      return remoteObject.value;
-    }
-    async function releaseObject(client, remoteObject) {
-      if (!remoteObject.objectId)
-        return;
-      await client.send("Runtime.releaseObject", { objectId: remoteObject.objectId }).catch((error) => {
-        (0, exports.debugError)(error);
-      });
-    }
-    function addEventListener(emitter, eventName, handler) {
-      emitter.on(eventName, handler);
-      return { emitter, eventName, handler };
-    }
-    function removeEventListeners(listeners) {
-      for (const listener of listeners)
-        listener.emitter.removeListener(listener.eventName, listener.handler);
-      listeners.length = 0;
-    }
-    function isString(obj) {
-      return typeof obj === "string" || obj instanceof String;
-    }
-    function isNumber(obj) {
-      return typeof obj === "number" || obj instanceof Number;
-    }
-    async function waitForEvent(emitter, eventName, predicate, timeout, abortPromise) {
-      let eventTimeout;
-      let resolveCallback;
-      let rejectCallback;
-      const promise = new Promise((resolve, reject) => {
-        resolveCallback = resolve;
-        rejectCallback = reject;
-      });
-      const listener = addEventListener(emitter, eventName, async (event) => {
-        if (!await predicate(event))
-          return;
-        resolveCallback(event);
-      });
-      if (timeout) {
-        eventTimeout = setTimeout(() => {
-          rejectCallback(new Errors_js_1.TimeoutError("Timeout exceeded while waiting for event"));
-        }, timeout);
-      }
-      function cleanup() {
-        removeEventListeners([listener]);
-        clearTimeout(eventTimeout);
-      }
-      const result = await Promise.race([promise, abortPromise]).then((r) => {
-        cleanup();
-        return r;
-      }, (error) => {
-        cleanup();
-        throw error;
-      });
-      if (result instanceof Error)
-        throw result;
-      return result;
-    }
-    function evaluationString(fun, ...args) {
-      if (isString(fun)) {
-        (0, assert_js_1.assert)(args.length === 0, "Cannot evaluate a string with arguments");
-        return fun;
-      }
-      function serializeArgument(arg) {
-        if (Object.is(arg, void 0))
-          return "undefined";
-        return JSON.stringify(arg);
-      }
-      return `(${fun})(${args.map(serializeArgument).join(",")})`;
-    }
-    function pageBindingInitString(type, name) {
-      function addPageBinding(type2, bindingName) {
-        const win = window;
-        const binding = win[bindingName];
-        win[bindingName] = (...args) => {
-          const me = window[bindingName];
-          let callbacks = me.callbacks;
-          if (!callbacks) {
-            callbacks = /* @__PURE__ */ new Map();
-            me.callbacks = callbacks;
-          }
-          const seq = (me.lastSeq || 0) + 1;
-          me.lastSeq = seq;
-          const promise = new Promise((resolve, reject) => callbacks.set(seq, { resolve, reject }));
-          binding(JSON.stringify({ type: type2, name: bindingName, seq, args }));
-          return promise;
-        };
-      }
-      return evaluationString(addPageBinding, type, name);
-    }
-    function pageBindingDeliverResultString(name, seq, result) {
-      function deliverResult(name2, seq2, result2) {
-        window[name2].callbacks.get(seq2).resolve(result2);
-        window[name2].callbacks.delete(seq2);
-      }
-      return evaluationString(deliverResult, name, seq, result);
-    }
-    function pageBindingDeliverErrorString(name, seq, message, stack) {
-      function deliverError(name2, seq2, message2, stack2) {
-        const error = new Error(message2);
-        error.stack = stack2;
-        window[name2].callbacks.get(seq2).reject(error);
-        window[name2].callbacks.delete(seq2);
-      }
-      return evaluationString(deliverError, name, seq, message, stack);
-    }
-    function pageBindingDeliverErrorValueString(name, seq, value) {
-      function deliverErrorValue(name2, seq2, value2) {
-        window[name2].callbacks.get(seq2).reject(value2);
-        window[name2].callbacks.delete(seq2);
-      }
-      return evaluationString(deliverErrorValue, name, seq, value);
-    }
-    function makePredicateString(predicate, predicateQueryHandler2) {
-      function checkWaitForOptions2(node, waitForVisible, waitForHidden) {
-        if (!node)
-          return waitForHidden;
-        if (!waitForVisible && !waitForHidden)
-          return node;
-        const element = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
-        const style = window.getComputedStyle(element);
-        const isVisible = style && style.visibility !== "hidden" && hasVisibleBoundingBox();
-        const success = waitForVisible === isVisible || waitForHidden === !isVisible;
-        return success ? node : null;
-        function hasVisibleBoundingBox() {
-          const rect = element.getBoundingClientRect();
-          return !!(rect.top || rect.bottom || rect.width || rect.height);
-        }
-      }
-      const predicateQueryHandlerDef = predicateQueryHandler2 ? `const predicateQueryHandler = ${predicateQueryHandler2};` : "";
-      return `
-    (() => {
-      ${predicateQueryHandlerDef}
-      const checkWaitForOptions = ${checkWaitForOptions2};
-      return (${predicate})(...args)
-    })() `;
-    }
-    async function waitWithTimeout(promise, taskName, timeout) {
-      let reject;
-      const timeoutError = new Errors_js_1.TimeoutError(`waiting for ${taskName} failed: timeout ${timeout}ms exceeded`);
-      const timeoutPromise = new Promise((resolve, x) => reject = x);
-      let timeoutTimer = null;
-      if (timeout)
-        timeoutTimer = setTimeout(() => reject(timeoutError), timeout);
-      try {
-        return await Promise.race([promise, timeoutPromise]);
-      } finally {
-        if (timeoutTimer)
-          clearTimeout(timeoutTimer);
-      }
-    }
-    async function getReadableAsBuffer(readable, path) {
-      if (!environment_js_1.isNode && path) {
-        throw new Error("Cannot write to a path outside of Node.js environment.");
-      }
-      const fs = environment_js_1.isNode ? await importFSModule() : null;
-      let fileHandle;
-      if (path && fs) {
-        fileHandle = await fs.promises.open(path, "w");
-      }
-      const buffers = [];
-      for await (const chunk of readable) {
-        buffers.push(chunk);
-        if (fileHandle && fs) {
-          await fs.promises.writeFile(fileHandle, chunk);
-        }
-      }
-      if (path && fileHandle)
-        await fileHandle.close();
-      let resultBuffer = null;
-      try {
-        resultBuffer = Buffer.concat(buffers);
-      } finally {
-        return resultBuffer;
-      }
-    }
-    async function getReadableFromProtocolStream(client, handle) {
-      if (!environment_js_1.isNode) {
-        throw new Error("Cannot create a stream outside of Node.js environment.");
-      }
-      const { Readable } = await Promise.resolve().then(() => __importStar(__require("stream")));
-      let eof = false;
-      return new Readable({
-        async read() {
-          if (eof) {
-            return null;
-          }
-          const response = await client.send("IO.read", { handle });
-          this.push(response.data, response.base64Encoded ? "base64" : void 0);
-          if (response.eof) {
-            eof = true;
-            await client.send("IO.close", { handle });
-            this.push(null);
-          }
-        }
-      });
-    }
-    async function importFSModule() {
-      if (!environment_js_1.isNode) {
-        throw new Error("Cannot load the fs module API outside of Node.");
-      }
-      const fs = await Promise.resolve().then(() => __importStar(__require("fs")));
-      if (fs.promises) {
-        return fs;
-      }
-      return fs.default;
-    }
-    exports.helper = {
-      evaluationString,
-      pageBindingInitString,
-      pageBindingDeliverResultString,
-      pageBindingDeliverErrorString,
-      pageBindingDeliverErrorValueString,
-      makePredicateString,
-      getReadableAsBuffer,
-      getReadableFromProtocolStream,
-      waitWithTimeout,
-      waitForEvent,
-      isString,
-      isNumber,
-      importFSModule,
-      addEventListener,
-      removeEventListeners,
-      valueFromRemoteObject,
-      getExceptionMessage,
-      releaseObject
-    };
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/vendor/mitt/src/index.js
-var require_src2 = __commonJS({
-  "node_modules/puppeteer/lib/cjs/vendor/mitt/src/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    function mitt(all) {
-      all = all || /* @__PURE__ */ new Map();
-      return {
-        all,
-        on(type, handler) {
-          const handlers = all.get(type);
-          const added = handlers && handlers.push(handler);
-          if (!added) {
-            all.set(type, [handler]);
-          }
-        },
-        off(type, handler) {
-          const handlers = all.get(type);
-          if (handlers) {
-            handlers.splice(handlers.indexOf(handler) >>> 0, 1);
-          }
-        },
-        emit(type, evt) {
-          (all.get(type) || []).slice().map((handler) => {
-            handler(evt);
-          });
-          (all.get("*") || []).slice().map((handler) => {
-            handler(type, evt);
-          });
-        }
-      };
-    }
-    exports.default = mitt;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/EventEmitter.js
-var require_EventEmitter = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/EventEmitter.js"(exports) {
-    "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
-      return mod && mod.__esModule ? mod : { "default": mod };
-    };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.EventEmitter = void 0;
-    var index_js_1 = __importDefault(require_src2());
-    var EventEmitter = class {
-      constructor() {
-        this.eventsMap = /* @__PURE__ */ new Map();
-        this.emitter = (0, index_js_1.default)(this.eventsMap);
-      }
-      on(event, handler) {
-        this.emitter.on(event, handler);
-        return this;
-      }
-      off(event, handler) {
-        this.emitter.off(event, handler);
-        return this;
-      }
-      removeListener(event, handler) {
-        this.off(event, handler);
-        return this;
-      }
-      addListener(event, handler) {
-        this.on(event, handler);
-        return this;
-      }
-      emit(event, eventData) {
-        this.emitter.emit(event, eventData);
-        return this.eventListenersCount(event) > 0;
-      }
-      once(event, handler) {
-        const onceHandler = (eventData) => {
-          handler(eventData);
-          this.off(event, onceHandler);
-        };
-        return this.on(event, onceHandler);
-      }
-      listenerCount(event) {
-        return this.eventListenersCount(event);
-      }
-      removeAllListeners(event) {
-        if (event) {
-          this.eventsMap.delete(event);
-        } else {
-          this.eventsMap.clear();
-        }
-        return this;
-      }
-      eventListenersCount(event) {
-        var _a;
-        return ((_a = this.eventsMap.get(event)) === null || _a === void 0 ? void 0 : _a.length) || 0;
-      }
-    };
-    exports.EventEmitter = EventEmitter;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/Connection.js
-var require_Connection = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/Connection.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.CDPSession = exports.CDPSessionEmittedEvents = exports.Connection = exports.ConnectionEmittedEvents = void 0;
-    var assert_js_1 = require_assert();
-    var Debug_js_1 = require_Debug();
-    var debugProtocolSend = (0, Debug_js_1.debug)("puppeteer:protocol:SEND \u25BA");
-    var debugProtocolReceive = (0, Debug_js_1.debug)("puppeteer:protocol:RECV \u25C0");
-    var EventEmitter_js_1 = require_EventEmitter();
-    var Errors_js_1 = require_Errors();
-    exports.ConnectionEmittedEvents = {
-      Disconnected: Symbol("Connection.Disconnected")
-    };
-    var Connection = class extends EventEmitter_js_1.EventEmitter {
-      constructor(url, transport, delay = 0) {
-        super();
-        this._lastId = 0;
-        this._sessions = /* @__PURE__ */ new Map();
-        this._closed = false;
-        this._callbacks = /* @__PURE__ */ new Map();
-        this._url = url;
-        this._delay = delay;
-        this._transport = transport;
-        this._transport.onmessage = this._onMessage.bind(this);
-        this._transport.onclose = this._onClose.bind(this);
-      }
-      static fromSession(session) {
-        return session._connection;
-      }
-      session(sessionId) {
-        return this._sessions.get(sessionId) || null;
-      }
-      url() {
-        return this._url;
-      }
-      send(method, ...paramArgs) {
-        const params = paramArgs.length ? paramArgs[0] : void 0;
-        const id = this._rawSend({ method, params });
-        return new Promise((resolve, reject) => {
-          this._callbacks.set(id, {
-            resolve,
-            reject,
-            error: new Errors_js_1.ProtocolError(),
-            method
-          });
-        });
-      }
-      _rawSend(message) {
-        const id = ++this._lastId;
-        const stringifiedMessage = JSON.stringify(Object.assign({}, message, { id }));
-        debugProtocolSend(stringifiedMessage);
-        this._transport.send(stringifiedMessage);
-        return id;
-      }
-      async _onMessage(message) {
-        if (this._delay)
-          await new Promise((f) => setTimeout(f, this._delay));
-        debugProtocolReceive(message);
-        const object = JSON.parse(message);
-        if (object.method === "Target.attachedToTarget") {
-          const sessionId = object.params.sessionId;
-          const session = new CDPSession(this, object.params.targetInfo.type, sessionId);
-          this._sessions.set(sessionId, session);
-          this.emit("sessionattached", session);
-          const parentSession = this._sessions.get(object.sessionId);
-          if (parentSession) {
-            parentSession.emit("sessionattached", session);
-          }
-        } else if (object.method === "Target.detachedFromTarget") {
-          const session = this._sessions.get(object.params.sessionId);
-          if (session) {
-            session._onClosed();
-            this._sessions.delete(object.params.sessionId);
-            this.emit("sessiondetached", session);
-            const parentSession = this._sessions.get(object.sessionId);
-            if (parentSession) {
-              parentSession.emit("sessiondetached", session);
-            }
-          }
-        }
-        if (object.sessionId) {
-          const session = this._sessions.get(object.sessionId);
-          if (session)
-            session._onMessage(object);
-        } else if (object.id) {
-          const callback = this._callbacks.get(object.id);
-          if (callback) {
-            this._callbacks.delete(object.id);
-            if (object.error)
-              callback.reject(createProtocolError(callback.error, callback.method, object));
-            else
-              callback.resolve(object.result);
-          }
-        } else {
-          this.emit(object.method, object.params);
-        }
-      }
-      _onClose() {
-        if (this._closed)
-          return;
-        this._closed = true;
-        this._transport.onmessage = void 0;
-        this._transport.onclose = void 0;
-        for (const callback of this._callbacks.values())
-          callback.reject(rewriteError(callback.error, `Protocol error (${callback.method}): Target closed.`));
-        this._callbacks.clear();
-        for (const session of this._sessions.values())
-          session._onClosed();
-        this._sessions.clear();
-        this.emit(exports.ConnectionEmittedEvents.Disconnected);
-      }
-      dispose() {
-        this._onClose();
-        this._transport.close();
-      }
-      async createSession(targetInfo) {
-        const { sessionId } = await this.send("Target.attachToTarget", {
-          targetId: targetInfo.targetId,
-          flatten: true
-        });
-        const session = this._sessions.get(sessionId);
-        if (!session) {
-          throw new Error("CDPSession creation failed.");
-        }
-        return session;
-      }
-    };
-    exports.Connection = Connection;
-    exports.CDPSessionEmittedEvents = {
-      Disconnected: Symbol("CDPSession.Disconnected")
-    };
-    var CDPSession = class extends EventEmitter_js_1.EventEmitter {
-      constructor(connection, targetType, sessionId) {
-        super();
-        this._callbacks = /* @__PURE__ */ new Map();
-        this._connection = connection;
-        this._targetType = targetType;
-        this._sessionId = sessionId;
-      }
-      connection() {
-        return this._connection;
-      }
-      send(method, ...paramArgs) {
-        if (!this._connection)
-          return Promise.reject(new Error(`Protocol error (${method}): Session closed. Most likely the ${this._targetType} has been closed.`));
-        const params = paramArgs.length ? paramArgs[0] : void 0;
-        const id = this._connection._rawSend({
-          sessionId: this._sessionId,
-          method,
-          params
-        });
-        return new Promise((resolve, reject) => {
-          this._callbacks.set(id, {
-            resolve,
-            reject,
-            error: new Errors_js_1.ProtocolError(),
-            method
-          });
-        });
-      }
-      _onMessage(object) {
-        const callback = object.id ? this._callbacks.get(object.id) : void 0;
-        if (object.id && callback) {
-          this._callbacks.delete(object.id);
-          if (object.error)
-            callback.reject(createProtocolError(callback.error, callback.method, object));
-          else
-            callback.resolve(object.result);
-        } else {
-          (0, assert_js_1.assert)(!object.id);
-          this.emit(object.method, object.params);
-        }
-      }
-      async detach() {
-        if (!this._connection)
-          throw new Error(`Session already detached. Most likely the ${this._targetType} has been closed.`);
-        await this._connection.send("Target.detachFromTarget", {
-          sessionId: this._sessionId
-        });
-      }
-      _onClosed() {
-        for (const callback of this._callbacks.values())
-          callback.reject(rewriteError(callback.error, `Protocol error (${callback.method}): Target closed.`));
-        this._callbacks.clear();
-        this._connection = void 0;
-        this.emit(exports.CDPSessionEmittedEvents.Disconnected);
-      }
-      id() {
-        return this._sessionId;
-      }
-    };
-    exports.CDPSession = CDPSession;
-    function createProtocolError(error, method, object) {
-      let message = `Protocol error (${method}): ${object.error.message}`;
-      if ("data" in object.error)
-        message += ` ${object.error.data}`;
-      return rewriteError(error, message, object.error.message);
-    }
-    function rewriteError(error, message, originalMessage) {
-      error.message = message;
-      error.originalMessage = originalMessage !== null && originalMessage !== void 0 ? originalMessage : error.originalMessage;
-      return error;
-    }
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/Dialog.js
-var require_Dialog = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/Dialog.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Dialog = void 0;
-    var assert_js_1 = require_assert();
-    var Dialog = class {
-      constructor(client, type, message, defaultValue = "") {
-        this._handled = false;
-        this._client = client;
-        this._type = type;
-        this._message = message;
-        this._defaultValue = defaultValue;
-      }
-      type() {
-        return this._type;
-      }
-      message() {
-        return this._message;
-      }
-      defaultValue() {
-        return this._defaultValue;
-      }
-      async accept(promptText) {
-        (0, assert_js_1.assert)(!this._handled, "Cannot accept dialog which is already handled!");
-        this._handled = true;
-        await this._client.send("Page.handleJavaScriptDialog", {
-          accept: true,
-          promptText
-        });
-      }
-      async dismiss() {
-        (0, assert_js_1.assert)(!this._handled, "Cannot dismiss dialog which is already handled!");
-        this._handled = true;
-        await this._client.send("Page.handleJavaScriptDialog", {
-          accept: false
-        });
-      }
-    };
-    exports.Dialog = Dialog;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/EmulationManager.js
-var require_EmulationManager = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/EmulationManager.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.EmulationManager = void 0;
-    var EmulationManager = class {
-      constructor(client) {
-        this._emulatingMobile = false;
-        this._hasTouch = false;
-        this._client = client;
-      }
-      async emulateViewport(viewport) {
-        const mobile = viewport.isMobile || false;
-        const width = viewport.width;
-        const height = viewport.height;
-        const deviceScaleFactor = viewport.deviceScaleFactor || 1;
-        const screenOrientation = viewport.isLandscape ? { angle: 90, type: "landscapePrimary" } : { angle: 0, type: "portraitPrimary" };
-        const hasTouch = viewport.hasTouch || false;
-        await Promise.all([
-          this._client.send("Emulation.setDeviceMetricsOverride", {
-            mobile,
-            width,
-            height,
-            deviceScaleFactor,
-            screenOrientation
-          }),
-          this._client.send("Emulation.setTouchEmulationEnabled", {
-            enabled: hasTouch
-          })
-        ]);
-        const reloadNeeded = this._emulatingMobile !== mobile || this._hasTouch !== hasTouch;
-        this._emulatingMobile = mobile;
-        this._hasTouch = hasTouch;
-        return reloadNeeded;
-      }
-    };
-    exports.EmulationManager = EmulationManager;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/JSHandle.js
-var require_JSHandle = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/JSHandle.js"(exports) {
-    "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      Object.defineProperty(o, k2, { enumerable: true, get: function() {
-        return m[k];
-      } });
-    } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      o[k2] = m[k];
-    });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
-      Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
-      o["default"] = v;
-    });
-    var __importStar = exports && exports.__importStar || function(mod) {
-      if (mod && mod.__esModule)
-        return mod;
-      var result = {};
-      if (mod != null) {
-        for (var k in mod)
-          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
-            __createBinding(result, mod, k);
-      }
-      __setModuleDefault(result, mod);
-      return result;
-    };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ElementHandle = exports.JSHandle = exports.createJSHandle = void 0;
-    var assert_js_1 = require_assert();
-    var helper_js_1 = require_helper();
-    var QueryHandler_js_1 = require_QueryHandler();
-    var environment_js_1 = require_environment();
-    function createJSHandle(context, remoteObject) {
-      const frame = context.frame();
-      if (remoteObject.subtype === "node" && frame) {
-        const frameManager = frame._frameManager;
-        return new ElementHandle(context, context._client, remoteObject, frame, frameManager.page(), frameManager);
-      }
-      return new JSHandle(context, context._client, remoteObject);
-    }
-    exports.createJSHandle = createJSHandle;
-    var applyOffsetsToQuad = (quad, offsetX, offsetY) => quad.map((part) => ({ x: part.x + offsetX, y: part.y + offsetY }));
-    var JSHandle = class {
-      constructor(context, client, remoteObject) {
-        this._disposed = false;
-        this._context = context;
-        this._client = client;
-        this._remoteObject = remoteObject;
-      }
-      executionContext() {
-        return this._context;
-      }
-      async evaluate(pageFunction, ...args) {
-        return await this.executionContext().evaluate(pageFunction, this, ...args);
-      }
-      async evaluateHandle(pageFunction, ...args) {
-        return await this.executionContext().evaluateHandle(pageFunction, this, ...args);
-      }
-      async getProperty(propertyName) {
-        const objectHandle = await this.evaluateHandle((object, propertyName2) => {
-          const result2 = { __proto__: null };
-          result2[propertyName2] = object[propertyName2];
-          return result2;
-        }, propertyName);
-        const properties = await objectHandle.getProperties();
-        const result = properties.get(propertyName);
-        (0, assert_js_1.assert)(result instanceof JSHandle);
-        await objectHandle.dispose();
-        return result;
-      }
-      async getProperties() {
-        const response = await this._client.send("Runtime.getProperties", {
-          objectId: this._remoteObject.objectId,
-          ownProperties: true
-        });
-        const result = /* @__PURE__ */ new Map();
-        for (const property of response.result) {
-          if (!property.enumerable)
-            continue;
-          result.set(property.name, createJSHandle(this._context, property.value));
-        }
-        return result;
-      }
-      async jsonValue() {
-        if (this._remoteObject.objectId) {
-          const response = await this._client.send("Runtime.callFunctionOn", {
-            functionDeclaration: "function() { return this; }",
-            objectId: this._remoteObject.objectId,
-            returnByValue: true,
-            awaitPromise: true
-          });
-          return helper_js_1.helper.valueFromRemoteObject(response.result);
-        }
-        return helper_js_1.helper.valueFromRemoteObject(this._remoteObject);
-      }
-      asElement() {
-        return null;
-      }
-      async dispose() {
-        if (this._disposed)
-          return;
-        this._disposed = true;
-        await helper_js_1.helper.releaseObject(this._client, this._remoteObject);
-      }
-      toString() {
-        if (this._remoteObject.objectId) {
-          const type = this._remoteObject.subtype || this._remoteObject.type;
-          return "JSHandle@" + type;
-        }
-        return "JSHandle:" + helper_js_1.helper.valueFromRemoteObject(this._remoteObject);
-      }
-    };
-    exports.JSHandle = JSHandle;
-    var ElementHandle = class extends JSHandle {
-      constructor(context, client, remoteObject, frame, page, frameManager) {
-        super(context, client, remoteObject);
-        this._client = client;
-        this._remoteObject = remoteObject;
-        this._frame = frame;
-        this._page = page;
-        this._frameManager = frameManager;
-      }
-      async waitForSelector(selector, options = {}) {
-        const frame = this._context.frame();
-        const secondaryContext = await frame._secondaryWorld.executionContext();
-        const adoptedRoot = await secondaryContext._adoptElementHandle(this);
-        const handle = await frame._secondaryWorld.waitForSelector(selector, __spreadProps(__spreadValues({}, options), {
-          root: adoptedRoot
-        }));
-        await adoptedRoot.dispose();
-        if (!handle)
-          return null;
-        const mainExecutionContext = await frame._mainWorld.executionContext();
-        const result = await mainExecutionContext._adoptElementHandle(handle);
-        await handle.dispose();
-        return result;
-      }
-      asElement() {
-        return this;
-      }
-      async contentFrame() {
-        const nodeInfo = await this._client.send("DOM.describeNode", {
-          objectId: this._remoteObject.objectId
-        });
-        if (typeof nodeInfo.node.frameId !== "string")
-          return null;
-        return this._frameManager.frame(nodeInfo.node.frameId);
-      }
-      async _scrollIntoViewIfNeeded() {
-        const error = await this.evaluate(async (element, pageJavascriptEnabled) => {
-          if (!element.isConnected)
-            return "Node is detached from document";
-          if (element.nodeType !== Node.ELEMENT_NODE)
-            return "Node is not of type HTMLElement";
-          if (!pageJavascriptEnabled) {
-            element.scrollIntoView({
-              block: "center",
-              inline: "center",
-              behavior: "instant"
-            });
-            return false;
-          }
-          const visibleRatio = await new Promise((resolve) => {
-            const observer = new IntersectionObserver((entries) => {
-              resolve(entries[0].intersectionRatio);
-              observer.disconnect();
-            });
-            observer.observe(element);
-          });
-          if (visibleRatio !== 1) {
-            element.scrollIntoView({
-              block: "center",
-              inline: "center",
-              behavior: "instant"
-            });
-          }
-          return false;
-        }, this._page.isJavaScriptEnabled());
-        if (error)
-          throw new Error(error);
-      }
-      async _getOOPIFOffsets(frame) {
-        let offsetX = 0;
-        let offsetY = 0;
-        while (frame.parentFrame()) {
-          const parent = frame.parentFrame();
-          if (!frame.isOOPFrame()) {
-            frame = parent;
-            continue;
-          }
-          const { backendNodeId } = await parent._client.send("DOM.getFrameOwner", {
-            frameId: frame._id
-          });
-          const result = await parent._client.send("DOM.getBoxModel", {
-            backendNodeId
-          });
-          if (!result) {
-            break;
-          }
-          const contentBoxQuad = result.model.content;
-          const topLeftCorner = this._fromProtocolQuad(contentBoxQuad)[0];
-          offsetX += topLeftCorner.x;
-          offsetY += topLeftCorner.y;
-          frame = parent;
-        }
-        return { offsetX, offsetY };
-      }
-      async clickablePoint(offset) {
-        const [result, layoutMetrics] = await Promise.all([
-          this._client.send("DOM.getContentQuads", {
-            objectId: this._remoteObject.objectId
-          }).catch(helper_js_1.debugError),
-          this._page.client().send("Page.getLayoutMetrics")
-        ]);
-        if (!result || !result.quads.length)
-          throw new Error("Node is either not clickable or not an HTMLElement");
-        const { clientWidth, clientHeight } = layoutMetrics.cssLayoutViewport || layoutMetrics.layoutViewport;
-        const { offsetX, offsetY } = await this._getOOPIFOffsets(this._frame);
-        const quads = result.quads.map((quad2) => this._fromProtocolQuad(quad2)).map((quad2) => applyOffsetsToQuad(quad2, offsetX, offsetY)).map((quad2) => this._intersectQuadWithViewport(quad2, clientWidth, clientHeight)).filter((quad2) => computeQuadArea(quad2) > 1);
-        if (!quads.length)
-          throw new Error("Node is either not clickable or not an HTMLElement");
-        const quad = quads[0];
-        if (offset) {
-          let minX = Number.MAX_SAFE_INTEGER;
-          let minY = Number.MAX_SAFE_INTEGER;
-          for (const point of quad) {
-            if (point.x < minX) {
-              minX = point.x;
-            }
-            if (point.y < minY) {
-              minY = point.y;
-            }
-          }
-          if (minX !== Number.MAX_SAFE_INTEGER && minY !== Number.MAX_SAFE_INTEGER) {
-            return {
-              x: minX + offset.x,
-              y: minY + offset.y
-            };
-          }
-        }
-        let x = 0;
-        let y = 0;
-        for (const point of quad) {
-          x += point.x;
-          y += point.y;
-        }
-        return {
-          x: x / 4,
-          y: y / 4
-        };
-      }
-      _getBoxModel() {
-        const params = {
-          objectId: this._remoteObject.objectId
-        };
-        return this._client.send("DOM.getBoxModel", params).catch((error) => (0, helper_js_1.debugError)(error));
-      }
-      _fromProtocolQuad(quad) {
-        return [
-          { x: quad[0], y: quad[1] },
-          { x: quad[2], y: quad[3] },
-          { x: quad[4], y: quad[5] },
-          { x: quad[6], y: quad[7] }
-        ];
-      }
-      _intersectQuadWithViewport(quad, width, height) {
-        return quad.map((point) => ({
-          x: Math.min(Math.max(point.x, 0), width),
-          y: Math.min(Math.max(point.y, 0), height)
-        }));
-      }
-      async hover() {
-        await this._scrollIntoViewIfNeeded();
-        const { x, y } = await this.clickablePoint();
-        await this._page.mouse.move(x, y);
-      }
-      async click(options = {}) {
-        await this._scrollIntoViewIfNeeded();
-        const { x, y } = await this.clickablePoint(options.offset);
-        await this._page.mouse.click(x, y, options);
-      }
-      async drag(target) {
-        (0, assert_js_1.assert)(this._page.isDragInterceptionEnabled(), "Drag Interception is not enabled!");
-        await this._scrollIntoViewIfNeeded();
-        const start = await this.clickablePoint();
-        return await this._page.mouse.drag(start, target);
-      }
-      async dragEnter(data = { items: [], dragOperationsMask: 1 }) {
-        await this._scrollIntoViewIfNeeded();
-        const target = await this.clickablePoint();
-        await this._page.mouse.dragEnter(target, data);
-      }
-      async dragOver(data = { items: [], dragOperationsMask: 1 }) {
-        await this._scrollIntoViewIfNeeded();
-        const target = await this.clickablePoint();
-        await this._page.mouse.dragOver(target, data);
-      }
-      async drop(data = { items: [], dragOperationsMask: 1 }) {
-        await this._scrollIntoViewIfNeeded();
-        const destination = await this.clickablePoint();
-        await this._page.mouse.drop(destination, data);
-      }
-      async dragAndDrop(target, options) {
-        await this._scrollIntoViewIfNeeded();
-        const startPoint = await this.clickablePoint();
-        const targetPoint = await target.clickablePoint();
-        await this._page.mouse.dragAndDrop(startPoint, targetPoint, options);
-      }
-      async select(...values) {
-        for (const value of values)
-          (0, assert_js_1.assert)(helper_js_1.helper.isString(value), 'Values must be strings. Found value "' + value + '" of type "' + typeof value + '"');
-        return this.evaluate((element, values2) => {
-          if (!(element instanceof HTMLSelectElement))
-            throw new Error("Element is not a <select> element.");
-          const options = Array.from(element.options);
-          element.value = void 0;
-          for (const option of options) {
-            option.selected = values2.includes(option.value);
-            if (option.selected && !element.multiple)
-              break;
-          }
-          element.dispatchEvent(new Event("input", { bubbles: true }));
-          element.dispatchEvent(new Event("change", { bubbles: true }));
-          return options.filter((option) => option.selected).map((option) => option.value);
-        }, values);
-      }
-      async uploadFile(...filePaths) {
-        const isMultiple = await this.evaluate((element) => {
-          if (!(element instanceof HTMLInputElement)) {
-            throw new Error("uploadFile can only be called on an input element.");
-          }
-          return element.multiple;
-        });
-        (0, assert_js_1.assert)(filePaths.length <= 1 || isMultiple, "Multiple file uploads only work with <input type=file multiple>");
-        if (!environment_js_1.isNode) {
-          throw new Error(`JSHandle#uploadFile can only be used in Node environments.`);
-        }
-        const path = await Promise.resolve().then(() => __importStar(__require("path")));
-        const fs = await helper_js_1.helper.importFSModule();
-        const files = await Promise.all(filePaths.map(async (filePath) => {
-          const resolvedPath = path.resolve(filePath);
-          try {
-            await fs.promises.access(resolvedPath, fs.constants.R_OK);
-          } catch (error) {
-            if (error.code === "ENOENT")
-              throw new Error(`${filePath} does not exist or is not readable`);
-          }
-          return resolvedPath;
-        }));
-        const { objectId } = this._remoteObject;
-        const { node } = await this._client.send("DOM.describeNode", { objectId });
-        const { backendNodeId } = node;
-        if (files.length === 0) {
-          await this.evaluate((element) => {
-            element.files = new DataTransfer().files;
-            element.dispatchEvent(new Event("input", { bubbles: true }));
-            element.dispatchEvent(new Event("change", { bubbles: true }));
-          });
-        } else {
-          await this._client.send("DOM.setFileInputFiles", {
-            objectId,
-            files,
-            backendNodeId
-          });
-        }
-      }
-      async tap() {
-        await this._scrollIntoViewIfNeeded();
-        const { x, y } = await this.clickablePoint();
-        await this._page.touchscreen.tap(x, y);
-      }
-      async focus() {
-        await this.evaluate((element) => element.focus());
-      }
-      async type(text, options) {
-        await this.focus();
-        await this._page.keyboard.type(text, options);
-      }
-      async press(key, options) {
-        await this.focus();
-        await this._page.keyboard.press(key, options);
-      }
-      async boundingBox() {
-        const result = await this._getBoxModel();
-        if (!result)
-          return null;
-        const { offsetX, offsetY } = await this._getOOPIFOffsets(this._frame);
-        const quad = result.model.border;
-        const x = Math.min(quad[0], quad[2], quad[4], quad[6]);
-        const y = Math.min(quad[1], quad[3], quad[5], quad[7]);
-        const width = Math.max(quad[0], quad[2], quad[4], quad[6]) - x;
-        const height = Math.max(quad[1], quad[3], quad[5], quad[7]) - y;
-        return { x: x + offsetX, y: y + offsetY, width, height };
-      }
-      async boxModel() {
-        const result = await this._getBoxModel();
-        if (!result)
-          return null;
-        const { offsetX, offsetY } = await this._getOOPIFOffsets(this._frame);
-        const { content, padding, border, margin, width, height } = result.model;
-        return {
-          content: applyOffsetsToQuad(this._fromProtocolQuad(content), offsetX, offsetY),
-          padding: applyOffsetsToQuad(this._fromProtocolQuad(padding), offsetX, offsetY),
-          border: applyOffsetsToQuad(this._fromProtocolQuad(border), offsetX, offsetY),
-          margin: applyOffsetsToQuad(this._fromProtocolQuad(margin), offsetX, offsetY),
-          width,
-          height
-        };
-      }
-      async screenshot(options = {}) {
-        let needsViewportReset = false;
-        let boundingBox = await this.boundingBox();
-        (0, assert_js_1.assert)(boundingBox, "Node is either not visible or not an HTMLElement");
-        const viewport = this._page.viewport();
-        if (viewport && (boundingBox.width > viewport.width || boundingBox.height > viewport.height)) {
-          const newViewport = {
-            width: Math.max(viewport.width, Math.ceil(boundingBox.width)),
-            height: Math.max(viewport.height, Math.ceil(boundingBox.height))
-          };
-          await this._page.setViewport(Object.assign({}, viewport, newViewport));
-          needsViewportReset = true;
-        }
-        await this._scrollIntoViewIfNeeded();
-        boundingBox = await this.boundingBox();
-        (0, assert_js_1.assert)(boundingBox, "Node is either not visible or not an HTMLElement");
-        (0, assert_js_1.assert)(boundingBox.width !== 0, "Node has 0 width.");
-        (0, assert_js_1.assert)(boundingBox.height !== 0, "Node has 0 height.");
-        const layoutMetrics = await this._client.send("Page.getLayoutMetrics");
-        const { pageX, pageY } = layoutMetrics.cssVisualViewport || layoutMetrics.layoutViewport;
-        const clip = Object.assign({}, boundingBox);
-        clip.x += pageX;
-        clip.y += pageY;
-        const imageData = await this._page.screenshot(Object.assign({}, {
-          clip
-        }, options));
-        if (needsViewportReset)
-          await this._page.setViewport(viewport);
-        return imageData;
-      }
-      async $(selector) {
-        const { updatedSelector, queryHandler } = (0, QueryHandler_js_1.getQueryHandlerAndSelector)(selector);
-        return queryHandler.queryOne(this, updatedSelector);
-      }
-      async $$(selector) {
-        const { updatedSelector, queryHandler } = (0, QueryHandler_js_1.getQueryHandlerAndSelector)(selector);
-        return queryHandler.queryAll(this, updatedSelector);
-      }
-      async $eval(selector, pageFunction, ...args) {
-        const elementHandle = await this.$(selector);
-        if (!elementHandle)
-          throw new Error(`Error: failed to find element matching selector "${selector}"`);
-        const result = await elementHandle.evaluate(pageFunction, ...args);
-        await elementHandle.dispose();
-        return result;
-      }
-      async $$eval(selector, pageFunction, ...args) {
-        const { updatedSelector, queryHandler } = (0, QueryHandler_js_1.getQueryHandlerAndSelector)(selector);
-        const arrayHandle = await queryHandler.queryAllArray(this, updatedSelector);
-        const result = await arrayHandle.evaluate(pageFunction, ...args);
-        await arrayHandle.dispose();
-        return result;
-      }
-      async $x(expression) {
-        const arrayHandle = await this.evaluateHandle((element, expression2) => {
-          const document2 = element.ownerDocument || element;
-          const iterator = document2.evaluate(expression2, element, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE);
-          const array = [];
-          let item;
-          while (item = iterator.iterateNext())
-            array.push(item);
-          return array;
-        }, expression);
-        const properties = await arrayHandle.getProperties();
-        await arrayHandle.dispose();
-        const result = [];
-        for (const property of properties.values()) {
-          const elementHandle = property.asElement();
-          if (elementHandle)
-            result.push(elementHandle);
-        }
-        return result;
-      }
-      async isIntersectingViewport(options) {
-        const { threshold = 0 } = options || {};
-        return await this.evaluate(async (element, threshold2) => {
-          const visibleRatio = await new Promise((resolve) => {
-            const observer = new IntersectionObserver((entries) => {
-              resolve(entries[0].intersectionRatio);
-              observer.disconnect();
-            });
-            observer.observe(element);
-          });
-          return threshold2 === 1 ? visibleRatio === 1 : visibleRatio > threshold2;
-        }, threshold);
-      }
-    };
-    exports.ElementHandle = ElementHandle;
-    function computeQuadArea(quad) {
-      let area = 0;
-      for (let i = 0; i < quad.length; ++i) {
-        const p1 = quad[i];
-        const p2 = quad[(i + 1) % quad.length];
-        area += (p1.x * p2.y - p2.x * p1.y) / 2;
-      }
-      return Math.abs(area);
-    }
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/ExecutionContext.js
-var require_ExecutionContext = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/ExecutionContext.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ExecutionContext = exports.EVALUATION_SCRIPT_URL = void 0;
-    var assert_js_1 = require_assert();
-    var helper_js_1 = require_helper();
-    var JSHandle_js_1 = require_JSHandle();
-    exports.EVALUATION_SCRIPT_URL = "__puppeteer_evaluation_script__";
-    var SOURCE_URL_REGEX = /^[\040\t]*\/\/[@#] sourceURL=\s*(\S*?)\s*$/m;
-    var ExecutionContext = class {
-      constructor(client, contextPayload, world) {
-        this._client = client;
-        this._world = world;
-        this._contextId = contextPayload.id;
-        this._contextName = contextPayload.name;
-      }
-      frame() {
-        return this._world ? this._world.frame() : null;
-      }
-      async evaluate(pageFunction, ...args) {
-        return await this._evaluateInternal(true, pageFunction, ...args);
-      }
-      async evaluateHandle(pageFunction, ...args) {
-        return this._evaluateInternal(false, pageFunction, ...args);
-      }
-      async _evaluateInternal(returnByValue, pageFunction, ...args) {
-        const suffix = `//# sourceURL=${exports.EVALUATION_SCRIPT_URL}`;
-        if (helper_js_1.helper.isString(pageFunction)) {
-          const contextId = this._contextId;
-          const expression = pageFunction;
-          const expressionWithSourceUrl = SOURCE_URL_REGEX.test(expression) ? expression : expression + "\n" + suffix;
-          const { exceptionDetails: exceptionDetails2, result: remoteObject2 } = await this._client.send("Runtime.evaluate", {
-            expression: expressionWithSourceUrl,
-            contextId,
-            returnByValue,
-            awaitPromise: true,
-            userGesture: true
-          }).catch(rewriteError);
-          if (exceptionDetails2)
-            throw new Error("Evaluation failed: " + helper_js_1.helper.getExceptionMessage(exceptionDetails2));
-          return returnByValue ? helper_js_1.helper.valueFromRemoteObject(remoteObject2) : (0, JSHandle_js_1.createJSHandle)(this, remoteObject2);
-        }
-        if (typeof pageFunction !== "function")
-          throw new Error(`Expected to get |string| or |function| as the first argument, but got "${pageFunction}" instead.`);
-        let functionText = pageFunction.toString();
-        try {
-          new Function("(" + functionText + ")");
-        } catch (error) {
-          if (functionText.startsWith("async "))
-            functionText = "async function " + functionText.substring("async ".length);
-          else
-            functionText = "function " + functionText;
-          try {
-            new Function("(" + functionText + ")");
-          } catch (error2) {
-            throw new Error("Passed function is not well-serializable!");
-          }
-        }
-        let callFunctionOnPromise;
-        try {
-          callFunctionOnPromise = this._client.send("Runtime.callFunctionOn", {
-            functionDeclaration: functionText + "\n" + suffix + "\n",
-            executionContextId: this._contextId,
-            arguments: args.map(convertArgument.bind(this)),
-            returnByValue,
-            awaitPromise: true,
-            userGesture: true
-          });
-        } catch (error) {
-          if (error instanceof TypeError && error.message.startsWith("Converting circular structure to JSON"))
-            error.message += " Are you passing a nested JSHandle?";
-          throw error;
-        }
-        const { exceptionDetails, result: remoteObject } = await callFunctionOnPromise.catch(rewriteError);
-        if (exceptionDetails)
-          throw new Error("Evaluation failed: " + helper_js_1.helper.getExceptionMessage(exceptionDetails));
-        return returnByValue ? helper_js_1.helper.valueFromRemoteObject(remoteObject) : (0, JSHandle_js_1.createJSHandle)(this, remoteObject);
-        function convertArgument(arg) {
-          if (typeof arg === "bigint")
-            return { unserializableValue: `${arg.toString()}n` };
-          if (Object.is(arg, -0))
-            return { unserializableValue: "-0" };
-          if (Object.is(arg, Infinity))
-            return { unserializableValue: "Infinity" };
-          if (Object.is(arg, -Infinity))
-            return { unserializableValue: "-Infinity" };
-          if (Object.is(arg, NaN))
-            return { unserializableValue: "NaN" };
-          const objectHandle = arg && arg instanceof JSHandle_js_1.JSHandle ? arg : null;
-          if (objectHandle) {
-            if (objectHandle._context !== this)
-              throw new Error("JSHandles can be evaluated only in the context they were created!");
-            if (objectHandle._disposed)
-              throw new Error("JSHandle is disposed!");
-            if (objectHandle._remoteObject.unserializableValue)
-              return {
-                unserializableValue: objectHandle._remoteObject.unserializableValue
-              };
-            if (!objectHandle._remoteObject.objectId)
-              return { value: objectHandle._remoteObject.value };
-            return { objectId: objectHandle._remoteObject.objectId };
-          }
-          return { value: arg };
-        }
-        function rewriteError(error) {
-          if (error.message.includes("Object reference chain is too long"))
-            return { result: { type: "undefined" } };
-          if (error.message.includes("Object couldn't be returned by value"))
-            return { result: { type: "undefined" } };
-          if (error.message.endsWith("Cannot find context with specified id") || error.message.endsWith("Inspected target navigated or closed"))
-            throw new Error("Execution context was destroyed, most likely because of a navigation.");
-          throw error;
-        }
-      }
-      async queryObjects(prototypeHandle) {
-        (0, assert_js_1.assert)(!prototypeHandle._disposed, "Prototype JSHandle is disposed!");
-        (0, assert_js_1.assert)(prototypeHandle._remoteObject.objectId, "Prototype JSHandle must not be referencing primitive value");
-        const response = await this._client.send("Runtime.queryObjects", {
-          prototypeObjectId: prototypeHandle._remoteObject.objectId
-        });
-        return (0, JSHandle_js_1.createJSHandle)(this, response.objects);
-      }
-      async _adoptBackendNodeId(backendNodeId) {
-        const { object } = await this._client.send("DOM.resolveNode", {
-          backendNodeId,
-          executionContextId: this._contextId
-        });
-        return (0, JSHandle_js_1.createJSHandle)(this, object);
-      }
-      async _adoptElementHandle(elementHandle) {
-        (0, assert_js_1.assert)(elementHandle.executionContext() !== this, "Cannot adopt handle that already belongs to this execution context");
-        (0, assert_js_1.assert)(this._world, "Cannot adopt handle without DOMWorld");
-        const nodeInfo = await this._client.send("DOM.describeNode", {
-          objectId: elementHandle._remoteObject.objectId
-        });
-        return this._adoptBackendNodeId(nodeInfo.node.backendNodeId);
-      }
-    };
-    exports.ExecutionContext = ExecutionContext;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/HTTPRequest.js
-var require_HTTPRequest = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/HTTPRequest.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.InterceptResolutionAction = exports.HTTPRequest = exports.DEFAULT_INTERCEPT_RESOLUTION_PRIORITY = void 0;
-    var assert_js_1 = require_assert();
-    var helper_js_1 = require_helper();
-    exports.DEFAULT_INTERCEPT_RESOLUTION_PRIORITY = 0;
-    var HTTPRequest = class {
-      constructor(client, frame, interceptionId, allowInterception, event, redirectChain) {
-        this._failureText = null;
-        this._response = null;
-        this._fromMemoryCache = false;
-        this._interceptionHandled = false;
-        this._headers = {};
-        this._client = client;
-        this._requestId = event.requestId;
-        this._isNavigationRequest = event.requestId === event.loaderId && event.type === "Document";
-        this._interceptionId = interceptionId;
-        this._allowInterception = allowInterception;
-        this._url = event.request.url;
-        this._resourceType = event.type.toLowerCase();
-        this._method = event.request.method;
-        this._postData = event.request.postData;
-        this._frame = frame;
-        this._redirectChain = redirectChain;
-        this._continueRequestOverrides = {};
-        this._interceptResolutionState = { action: InterceptResolutionAction.None };
-        this._interceptHandlers = [];
-        this._initiator = event.initiator;
-        for (const key of Object.keys(event.request.headers))
-          this._headers[key.toLowerCase()] = event.request.headers[key];
-      }
-      url() {
-        return this._url;
-      }
-      continueRequestOverrides() {
-        (0, assert_js_1.assert)(this._allowInterception, "Request Interception is not enabled!");
-        return this._continueRequestOverrides;
-      }
-      responseForRequest() {
-        (0, assert_js_1.assert)(this._allowInterception, "Request Interception is not enabled!");
-        return this._responseForRequest;
-      }
-      abortErrorReason() {
-        (0, assert_js_1.assert)(this._allowInterception, "Request Interception is not enabled!");
-        return this._abortErrorReason;
-      }
-      interceptResolutionState() {
-        if (!this._allowInterception)
-          return { action: InterceptResolutionAction.Disabled };
-        if (this._interceptionHandled)
-          return { action: InterceptResolutionAction.AlreadyHandled };
-        return __spreadValues({}, this._interceptResolutionState);
-      }
-      isInterceptResolutionHandled() {
-        return this._interceptionHandled;
-      }
-      enqueueInterceptAction(pendingHandler) {
-        this._interceptHandlers.push(pendingHandler);
-      }
-      async finalizeInterceptions() {
-        await this._interceptHandlers.reduce((promiseChain, interceptAction) => promiseChain.then(interceptAction), Promise.resolve());
-        const { action } = this.interceptResolutionState();
-        switch (action) {
-          case "abort":
-            return this._abort(this._abortErrorReason);
-          case "respond":
-            return this._respond(this._responseForRequest);
-          case "continue":
-            return this._continue(this._continueRequestOverrides);
-        }
-      }
-      resourceType() {
-        return this._resourceType;
-      }
-      method() {
-        return this._method;
-      }
-      postData() {
-        return this._postData;
-      }
-      headers() {
-        return this._headers;
-      }
-      response() {
-        return this._response;
-      }
-      frame() {
-        return this._frame;
-      }
-      isNavigationRequest() {
-        return this._isNavigationRequest;
-      }
-      initiator() {
-        return this._initiator;
-      }
-      redirectChain() {
-        return this._redirectChain.slice();
-      }
-      failure() {
-        if (!this._failureText)
-          return null;
-        return {
-          errorText: this._failureText
-        };
-      }
-      async continue(overrides = {}, priority) {
-        if (this._url.startsWith("data:"))
-          return;
-        (0, assert_js_1.assert)(this._allowInterception, "Request Interception is not enabled!");
-        (0, assert_js_1.assert)(!this._interceptionHandled, "Request is already handled!");
-        if (priority === void 0) {
-          return this._continue(overrides);
-        }
-        this._continueRequestOverrides = overrides;
-        if (priority > this._interceptResolutionState.priority || this._interceptResolutionState.priority === void 0) {
-          this._interceptResolutionState = {
-            action: InterceptResolutionAction.Continue,
-            priority
-          };
-          return;
-        }
-        if (priority === this._interceptResolutionState.priority) {
-          if (this._interceptResolutionState.action === "abort" || this._interceptResolutionState.action === "respond") {
-            return;
-          }
-          this._interceptResolutionState.action = InterceptResolutionAction.Continue;
-        }
-        return;
-      }
-      async _continue(overrides = {}) {
-        const { url, method, postData, headers } = overrides;
-        this._interceptionHandled = true;
-        const postDataBinaryBase64 = postData ? Buffer.from(postData).toString("base64") : void 0;
-        await this._client.send("Fetch.continueRequest", {
-          requestId: this._interceptionId,
-          url,
-          method,
-          postData: postDataBinaryBase64,
-          headers: headers ? headersArray(headers) : void 0
-        }).catch((error) => {
-          this._interceptionHandled = false;
-          return handleError(error);
-        });
-      }
-      async respond(response, priority) {
-        if (this._url.startsWith("data:"))
-          return;
-        (0, assert_js_1.assert)(this._allowInterception, "Request Interception is not enabled!");
-        (0, assert_js_1.assert)(!this._interceptionHandled, "Request is already handled!");
-        if (priority === void 0) {
-          return this._respond(response);
-        }
-        this._responseForRequest = response;
-        if (priority > this._interceptResolutionState.priority || this._interceptResolutionState.priority === void 0) {
-          this._interceptResolutionState = {
-            action: InterceptResolutionAction.Respond,
-            priority
-          };
-          return;
-        }
-        if (priority === this._interceptResolutionState.priority) {
-          if (this._interceptResolutionState.action === "abort") {
-            return;
-          }
-          this._interceptResolutionState.action = InterceptResolutionAction.Respond;
-        }
-      }
-      async _respond(response) {
-        this._interceptionHandled = true;
-        const responseBody = response.body && helper_js_1.helper.isString(response.body) ? Buffer.from(response.body) : response.body || null;
-        const responseHeaders = {};
-        if (response.headers) {
-          for (const header of Object.keys(response.headers))
-            responseHeaders[header.toLowerCase()] = String(response.headers[header]);
-        }
-        if (response.contentType)
-          responseHeaders["content-type"] = response.contentType;
-        if (responseBody && !("content-length" in responseHeaders))
-          responseHeaders["content-length"] = String(Buffer.byteLength(responseBody));
-        await this._client.send("Fetch.fulfillRequest", {
-          requestId: this._interceptionId,
-          responseCode: response.status || 200,
-          responsePhrase: STATUS_TEXTS[response.status || 200],
-          responseHeaders: headersArray(responseHeaders),
-          body: responseBody ? responseBody.toString("base64") : void 0
-        }).catch((error) => {
-          this._interceptionHandled = false;
-          return handleError(error);
-        });
-      }
-      async abort(errorCode = "failed", priority) {
-        if (this._url.startsWith("data:"))
-          return;
-        const errorReason = errorReasons[errorCode];
-        (0, assert_js_1.assert)(errorReason, "Unknown error code: " + errorCode);
-        (0, assert_js_1.assert)(this._allowInterception, "Request Interception is not enabled!");
-        (0, assert_js_1.assert)(!this._interceptionHandled, "Request is already handled!");
-        if (priority === void 0) {
-          return this._abort(errorReason);
-        }
-        this._abortErrorReason = errorReason;
-        if (priority >= this._interceptResolutionState.priority || this._interceptResolutionState.priority === void 0) {
-          this._interceptResolutionState = {
-            action: InterceptResolutionAction.Abort,
-            priority
-          };
-          return;
-        }
-      }
-      async _abort(errorReason) {
-        this._interceptionHandled = true;
-        await this._client.send("Fetch.failRequest", {
-          requestId: this._interceptionId,
-          errorReason
-        }).catch(handleError);
-      }
-    };
-    exports.HTTPRequest = HTTPRequest;
-    var InterceptResolutionAction;
-    (function(InterceptResolutionAction2) {
-      InterceptResolutionAction2["Abort"] = "abort";
-      InterceptResolutionAction2["Respond"] = "respond";
-      InterceptResolutionAction2["Continue"] = "continue";
-      InterceptResolutionAction2["Disabled"] = "disabled";
-      InterceptResolutionAction2["None"] = "none";
-      InterceptResolutionAction2["AlreadyHandled"] = "already-handled";
-    })(InterceptResolutionAction = exports.InterceptResolutionAction || (exports.InterceptResolutionAction = {}));
-    var errorReasons = {
-      aborted: "Aborted",
-      accessdenied: "AccessDenied",
-      addressunreachable: "AddressUnreachable",
-      blockedbyclient: "BlockedByClient",
-      blockedbyresponse: "BlockedByResponse",
-      connectionaborted: "ConnectionAborted",
-      connectionclosed: "ConnectionClosed",
-      connectionfailed: "ConnectionFailed",
-      connectionrefused: "ConnectionRefused",
-      connectionreset: "ConnectionReset",
-      internetdisconnected: "InternetDisconnected",
-      namenotresolved: "NameNotResolved",
-      timedout: "TimedOut",
-      failed: "Failed"
-    };
-    function headersArray(headers) {
-      const result = [];
-      for (const name in headers) {
-        if (!Object.is(headers[name], void 0))
-          result.push({ name, value: headers[name] + "" });
-      }
-      return result;
-    }
-    async function handleError(error) {
-      if (["Invalid header"].includes(error.originalMessage)) {
-        throw error;
-      }
-      (0, helper_js_1.debugError)(error);
-    }
-    var STATUS_TEXTS = {
-      "100": "Continue",
-      "101": "Switching Protocols",
-      "102": "Processing",
-      "103": "Early Hints",
-      "200": "OK",
-      "201": "Created",
-      "202": "Accepted",
-      "203": "Non-Authoritative Information",
-      "204": "No Content",
-      "205": "Reset Content",
-      "206": "Partial Content",
-      "207": "Multi-Status",
-      "208": "Already Reported",
-      "226": "IM Used",
-      "300": "Multiple Choices",
-      "301": "Moved Permanently",
-      "302": "Found",
-      "303": "See Other",
-      "304": "Not Modified",
-      "305": "Use Proxy",
-      "306": "Switch Proxy",
-      "307": "Temporary Redirect",
-      "308": "Permanent Redirect",
-      "400": "Bad Request",
-      "401": "Unauthorized",
-      "402": "Payment Required",
-      "403": "Forbidden",
-      "404": "Not Found",
-      "405": "Method Not Allowed",
-      "406": "Not Acceptable",
-      "407": "Proxy Authentication Required",
-      "408": "Request Timeout",
-      "409": "Conflict",
-      "410": "Gone",
-      "411": "Length Required",
-      "412": "Precondition Failed",
-      "413": "Payload Too Large",
-      "414": "URI Too Long",
-      "415": "Unsupported Media Type",
-      "416": "Range Not Satisfiable",
-      "417": "Expectation Failed",
-      "418": "I'm a teapot",
-      "421": "Misdirected Request",
-      "422": "Unprocessable Entity",
-      "423": "Locked",
-      "424": "Failed Dependency",
-      "425": "Too Early",
-      "426": "Upgrade Required",
-      "428": "Precondition Required",
-      "429": "Too Many Requests",
-      "431": "Request Header Fields Too Large",
-      "451": "Unavailable For Legal Reasons",
-      "500": "Internal Server Error",
-      "501": "Not Implemented",
-      "502": "Bad Gateway",
-      "503": "Service Unavailable",
-      "504": "Gateway Timeout",
-      "505": "HTTP Version Not Supported",
-      "506": "Variant Also Negotiates",
-      "507": "Insufficient Storage",
-      "508": "Loop Detected",
-      "510": "Not Extended",
-      "511": "Network Authentication Required"
-    };
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/SecurityDetails.js
-var require_SecurityDetails = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/SecurityDetails.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.SecurityDetails = void 0;
-    var SecurityDetails = class {
-      constructor(securityPayload) {
-        this._subjectName = securityPayload.subjectName;
-        this._issuer = securityPayload.issuer;
-        this._validFrom = securityPayload.validFrom;
-        this._validTo = securityPayload.validTo;
-        this._protocol = securityPayload.protocol;
-        this._sanList = securityPayload.sanList;
-      }
-      issuer() {
-        return this._issuer;
-      }
-      validFrom() {
-        return this._validFrom;
-      }
-      validTo() {
-        return this._validTo;
-      }
-      protocol() {
-        return this._protocol;
-      }
-      subjectName() {
-        return this._subjectName;
-      }
-      subjectAlternativeNames() {
-        return this._sanList;
-      }
-    };
-    exports.SecurityDetails = SecurityDetails;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/HTTPResponse.js
-var require_HTTPResponse = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/HTTPResponse.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.HTTPResponse = void 0;
-    var SecurityDetails_js_1 = require_SecurityDetails();
-    var Errors_js_1 = require_Errors();
-    var HTTPResponse = class {
-      constructor(client, request, responsePayload, extraInfo) {
-        this._contentPromise = null;
-        this._headers = {};
-        this._client = client;
-        this._request = request;
-        this._bodyLoadedPromise = new Promise((fulfill) => {
-          this._bodyLoadedPromiseFulfill = fulfill;
-        });
-        this._remoteAddress = {
-          ip: responsePayload.remoteIPAddress,
-          port: responsePayload.remotePort
-        };
-        this._statusText = this._parseStatusTextFromExtrInfo(extraInfo) || responsePayload.statusText;
-        this._url = request.url();
-        this._fromDiskCache = !!responsePayload.fromDiskCache;
-        this._fromServiceWorker = !!responsePayload.fromServiceWorker;
-        this._status = extraInfo ? extraInfo.statusCode : responsePayload.status;
-        const headers = extraInfo ? extraInfo.headers : responsePayload.headers;
-        for (const key of Object.keys(headers))
-          this._headers[key.toLowerCase()] = headers[key];
-        this._securityDetails = responsePayload.securityDetails ? new SecurityDetails_js_1.SecurityDetails(responsePayload.securityDetails) : null;
-        this._timing = responsePayload.timing;
-      }
-      _parseStatusTextFromExtrInfo(extraInfo) {
-        if (!extraInfo || !extraInfo.headersText)
-          return;
-        const firstLine = extraInfo.headersText.split("\r", 1)[0];
-        if (!firstLine)
-          return;
-        const match = firstLine.match(/[^ ]* [^ ]* (.*)/);
-        if (!match)
-          return;
-        const statusText = match[1];
-        if (!statusText)
-          return;
-        return statusText;
-      }
-      _resolveBody(err) {
-        return this._bodyLoadedPromiseFulfill(err);
-      }
-      remoteAddress() {
-        return this._remoteAddress;
-      }
-      url() {
-        return this._url;
-      }
-      ok() {
-        return this._status === 0 || this._status >= 200 && this._status <= 299;
-      }
-      status() {
-        return this._status;
-      }
-      statusText() {
-        return this._statusText;
-      }
-      headers() {
-        return this._headers;
-      }
-      securityDetails() {
-        return this._securityDetails;
-      }
-      timing() {
-        return this._timing;
-      }
-      buffer() {
-        if (!this._contentPromise) {
-          this._contentPromise = this._bodyLoadedPromise.then(async (error) => {
-            if (error)
-              throw error;
-            try {
-              const response = await this._client.send("Network.getResponseBody", {
-                requestId: this._request._requestId
-              });
-              return Buffer.from(response.body, response.base64Encoded ? "base64" : "utf8");
-            } catch (error2) {
-              if (error2 instanceof Errors_js_1.ProtocolError && error2.originalMessage === "No resource with given identifier found") {
-                throw new Errors_js_1.ProtocolError("Could not load body for this request. This might happen if the request is a preflight request.");
-              }
-              throw error2;
-            }
-          });
-        }
-        return this._contentPromise;
-      }
-      async text() {
-        const content = await this.buffer();
-        return content.toString("utf8");
-      }
-      async json() {
-        const content = await this.text();
-        return JSON.parse(content);
-      }
-      request() {
-        return this._request;
-      }
-      fromCache() {
-        return this._fromDiskCache || this._request._fromMemoryCache;
-      }
-      fromServiceWorker() {
-        return this._fromServiceWorker;
-      }
-      frame() {
-        return this._request.frame();
-      }
-    };
-    exports.HTTPResponse = HTTPResponse;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/NetworkEventManager.js
-var require_NetworkEventManager = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/NetworkEventManager.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NetworkEventManager = void 0;
-    var NetworkEventManager = class {
-      constructor() {
-        this._requestWillBeSentMap = /* @__PURE__ */ new Map();
-        this._requestPausedMap = /* @__PURE__ */ new Map();
-        this._httpRequestsMap = /* @__PURE__ */ new Map();
-        this._responseReceivedExtraInfoMap = /* @__PURE__ */ new Map();
-        this._queuedRedirectInfoMap = /* @__PURE__ */ new Map();
-        this._queuedEventGroupMap = /* @__PURE__ */ new Map();
-      }
-      forget(networkRequestId) {
-        this._requestWillBeSentMap.delete(networkRequestId);
-        this._requestPausedMap.delete(networkRequestId);
-        this._queuedEventGroupMap.delete(networkRequestId);
-        this._queuedRedirectInfoMap.delete(networkRequestId);
-        this._responseReceivedExtraInfoMap.delete(networkRequestId);
-      }
-      responseExtraInfo(networkRequestId) {
-        if (!this._responseReceivedExtraInfoMap.has(networkRequestId)) {
-          this._responseReceivedExtraInfoMap.set(networkRequestId, []);
-        }
-        return this._responseReceivedExtraInfoMap.get(networkRequestId);
-      }
-      queuedRedirectInfo(fetchRequestId) {
-        if (!this._queuedRedirectInfoMap.has(fetchRequestId)) {
-          this._queuedRedirectInfoMap.set(fetchRequestId, []);
-        }
-        return this._queuedRedirectInfoMap.get(fetchRequestId);
-      }
-      queueRedirectInfo(fetchRequestId, redirectInfo) {
-        this.queuedRedirectInfo(fetchRequestId).push(redirectInfo);
-      }
-      takeQueuedRedirectInfo(fetchRequestId) {
-        return this.queuedRedirectInfo(fetchRequestId).shift();
-      }
-      numRequestsInProgress() {
-        return [...this._httpRequestsMap].filter(([, request]) => {
-          return !request.response();
-        }).length;
-      }
-      storeRequestWillBeSent(networkRequestId, event) {
-        this._requestWillBeSentMap.set(networkRequestId, event);
-      }
-      getRequestWillBeSent(networkRequestId) {
-        return this._requestWillBeSentMap.get(networkRequestId);
-      }
-      forgetRequestWillBeSent(networkRequestId) {
-        this._requestPausedMap.delete(networkRequestId);
-      }
-      getRequestPaused(networkRequestId) {
-        return this._requestPausedMap.get(networkRequestId);
-      }
-      forgetRequestPaused(networkRequestId) {
-        this._requestPausedMap.delete(networkRequestId);
-      }
-      storeRequestPaused(networkRequestId, event) {
-        this._requestPausedMap.set(networkRequestId, event);
-      }
-      getRequest(networkRequestId) {
-        return this._httpRequestsMap.get(networkRequestId);
-      }
-      storeRequest(networkRequestId, request) {
-        this._httpRequestsMap.set(networkRequestId, request);
-      }
-      forgetRequest(networkRequestId) {
-        this._httpRequestsMap.delete(networkRequestId);
-      }
-      getQueuedEventGroup(networkRequestId) {
-        return this._queuedEventGroupMap.get(networkRequestId);
-      }
-      queueEventGroup(networkRequestId, event) {
-        this._queuedEventGroupMap.set(networkRequestId, event);
-      }
-    };
-    exports.NetworkEventManager = NetworkEventManager;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/NetworkManager.js
-var require_NetworkManager = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/NetworkManager.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NetworkManager = exports.NetworkManagerEmittedEvents = void 0;
-    var EventEmitter_js_1 = require_EventEmitter();
-    var assert_js_1 = require_assert();
-    var helper_js_1 = require_helper();
-    var HTTPRequest_js_1 = require_HTTPRequest();
-    var HTTPResponse_js_1 = require_HTTPResponse();
-    var NetworkEventManager_js_1 = require_NetworkEventManager();
-    exports.NetworkManagerEmittedEvents = {
-      Request: Symbol("NetworkManager.Request"),
-      RequestServedFromCache: Symbol("NetworkManager.RequestServedFromCache"),
-      Response: Symbol("NetworkManager.Response"),
-      RequestFailed: Symbol("NetworkManager.RequestFailed"),
-      RequestFinished: Symbol("NetworkManager.RequestFinished")
-    };
-    var NetworkManager = class extends EventEmitter_js_1.EventEmitter {
-      constructor(client, ignoreHTTPSErrors, frameManager) {
-        super();
-        this._networkEventManager = new NetworkEventManager_js_1.NetworkEventManager();
-        this._extraHTTPHeaders = {};
-        this._credentials = null;
-        this._attemptedAuthentications = /* @__PURE__ */ new Set();
-        this._userRequestInterceptionEnabled = false;
-        this._protocolRequestInterceptionEnabled = false;
-        this._userCacheDisabled = false;
-        this._emulatedNetworkConditions = {
-          offline: false,
-          upload: -1,
-          download: -1,
-          latency: 0
-        };
-        this._client = client;
-        this._ignoreHTTPSErrors = ignoreHTTPSErrors;
-        this._frameManager = frameManager;
-        this._client.on("Fetch.requestPaused", this._onRequestPaused.bind(this));
-        this._client.on("Fetch.authRequired", this._onAuthRequired.bind(this));
-        this._client.on("Network.requestWillBeSent", this._onRequestWillBeSent.bind(this));
-        this._client.on("Network.requestServedFromCache", this._onRequestServedFromCache.bind(this));
-        this._client.on("Network.responseReceived", this._onResponseReceived.bind(this));
-        this._client.on("Network.loadingFinished", this._onLoadingFinished.bind(this));
-        this._client.on("Network.loadingFailed", this._onLoadingFailed.bind(this));
-        this._client.on("Network.responseReceivedExtraInfo", this._onResponseReceivedExtraInfo.bind(this));
-      }
-      async initialize() {
-        await this._client.send("Network.enable");
-        if (this._ignoreHTTPSErrors)
-          await this._client.send("Security.setIgnoreCertificateErrors", {
-            ignore: true
-          });
-      }
-      async authenticate(credentials) {
-        this._credentials = credentials;
-        await this._updateProtocolRequestInterception();
-      }
-      async setExtraHTTPHeaders(extraHTTPHeaders) {
-        this._extraHTTPHeaders = {};
-        for (const key of Object.keys(extraHTTPHeaders)) {
-          const value = extraHTTPHeaders[key];
-          (0, assert_js_1.assert)(helper_js_1.helper.isString(value), `Expected value of header "${key}" to be String, but "${typeof value}" is found.`);
-          this._extraHTTPHeaders[key.toLowerCase()] = value;
-        }
-        await this._client.send("Network.setExtraHTTPHeaders", {
-          headers: this._extraHTTPHeaders
-        });
-      }
-      extraHTTPHeaders() {
-        return Object.assign({}, this._extraHTTPHeaders);
-      }
-      numRequestsInProgress() {
-        return this._networkEventManager.numRequestsInProgress();
-      }
-      async setOfflineMode(value) {
-        this._emulatedNetworkConditions.offline = value;
-        await this._updateNetworkConditions();
-      }
-      async emulateNetworkConditions(networkConditions) {
-        this._emulatedNetworkConditions.upload = networkConditions ? networkConditions.upload : -1;
-        this._emulatedNetworkConditions.download = networkConditions ? networkConditions.download : -1;
-        this._emulatedNetworkConditions.latency = networkConditions ? networkConditions.latency : 0;
-        await this._updateNetworkConditions();
-      }
-      async _updateNetworkConditions() {
-        await this._client.send("Network.emulateNetworkConditions", {
-          offline: this._emulatedNetworkConditions.offline,
-          latency: this._emulatedNetworkConditions.latency,
-          uploadThroughput: this._emulatedNetworkConditions.upload,
-          downloadThroughput: this._emulatedNetworkConditions.download
-        });
-      }
-      async setUserAgent(userAgent, userAgentMetadata) {
-        await this._client.send("Network.setUserAgentOverride", {
-          userAgent,
-          userAgentMetadata
-        });
-      }
-      async setCacheEnabled(enabled) {
-        this._userCacheDisabled = !enabled;
-        await this._updateProtocolCacheDisabled();
-      }
-      async setRequestInterception(value) {
-        this._userRequestInterceptionEnabled = value;
-        await this._updateProtocolRequestInterception();
-      }
-      async _updateProtocolRequestInterception() {
-        const enabled = this._userRequestInterceptionEnabled || !!this._credentials;
-        if (enabled === this._protocolRequestInterceptionEnabled)
-          return;
-        this._protocolRequestInterceptionEnabled = enabled;
-        if (enabled) {
-          await Promise.all([
-            this._updateProtocolCacheDisabled(),
-            this._client.send("Fetch.enable", {
-              handleAuthRequests: true,
-              patterns: [{ urlPattern: "*" }]
-            })
-          ]);
-        } else {
-          await Promise.all([
-            this._updateProtocolCacheDisabled(),
-            this._client.send("Fetch.disable")
-          ]);
-        }
-      }
-      _cacheDisabled() {
-        return this._userCacheDisabled;
-      }
-      async _updateProtocolCacheDisabled() {
-        await this._client.send("Network.setCacheDisabled", {
-          cacheDisabled: this._cacheDisabled()
-        });
-      }
-      _onRequestWillBeSent(event) {
-        if (this._userRequestInterceptionEnabled && !event.request.url.startsWith("data:")) {
-          const { requestId: networkRequestId } = event;
-          this._networkEventManager.storeRequestWillBeSent(networkRequestId, event);
-          const requestPausedEvent = this._networkEventManager.getRequestPaused(networkRequestId);
-          if (requestPausedEvent) {
-            const { requestId: fetchRequestId } = requestPausedEvent;
-            this._onRequest(event, fetchRequestId);
-            this._networkEventManager.forgetRequestPaused(networkRequestId);
-          }
-          return;
-        }
-        this._onRequest(event, null);
-      }
-      _onAuthRequired(event) {
-        let response = "Default";
-        if (this._attemptedAuthentications.has(event.requestId)) {
-          response = "CancelAuth";
-        } else if (this._credentials) {
-          response = "ProvideCredentials";
-          this._attemptedAuthentications.add(event.requestId);
-        }
-        const { username, password } = this._credentials || {
-          username: void 0,
-          password: void 0
-        };
-        this._client.send("Fetch.continueWithAuth", {
-          requestId: event.requestId,
-          authChallengeResponse: { response, username, password }
-        }).catch(helper_js_1.debugError);
-      }
-      _onRequestPaused(event) {
-        if (!this._userRequestInterceptionEnabled && this._protocolRequestInterceptionEnabled) {
-          this._client.send("Fetch.continueRequest", {
-            requestId: event.requestId
-          }).catch(helper_js_1.debugError);
-        }
-        const { networkId: networkRequestId, requestId: fetchRequestId } = event;
-        if (!networkRequestId) {
-          return;
-        }
-        const requestWillBeSentEvent = (() => {
-          const requestWillBeSentEvent2 = this._networkEventManager.getRequestWillBeSent(networkRequestId);
-          if (requestWillBeSentEvent2 && (requestWillBeSentEvent2.request.url !== event.request.url || requestWillBeSentEvent2.request.method !== event.request.method)) {
-            this._networkEventManager.forgetRequestWillBeSent(networkRequestId);
-            return;
-          }
-          return requestWillBeSentEvent2;
-        })();
-        if (requestWillBeSentEvent) {
-          this._onRequest(requestWillBeSentEvent, fetchRequestId);
-        } else {
-          this._networkEventManager.storeRequestPaused(networkRequestId, event);
-        }
-      }
-      _onRequest(event, fetchRequestId) {
-        let redirectChain = [];
-        if (event.redirectResponse) {
-          let redirectResponseExtraInfo = null;
-          if (event.redirectHasExtraInfo) {
-            redirectResponseExtraInfo = this._networkEventManager.responseExtraInfo(event.requestId).shift();
-            if (!redirectResponseExtraInfo) {
-              this._networkEventManager.queueRedirectInfo(event.requestId, {
-                event,
-                fetchRequestId
-              });
-              return;
-            }
-          }
-          const request2 = this._networkEventManager.getRequest(event.requestId);
-          if (request2) {
-            this._handleRequestRedirect(request2, event.redirectResponse, redirectResponseExtraInfo);
-            redirectChain = request2._redirectChain;
-          }
-        }
-        const frame = event.frameId ? this._frameManager.frame(event.frameId) : null;
-        const request = new HTTPRequest_js_1.HTTPRequest(this._client, frame, fetchRequestId, this._userRequestInterceptionEnabled, event, redirectChain);
-        this._networkEventManager.storeRequest(event.requestId, request);
-        this.emit(exports.NetworkManagerEmittedEvents.Request, request);
-        request.finalizeInterceptions();
-      }
-      _onRequestServedFromCache(event) {
-        const request = this._networkEventManager.getRequest(event.requestId);
-        if (request)
-          request._fromMemoryCache = true;
-        this.emit(exports.NetworkManagerEmittedEvents.RequestServedFromCache, request);
-      }
-      _handleRequestRedirect(request, responsePayload, extraInfo) {
-        const response = new HTTPResponse_js_1.HTTPResponse(this._client, request, responsePayload, extraInfo);
-        request._response = response;
-        request._redirectChain.push(request);
-        response._resolveBody(new Error("Response body is unavailable for redirect responses"));
-        this._forgetRequest(request, false);
-        this.emit(exports.NetworkManagerEmittedEvents.Response, response);
-        this.emit(exports.NetworkManagerEmittedEvents.RequestFinished, request);
-      }
-      _emitResponseEvent(responseReceived, extraInfo) {
-        const request = this._networkEventManager.getRequest(responseReceived.requestId);
-        if (!request)
-          return;
-        const extraInfos = this._networkEventManager.responseExtraInfo(responseReceived.requestId);
-        if (extraInfos.length) {
-          (0, helper_js_1.debugError)(new Error("Unexpected extraInfo events for request " + responseReceived.requestId));
-        }
-        const response = new HTTPResponse_js_1.HTTPResponse(this._client, request, responseReceived.response, extraInfo);
-        request._response = response;
-        this.emit(exports.NetworkManagerEmittedEvents.Response, response);
-      }
-      _onResponseReceived(event) {
-        const request = this._networkEventManager.getRequest(event.requestId);
-        let extraInfo = null;
-        if (request && !request._fromMemoryCache && event.hasExtraInfo) {
-          extraInfo = this._networkEventManager.responseExtraInfo(event.requestId).shift();
-          if (!extraInfo) {
-            this._networkEventManager.queueEventGroup(event.requestId, {
-              responseReceivedEvent: event
-            });
-            return;
-          }
-        }
-        this._emitResponseEvent(event, extraInfo);
-      }
-      _onResponseReceivedExtraInfo(event) {
-        const redirectInfo = this._networkEventManager.takeQueuedRedirectInfo(event.requestId);
-        if (redirectInfo) {
-          this._networkEventManager.responseExtraInfo(event.requestId).push(event);
-          this._onRequest(redirectInfo.event, redirectInfo.fetchRequestId);
-          return;
-        }
-        const queuedEvents = this._networkEventManager.getQueuedEventGroup(event.requestId);
-        if (queuedEvents) {
-          this._emitResponseEvent(queuedEvents.responseReceivedEvent, event);
-          if (queuedEvents.loadingFinishedEvent) {
-            this._emitLoadingFinished(queuedEvents.loadingFinishedEvent);
-          }
-          if (queuedEvents.loadingFailedEvent) {
-            this._emitLoadingFailed(queuedEvents.loadingFailedEvent);
-          }
-          return;
-        }
-        this._networkEventManager.responseExtraInfo(event.requestId).push(event);
-      }
-      _forgetRequest(request, events) {
-        const requestId = request._requestId;
-        const interceptionId = request._interceptionId;
-        this._networkEventManager.forgetRequest(requestId);
-        this._attemptedAuthentications.delete(interceptionId);
-        if (events) {
-          this._networkEventManager.forget(requestId);
-        }
-      }
-      _onLoadingFinished(event) {
-        const queuedEvents = this._networkEventManager.getQueuedEventGroup(event.requestId);
-        if (queuedEvents) {
-          queuedEvents.loadingFinishedEvent = event;
-        } else {
-          this._emitLoadingFinished(event);
-        }
-      }
-      _emitLoadingFinished(event) {
-        const request = this._networkEventManager.getRequest(event.requestId);
-        if (!request)
-          return;
-        if (request.response())
-          request.response()._resolveBody(null);
-        this._forgetRequest(request, true);
-        this.emit(exports.NetworkManagerEmittedEvents.RequestFinished, request);
-      }
-      _onLoadingFailed(event) {
-        const queuedEvents = this._networkEventManager.getQueuedEventGroup(event.requestId);
-        if (queuedEvents) {
-          queuedEvents.loadingFailedEvent = event;
-        } else {
-          this._emitLoadingFailed(event);
-        }
-      }
-      _emitLoadingFailed(event) {
-        const request = this._networkEventManager.getRequest(event.requestId);
-        if (!request)
-          return;
-        request._failureText = event.errorText;
-        const response = request.response();
-        if (response)
-          response._resolveBody(null);
-        this._forgetRequest(request, true);
-        this.emit(exports.NetworkManagerEmittedEvents.RequestFailed, request);
-      }
-    };
-    exports.NetworkManager = NetworkManager;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/LifecycleWatcher.js
-var require_LifecycleWatcher = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/LifecycleWatcher.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.LifecycleWatcher = void 0;
-    var assert_js_1 = require_assert();
-    var helper_js_1 = require_helper();
-    var Errors_js_1 = require_Errors();
-    var FrameManager_js_1 = require_FrameManager();
-    var NetworkManager_js_1 = require_NetworkManager();
-    var Connection_js_1 = require_Connection();
-    var puppeteerToProtocolLifecycle = /* @__PURE__ */ new Map([
-      ["load", "load"],
-      ["domcontentloaded", "DOMContentLoaded"],
-      ["networkidle0", "networkIdle"],
-      ["networkidle2", "networkAlmostIdle"]
-    ]);
-    var LifecycleWatcher = class {
-      constructor(frameManager, frame, waitUntil, timeout) {
-        if (Array.isArray(waitUntil))
-          waitUntil = waitUntil.slice();
-        else if (typeof waitUntil === "string")
-          waitUntil = [waitUntil];
-        this._expectedLifecycle = waitUntil.map((value) => {
-          const protocolEvent = puppeteerToProtocolLifecycle.get(value);
-          (0, assert_js_1.assert)(protocolEvent, "Unknown value for options.waitUntil: " + value);
-          return protocolEvent;
-        });
-        this._frameManager = frameManager;
-        this._frame = frame;
-        this._initialLoaderId = frame._loaderId;
-        this._timeout = timeout;
-        this._navigationRequest = null;
-        this._eventListeners = [
-          helper_js_1.helper.addEventListener(frameManager._client, Connection_js_1.CDPSessionEmittedEvents.Disconnected, () => this._terminate(new Error("Navigation failed because browser has disconnected!"))),
-          helper_js_1.helper.addEventListener(this._frameManager, FrameManager_js_1.FrameManagerEmittedEvents.LifecycleEvent, this._checkLifecycleComplete.bind(this)),
-          helper_js_1.helper.addEventListener(this._frameManager, FrameManager_js_1.FrameManagerEmittedEvents.FrameNavigatedWithinDocument, this._navigatedWithinDocument.bind(this)),
-          helper_js_1.helper.addEventListener(this._frameManager, FrameManager_js_1.FrameManagerEmittedEvents.FrameDetached, this._onFrameDetached.bind(this)),
-          helper_js_1.helper.addEventListener(this._frameManager.networkManager(), NetworkManager_js_1.NetworkManagerEmittedEvents.Request, this._onRequest.bind(this))
-        ];
-        this._sameDocumentNavigationPromise = new Promise((fulfill) => {
-          this._sameDocumentNavigationCompleteCallback = fulfill;
-        });
-        this._lifecyclePromise = new Promise((fulfill) => {
-          this._lifecycleCallback = fulfill;
-        });
-        this._newDocumentNavigationPromise = new Promise((fulfill) => {
-          this._newDocumentNavigationCompleteCallback = fulfill;
-        });
-        this._timeoutPromise = this._createTimeoutPromise();
-        this._terminationPromise = new Promise((fulfill) => {
-          this._terminationCallback = fulfill;
-        });
-        this._checkLifecycleComplete();
-      }
-      _onRequest(request) {
-        if (request.frame() !== this._frame || !request.isNavigationRequest())
-          return;
-        this._navigationRequest = request;
-      }
-      _onFrameDetached(frame) {
-        if (this._frame === frame) {
-          this._terminationCallback.call(null, new Error("Navigating frame was detached"));
-          return;
-        }
-        this._checkLifecycleComplete();
-      }
-      async navigationResponse() {
-        return this._navigationRequest ? this._navigationRequest.response() : null;
-      }
-      _terminate(error) {
-        this._terminationCallback.call(null, error);
-      }
-      sameDocumentNavigationPromise() {
-        return this._sameDocumentNavigationPromise;
-      }
-      newDocumentNavigationPromise() {
-        return this._newDocumentNavigationPromise;
-      }
-      lifecyclePromise() {
-        return this._lifecyclePromise;
-      }
-      timeoutOrTerminationPromise() {
-        return Promise.race([this._timeoutPromise, this._terminationPromise]);
-      }
-      _createTimeoutPromise() {
-        if (!this._timeout)
-          return new Promise(() => {
-          });
-        const errorMessage = "Navigation timeout of " + this._timeout + " ms exceeded";
-        return new Promise((fulfill) => this._maximumTimer = setTimeout(fulfill, this._timeout)).then(() => new Errors_js_1.TimeoutError(errorMessage));
-      }
-      _navigatedWithinDocument(frame) {
-        if (frame !== this._frame)
-          return;
-        this._hasSameDocumentNavigation = true;
-        this._checkLifecycleComplete();
-      }
-      _checkLifecycleComplete() {
-        if (!checkLifecycle(this._frame, this._expectedLifecycle))
-          return;
-        this._lifecycleCallback();
-        if (this._frame._loaderId === this._initialLoaderId && !this._hasSameDocumentNavigation)
-          return;
-        if (this._hasSameDocumentNavigation)
-          this._sameDocumentNavigationCompleteCallback();
-        if (this._frame._loaderId !== this._initialLoaderId)
-          this._newDocumentNavigationCompleteCallback();
-        function checkLifecycle(frame, expectedLifecycle) {
-          for (const event of expectedLifecycle) {
-            if (!frame._lifecycleEvents.has(event))
-              return false;
-          }
-          for (const child of frame.childFrames()) {
-            if (!checkLifecycle(child, expectedLifecycle))
-              return false;
-          }
-          return true;
-        }
-      }
-      dispose() {
-        helper_js_1.helper.removeEventListeners(this._eventListeners);
-        clearTimeout(this._maximumTimer);
-      }
-    };
-    exports.LifecycleWatcher = LifecycleWatcher;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js
-var require_DOMWorld = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.WaitTask = exports.DOMWorld = void 0;
-    var assert_js_1 = require_assert();
-    var helper_js_1 = require_helper();
-    var LifecycleWatcher_js_1 = require_LifecycleWatcher();
-    var Errors_js_1 = require_Errors();
-    var QueryHandler_js_1 = require_QueryHandler();
-    var environment_js_1 = require_environment();
-    var DOMWorld = class {
-      constructor(client, frameManager, frame, timeoutSettings) {
-        this._documentPromise = null;
-        this._contextPromise = null;
-        this._contextResolveCallback = null;
-        this._detached = false;
-        this._waitTasks = /* @__PURE__ */ new Set();
-        this._boundFunctions = /* @__PURE__ */ new Map();
-        this._ctxBindings = /* @__PURE__ */ new Set();
-        this._settingUpBinding = null;
-        this._client = client;
-        this._frameManager = frameManager;
-        this._frame = frame;
-        this._timeoutSettings = timeoutSettings;
-        this._setContext(null);
-        this._onBindingCalled = this._onBindingCalled.bind(this);
-        this._client.on("Runtime.bindingCalled", this._onBindingCalled);
-      }
-      frame() {
-        return this._frame;
-      }
-      async _setContext(context) {
-        if (context) {
-          (0, assert_js_1.assert)(this._contextResolveCallback, "Execution Context has already been set.");
-          this._ctxBindings.clear();
-          this._contextResolveCallback.call(null, context);
-          this._contextResolveCallback = null;
-          for (const waitTask of this._waitTasks)
-            waitTask.rerun();
-        } else {
-          this._documentPromise = null;
-          this._contextPromise = new Promise((fulfill) => {
-            this._contextResolveCallback = fulfill;
-          });
-        }
-      }
-      _hasContext() {
-        return !this._contextResolveCallback;
-      }
-      _detach() {
-        this._detached = true;
-        this._client.off("Runtime.bindingCalled", this._onBindingCalled);
-        for (const waitTask of this._waitTasks)
-          waitTask.terminate(new Error("waitForFunction failed: frame got detached."));
-      }
-      executionContext() {
-        if (this._detached)
-          throw new Error(`Execution context is not available in detached frame "${this._frame.url()}" (are you trying to evaluate?)`);
-        return this._contextPromise;
-      }
-      async evaluateHandle(pageFunction, ...args) {
-        const context = await this.executionContext();
-        return context.evaluateHandle(pageFunction, ...args);
-      }
-      async evaluate(pageFunction, ...args) {
-        const context = await this.executionContext();
-        return context.evaluate(pageFunction, ...args);
-      }
-      async $(selector) {
-        const document2 = await this._document();
-        const value = await document2.$(selector);
-        return value;
-      }
-      async _document() {
-        if (this._documentPromise)
-          return this._documentPromise;
-        this._documentPromise = this.executionContext().then(async (context) => {
-          const document2 = await context.evaluateHandle("document");
-          return document2.asElement();
-        });
-        return this._documentPromise;
-      }
-      async $x(expression) {
-        const document2 = await this._document();
-        const value = await document2.$x(expression);
-        return value;
-      }
-      async $eval(selector, pageFunction, ...args) {
-        const document2 = await this._document();
-        return document2.$eval(selector, pageFunction, ...args);
-      }
-      async $$eval(selector, pageFunction, ...args) {
-        const document2 = await this._document();
-        const value = await document2.$$eval(selector, pageFunction, ...args);
-        return value;
-      }
-      async $$(selector) {
-        const document2 = await this._document();
-        const value = await document2.$$(selector);
-        return value;
-      }
-      async content() {
-        return await this.evaluate(() => {
-          let retVal = "";
-          if (document.doctype)
-            retVal = new XMLSerializer().serializeToString(document.doctype);
-          if (document.documentElement)
-            retVal += document.documentElement.outerHTML;
-          return retVal;
-        });
-      }
-      async setContent(html, options = {}) {
-        const { waitUntil = ["load"], timeout = this._timeoutSettings.navigationTimeout() } = options;
-        await this.evaluate((html2) => {
-          document.open();
-          document.write(html2);
-          document.close();
-        }, html);
-        const watcher = new LifecycleWatcher_js_1.LifecycleWatcher(this._frameManager, this._frame, waitUntil, timeout);
-        const error = await Promise.race([
-          watcher.timeoutOrTerminationPromise(),
-          watcher.lifecyclePromise()
-        ]);
-        watcher.dispose();
-        if (error)
-          throw error;
-      }
-      async addScriptTag(options) {
-        const { url = null, path = null, content = null, id = "", type = "" } = options;
-        if (url !== null) {
-          try {
-            const context = await this.executionContext();
-            return (await context.evaluateHandle(addScriptUrl, url, id, type)).asElement();
-          } catch (error) {
-            throw new Error(`Loading script from ${url} failed`);
-          }
-        }
-        if (path !== null) {
-          if (!environment_js_1.isNode) {
-            throw new Error("Cannot pass a filepath to addScriptTag in the browser environment.");
-          }
-          const fs = await helper_js_1.helper.importFSModule();
-          let contents = await fs.promises.readFile(path, "utf8");
-          contents += "//# sourceURL=" + path.replace(/\n/g, "");
-          const context = await this.executionContext();
-          return (await context.evaluateHandle(addScriptContent, contents, id, type)).asElement();
-        }
-        if (content !== null) {
-          const context = await this.executionContext();
-          return (await context.evaluateHandle(addScriptContent, content, id, type)).asElement();
-        }
-        throw new Error("Provide an object with a `url`, `path` or `content` property");
-        async function addScriptUrl(url2, id2, type2) {
-          const script = document.createElement("script");
-          script.src = url2;
-          if (id2)
-            script.id = id2;
-          if (type2)
-            script.type = type2;
-          const promise = new Promise((res, rej) => {
-            script.onload = res;
-            script.onerror = rej;
-          });
-          document.head.appendChild(script);
-          await promise;
-          return script;
-        }
-        function addScriptContent(content2, id2, type2 = "text/javascript") {
-          const script = document.createElement("script");
-          script.type = type2;
-          script.text = content2;
-          if (id2)
-            script.id = id2;
-          let error = null;
-          script.onerror = (e) => error = e;
-          document.head.appendChild(script);
-          if (error)
-            throw error;
-          return script;
-        }
-      }
-      async addStyleTag(options) {
-        const { url = null, path = null, content = null } = options;
-        if (url !== null) {
-          try {
-            const context = await this.executionContext();
-            return (await context.evaluateHandle(addStyleUrl, url)).asElement();
-          } catch (error) {
-            throw new Error(`Loading style from ${url} failed`);
-          }
-        }
-        if (path !== null) {
-          if (!environment_js_1.isNode) {
-            throw new Error("Cannot pass a filepath to addStyleTag in the browser environment.");
-          }
-          const fs = await helper_js_1.helper.importFSModule();
-          let contents = await fs.promises.readFile(path, "utf8");
-          contents += "/*# sourceURL=" + path.replace(/\n/g, "") + "*/";
-          const context = await this.executionContext();
-          return (await context.evaluateHandle(addStyleContent, contents)).asElement();
-        }
-        if (content !== null) {
-          const context = await this.executionContext();
-          return (await context.evaluateHandle(addStyleContent, content)).asElement();
-        }
-        throw new Error("Provide an object with a `url`, `path` or `content` property");
-        async function addStyleUrl(url2) {
-          const link = document.createElement("link");
-          link.rel = "stylesheet";
-          link.href = url2;
-          const promise = new Promise((res, rej) => {
-            link.onload = res;
-            link.onerror = rej;
-          });
-          document.head.appendChild(link);
-          await promise;
-          return link;
-        }
-        async function addStyleContent(content2) {
-          const style = document.createElement("style");
-          style.type = "text/css";
-          style.appendChild(document.createTextNode(content2));
-          const promise = new Promise((res, rej) => {
-            style.onload = res;
-            style.onerror = rej;
-          });
-          document.head.appendChild(style);
-          await promise;
-          return style;
-        }
-      }
-      async click(selector, options) {
-        const handle = await this.$(selector);
-        (0, assert_js_1.assert)(handle, "No node found for selector: " + selector);
-        await handle.click(options);
-        await handle.dispose();
-      }
-      async focus(selector) {
-        const handle = await this.$(selector);
-        (0, assert_js_1.assert)(handle, "No node found for selector: " + selector);
-        await handle.focus();
-        await handle.dispose();
-      }
-      async hover(selector) {
-        const handle = await this.$(selector);
-        (0, assert_js_1.assert)(handle, "No node found for selector: " + selector);
-        await handle.hover();
-        await handle.dispose();
-      }
-      async select(selector, ...values) {
-        const handle = await this.$(selector);
-        (0, assert_js_1.assert)(handle, "No node found for selector: " + selector);
-        const result = await handle.select(...values);
-        await handle.dispose();
-        return result;
-      }
-      async tap(selector) {
-        const handle = await this.$(selector);
-        await handle.tap();
-        await handle.dispose();
-      }
-      async type(selector, text, options) {
-        const handle = await this.$(selector);
-        (0, assert_js_1.assert)(handle, "No node found for selector: " + selector);
-        await handle.type(text, options);
-        await handle.dispose();
-      }
-      async waitForSelector(selector, options) {
-        const { updatedSelector, queryHandler } = (0, QueryHandler_js_1.getQueryHandlerAndSelector)(selector);
-        return queryHandler.waitFor(this, updatedSelector, options);
-      }
-      async addBindingToContext(context, name) {
-        if (this._ctxBindings.has(DOMWorld.bindingIdentifier(name, context._contextId))) {
-          return;
-        }
-        if (this._settingUpBinding) {
-          await this._settingUpBinding;
-          return this.addBindingToContext(context, name);
-        }
-        const bind = async (name2) => {
-          const expression = helper_js_1.helper.pageBindingInitString("internal", name2);
-          try {
-            await context._client.send("Runtime.addBinding", {
-              name: name2,
-              executionContextName: context._contextName
-            });
-            await context.evaluate(expression);
-          } catch (error) {
-            const ctxDestroyed = error.message.includes("Execution context was destroyed");
-            const ctxNotFound = error.message.includes("Cannot find context with specified id");
-            if (ctxDestroyed || ctxNotFound) {
-              return;
-            } else {
-              (0, helper_js_1.debugError)(error);
-              return;
-            }
-          }
-          this._ctxBindings.add(DOMWorld.bindingIdentifier(name2, context._contextId));
-        };
-        this._settingUpBinding = bind(name);
-        await this._settingUpBinding;
-        this._settingUpBinding = null;
-      }
-      async _onBindingCalled(event) {
-        let payload;
-        if (!this._hasContext())
-          return;
-        const context = await this.executionContext();
-        try {
-          payload = JSON.parse(event.payload);
-        } catch {
-          return;
-        }
-        const { type, name, seq, args } = payload;
-        if (type !== "internal" || !this._ctxBindings.has(DOMWorld.bindingIdentifier(name, context._contextId)))
-          return;
-        if (context._contextId !== event.executionContextId)
-          return;
-        try {
-          const result = await this._boundFunctions.get(name)(...args);
-          await context.evaluate(deliverResult, name, seq, result);
-        } catch (error) {
-          if (error.message.includes("Protocol error"))
-            return;
-          (0, helper_js_1.debugError)(error);
-        }
-        function deliverResult(name2, seq2, result) {
-          globalThis[name2].callbacks.get(seq2).resolve(result);
-          globalThis[name2].callbacks.delete(seq2);
-        }
-      }
-      async waitForSelectorInPage(queryOne, selector, options, binding) {
-        const { visible: waitForVisible = false, hidden: waitForHidden = false, timeout = this._timeoutSettings.timeout() } = options;
-        const polling = waitForVisible || waitForHidden ? "raf" : "mutation";
-        const title = `selector \`${selector}\`${waitForHidden ? " to be hidden" : ""}`;
-        async function predicate(root, selector2, waitForVisible2, waitForHidden2) {
-          const node = predicateQueryHandler ? await predicateQueryHandler(root, selector2) : root.querySelector(selector2);
-          return checkWaitForOptions(node, waitForVisible2, waitForHidden2);
-        }
-        const waitTaskOptions = {
-          domWorld: this,
-          predicateBody: helper_js_1.helper.makePredicateString(predicate, queryOne),
-          predicateAcceptsContextElement: true,
-          title,
-          polling,
-          timeout,
-          args: [selector, waitForVisible, waitForHidden],
-          binding,
-          root: options.root
-        };
-        const waitTask = new WaitTask(waitTaskOptions);
-        const jsHandle = await waitTask.promise;
-        const elementHandle = jsHandle.asElement();
-        if (!elementHandle) {
-          await jsHandle.dispose();
-          return null;
-        }
-        return elementHandle;
-      }
-      async waitForXPath(xpath, options) {
-        const { visible: waitForVisible = false, hidden: waitForHidden = false, timeout = this._timeoutSettings.timeout() } = options;
-        const polling = waitForVisible || waitForHidden ? "raf" : "mutation";
-        const title = `XPath \`${xpath}\`${waitForHidden ? " to be hidden" : ""}`;
-        function predicate(root, xpath2, waitForVisible2, waitForHidden2) {
-          const node = document.evaluate(xpath2, root, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-          return checkWaitForOptions(node, waitForVisible2, waitForHidden2);
-        }
-        const waitTaskOptions = {
-          domWorld: this,
-          predicateBody: helper_js_1.helper.makePredicateString(predicate),
-          predicateAcceptsContextElement: true,
-          title,
-          polling,
-          timeout,
-          args: [xpath, waitForVisible, waitForHidden],
-          root: options.root
-        };
-        const waitTask = new WaitTask(waitTaskOptions);
-        const jsHandle = await waitTask.promise;
-        const elementHandle = jsHandle.asElement();
-        if (!elementHandle) {
-          await jsHandle.dispose();
-          return null;
-        }
-        return elementHandle;
-      }
-      waitForFunction(pageFunction, options = {}, ...args) {
-        const { polling = "raf", timeout = this._timeoutSettings.timeout() } = options;
-        const waitTaskOptions = {
-          domWorld: this,
-          predicateBody: pageFunction,
-          predicateAcceptsContextElement: false,
-          title: "function",
-          polling,
-          timeout,
-          args
-        };
-        const waitTask = new WaitTask(waitTaskOptions);
-        return waitTask.promise;
-      }
-      async title() {
-        return this.evaluate(() => document.title);
-      }
-    };
-    exports.DOMWorld = DOMWorld;
-    DOMWorld.bindingIdentifier = (name, contextId) => `${name}_${contextId}`;
-    var WaitTask = class {
-      constructor(options) {
-        this._runCount = 0;
-        this._terminated = false;
-        this._root = null;
-        if (helper_js_1.helper.isString(options.polling))
-          (0, assert_js_1.assert)(options.polling === "raf" || options.polling === "mutation", "Unknown polling option: " + options.polling);
-        else if (helper_js_1.helper.isNumber(options.polling))
-          (0, assert_js_1.assert)(options.polling > 0, "Cannot poll with non-positive interval: " + options.polling);
-        else
-          throw new Error("Unknown polling options: " + options.polling);
-        function getPredicateBody(predicateBody) {
-          if (helper_js_1.helper.isString(predicateBody))
-            return `return (${predicateBody});`;
-          return `return (${predicateBody})(...args);`;
-        }
-        this._domWorld = options.domWorld;
-        this._polling = options.polling;
-        this._timeout = options.timeout;
-        this._root = options.root;
-        this._predicateBody = getPredicateBody(options.predicateBody);
-        this._predicateAcceptsContextElement = options.predicateAcceptsContextElement;
-        this._args = options.args;
-        this._binding = options.binding;
-        this._runCount = 0;
-        this._domWorld._waitTasks.add(this);
-        if (this._binding) {
-          this._domWorld._boundFunctions.set(this._binding.name, this._binding.pptrFunction);
-        }
-        this.promise = new Promise((resolve, reject) => {
-          this._resolve = resolve;
-          this._reject = reject;
-        });
-        if (options.timeout) {
-          const timeoutError = new Errors_js_1.TimeoutError(`waiting for ${options.title} failed: timeout ${options.timeout}ms exceeded`);
-          this._timeoutTimer = setTimeout(() => this.terminate(timeoutError), options.timeout);
-        }
-        this.rerun();
-      }
-      terminate(error) {
-        this._terminated = true;
-        this._reject(error);
-        this._cleanup();
-      }
-      async rerun() {
-        const runCount = ++this._runCount;
-        let success = null;
-        let error = null;
-        const context = await this._domWorld.executionContext();
-        if (this._terminated || runCount !== this._runCount)
-          return;
-        if (this._binding) {
-          await this._domWorld.addBindingToContext(context, this._binding.name);
-        }
-        if (this._terminated || runCount !== this._runCount)
-          return;
-        try {
-          success = await context.evaluateHandle(waitForPredicatePageFunction, this._root || null, this._predicateBody, this._predicateAcceptsContextElement, this._polling, this._timeout, ...this._args);
-        } catch (error_) {
-          error = error_;
-        }
-        if (this._terminated || runCount !== this._runCount) {
-          if (success)
-            await success.dispose();
-          return;
-        }
-        if (!error && await this._domWorld.evaluate((s) => !s, success).catch(() => true)) {
-          await success.dispose();
-          return;
-        }
-        if (error) {
-          if (error.message.includes("TypeError: binding is not a function")) {
-            return this.rerun();
-          }
-          if (error.message.includes("Execution context is not available in detached frame")) {
-            this.terminate(new Error("waitForFunction failed: frame got detached."));
-            return;
-          }
-          if (error.message.includes("Execution context was destroyed"))
-            return;
-          if (error.message.includes("Cannot find context with specified id"))
-            return;
-          this._reject(error);
-        } else {
-          this._resolve(success);
-        }
-        this._cleanup();
-      }
-      _cleanup() {
-        clearTimeout(this._timeoutTimer);
-        this._domWorld._waitTasks.delete(this);
-      }
-    };
-    exports.WaitTask = WaitTask;
-    async function waitForPredicatePageFunction(root, predicateBody, predicateAcceptsContextElement, polling, timeout, ...args) {
-      root = root || document;
-      const predicate = new Function("...args", predicateBody);
-      let timedOut = false;
-      if (timeout)
-        setTimeout(() => timedOut = true, timeout);
-      if (polling === "raf")
-        return await pollRaf();
-      if (polling === "mutation")
-        return await pollMutation();
-      if (typeof polling === "number")
-        return await pollInterval(polling);
-      async function pollMutation() {
-        const success = predicateAcceptsContextElement ? await predicate(root, ...args) : await predicate(...args);
-        if (success)
-          return Promise.resolve(success);
-        let fulfill;
-        const result = new Promise((x) => fulfill = x);
-        const observer = new MutationObserver(async () => {
-          if (timedOut) {
-            observer.disconnect();
-            fulfill();
-          }
-          const success2 = predicateAcceptsContextElement ? await predicate(root, ...args) : await predicate(...args);
-          if (success2) {
-            observer.disconnect();
-            fulfill(success2);
-          }
-        });
-        observer.observe(root, {
-          childList: true,
-          subtree: true,
-          attributes: true
-        });
-        return result;
-      }
-      async function pollRaf() {
-        let fulfill;
-        const result = new Promise((x) => fulfill = x);
-        await onRaf();
-        return result;
-        async function onRaf() {
-          if (timedOut) {
-            fulfill();
-            return;
-          }
-          const success = predicateAcceptsContextElement ? await predicate(root, ...args) : await predicate(...args);
-          if (success)
-            fulfill(success);
-          else
-            requestAnimationFrame(onRaf);
-        }
-      }
-      async function pollInterval(pollInterval2) {
-        let fulfill;
-        const result = new Promise((x) => fulfill = x);
-        await onTimeout();
-        return result;
-        async function onTimeout() {
-          if (timedOut) {
-            fulfill();
-            return;
-          }
-          const success = predicateAcceptsContextElement ? await predicate(root, ...args) : await predicate(...args);
-          if (success)
-            fulfill(success);
-          else
-            setTimeout(onTimeout, pollInterval2);
-        }
-      }
-    }
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/FrameManager.js
-var require_FrameManager = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/FrameManager.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Frame = exports.FrameManager = exports.FrameManagerEmittedEvents = void 0;
-    var EventEmitter_js_1 = require_EventEmitter();
-    var assert_js_1 = require_assert();
-    var helper_js_1 = require_helper();
-    var ExecutionContext_js_1 = require_ExecutionContext();
-    var LifecycleWatcher_js_1 = require_LifecycleWatcher();
-    var DOMWorld_js_1 = require_DOMWorld();
-    var NetworkManager_js_1 = require_NetworkManager();
-    var Connection_js_1 = require_Connection();
-    var UTILITY_WORLD_NAME = "__puppeteer_utility_world__";
-    var xPathPattern = /^\(\/\/[^\)]+\)|^\/\//;
-    exports.FrameManagerEmittedEvents = {
-      FrameAttached: Symbol("FrameManager.FrameAttached"),
-      FrameNavigated: Symbol("FrameManager.FrameNavigated"),
-      FrameDetached: Symbol("FrameManager.FrameDetached"),
-      LifecycleEvent: Symbol("FrameManager.LifecycleEvent"),
-      FrameNavigatedWithinDocument: Symbol("FrameManager.FrameNavigatedWithinDocument"),
-      ExecutionContextCreated: Symbol("FrameManager.ExecutionContextCreated"),
-      ExecutionContextDestroyed: Symbol("FrameManager.ExecutionContextDestroyed")
-    };
-    var FrameManager = class extends EventEmitter_js_1.EventEmitter {
-      constructor(client, page, ignoreHTTPSErrors, timeoutSettings) {
-        super();
-        this._frames = /* @__PURE__ */ new Map();
-        this._contextIdToContext = /* @__PURE__ */ new Map();
-        this._isolatedWorlds = /* @__PURE__ */ new Set();
-        this._client = client;
-        this._page = page;
-        this._networkManager = new NetworkManager_js_1.NetworkManager(client, ignoreHTTPSErrors, this);
-        this._timeoutSettings = timeoutSettings;
-        this.setupEventListeners(this._client);
-      }
-      setupEventListeners(session) {
-        session.on("Page.frameAttached", (event) => {
-          this._onFrameAttached(session, event.frameId, event.parentFrameId);
-        });
-        session.on("Page.frameNavigated", (event) => {
-          this._onFrameNavigated(event.frame);
-        });
-        session.on("Page.navigatedWithinDocument", (event) => {
-          this._onFrameNavigatedWithinDocument(event.frameId, event.url);
-        });
-        session.on("Page.frameDetached", (event) => {
-          this._onFrameDetached(event.frameId, event.reason);
-        });
-        session.on("Page.frameStoppedLoading", (event) => {
-          this._onFrameStoppedLoading(event.frameId);
-        });
-        session.on("Runtime.executionContextCreated", (event) => {
-          this._onExecutionContextCreated(event.context, session);
-        });
-        session.on("Runtime.executionContextDestroyed", (event) => {
-          this._onExecutionContextDestroyed(event.executionContextId, session);
-        });
-        session.on("Runtime.executionContextsCleared", () => {
-          this._onExecutionContextsCleared(session);
-        });
-        session.on("Page.lifecycleEvent", (event) => {
-          this._onLifecycleEvent(event);
-        });
-        session.on("Target.attachedToTarget", async (event) => {
-          this._onAttachedToTarget(event);
-        });
-        session.on("Target.detachedFromTarget", async (event) => {
-          this._onDetachedFromTarget(event);
-        });
-      }
-      async initialize(client = this._client) {
-        try {
-          const result = await Promise.all([
-            client.send("Page.enable"),
-            client.send("Page.getFrameTree")
-          ]);
-          const { frameTree } = result[1];
-          this._handleFrameTree(client, frameTree);
-          await Promise.all([
-            client.send("Page.setLifecycleEventsEnabled", { enabled: true }),
-            client.send("Runtime.enable").then(() => this._ensureIsolatedWorld(client, UTILITY_WORLD_NAME)),
-            client === this._client ? this._networkManager.initialize() : Promise.resolve()
-          ]);
-        } catch (error) {
-          if (error.message.includes("Target closed") || error.message.includes("Session closed")) {
-            return;
-          }
-          throw error;
-        }
-      }
-      networkManager() {
-        return this._networkManager;
-      }
-      async navigateFrame(frame, url, options = {}) {
-        assertNoLegacyNavigationOptions(options);
-        const { referer = this._networkManager.extraHTTPHeaders()["referer"], waitUntil = ["load"], timeout = this._timeoutSettings.navigationTimeout() } = options;
-        const watcher = new LifecycleWatcher_js_1.LifecycleWatcher(this, frame, waitUntil, timeout);
-        let ensureNewDocumentNavigation = false;
-        let error = await Promise.race([
-          navigate(this._client, url, referer, frame._id),
-          watcher.timeoutOrTerminationPromise()
-        ]);
-        if (!error) {
-          error = await Promise.race([
-            watcher.timeoutOrTerminationPromise(),
-            ensureNewDocumentNavigation ? watcher.newDocumentNavigationPromise() : watcher.sameDocumentNavigationPromise()
-          ]);
-        }
-        watcher.dispose();
-        if (error)
-          throw error;
-        return await watcher.navigationResponse();
-        async function navigate(client, url2, referrer, frameId) {
-          try {
-            const response = await client.send("Page.navigate", {
-              url: url2,
-              referrer,
-              frameId
-            });
-            ensureNewDocumentNavigation = !!response.loaderId;
-            return response.errorText ? new Error(`${response.errorText} at ${url2}`) : null;
-          } catch (error2) {
-            return error2;
-          }
-        }
-      }
-      async waitForFrameNavigation(frame, options = {}) {
-        assertNoLegacyNavigationOptions(options);
-        const { waitUntil = ["load"], timeout = this._timeoutSettings.navigationTimeout() } = options;
-        const watcher = new LifecycleWatcher_js_1.LifecycleWatcher(this, frame, waitUntil, timeout);
-        const error = await Promise.race([
-          watcher.timeoutOrTerminationPromise(),
-          watcher.sameDocumentNavigationPromise(),
-          watcher.newDocumentNavigationPromise()
-        ]);
-        watcher.dispose();
-        if (error)
-          throw error;
-        return await watcher.navigationResponse();
-      }
-      async _onAttachedToTarget(event) {
-        if (event.targetInfo.type !== "iframe") {
-          return;
-        }
-        const frame = this._frames.get(event.targetInfo.targetId);
-        const session = Connection_js_1.Connection.fromSession(this._client).session(event.sessionId);
-        if (frame)
-          frame._updateClient(session);
-        this.setupEventListeners(session);
-        await this.initialize(session);
-      }
-      async _onDetachedFromTarget(event) {
-        const frame = this._frames.get(event.targetId);
-        if (frame && frame.isOOPFrame()) {
-          this._removeFramesRecursively(frame);
-        }
-      }
-      _onLifecycleEvent(event) {
-        const frame = this._frames.get(event.frameId);
-        if (!frame)
-          return;
-        frame._onLifecycleEvent(event.loaderId, event.name);
-        this.emit(exports.FrameManagerEmittedEvents.LifecycleEvent, frame);
-      }
-      _onFrameStoppedLoading(frameId) {
-        const frame = this._frames.get(frameId);
-        if (!frame)
-          return;
-        frame._onLoadingStopped();
-        this.emit(exports.FrameManagerEmittedEvents.LifecycleEvent, frame);
-      }
-      _handleFrameTree(session, frameTree) {
-        if (frameTree.frame.parentId) {
-          this._onFrameAttached(session, frameTree.frame.id, frameTree.frame.parentId);
-        }
-        this._onFrameNavigated(frameTree.frame);
-        if (!frameTree.childFrames)
-          return;
-        for (const child of frameTree.childFrames) {
-          this._handleFrameTree(session, child);
-        }
-      }
-      page() {
-        return this._page;
-      }
-      mainFrame() {
-        return this._mainFrame;
-      }
-      frames() {
-        return Array.from(this._frames.values());
-      }
-      frame(frameId) {
-        return this._frames.get(frameId) || null;
-      }
-      _onFrameAttached(session, frameId, parentFrameId) {
-        if (this._frames.has(frameId)) {
-          const frame2 = this._frames.get(frameId);
-          if (session && frame2.isOOPFrame()) {
-            frame2._updateClient(session);
-          }
-          return;
-        }
-        (0, assert_js_1.assert)(parentFrameId);
-        const parentFrame = this._frames.get(parentFrameId);
-        const frame = new Frame(this, parentFrame, frameId, session);
-        this._frames.set(frame._id, frame);
-        this.emit(exports.FrameManagerEmittedEvents.FrameAttached, frame);
-      }
-      _onFrameNavigated(framePayload) {
-        const isMainFrame = !framePayload.parentId;
-        let frame = isMainFrame ? this._mainFrame : this._frames.get(framePayload.id);
-        (0, assert_js_1.assert)(isMainFrame || frame, "We either navigate top level or have old version of the navigated frame");
-        if (frame) {
-          for (const child of frame.childFrames())
-            this._removeFramesRecursively(child);
-        }
-        if (isMainFrame) {
-          if (frame) {
-            this._frames.delete(frame._id);
-            frame._id = framePayload.id;
-          } else {
-            frame = new Frame(this, null, framePayload.id, this._client);
-          }
-          this._frames.set(framePayload.id, frame);
-          this._mainFrame = frame;
-        }
-        frame._navigated(framePayload);
-        this.emit(exports.FrameManagerEmittedEvents.FrameNavigated, frame);
-      }
-      async _ensureIsolatedWorld(session, name) {
-        const key = `${session.id()}:${name}`;
-        if (this._isolatedWorlds.has(key))
-          return;
-        this._isolatedWorlds.add(key);
-        await session.send("Page.addScriptToEvaluateOnNewDocument", {
-          source: `//# sourceURL=${ExecutionContext_js_1.EVALUATION_SCRIPT_URL}`,
-          worldName: name
-        });
-        await Promise.all(this.frames().filter((frame) => frame._client === session).map((frame) => session.send("Page.createIsolatedWorld", {
-          frameId: frame._id,
-          worldName: name,
-          grantUniveralAccess: true
-        })));
-      }
-      _onFrameNavigatedWithinDocument(frameId, url) {
-        const frame = this._frames.get(frameId);
-        if (!frame)
-          return;
-        frame._navigatedWithinDocument(url);
-        this.emit(exports.FrameManagerEmittedEvents.FrameNavigatedWithinDocument, frame);
-        this.emit(exports.FrameManagerEmittedEvents.FrameNavigated, frame);
-      }
-      _onFrameDetached(frameId, reason) {
-        const frame = this._frames.get(frameId);
-        if (reason === "remove") {
-          if (frame)
-            this._removeFramesRecursively(frame);
-        }
-      }
-      _onExecutionContextCreated(contextPayload, session) {
-        const auxData = contextPayload.auxData;
-        const frameId = auxData ? auxData.frameId : null;
-        const frame = this._frames.get(frameId) || null;
-        let world = null;
-        if (frame) {
-          if (frame._client !== session)
-            return;
-          if (contextPayload.auxData && !!contextPayload.auxData["isDefault"]) {
-            world = frame._mainWorld;
-          } else if (contextPayload.name === UTILITY_WORLD_NAME && !frame._secondaryWorld._hasContext()) {
-            world = frame._secondaryWorld;
-          }
-        }
-        const context = new ExecutionContext_js_1.ExecutionContext((frame === null || frame === void 0 ? void 0 : frame._client) || this._client, contextPayload, world);
-        if (world)
-          world._setContext(context);
-        const key = `${session.id()}:${contextPayload.id}`;
-        this._contextIdToContext.set(key, context);
-      }
-      _onExecutionContextDestroyed(executionContextId, session) {
-        const key = `${session.id()}:${executionContextId}`;
-        const context = this._contextIdToContext.get(key);
-        if (!context)
-          return;
-        this._contextIdToContext.delete(key);
-        if (context._world)
-          context._world._setContext(null);
-      }
-      _onExecutionContextsCleared(session) {
-        for (const [key, context] of this._contextIdToContext.entries()) {
-          if (context._client !== session)
-            continue;
-          if (context._world)
-            context._world._setContext(null);
-          this._contextIdToContext.delete(key);
-        }
-      }
-      executionContextById(contextId, session = this._client) {
-        const key = `${session.id()}:${contextId}`;
-        const context = this._contextIdToContext.get(key);
-        (0, assert_js_1.assert)(context, "INTERNAL ERROR: missing context with id = " + contextId);
-        return context;
-      }
-      _removeFramesRecursively(frame) {
-        for (const child of frame.childFrames())
-          this._removeFramesRecursively(child);
-        frame._detach();
-        this._frames.delete(frame._id);
-        this.emit(exports.FrameManagerEmittedEvents.FrameDetached, frame);
-      }
-    };
-    exports.FrameManager = FrameManager;
-    var Frame = class {
-      constructor(frameManager, parentFrame, frameId, client) {
-        this._url = "";
-        this._detached = false;
-        this._loaderId = "";
-        this._lifecycleEvents = /* @__PURE__ */ new Set();
-        this._frameManager = frameManager;
-        this._parentFrame = parentFrame;
-        this._url = "";
-        this._id = frameId;
-        this._detached = false;
-        this._loaderId = "";
-        this._childFrames = /* @__PURE__ */ new Set();
-        if (this._parentFrame)
-          this._parentFrame._childFrames.add(this);
-        this._updateClient(client);
-      }
-      _updateClient(client) {
-        this._client = client;
-        this._mainWorld = new DOMWorld_js_1.DOMWorld(this._client, this._frameManager, this, this._frameManager._timeoutSettings);
-        this._secondaryWorld = new DOMWorld_js_1.DOMWorld(this._client, this._frameManager, this, this._frameManager._timeoutSettings);
-      }
-      isOOPFrame() {
-        return this._client !== this._frameManager._client;
-      }
-      async goto(url, options = {}) {
-        return await this._frameManager.navigateFrame(this, url, options);
-      }
-      async waitForNavigation(options = {}) {
-        return await this._frameManager.waitForFrameNavigation(this, options);
-      }
-      client() {
-        return this._client;
-      }
-      executionContext() {
-        return this._mainWorld.executionContext();
-      }
-      async evaluateHandle(pageFunction, ...args) {
-        return this._mainWorld.evaluateHandle(pageFunction, ...args);
-      }
-      async evaluate(pageFunction, ...args) {
-        return this._mainWorld.evaluate(pageFunction, ...args);
-      }
-      async $(selector) {
-        return this._mainWorld.$(selector);
-      }
-      async $x(expression) {
-        return this._mainWorld.$x(expression);
-      }
-      async $eval(selector, pageFunction, ...args) {
-        return this._mainWorld.$eval(selector, pageFunction, ...args);
-      }
-      async $$eval(selector, pageFunction, ...args) {
-        return this._mainWorld.$$eval(selector, pageFunction, ...args);
-      }
-      async $$(selector) {
-        return this._mainWorld.$$(selector);
-      }
-      async content() {
-        return this._secondaryWorld.content();
-      }
-      async setContent(html, options = {}) {
-        return this._secondaryWorld.setContent(html, options);
-      }
-      name() {
-        return this._name || "";
-      }
-      url() {
-        return this._url;
-      }
-      parentFrame() {
-        return this._parentFrame;
-      }
-      childFrames() {
-        return Array.from(this._childFrames);
-      }
-      isDetached() {
-        return this._detached;
-      }
-      async addScriptTag(options) {
-        return this._mainWorld.addScriptTag(options);
-      }
-      async addStyleTag(options) {
-        return this._mainWorld.addStyleTag(options);
-      }
-      async click(selector, options = {}) {
-        return this._secondaryWorld.click(selector, options);
-      }
-      async focus(selector) {
-        return this._secondaryWorld.focus(selector);
-      }
-      async hover(selector) {
-        return this._secondaryWorld.hover(selector);
-      }
-      select(selector, ...values) {
-        return this._secondaryWorld.select(selector, ...values);
-      }
-      async tap(selector) {
-        return this._secondaryWorld.tap(selector);
-      }
-      async type(selector, text, options) {
-        return this._mainWorld.type(selector, text, options);
-      }
-      waitFor(selectorOrFunctionOrTimeout, options = {}, ...args) {
-        console.warn("waitFor is deprecated and will be removed in a future release. See https://github.com/puppeteer/puppeteer/issues/6214 for details and how to migrate your code.");
-        if (helper_js_1.helper.isString(selectorOrFunctionOrTimeout)) {
-          const string = selectorOrFunctionOrTimeout;
-          if (xPathPattern.test(string))
-            return this.waitForXPath(string, options);
-          return this.waitForSelector(string, options);
-        }
-        if (helper_js_1.helper.isNumber(selectorOrFunctionOrTimeout))
-          return new Promise((fulfill) => setTimeout(fulfill, selectorOrFunctionOrTimeout));
-        if (typeof selectorOrFunctionOrTimeout === "function")
-          return this.waitForFunction(selectorOrFunctionOrTimeout, options, ...args);
-        return Promise.reject(new Error("Unsupported target type: " + typeof selectorOrFunctionOrTimeout));
-      }
-      waitForTimeout(milliseconds) {
-        return new Promise((resolve) => {
-          setTimeout(resolve, milliseconds);
-        });
-      }
-      async waitForSelector(selector, options = {}) {
-        const handle = await this._secondaryWorld.waitForSelector(selector, options);
-        if (!handle)
-          return null;
-        const mainExecutionContext = await this._mainWorld.executionContext();
-        const result = await mainExecutionContext._adoptElementHandle(handle);
-        await handle.dispose();
-        return result;
-      }
-      async waitForXPath(xpath, options = {}) {
-        const handle = await this._secondaryWorld.waitForXPath(xpath, options);
-        if (!handle)
-          return null;
-        const mainExecutionContext = await this._mainWorld.executionContext();
-        const result = await mainExecutionContext._adoptElementHandle(handle);
-        await handle.dispose();
-        return result;
-      }
-      waitForFunction(pageFunction, options = {}, ...args) {
-        return this._mainWorld.waitForFunction(pageFunction, options, ...args);
-      }
-      async title() {
-        return this._secondaryWorld.title();
-      }
-      _navigated(framePayload) {
-        this._name = framePayload.name;
-        this._url = `${framePayload.url}${framePayload.urlFragment || ""}`;
-      }
-      _navigatedWithinDocument(url) {
-        this._url = url;
-      }
-      _onLifecycleEvent(loaderId, name) {
-        if (name === "init") {
-          this._loaderId = loaderId;
-          this._lifecycleEvents.clear();
-        }
-        this._lifecycleEvents.add(name);
-      }
-      _onLoadingStopped() {
-        this._lifecycleEvents.add("DOMContentLoaded");
-        this._lifecycleEvents.add("load");
-      }
-      _detach() {
-        this._detached = true;
-        this._mainWorld._detach();
-        this._secondaryWorld._detach();
-        if (this._parentFrame)
-          this._parentFrame._childFrames.delete(this);
-        this._parentFrame = null;
-      }
-    };
-    exports.Frame = Frame;
-    function assertNoLegacyNavigationOptions(options) {
-      (0, assert_js_1.assert)(options["networkIdleTimeout"] === void 0, "ERROR: networkIdleTimeout option is no longer supported.");
-      (0, assert_js_1.assert)(options["networkIdleInflight"] === void 0, "ERROR: networkIdleInflight option is no longer supported.");
-      (0, assert_js_1.assert)(options.waitUntil !== "networkidle", 'ERROR: "networkidle" option is no longer supported. Use "networkidle2" instead');
-    }
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/USKeyboardLayout.js
-var require_USKeyboardLayout = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/USKeyboardLayout.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.keyDefinitions = void 0;
-    exports.keyDefinitions = {
-      "0": { keyCode: 48, key: "0", code: "Digit0" },
-      "1": { keyCode: 49, key: "1", code: "Digit1" },
-      "2": { keyCode: 50, key: "2", code: "Digit2" },
-      "3": { keyCode: 51, key: "3", code: "Digit3" },
-      "4": { keyCode: 52, key: "4", code: "Digit4" },
-      "5": { keyCode: 53, key: "5", code: "Digit5" },
-      "6": { keyCode: 54, key: "6", code: "Digit6" },
-      "7": { keyCode: 55, key: "7", code: "Digit7" },
-      "8": { keyCode: 56, key: "8", code: "Digit8" },
-      "9": { keyCode: 57, key: "9", code: "Digit9" },
-      Power: { key: "Power", code: "Power" },
-      Eject: { key: "Eject", code: "Eject" },
-      Abort: { keyCode: 3, code: "Abort", key: "Cancel" },
-      Help: { keyCode: 6, code: "Help", key: "Help" },
-      Backspace: { keyCode: 8, code: "Backspace", key: "Backspace" },
-      Tab: { keyCode: 9, code: "Tab", key: "Tab" },
-      Numpad5: {
-        keyCode: 12,
-        shiftKeyCode: 101,
-        key: "Clear",
-        code: "Numpad5",
-        shiftKey: "5",
-        location: 3
-      },
-      NumpadEnter: {
-        keyCode: 13,
-        code: "NumpadEnter",
-        key: "Enter",
-        text: "\r",
-        location: 3
-      },
-      Enter: { keyCode: 13, code: "Enter", key: "Enter", text: "\r" },
-      "\r": { keyCode: 13, code: "Enter", key: "Enter", text: "\r" },
-      "\n": { keyCode: 13, code: "Enter", key: "Enter", text: "\r" },
-      ShiftLeft: { keyCode: 16, code: "ShiftLeft", key: "Shift", location: 1 },
-      ShiftRight: { keyCode: 16, code: "ShiftRight", key: "Shift", location: 2 },
-      ControlLeft: {
-        keyCode: 17,
-        code: "ControlLeft",
-        key: "Control",
-        location: 1
-      },
-      ControlRight: {
-        keyCode: 17,
-        code: "ControlRight",
-        key: "Control",
-        location: 2
-      },
-      AltLeft: { keyCode: 18, code: "AltLeft", key: "Alt", location: 1 },
-      AltRight: { keyCode: 18, code: "AltRight", key: "Alt", location: 2 },
-      Pause: { keyCode: 19, code: "Pause", key: "Pause" },
-      CapsLock: { keyCode: 20, code: "CapsLock", key: "CapsLock" },
-      Escape: { keyCode: 27, code: "Escape", key: "Escape" },
-      Convert: { keyCode: 28, code: "Convert", key: "Convert" },
-      NonConvert: { keyCode: 29, code: "NonConvert", key: "NonConvert" },
-      Space: { keyCode: 32, code: "Space", key: " " },
-      Numpad9: {
-        keyCode: 33,
-        shiftKeyCode: 105,
-        key: "PageUp",
-        code: "Numpad9",
-        shiftKey: "9",
-        location: 3
-      },
-      PageUp: { keyCode: 33, code: "PageUp", key: "PageUp" },
-      Numpad3: {
-        keyCode: 34,
-        shiftKeyCode: 99,
-        key: "PageDown",
-        code: "Numpad3",
-        shiftKey: "3",
-        location: 3
-      },
-      PageDown: { keyCode: 34, code: "PageDown", key: "PageDown" },
-      End: { keyCode: 35, code: "End", key: "End" },
-      Numpad1: {
-        keyCode: 35,
-        shiftKeyCode: 97,
-        key: "End",
-        code: "Numpad1",
-        shiftKey: "1",
-        location: 3
-      },
-      Home: { keyCode: 36, code: "Home", key: "Home" },
-      Numpad7: {
-        keyCode: 36,
-        shiftKeyCode: 103,
-        key: "Home",
-        code: "Numpad7",
-        shiftKey: "7",
-        location: 3
-      },
-      ArrowLeft: { keyCode: 37, code: "ArrowLeft", key: "ArrowLeft" },
-      Numpad4: {
-        keyCode: 37,
-        shiftKeyCode: 100,
-        key: "ArrowLeft",
-        code: "Numpad4",
-        shiftKey: "4",
-        location: 3
-      },
-      Numpad8: {
-        keyCode: 38,
-        shiftKeyCode: 104,
-        key: "ArrowUp",
-        code: "Numpad8",
-        shiftKey: "8",
-        location: 3
-      },
-      ArrowUp: { keyCode: 38, code: "ArrowUp", key: "ArrowUp" },
-      ArrowRight: { keyCode: 39, code: "ArrowRight", key: "ArrowRight" },
-      Numpad6: {
-        keyCode: 39,
-        shiftKeyCode: 102,
-        key: "ArrowRight",
-        code: "Numpad6",
-        shiftKey: "6",
-        location: 3
-      },
-      Numpad2: {
-        keyCode: 40,
-        shiftKeyCode: 98,
-        key: "ArrowDown",
-        code: "Numpad2",
-        shiftKey: "2",
-        location: 3
-      },
-      ArrowDown: { keyCode: 40, code: "ArrowDown", key: "ArrowDown" },
-      Select: { keyCode: 41, code: "Select", key: "Select" },
-      Open: { keyCode: 43, code: "Open", key: "Execute" },
-      PrintScreen: { keyCode: 44, code: "PrintScreen", key: "PrintScreen" },
-      Insert: { keyCode: 45, code: "Insert", key: "Insert" },
-      Numpad0: {
-        keyCode: 45,
-        shiftKeyCode: 96,
-        key: "Insert",
-        code: "Numpad0",
-        shiftKey: "0",
-        location: 3
-      },
-      Delete: { keyCode: 46, code: "Delete", key: "Delete" },
-      NumpadDecimal: {
-        keyCode: 46,
-        shiftKeyCode: 110,
-        code: "NumpadDecimal",
-        key: "\0",
-        shiftKey: ".",
-        location: 3
-      },
-      Digit0: { keyCode: 48, code: "Digit0", shiftKey: ")", key: "0" },
-      Digit1: { keyCode: 49, code: "Digit1", shiftKey: "!", key: "1" },
-      Digit2: { keyCode: 50, code: "Digit2", shiftKey: "@", key: "2" },
-      Digit3: { keyCode: 51, code: "Digit3", shiftKey: "#", key: "3" },
-      Digit4: { keyCode: 52, code: "Digit4", shiftKey: "$", key: "4" },
-      Digit5: { keyCode: 53, code: "Digit5", shiftKey: "%", key: "5" },
-      Digit6: { keyCode: 54, code: "Digit6", shiftKey: "^", key: "6" },
-      Digit7: { keyCode: 55, code: "Digit7", shiftKey: "&", key: "7" },
-      Digit8: { keyCode: 56, code: "Digit8", shiftKey: "*", key: "8" },
-      Digit9: { keyCode: 57, code: "Digit9", shiftKey: "(", key: "9" },
-      KeyA: { keyCode: 65, code: "KeyA", shiftKey: "A", key: "a" },
-      KeyB: { keyCode: 66, code: "KeyB", shiftKey: "B", key: "b" },
-      KeyC: { keyCode: 67, code: "KeyC", shiftKey: "C", key: "c" },
-      KeyD: { keyCode: 68, code: "KeyD", shiftKey: "D", key: "d" },
-      KeyE: { keyCode: 69, code: "KeyE", shiftKey: "E", key: "e" },
-      KeyF: { keyCode: 70, code: "KeyF", shiftKey: "F", key: "f" },
-      KeyG: { keyCode: 71, code: "KeyG", shiftKey: "G", key: "g" },
-      KeyH: { keyCode: 72, code: "KeyH", shiftKey: "H", key: "h" },
-      KeyI: { keyCode: 73, code: "KeyI", shiftKey: "I", key: "i" },
-      KeyJ: { keyCode: 74, code: "KeyJ", shiftKey: "J", key: "j" },
-      KeyK: { keyCode: 75, code: "KeyK", shiftKey: "K", key: "k" },
-      KeyL: { keyCode: 76, code: "KeyL", shiftKey: "L", key: "l" },
-      KeyM: { keyCode: 77, code: "KeyM", shiftKey: "M", key: "m" },
-      KeyN: { keyCode: 78, code: "KeyN", shiftKey: "N", key: "n" },
-      KeyO: { keyCode: 79, code: "KeyO", shiftKey: "O", key: "o" },
-      KeyP: { keyCode: 80, code: "KeyP", shiftKey: "P", key: "p" },
-      KeyQ: { keyCode: 81, code: "KeyQ", shiftKey: "Q", key: "q" },
-      KeyR: { keyCode: 82, code: "KeyR", shiftKey: "R", key: "r" },
-      KeyS: { keyCode: 83, code: "KeyS", shiftKey: "S", key: "s" },
-      KeyT: { keyCode: 84, code: "KeyT", shiftKey: "T", key: "t" },
-      KeyU: { keyCode: 85, code: "KeyU", shiftKey: "U", key: "u" },
-      KeyV: { keyCode: 86, code: "KeyV", shiftKey: "V", key: "v" },
-      KeyW: { keyCode: 87, code: "KeyW", shiftKey: "W", key: "w" },
-      KeyX: { keyCode: 88, code: "KeyX", shiftKey: "X", key: "x" },
-      KeyY: { keyCode: 89, code: "KeyY", shiftKey: "Y", key: "y" },
-      KeyZ: { keyCode: 90, code: "KeyZ", shiftKey: "Z", key: "z" },
-      MetaLeft: { keyCode: 91, code: "MetaLeft", key: "Meta", location: 1 },
-      MetaRight: { keyCode: 92, code: "MetaRight", key: "Meta", location: 2 },
-      ContextMenu: { keyCode: 93, code: "ContextMenu", key: "ContextMenu" },
-      NumpadMultiply: {
-        keyCode: 106,
-        code: "NumpadMultiply",
-        key: "*",
-        location: 3
-      },
-      NumpadAdd: { keyCode: 107, code: "NumpadAdd", key: "+", location: 3 },
-      NumpadSubtract: {
-        keyCode: 109,
-        code: "NumpadSubtract",
-        key: "-",
-        location: 3
-      },
-      NumpadDivide: { keyCode: 111, code: "NumpadDivide", key: "/", location: 3 },
-      F1: { keyCode: 112, code: "F1", key: "F1" },
-      F2: { keyCode: 113, code: "F2", key: "F2" },
-      F3: { keyCode: 114, code: "F3", key: "F3" },
-      F4: { keyCode: 115, code: "F4", key: "F4" },
-      F5: { keyCode: 116, code: "F5", key: "F5" },
-      F6: { keyCode: 117, code: "F6", key: "F6" },
-      F7: { keyCode: 118, code: "F7", key: "F7" },
-      F8: { keyCode: 119, code: "F8", key: "F8" },
-      F9: { keyCode: 120, code: "F9", key: "F9" },
-      F10: { keyCode: 121, code: "F10", key: "F10" },
-      F11: { keyCode: 122, code: "F11", key: "F11" },
-      F12: { keyCode: 123, code: "F12", key: "F12" },
-      F13: { keyCode: 124, code: "F13", key: "F13" },
-      F14: { keyCode: 125, code: "F14", key: "F14" },
-      F15: { keyCode: 126, code: "F15", key: "F15" },
-      F16: { keyCode: 127, code: "F16", key: "F16" },
-      F17: { keyCode: 128, code: "F17", key: "F17" },
-      F18: { keyCode: 129, code: "F18", key: "F18" },
-      F19: { keyCode: 130, code: "F19", key: "F19" },
-      F20: { keyCode: 131, code: "F20", key: "F20" },
-      F21: { keyCode: 132, code: "F21", key: "F21" },
-      F22: { keyCode: 133, code: "F22", key: "F22" },
-      F23: { keyCode: 134, code: "F23", key: "F23" },
-      F24: { keyCode: 135, code: "F24", key: "F24" },
-      NumLock: { keyCode: 144, code: "NumLock", key: "NumLock" },
-      ScrollLock: { keyCode: 145, code: "ScrollLock", key: "ScrollLock" },
-      AudioVolumeMute: {
-        keyCode: 173,
-        code: "AudioVolumeMute",
-        key: "AudioVolumeMute"
-      },
-      AudioVolumeDown: {
-        keyCode: 174,
-        code: "AudioVolumeDown",
-        key: "AudioVolumeDown"
-      },
-      AudioVolumeUp: { keyCode: 175, code: "AudioVolumeUp", key: "AudioVolumeUp" },
-      MediaTrackNext: {
-        keyCode: 176,
-        code: "MediaTrackNext",
-        key: "MediaTrackNext"
-      },
-      MediaTrackPrevious: {
-        keyCode: 177,
-        code: "MediaTrackPrevious",
-        key: "MediaTrackPrevious"
-      },
-      MediaStop: { keyCode: 178, code: "MediaStop", key: "MediaStop" },
-      MediaPlayPause: {
-        keyCode: 179,
-        code: "MediaPlayPause",
-        key: "MediaPlayPause"
-      },
-      Semicolon: { keyCode: 186, code: "Semicolon", shiftKey: ":", key: ";" },
-      Equal: { keyCode: 187, code: "Equal", shiftKey: "+", key: "=" },
-      NumpadEqual: { keyCode: 187, code: "NumpadEqual", key: "=", location: 3 },
-      Comma: { keyCode: 188, code: "Comma", shiftKey: "<", key: "," },
-      Minus: { keyCode: 189, code: "Minus", shiftKey: "_", key: "-" },
-      Period: { keyCode: 190, code: "Period", shiftKey: ">", key: "." },
-      Slash: { keyCode: 191, code: "Slash", shiftKey: "?", key: "/" },
-      Backquote: { keyCode: 192, code: "Backquote", shiftKey: "~", key: "`" },
-      BracketLeft: { keyCode: 219, code: "BracketLeft", shiftKey: "{", key: "[" },
-      Backslash: { keyCode: 220, code: "Backslash", shiftKey: "|", key: "\\" },
-      BracketRight: { keyCode: 221, code: "BracketRight", shiftKey: "}", key: "]" },
-      Quote: { keyCode: 222, code: "Quote", shiftKey: '"', key: "'" },
-      AltGraph: { keyCode: 225, code: "AltGraph", key: "AltGraph" },
-      Props: { keyCode: 247, code: "Props", key: "CrSel" },
-      Cancel: { keyCode: 3, key: "Cancel", code: "Abort" },
-      Clear: { keyCode: 12, key: "Clear", code: "Numpad5", location: 3 },
-      Shift: { keyCode: 16, key: "Shift", code: "ShiftLeft", location: 1 },
-      Control: { keyCode: 17, key: "Control", code: "ControlLeft", location: 1 },
-      Alt: { keyCode: 18, key: "Alt", code: "AltLeft", location: 1 },
-      Accept: { keyCode: 30, key: "Accept" },
-      ModeChange: { keyCode: 31, key: "ModeChange" },
-      " ": { keyCode: 32, key: " ", code: "Space" },
-      Print: { keyCode: 42, key: "Print" },
-      Execute: { keyCode: 43, key: "Execute", code: "Open" },
-      "\0": { keyCode: 46, key: "\0", code: "NumpadDecimal", location: 3 },
-      a: { keyCode: 65, key: "a", code: "KeyA" },
-      b: { keyCode: 66, key: "b", code: "KeyB" },
-      c: { keyCode: 67, key: "c", code: "KeyC" },
-      d: { keyCode: 68, key: "d", code: "KeyD" },
-      e: { keyCode: 69, key: "e", code: "KeyE" },
-      f: { keyCode: 70, key: "f", code: "KeyF" },
-      g: { keyCode: 71, key: "g", code: "KeyG" },
-      h: { keyCode: 72, key: "h", code: "KeyH" },
-      i: { keyCode: 73, key: "i", code: "KeyI" },
-      j: { keyCode: 74, key: "j", code: "KeyJ" },
-      k: { keyCode: 75, key: "k", code: "KeyK" },
-      l: { keyCode: 76, key: "l", code: "KeyL" },
-      m: { keyCode: 77, key: "m", code: "KeyM" },
-      n: { keyCode: 78, key: "n", code: "KeyN" },
-      o: { keyCode: 79, key: "o", code: "KeyO" },
-      p: { keyCode: 80, key: "p", code: "KeyP" },
-      q: { keyCode: 81, key: "q", code: "KeyQ" },
-      r: { keyCode: 82, key: "r", code: "KeyR" },
-      s: { keyCode: 83, key: "s", code: "KeyS" },
-      t: { keyCode: 84, key: "t", code: "KeyT" },
-      u: { keyCode: 85, key: "u", code: "KeyU" },
-      v: { keyCode: 86, key: "v", code: "KeyV" },
-      w: { keyCode: 87, key: "w", code: "KeyW" },
-      x: { keyCode: 88, key: "x", code: "KeyX" },
-      y: { keyCode: 89, key: "y", code: "KeyY" },
-      z: { keyCode: 90, key: "z", code: "KeyZ" },
-      Meta: { keyCode: 91, key: "Meta", code: "MetaLeft", location: 1 },
-      "*": { keyCode: 106, key: "*", code: "NumpadMultiply", location: 3 },
-      "+": { keyCode: 107, key: "+", code: "NumpadAdd", location: 3 },
-      "-": { keyCode: 109, key: "-", code: "NumpadSubtract", location: 3 },
-      "/": { keyCode: 111, key: "/", code: "NumpadDivide", location: 3 },
-      ";": { keyCode: 186, key: ";", code: "Semicolon" },
-      "=": { keyCode: 187, key: "=", code: "Equal" },
-      ",": { keyCode: 188, key: ",", code: "Comma" },
-      ".": { keyCode: 190, key: ".", code: "Period" },
-      "`": { keyCode: 192, key: "`", code: "Backquote" },
-      "[": { keyCode: 219, key: "[", code: "BracketLeft" },
-      "\\": { keyCode: 220, key: "\\", code: "Backslash" },
-      "]": { keyCode: 221, key: "]", code: "BracketRight" },
-      "'": { keyCode: 222, key: "'", code: "Quote" },
-      Attn: { keyCode: 246, key: "Attn" },
-      CrSel: { keyCode: 247, key: "CrSel", code: "Props" },
-      ExSel: { keyCode: 248, key: "ExSel" },
-      EraseEof: { keyCode: 249, key: "EraseEof" },
-      Play: { keyCode: 250, key: "Play" },
-      ZoomOut: { keyCode: 251, key: "ZoomOut" },
-      ")": { keyCode: 48, key: ")", code: "Digit0" },
-      "!": { keyCode: 49, key: "!", code: "Digit1" },
-      "@": { keyCode: 50, key: "@", code: "Digit2" },
-      "#": { keyCode: 51, key: "#", code: "Digit3" },
-      $: { keyCode: 52, key: "$", code: "Digit4" },
-      "%": { keyCode: 53, key: "%", code: "Digit5" },
-      "^": { keyCode: 54, key: "^", code: "Digit6" },
-      "&": { keyCode: 55, key: "&", code: "Digit7" },
-      "(": { keyCode: 57, key: "(", code: "Digit9" },
-      A: { keyCode: 65, key: "A", code: "KeyA" },
-      B: { keyCode: 66, key: "B", code: "KeyB" },
-      C: { keyCode: 67, key: "C", code: "KeyC" },
-      D: { keyCode: 68, key: "D", code: "KeyD" },
-      E: { keyCode: 69, key: "E", code: "KeyE" },
-      F: { keyCode: 70, key: "F", code: "KeyF" },
-      G: { keyCode: 71, key: "G", code: "KeyG" },
-      H: { keyCode: 72, key: "H", code: "KeyH" },
-      I: { keyCode: 73, key: "I", code: "KeyI" },
-      J: { keyCode: 74, key: "J", code: "KeyJ" },
-      K: { keyCode: 75, key: "K", code: "KeyK" },
-      L: { keyCode: 76, key: "L", code: "KeyL" },
-      M: { keyCode: 77, key: "M", code: "KeyM" },
-      N: { keyCode: 78, key: "N", code: "KeyN" },
-      O: { keyCode: 79, key: "O", code: "KeyO" },
-      P: { keyCode: 80, key: "P", code: "KeyP" },
-      Q: { keyCode: 81, key: "Q", code: "KeyQ" },
-      R: { keyCode: 82, key: "R", code: "KeyR" },
-      S: { keyCode: 83, key: "S", code: "KeyS" },
-      T: { keyCode: 84, key: "T", code: "KeyT" },
-      U: { keyCode: 85, key: "U", code: "KeyU" },
-      V: { keyCode: 86, key: "V", code: "KeyV" },
-      W: { keyCode: 87, key: "W", code: "KeyW" },
-      X: { keyCode: 88, key: "X", code: "KeyX" },
-      Y: { keyCode: 89, key: "Y", code: "KeyY" },
-      Z: { keyCode: 90, key: "Z", code: "KeyZ" },
-      ":": { keyCode: 186, key: ":", code: "Semicolon" },
-      "<": { keyCode: 188, key: "<", code: "Comma" },
-      _: { keyCode: 189, key: "_", code: "Minus" },
-      ">": { keyCode: 190, key: ">", code: "Period" },
-      "?": { keyCode: 191, key: "?", code: "Slash" },
-      "~": { keyCode: 192, key: "~", code: "Backquote" },
-      "{": { keyCode: 219, key: "{", code: "BracketLeft" },
-      "|": { keyCode: 220, key: "|", code: "Backslash" },
-      "}": { keyCode: 221, key: "}", code: "BracketRight" },
-      '"': { keyCode: 222, key: '"', code: "Quote" },
-      SoftLeft: { key: "SoftLeft", code: "SoftLeft", location: 4 },
-      SoftRight: { key: "SoftRight", code: "SoftRight", location: 4 },
-      Camera: { keyCode: 44, key: "Camera", code: "Camera", location: 4 },
-      Call: { key: "Call", code: "Call", location: 4 },
-      EndCall: { keyCode: 95, key: "EndCall", code: "EndCall", location: 4 },
-      VolumeDown: {
-        keyCode: 182,
-        key: "VolumeDown",
-        code: "VolumeDown",
-        location: 4
-      },
-      VolumeUp: { keyCode: 183, key: "VolumeUp", code: "VolumeUp", location: 4 }
-    };
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/Input.js
-var require_Input = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/Input.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Touchscreen = exports.Mouse = exports.Keyboard = void 0;
-    var assert_js_1 = require_assert();
-    var USKeyboardLayout_js_1 = require_USKeyboardLayout();
-    var Keyboard = class {
-      constructor(client) {
-        this._modifiers = 0;
-        this._pressedKeys = /* @__PURE__ */ new Set();
-        this._client = client;
-      }
-      async down(key, options = { text: void 0 }) {
-        const description = this._keyDescriptionForString(key);
-        const autoRepeat = this._pressedKeys.has(description.code);
-        this._pressedKeys.add(description.code);
-        this._modifiers |= this._modifierBit(description.key);
-        const text = options.text === void 0 ? description.text : options.text;
-        await this._client.send("Input.dispatchKeyEvent", {
-          type: text ? "keyDown" : "rawKeyDown",
-          modifiers: this._modifiers,
-          windowsVirtualKeyCode: description.keyCode,
-          code: description.code,
-          key: description.key,
-          text,
-          unmodifiedText: text,
-          autoRepeat,
-          location: description.location,
-          isKeypad: description.location === 3
-        });
-      }
-      _modifierBit(key) {
-        if (key === "Alt")
-          return 1;
-        if (key === "Control")
-          return 2;
-        if (key === "Meta")
-          return 4;
-        if (key === "Shift")
-          return 8;
-        return 0;
-      }
-      _keyDescriptionForString(keyString) {
-        const shift = this._modifiers & 8;
-        const description = {
-          key: "",
-          keyCode: 0,
-          code: "",
-          text: "",
-          location: 0
-        };
-        const definition = USKeyboardLayout_js_1.keyDefinitions[keyString];
-        (0, assert_js_1.assert)(definition, `Unknown key: "${keyString}"`);
-        if (definition.key)
-          description.key = definition.key;
-        if (shift && definition.shiftKey)
-          description.key = definition.shiftKey;
-        if (definition.keyCode)
-          description.keyCode = definition.keyCode;
-        if (shift && definition.shiftKeyCode)
-          description.keyCode = definition.shiftKeyCode;
-        if (definition.code)
-          description.code = definition.code;
-        if (definition.location)
-          description.location = definition.location;
-        if (description.key.length === 1)
-          description.text = description.key;
-        if (definition.text)
-          description.text = definition.text;
-        if (shift && definition.shiftText)
-          description.text = definition.shiftText;
-        if (this._modifiers & ~8)
-          description.text = "";
-        return description;
-      }
-      async up(key) {
-        const description = this._keyDescriptionForString(key);
-        this._modifiers &= ~this._modifierBit(description.key);
-        this._pressedKeys.delete(description.code);
-        await this._client.send("Input.dispatchKeyEvent", {
-          type: "keyUp",
-          modifiers: this._modifiers,
-          key: description.key,
-          windowsVirtualKeyCode: description.keyCode,
-          code: description.code,
-          location: description.location
-        });
-      }
-      async sendCharacter(char) {
-        await this._client.send("Input.insertText", { text: char });
-      }
-      charIsKey(char) {
-        return !!USKeyboardLayout_js_1.keyDefinitions[char];
-      }
-      async type(text, options = {}) {
-        const delay = options.delay || null;
-        for (const char of text) {
-          if (this.charIsKey(char)) {
-            await this.press(char, { delay });
-          } else {
-            if (delay)
-              await new Promise((f) => setTimeout(f, delay));
-            await this.sendCharacter(char);
-          }
-        }
-      }
-      async press(key, options = {}) {
-        const { delay = null } = options;
-        await this.down(key, options);
-        if (delay)
-          await new Promise((f) => setTimeout(f, options.delay));
-        await this.up(key);
-      }
-    };
-    exports.Keyboard = Keyboard;
-    var Mouse = class {
-      constructor(client, keyboard) {
-        this._x = 0;
-        this._y = 0;
-        this._button = "none";
-        this._client = client;
-        this._keyboard = keyboard;
-      }
-      async move(x, y, options = {}) {
-        const { steps = 1 } = options;
-        const fromX = this._x, fromY = this._y;
-        this._x = x;
-        this._y = y;
-        for (let i = 1; i <= steps; i++) {
-          await this._client.send("Input.dispatchMouseEvent", {
-            type: "mouseMoved",
-            button: this._button,
-            x: fromX + (this._x - fromX) * (i / steps),
-            y: fromY + (this._y - fromY) * (i / steps),
-            modifiers: this._keyboard._modifiers
-          });
-        }
-      }
-      async click(x, y, options = {}) {
-        const { delay = null } = options;
-        if (delay !== null) {
-          await this.move(x, y);
-          await this.down(options);
-          await new Promise((f) => setTimeout(f, delay));
-          await this.up(options);
-        } else {
-          await this.move(x, y);
-          await this.down(options);
-          await this.up(options);
-        }
-      }
-      async down(options = {}) {
-        const { button = "left", clickCount = 1 } = options;
-        this._button = button;
-        await this._client.send("Input.dispatchMouseEvent", {
-          type: "mousePressed",
-          button,
-          x: this._x,
-          y: this._y,
-          modifiers: this._keyboard._modifiers,
-          clickCount
-        });
-      }
-      async up(options = {}) {
-        const { button = "left", clickCount = 1 } = options;
-        this._button = "none";
-        await this._client.send("Input.dispatchMouseEvent", {
-          type: "mouseReleased",
-          button,
-          x: this._x,
-          y: this._y,
-          modifiers: this._keyboard._modifiers,
-          clickCount
-        });
-      }
-      async wheel(options = {}) {
-        const { deltaX = 0, deltaY = 0 } = options;
-        await this._client.send("Input.dispatchMouseEvent", {
-          type: "mouseWheel",
-          x: this._x,
-          y: this._y,
-          deltaX,
-          deltaY,
-          modifiers: this._keyboard._modifiers,
-          pointerType: "mouse"
-        });
-      }
-      async drag(start, target) {
-        const promise = new Promise((resolve) => {
-          this._client.once("Input.dragIntercepted", (event) => resolve(event.data));
-        });
-        await this.move(start.x, start.y);
-        await this.down();
-        await this.move(target.x, target.y);
-        return promise;
-      }
-      async dragEnter(target, data) {
-        await this._client.send("Input.dispatchDragEvent", {
-          type: "dragEnter",
-          x: target.x,
-          y: target.y,
-          modifiers: this._keyboard._modifiers,
-          data
-        });
-      }
-      async dragOver(target, data) {
-        await this._client.send("Input.dispatchDragEvent", {
-          type: "dragOver",
-          x: target.x,
-          y: target.y,
-          modifiers: this._keyboard._modifiers,
-          data
-        });
-      }
-      async drop(target, data) {
-        await this._client.send("Input.dispatchDragEvent", {
-          type: "drop",
-          x: target.x,
-          y: target.y,
-          modifiers: this._keyboard._modifiers,
-          data
-        });
-      }
-      async dragAndDrop(start, target, options = {}) {
-        const { delay = null } = options;
-        const data = await this.drag(start, target);
-        await this.dragEnter(target, data);
-        await this.dragOver(target, data);
-        if (delay) {
-          await new Promise((resolve) => setTimeout(resolve, delay));
-        }
-        await this.drop(target, data);
-        await this.up();
-      }
-    };
-    exports.Mouse = Mouse;
-    var Touchscreen = class {
-      constructor(client, keyboard) {
-        this._client = client;
-        this._keyboard = keyboard;
-      }
-      async tap(x, y) {
-        const touchPoints = [{ x: Math.round(x), y: Math.round(y) }];
-        await this._client.send("Input.dispatchTouchEvent", {
-          type: "touchStart",
-          touchPoints,
-          modifiers: this._keyboard._modifiers
-        });
-        await this._client.send("Input.dispatchTouchEvent", {
-          type: "touchEnd",
-          touchPoints: [],
-          modifiers: this._keyboard._modifiers
-        });
-      }
-    };
-    exports.Touchscreen = Touchscreen;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/Tracing.js
-var require_Tracing = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/Tracing.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Tracing = void 0;
-    var assert_js_1 = require_assert();
-    var helper_js_1 = require_helper();
-    var Tracing = class {
-      constructor(client) {
-        this._recording = false;
-        this._path = "";
-        this._client = client;
-      }
-      async start(options = {}) {
-        (0, assert_js_1.assert)(!this._recording, "Cannot start recording trace while already recording trace.");
-        const defaultCategories = [
-          "-*",
-          "devtools.timeline",
-          "v8.execute",
-          "disabled-by-default-devtools.timeline",
-          "disabled-by-default-devtools.timeline.frame",
-          "toplevel",
-          "blink.console",
-          "blink.user_timing",
-          "latencyInfo",
-          "disabled-by-default-devtools.timeline.stack",
-          "disabled-by-default-v8.cpu_profiler"
-        ];
-        const { path = null, screenshots = false, categories = defaultCategories } = options;
-        if (screenshots)
-          categories.push("disabled-by-default-devtools.screenshot");
-        const excludedCategories = categories.filter((cat) => cat.startsWith("-")).map((cat) => cat.slice(1));
-        const includedCategories = categories.filter((cat) => !cat.startsWith("-"));
-        this._path = path;
-        this._recording = true;
-        await this._client.send("Tracing.start", {
-          transferMode: "ReturnAsStream",
-          traceConfig: {
-            excludedCategories,
-            includedCategories
-          }
-        });
-      }
-      async stop() {
-        let fulfill;
-        let reject;
-        const contentPromise = new Promise((x, y) => {
-          fulfill = x;
-          reject = y;
-        });
-        this._client.once("Tracing.tracingComplete", async (event) => {
-          try {
-            const readable = await helper_js_1.helper.getReadableFromProtocolStream(this._client, event.stream);
-            const buffer = await helper_js_1.helper.getReadableAsBuffer(readable, this._path);
-            fulfill(buffer);
-          } catch (error) {
-            reject(error);
-          }
-        });
-        await this._client.send("Tracing.end");
-        this._recording = false;
-        return contentPromise;
-      }
-    };
-    exports.Tracing = Tracing;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/Coverage.js
-var require_Coverage = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/Coverage.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.CSSCoverage = exports.JSCoverage = exports.Coverage = void 0;
-    var assert_js_1 = require_assert();
-    var helper_js_1 = require_helper();
-    var ExecutionContext_js_1 = require_ExecutionContext();
-    var Coverage = class {
-      constructor(client) {
-        this._jsCoverage = new JSCoverage(client);
-        this._cssCoverage = new CSSCoverage(client);
-      }
-      async startJSCoverage(options = {}) {
-        return await this._jsCoverage.start(options);
-      }
-      async stopJSCoverage() {
-        return await this._jsCoverage.stop();
-      }
-      async startCSSCoverage(options = {}) {
-        return await this._cssCoverage.start(options);
-      }
-      async stopCSSCoverage() {
-        return await this._cssCoverage.stop();
-      }
-    };
-    exports.Coverage = Coverage;
-    var JSCoverage = class {
-      constructor(client) {
-        this._enabled = false;
-        this._scriptURLs = /* @__PURE__ */ new Map();
-        this._scriptSources = /* @__PURE__ */ new Map();
-        this._eventListeners = [];
-        this._resetOnNavigation = false;
-        this._reportAnonymousScripts = false;
-        this._includeRawScriptCoverage = false;
-        this._client = client;
-      }
-      async start(options = {}) {
-        (0, assert_js_1.assert)(!this._enabled, "JSCoverage is already enabled");
-        const { resetOnNavigation = true, reportAnonymousScripts = false, includeRawScriptCoverage = false } = options;
-        this._resetOnNavigation = resetOnNavigation;
-        this._reportAnonymousScripts = reportAnonymousScripts;
-        this._includeRawScriptCoverage = includeRawScriptCoverage;
-        this._enabled = true;
-        this._scriptURLs.clear();
-        this._scriptSources.clear();
-        this._eventListeners = [
-          helper_js_1.helper.addEventListener(this._client, "Debugger.scriptParsed", this._onScriptParsed.bind(this)),
-          helper_js_1.helper.addEventListener(this._client, "Runtime.executionContextsCleared", this._onExecutionContextsCleared.bind(this))
-        ];
-        await Promise.all([
-          this._client.send("Profiler.enable"),
-          this._client.send("Profiler.startPreciseCoverage", {
-            callCount: this._includeRawScriptCoverage,
-            detailed: true
-          }),
-          this._client.send("Debugger.enable"),
-          this._client.send("Debugger.setSkipAllPauses", { skip: true })
-        ]);
-      }
-      _onExecutionContextsCleared() {
-        if (!this._resetOnNavigation)
-          return;
-        this._scriptURLs.clear();
-        this._scriptSources.clear();
-      }
-      async _onScriptParsed(event) {
-        if (event.url === ExecutionContext_js_1.EVALUATION_SCRIPT_URL)
-          return;
-        if (!event.url && !this._reportAnonymousScripts)
-          return;
-        try {
-          const response = await this._client.send("Debugger.getScriptSource", {
-            scriptId: event.scriptId
-          });
-          this._scriptURLs.set(event.scriptId, event.url);
-          this._scriptSources.set(event.scriptId, response.scriptSource);
-        } catch (error) {
-          (0, helper_js_1.debugError)(error);
-        }
-      }
-      async stop() {
-        (0, assert_js_1.assert)(this._enabled, "JSCoverage is not enabled");
-        this._enabled = false;
-        const result = await Promise.all([
-          this._client.send("Profiler.takePreciseCoverage"),
-          this._client.send("Profiler.stopPreciseCoverage"),
-          this._client.send("Profiler.disable"),
-          this._client.send("Debugger.disable")
-        ]);
-        helper_js_1.helper.removeEventListeners(this._eventListeners);
-        const coverage = [];
-        const profileResponse = result[0];
-        for (const entry of profileResponse.result) {
-          let url = this._scriptURLs.get(entry.scriptId);
-          if (!url && this._reportAnonymousScripts)
-            url = "debugger://VM" + entry.scriptId;
-          const text = this._scriptSources.get(entry.scriptId);
-          if (text === void 0 || url === void 0)
-            continue;
-          const flattenRanges = [];
-          for (const func of entry.functions)
-            flattenRanges.push(...func.ranges);
-          const ranges = convertToDisjointRanges(flattenRanges);
-          if (!this._includeRawScriptCoverage) {
-            coverage.push({ url, ranges, text });
-          } else {
-            coverage.push({ url, ranges, text, rawScriptCoverage: entry });
-          }
-        }
-        return coverage;
-      }
-    };
-    exports.JSCoverage = JSCoverage;
-    var CSSCoverage = class {
-      constructor(client) {
-        this._enabled = false;
-        this._stylesheetURLs = /* @__PURE__ */ new Map();
-        this._stylesheetSources = /* @__PURE__ */ new Map();
-        this._eventListeners = [];
-        this._resetOnNavigation = false;
-        this._reportAnonymousScripts = false;
-        this._client = client;
-      }
-      async start(options = {}) {
-        (0, assert_js_1.assert)(!this._enabled, "CSSCoverage is already enabled");
-        const { resetOnNavigation = true } = options;
-        this._resetOnNavigation = resetOnNavigation;
-        this._enabled = true;
-        this._stylesheetURLs.clear();
-        this._stylesheetSources.clear();
-        this._eventListeners = [
-          helper_js_1.helper.addEventListener(this._client, "CSS.styleSheetAdded", this._onStyleSheet.bind(this)),
-          helper_js_1.helper.addEventListener(this._client, "Runtime.executionContextsCleared", this._onExecutionContextsCleared.bind(this))
-        ];
-        await Promise.all([
-          this._client.send("DOM.enable"),
-          this._client.send("CSS.enable"),
-          this._client.send("CSS.startRuleUsageTracking")
-        ]);
-      }
-      _onExecutionContextsCleared() {
-        if (!this._resetOnNavigation)
-          return;
-        this._stylesheetURLs.clear();
-        this._stylesheetSources.clear();
-      }
-      async _onStyleSheet(event) {
-        const header = event.header;
-        if (!header.sourceURL)
-          return;
-        try {
-          const response = await this._client.send("CSS.getStyleSheetText", {
-            styleSheetId: header.styleSheetId
-          });
-          this._stylesheetURLs.set(header.styleSheetId, header.sourceURL);
-          this._stylesheetSources.set(header.styleSheetId, response.text);
-        } catch (error) {
-          (0, helper_js_1.debugError)(error);
-        }
-      }
-      async stop() {
-        (0, assert_js_1.assert)(this._enabled, "CSSCoverage is not enabled");
-        this._enabled = false;
-        const ruleTrackingResponse = await this._client.send("CSS.stopRuleUsageTracking");
-        await Promise.all([
-          this._client.send("CSS.disable"),
-          this._client.send("DOM.disable")
-        ]);
-        helper_js_1.helper.removeEventListeners(this._eventListeners);
-        const styleSheetIdToCoverage = /* @__PURE__ */ new Map();
-        for (const entry of ruleTrackingResponse.ruleUsage) {
-          let ranges = styleSheetIdToCoverage.get(entry.styleSheetId);
-          if (!ranges) {
-            ranges = [];
-            styleSheetIdToCoverage.set(entry.styleSheetId, ranges);
-          }
-          ranges.push({
-            startOffset: entry.startOffset,
-            endOffset: entry.endOffset,
-            count: entry.used ? 1 : 0
-          });
-        }
-        const coverage = [];
-        for (const styleSheetId of this._stylesheetURLs.keys()) {
-          const url = this._stylesheetURLs.get(styleSheetId);
-          const text = this._stylesheetSources.get(styleSheetId);
-          const ranges = convertToDisjointRanges(styleSheetIdToCoverage.get(styleSheetId) || []);
-          coverage.push({ url, ranges, text });
-        }
-        return coverage;
-      }
-    };
-    exports.CSSCoverage = CSSCoverage;
-    function convertToDisjointRanges(nestedRanges) {
-      const points = [];
-      for (const range of nestedRanges) {
-        points.push({ offset: range.startOffset, type: 0, range });
-        points.push({ offset: range.endOffset, type: 1, range });
-      }
-      points.sort((a, b) => {
-        if (a.offset !== b.offset)
-          return a.offset - b.offset;
-        if (a.type !== b.type)
-          return b.type - a.type;
-        const aLength = a.range.endOffset - a.range.startOffset;
-        const bLength = b.range.endOffset - b.range.startOffset;
-        if (a.type === 0)
-          return bLength - aLength;
-        return aLength - bLength;
-      });
-      const hitCountStack = [];
-      const results = [];
-      let lastOffset = 0;
-      for (const point of points) {
-        if (hitCountStack.length && lastOffset < point.offset && hitCountStack[hitCountStack.length - 1] > 0) {
-          const lastResult = results.length ? results[results.length - 1] : null;
-          if (lastResult && lastResult.end === lastOffset)
-            lastResult.end = point.offset;
-          else
-            results.push({ start: lastOffset, end: point.offset });
-        }
-        lastOffset = point.offset;
-        if (point.type === 0)
-          hitCountStack.push(point.range.count);
-        else
-          hitCountStack.pop();
-      }
-      return results.filter((range) => range.end - range.start > 1);
-    }
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/WebWorker.js
-var require_WebWorker = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/WebWorker.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.WebWorker = void 0;
-    var EventEmitter_js_1 = require_EventEmitter();
-    var helper_js_1 = require_helper();
-    var ExecutionContext_js_1 = require_ExecutionContext();
-    var JSHandle_js_1 = require_JSHandle();
-    var WebWorker = class extends EventEmitter_js_1.EventEmitter {
-      constructor(client, url, consoleAPICalled, exceptionThrown) {
-        super();
-        this._client = client;
-        this._url = url;
-        this._executionContextPromise = new Promise((x) => this._executionContextCallback = x);
-        let jsHandleFactory;
-        this._client.once("Runtime.executionContextCreated", async (event) => {
-          jsHandleFactory = (remoteObject) => new JSHandle_js_1.JSHandle(executionContext, client, remoteObject);
-          const executionContext = new ExecutionContext_js_1.ExecutionContext(client, event.context, null);
-          this._executionContextCallback(executionContext);
-        });
-        this._client.send("Runtime.enable").catch(helper_js_1.debugError);
-        this._client.on("Runtime.consoleAPICalled", (event) => consoleAPICalled(event.type, event.args.map(jsHandleFactory), event.stackTrace));
-        this._client.on("Runtime.exceptionThrown", (exception) => exceptionThrown(exception.exceptionDetails));
-      }
-      url() {
-        return this._url;
-      }
-      async executionContext() {
-        return this._executionContextPromise;
-      }
-      async evaluate(pageFunction, ...args) {
-        return (await this._executionContextPromise).evaluate(pageFunction, ...args);
-      }
-      async evaluateHandle(pageFunction, ...args) {
-        return (await this._executionContextPromise).evaluateHandle(pageFunction, ...args);
-      }
-    };
-    exports.WebWorker = WebWorker;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/Accessibility.js
-var require_Accessibility = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/Accessibility.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Accessibility = void 0;
-    var Accessibility = class {
-      constructor(client) {
-        this._client = client;
-      }
-      async snapshot(options = {}) {
-        const { interestingOnly = true, root = null } = options;
-        const { nodes } = await this._client.send("Accessibility.getFullAXTree");
-        let backendNodeId = null;
-        if (root) {
-          const { node } = await this._client.send("DOM.describeNode", {
-            objectId: root._remoteObject.objectId
-          });
-          backendNodeId = node.backendNodeId;
-        }
-        const defaultRoot = AXNode.createTree(nodes);
-        let needle = defaultRoot;
-        if (backendNodeId) {
-          needle = defaultRoot.find((node) => node.payload.backendDOMNodeId === backendNodeId);
-          if (!needle)
-            return null;
-        }
-        if (!interestingOnly)
-          return this.serializeTree(needle)[0];
-        const interestingNodes = /* @__PURE__ */ new Set();
-        this.collectInterestingNodes(interestingNodes, defaultRoot, false);
-        if (!interestingNodes.has(needle))
-          return null;
-        return this.serializeTree(needle, interestingNodes)[0];
-      }
-      serializeTree(node, interestingNodes) {
-        const children = [];
-        for (const child of node.children)
-          children.push(...this.serializeTree(child, interestingNodes));
-        if (interestingNodes && !interestingNodes.has(node))
-          return children;
-        const serializedNode = node.serialize();
-        if (children.length)
-          serializedNode.children = children;
-        return [serializedNode];
-      }
-      collectInterestingNodes(collection, node, insideControl) {
-        if (node.isInteresting(insideControl))
-          collection.add(node);
-        if (node.isLeafNode())
-          return;
-        insideControl = insideControl || node.isControl();
-        for (const child of node.children)
-          this.collectInterestingNodes(collection, child, insideControl);
-      }
-    };
-    exports.Accessibility = Accessibility;
-    var AXNode = class {
-      constructor(payload) {
-        this.children = [];
-        this._richlyEditable = false;
-        this._editable = false;
-        this._focusable = false;
-        this._hidden = false;
-        this.payload = payload;
-        this._name = this.payload.name ? this.payload.name.value : "";
-        this._role = this.payload.role ? this.payload.role.value : "Unknown";
-        this._ignored = this.payload.ignored;
-        for (const property of this.payload.properties || []) {
-          if (property.name === "editable") {
-            this._richlyEditable = property.value.value === "richtext";
-            this._editable = true;
-          }
-          if (property.name === "focusable")
-            this._focusable = property.value.value;
-          if (property.name === "hidden")
-            this._hidden = property.value.value;
-        }
-      }
-      _isPlainTextField() {
-        if (this._richlyEditable)
-          return false;
-        if (this._editable)
-          return true;
-        return this._role === "textbox" || this._role === "searchbox";
-      }
-      _isTextOnlyObject() {
-        const role = this._role;
-        return role === "LineBreak" || role === "text" || role === "InlineTextBox";
-      }
-      _hasFocusableChild() {
-        if (this._cachedHasFocusableChild === void 0) {
-          this._cachedHasFocusableChild = false;
-          for (const child of this.children) {
-            if (child._focusable || child._hasFocusableChild()) {
-              this._cachedHasFocusableChild = true;
-              break;
-            }
-          }
-        }
-        return this._cachedHasFocusableChild;
-      }
-      find(predicate) {
-        if (predicate(this))
-          return this;
-        for (const child of this.children) {
-          const result = child.find(predicate);
-          if (result)
-            return result;
-        }
-        return null;
-      }
-      isLeafNode() {
-        if (!this.children.length)
-          return true;
-        if (this._isPlainTextField() || this._isTextOnlyObject())
-          return true;
-        switch (this._role) {
-          case "doc-cover":
-          case "graphics-symbol":
-          case "img":
-          case "Meter":
-          case "scrollbar":
-          case "slider":
-          case "separator":
-          case "progressbar":
-            return true;
-          default:
-            break;
-        }
-        if (this._hasFocusableChild())
-          return false;
-        if (this._focusable && this._name)
-          return true;
-        if (this._role === "heading" && this._name)
-          return true;
-        return false;
-      }
-      isControl() {
-        switch (this._role) {
-          case "button":
-          case "checkbox":
-          case "ColorWell":
-          case "combobox":
-          case "DisclosureTriangle":
-          case "listbox":
-          case "menu":
-          case "menubar":
-          case "menuitem":
-          case "menuitemcheckbox":
-          case "menuitemradio":
-          case "radio":
-          case "scrollbar":
-          case "searchbox":
-          case "slider":
-          case "spinbutton":
-          case "switch":
-          case "tab":
-          case "textbox":
-          case "tree":
-          case "treeitem":
-            return true;
-          default:
-            return false;
-        }
-      }
-      isInteresting(insideControl) {
-        const role = this._role;
-        if (role === "Ignored" || this._hidden || this._ignored)
-          return false;
-        if (this._focusable || this._richlyEditable)
-          return true;
-        if (this.isControl())
-          return true;
-        if (insideControl)
-          return false;
-        return this.isLeafNode() && !!this._name;
-      }
-      serialize() {
-        const properties = /* @__PURE__ */ new Map();
-        for (const property of this.payload.properties || [])
-          properties.set(property.name.toLowerCase(), property.value.value);
-        if (this.payload.name)
-          properties.set("name", this.payload.name.value);
-        if (this.payload.value)
-          properties.set("value", this.payload.value.value);
-        if (this.payload.description)
-          properties.set("description", this.payload.description.value);
-        const node = {
-          role: this._role
-        };
-        const userStringProperties = [
-          "name",
-          "value",
-          "description",
-          "keyshortcuts",
-          "roledescription",
-          "valuetext"
-        ];
-        const getUserStringPropertyValue = (key) => properties.get(key);
-        for (const userStringProperty of userStringProperties) {
-          if (!properties.has(userStringProperty))
-            continue;
-          node[userStringProperty] = getUserStringPropertyValue(userStringProperty);
-        }
-        const booleanProperties = [
-          "disabled",
-          "expanded",
-          "focused",
-          "modal",
-          "multiline",
-          "multiselectable",
-          "readonly",
-          "required",
-          "selected"
-        ];
-        const getBooleanPropertyValue = (key) => properties.get(key);
-        for (const booleanProperty of booleanProperties) {
-          if (booleanProperty === "focused" && this._role === "RootWebArea")
-            continue;
-          const value = getBooleanPropertyValue(booleanProperty);
-          if (!value)
-            continue;
-          node[booleanProperty] = getBooleanPropertyValue(booleanProperty);
-        }
-        const tristateProperties = ["checked", "pressed"];
-        for (const tristateProperty of tristateProperties) {
-          if (!properties.has(tristateProperty))
-            continue;
-          const value = properties.get(tristateProperty);
-          node[tristateProperty] = value === "mixed" ? "mixed" : value === "true" ? true : false;
-        }
-        const numericalProperties = [
-          "level",
-          "valuemax",
-          "valuemin"
-        ];
-        const getNumericalPropertyValue = (key) => properties.get(key);
-        for (const numericalProperty of numericalProperties) {
-          if (!properties.has(numericalProperty))
-            continue;
-          node[numericalProperty] = getNumericalPropertyValue(numericalProperty);
-        }
-        const tokenProperties = [
-          "autocomplete",
-          "haspopup",
-          "invalid",
-          "orientation"
-        ];
-        const getTokenPropertyValue = (key) => properties.get(key);
-        for (const tokenProperty of tokenProperties) {
-          const value = getTokenPropertyValue(tokenProperty);
-          if (!value || value === "false")
-            continue;
-          node[tokenProperty] = getTokenPropertyValue(tokenProperty);
-        }
-        return node;
-      }
-      static createTree(payloads) {
-        const nodeById = /* @__PURE__ */ new Map();
-        for (const payload of payloads)
-          nodeById.set(payload.nodeId, new AXNode(payload));
-        for (const node of nodeById.values()) {
-          for (const childId of node.payload.childIds || [])
-            node.children.push(nodeById.get(childId));
-        }
-        return nodeById.values().next().value;
-      }
-    };
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/TimeoutSettings.js
-var require_TimeoutSettings = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/TimeoutSettings.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.TimeoutSettings = void 0;
-    var DEFAULT_TIMEOUT = 3e4;
-    var TimeoutSettings = class {
-      constructor() {
-        this._defaultTimeout = null;
-        this._defaultNavigationTimeout = null;
-      }
-      setDefaultTimeout(timeout) {
-        this._defaultTimeout = timeout;
-      }
-      setDefaultNavigationTimeout(timeout) {
-        this._defaultNavigationTimeout = timeout;
-      }
-      navigationTimeout() {
-        if (this._defaultNavigationTimeout !== null)
-          return this._defaultNavigationTimeout;
-        if (this._defaultTimeout !== null)
-          return this._defaultTimeout;
-        return DEFAULT_TIMEOUT;
-      }
-      timeout() {
-        if (this._defaultTimeout !== null)
-          return this._defaultTimeout;
-        return DEFAULT_TIMEOUT;
-      }
-    };
-    exports.TimeoutSettings = TimeoutSettings;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/FileChooser.js
-var require_FileChooser = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/FileChooser.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.FileChooser = void 0;
-    var assert_js_1 = require_assert();
-    var FileChooser = class {
-      constructor(element, event) {
-        this._handled = false;
-        this._element = element;
-        this._multiple = event.mode !== "selectSingle";
-      }
-      isMultiple() {
-        return this._multiple;
-      }
-      async accept(filePaths) {
-        (0, assert_js_1.assert)(!this._handled, "Cannot accept FileChooser which is already handled!");
-        this._handled = true;
-        await this._element.uploadFile(...filePaths);
-      }
-      cancel() {
-        (0, assert_js_1.assert)(!this._handled, "Cannot cancel FileChooser which is already handled!");
-        this._handled = true;
-      }
-    };
-    exports.FileChooser = FileChooser;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/ConsoleMessage.js
-var require_ConsoleMessage = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/ConsoleMessage.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ConsoleMessage = void 0;
-    var ConsoleMessage = class {
-      constructor(type, text, args, stackTraceLocations) {
-        this._type = type;
-        this._text = text;
-        this._args = args;
-        this._stackTraceLocations = stackTraceLocations;
-      }
-      type() {
-        return this._type;
-      }
-      text() {
-        return this._text;
-      }
-      args() {
-        return this._args;
-      }
-      location() {
-        return this._stackTraceLocations.length ? this._stackTraceLocations[0] : {};
-      }
-      stackTrace() {
-        return this._stackTraceLocations;
-      }
-    };
-    exports.ConsoleMessage = ConsoleMessage;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/PDFOptions.js
-var require_PDFOptions = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/PDFOptions.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paperFormats = void 0;
-    exports.paperFormats = {
-      letter: { width: 8.5, height: 11 },
-      legal: { width: 8.5, height: 14 },
-      tabloid: { width: 11, height: 17 },
-      ledger: { width: 17, height: 11 },
-      a0: { width: 33.1, height: 46.8 },
-      a1: { width: 23.4, height: 33.1 },
-      a2: { width: 16.54, height: 23.4 },
-      a3: { width: 11.7, height: 16.54 },
-      a4: { width: 8.27, height: 11.7 },
-      a5: { width: 5.83, height: 8.27 },
-      a6: { width: 4.13, height: 5.83 }
-    };
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/Page.js
-var require_Page = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/Page.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Page = void 0;
-    var EventEmitter_js_1 = require_EventEmitter();
-    var Connection_js_1 = require_Connection();
-    var Dialog_js_1 = require_Dialog();
-    var EmulationManager_js_1 = require_EmulationManager();
-    var FrameManager_js_1 = require_FrameManager();
-    var Input_js_1 = require_Input();
-    var Tracing_js_1 = require_Tracing();
-    var assert_js_1 = require_assert();
-    var helper_js_1 = require_helper();
-    var Coverage_js_1 = require_Coverage();
-    var WebWorker_js_1 = require_WebWorker();
-    var JSHandle_js_1 = require_JSHandle();
-    var NetworkManager_js_1 = require_NetworkManager();
-    var Accessibility_js_1 = require_Accessibility();
-    var TimeoutSettings_js_1 = require_TimeoutSettings();
-    var FileChooser_js_1 = require_FileChooser();
-    var ConsoleMessage_js_1 = require_ConsoleMessage();
-    var PDFOptions_js_1 = require_PDFOptions();
-    var environment_js_1 = require_environment();
-    var Page = class extends EventEmitter_js_1.EventEmitter {
-      constructor(client, target, ignoreHTTPSErrors, screenshotTaskQueue) {
-        super();
-        this._closed = false;
-        this._timeoutSettings = new TimeoutSettings_js_1.TimeoutSettings();
-        this._pageBindings = /* @__PURE__ */ new Map();
-        this._javascriptEnabled = true;
-        this._workers = /* @__PURE__ */ new Map();
-        this._fileChooserInterceptors = /* @__PURE__ */ new Set();
-        this._userDragInterceptionEnabled = false;
-        this._handlerMap = /* @__PURE__ */ new WeakMap();
-        this._client = client;
-        this._target = target;
-        this._keyboard = new Input_js_1.Keyboard(client);
-        this._mouse = new Input_js_1.Mouse(client, this._keyboard);
-        this._touchscreen = new Input_js_1.Touchscreen(client, this._keyboard);
-        this._accessibility = new Accessibility_js_1.Accessibility(client);
-        this._frameManager = new FrameManager_js_1.FrameManager(client, this, ignoreHTTPSErrors, this._timeoutSettings);
-        this._emulationManager = new EmulationManager_js_1.EmulationManager(client);
-        this._tracing = new Tracing_js_1.Tracing(client);
-        this._coverage = new Coverage_js_1.Coverage(client);
-        this._screenshotTaskQueue = screenshotTaskQueue;
-        this._viewport = null;
-        client.on("Target.attachedToTarget", (event) => {
-          if (event.targetInfo.type !== "worker" && event.targetInfo.type !== "iframe") {
-            client.send("Target.detachFromTarget", {
-              sessionId: event.sessionId
-            }).catch(helper_js_1.debugError);
-            return;
-          }
-          if (event.targetInfo.type === "worker") {
-            const session = Connection_js_1.Connection.fromSession(client).session(event.sessionId);
-            const worker = new WebWorker_js_1.WebWorker(session, event.targetInfo.url, this._addConsoleMessage.bind(this), this._handleException.bind(this));
-            this._workers.set(event.sessionId, worker);
-            this.emit("workercreated", worker);
-          }
-        });
-        client.on("Target.detachedFromTarget", (event) => {
-          const worker = this._workers.get(event.sessionId);
-          if (!worker)
-            return;
-          this._workers.delete(event.sessionId);
-          this.emit("workerdestroyed", worker);
-        });
-        this._frameManager.on(FrameManager_js_1.FrameManagerEmittedEvents.FrameAttached, (event) => this.emit("frameattached", event));
-        this._frameManager.on(FrameManager_js_1.FrameManagerEmittedEvents.FrameDetached, (event) => this.emit("framedetached", event));
-        this._frameManager.on(FrameManager_js_1.FrameManagerEmittedEvents.FrameNavigated, (event) => this.emit("framenavigated", event));
-        const networkManager = this._frameManager.networkManager();
-        networkManager.on(NetworkManager_js_1.NetworkManagerEmittedEvents.Request, (event) => this.emit("request", event));
-        networkManager.on(NetworkManager_js_1.NetworkManagerEmittedEvents.RequestServedFromCache, (event) => this.emit("requestservedfromcache", event));
-        networkManager.on(NetworkManager_js_1.NetworkManagerEmittedEvents.Response, (event) => this.emit("response", event));
-        networkManager.on(NetworkManager_js_1.NetworkManagerEmittedEvents.RequestFailed, (event) => this.emit("requestfailed", event));
-        networkManager.on(NetworkManager_js_1.NetworkManagerEmittedEvents.RequestFinished, (event) => this.emit("requestfinished", event));
-        this._fileChooserInterceptors = /* @__PURE__ */ new Set();
-        client.on("Page.domContentEventFired", () => this.emit("domcontentloaded"));
-        client.on("Page.loadEventFired", () => this.emit("load"));
-        client.on("Runtime.consoleAPICalled", (event) => this._onConsoleAPI(event));
-        client.on("Runtime.bindingCalled", (event) => this._onBindingCalled(event));
-        client.on("Page.javascriptDialogOpening", (event) => this._onDialog(event));
-        client.on("Runtime.exceptionThrown", (exception) => this._handleException(exception.exceptionDetails));
-        client.on("Inspector.targetCrashed", () => this._onTargetCrashed());
-        client.on("Performance.metrics", (event) => this._emitMetrics(event));
-        client.on("Log.entryAdded", (event) => this._onLogEntryAdded(event));
-        client.on("Page.fileChooserOpened", (event) => this._onFileChooser(event));
-        this._target._isClosedPromise.then(() => {
-          this.emit("close");
-          this._closed = true;
-        });
-      }
-      static async create(client, target, ignoreHTTPSErrors, defaultViewport, screenshotTaskQueue) {
-        const page = new Page(client, target, ignoreHTTPSErrors, screenshotTaskQueue);
-        await page._initialize();
-        if (defaultViewport)
-          await page.setViewport(defaultViewport);
-        return page;
-      }
-      async _initialize() {
-        await Promise.all([
-          this._frameManager.initialize(),
-          this._client.send("Target.setAutoAttach", {
-            autoAttach: true,
-            waitForDebuggerOnStart: false,
-            flatten: true
-          }),
-          this._client.send("Performance.enable"),
-          this._client.send("Log.enable")
-        ]);
-      }
-      async _onFileChooser(event) {
-        if (!this._fileChooserInterceptors.size)
-          return;
-        const frame = this._frameManager.frame(event.frameId);
-        const context = await frame.executionContext();
-        const element = await context._adoptBackendNodeId(event.backendNodeId);
-        const interceptors = Array.from(this._fileChooserInterceptors);
-        this._fileChooserInterceptors.clear();
-        const fileChooser = new FileChooser_js_1.FileChooser(element, event);
-        for (const interceptor of interceptors)
-          interceptor.call(null, fileChooser);
-      }
-      isDragInterceptionEnabled() {
-        return this._userDragInterceptionEnabled;
-      }
-      isJavaScriptEnabled() {
-        return this._javascriptEnabled;
-      }
-      on(eventName, handler) {
-        if (eventName === "request") {
-          const wrap = (event) => {
-            event.enqueueInterceptAction(() => handler(event));
-          };
-          this._handlerMap.set(handler, wrap);
-          return super.on(eventName, wrap);
-        }
-        return super.on(eventName, handler);
-      }
-      once(eventName, handler) {
-        return super.once(eventName, handler);
-      }
-      off(eventName, handler) {
-        if (eventName === "request") {
-          handler = this._handlerMap.get(handler) || handler;
-        }
-        return super.off(eventName, handler);
-      }
-      async waitForFileChooser(options = {}) {
-        if (!this._fileChooserInterceptors.size)
-          await this._client.send("Page.setInterceptFileChooserDialog", {
-            enabled: true
-          });
-        const { timeout = this._timeoutSettings.timeout() } = options;
-        let callback;
-        const promise = new Promise((x) => callback = x);
-        this._fileChooserInterceptors.add(callback);
-        return helper_js_1.helper.waitWithTimeout(promise, "waiting for file chooser", timeout).catch((error) => {
-          this._fileChooserInterceptors.delete(callback);
-          throw error;
-        });
-      }
-      async setGeolocation(options) {
-        const { longitude, latitude, accuracy = 0 } = options;
-        if (longitude < -180 || longitude > 180)
-          throw new Error(`Invalid longitude "${longitude}": precondition -180 <= LONGITUDE <= 180 failed.`);
-        if (latitude < -90 || latitude > 90)
-          throw new Error(`Invalid latitude "${latitude}": precondition -90 <= LATITUDE <= 90 failed.`);
-        if (accuracy < 0)
-          throw new Error(`Invalid accuracy "${accuracy}": precondition 0 <= ACCURACY failed.`);
-        await this._client.send("Emulation.setGeolocationOverride", {
-          longitude,
-          latitude,
-          accuracy
-        });
-      }
-      target() {
-        return this._target;
-      }
-      client() {
-        return this._client;
-      }
-      browser() {
-        return this._target.browser();
-      }
-      browserContext() {
-        return this._target.browserContext();
-      }
-      _onTargetCrashed() {
-        this.emit("error", new Error("Page crashed!"));
-      }
-      _onLogEntryAdded(event) {
-        const { level, text, args, source, url, lineNumber } = event.entry;
-        if (args)
-          args.map((arg) => helper_js_1.helper.releaseObject(this._client, arg));
-        if (source !== "worker")
-          this.emit("console", new ConsoleMessage_js_1.ConsoleMessage(level, text, [], [{ url, lineNumber }]));
-      }
-      mainFrame() {
-        return this._frameManager.mainFrame();
-      }
-      get keyboard() {
-        return this._keyboard;
-      }
-      get touchscreen() {
-        return this._touchscreen;
-      }
-      get coverage() {
-        return this._coverage;
-      }
-      get tracing() {
-        return this._tracing;
-      }
-      get accessibility() {
-        return this._accessibility;
-      }
-      frames() {
-        return this._frameManager.frames();
-      }
-      workers() {
-        return Array.from(this._workers.values());
-      }
-      async setRequestInterception(value) {
-        return this._frameManager.networkManager().setRequestInterception(value);
-      }
-      async setDragInterception(enabled) {
-        this._userDragInterceptionEnabled = enabled;
-        return this._client.send("Input.setInterceptDrags", { enabled });
-      }
-      setOfflineMode(enabled) {
-        return this._frameManager.networkManager().setOfflineMode(enabled);
-      }
-      emulateNetworkConditions(networkConditions) {
-        return this._frameManager.networkManager().emulateNetworkConditions(networkConditions);
-      }
-      setDefaultNavigationTimeout(timeout) {
-        this._timeoutSettings.setDefaultNavigationTimeout(timeout);
-      }
-      setDefaultTimeout(timeout) {
-        this._timeoutSettings.setDefaultTimeout(timeout);
-      }
-      async $(selector) {
-        return this.mainFrame().$(selector);
-      }
-      async evaluateHandle(pageFunction, ...args) {
-        const context = await this.mainFrame().executionContext();
-        return context.evaluateHandle(pageFunction, ...args);
-      }
-      async queryObjects(prototypeHandle) {
-        const context = await this.mainFrame().executionContext();
-        return context.queryObjects(prototypeHandle);
-      }
-      async $eval(selector, pageFunction, ...args) {
-        return this.mainFrame().$eval(selector, pageFunction, ...args);
-      }
-      async $$eval(selector, pageFunction, ...args) {
-        return this.mainFrame().$$eval(selector, pageFunction, ...args);
-      }
-      async $$(selector) {
-        return this.mainFrame().$$(selector);
-      }
-      async $x(expression) {
-        return this.mainFrame().$x(expression);
-      }
-      async cookies(...urls) {
-        const originalCookies = (await this._client.send("Network.getCookies", {
-          urls: urls.length ? urls : [this.url()]
-        })).cookies;
-        const unsupportedCookieAttributes = ["priority"];
-        const filterUnsupportedAttributes = (cookie) => {
-          for (const attr of unsupportedCookieAttributes)
-            delete cookie[attr];
-          return cookie;
-        };
-        return originalCookies.map(filterUnsupportedAttributes);
-      }
-      async deleteCookie(...cookies) {
-        const pageURL = this.url();
-        for (const cookie of cookies) {
-          const item = Object.assign({}, cookie);
-          if (!cookie.url && pageURL.startsWith("http"))
-            item.url = pageURL;
-          await this._client.send("Network.deleteCookies", item);
-        }
-      }
-      async setCookie(...cookies) {
-        const pageURL = this.url();
-        const startsWithHTTP = pageURL.startsWith("http");
-        const items = cookies.map((cookie) => {
-          const item = Object.assign({}, cookie);
-          if (!item.url && startsWithHTTP)
-            item.url = pageURL;
-          (0, assert_js_1.assert)(item.url !== "about:blank", `Blank page can not have cookie "${item.name}"`);
-          (0, assert_js_1.assert)(!String.prototype.startsWith.call(item.url || "", "data:"), `Data URL page can not have cookie "${item.name}"`);
-          return item;
-        });
-        await this.deleteCookie(...items);
-        if (items.length)
-          await this._client.send("Network.setCookies", { cookies: items });
-      }
-      async addScriptTag(options) {
-        return this.mainFrame().addScriptTag(options);
-      }
-      async addStyleTag(options) {
-        return this.mainFrame().addStyleTag(options);
-      }
-      async exposeFunction(name, puppeteerFunction) {
-        if (this._pageBindings.has(name))
-          throw new Error(`Failed to add page binding with name ${name}: window['${name}'] already exists!`);
-        let exposedFunction;
-        if (typeof puppeteerFunction === "function") {
-          exposedFunction = puppeteerFunction;
-        } else if (typeof puppeteerFunction.default === "function") {
-          exposedFunction = puppeteerFunction.default;
-        } else {
-          throw new Error(`Failed to add page binding with name ${name}: ${puppeteerFunction} is not a function or a module with a default export.`);
-        }
-        this._pageBindings.set(name, exposedFunction);
-        const expression = helper_js_1.helper.pageBindingInitString("exposedFun", name);
-        await this._client.send("Runtime.addBinding", { name });
-        await this._client.send("Page.addScriptToEvaluateOnNewDocument", {
-          source: expression
-        });
-        await Promise.all(this.frames().map((frame) => frame.evaluate(expression).catch(helper_js_1.debugError)));
-      }
-      async authenticate(credentials) {
-        return this._frameManager.networkManager().authenticate(credentials);
-      }
-      async setExtraHTTPHeaders(headers) {
-        return this._frameManager.networkManager().setExtraHTTPHeaders(headers);
-      }
-      async setUserAgent(userAgent, userAgentMetadata) {
-        return this._frameManager.networkManager().setUserAgent(userAgent, userAgentMetadata);
-      }
-      async metrics() {
-        const response = await this._client.send("Performance.getMetrics");
-        return this._buildMetricsObject(response.metrics);
-      }
-      _emitMetrics(event) {
-        this.emit("metrics", {
-          title: event.title,
-          metrics: this._buildMetricsObject(event.metrics)
-        });
-      }
-      _buildMetricsObject(metrics) {
-        const result = {};
-        for (const metric of metrics || []) {
-          if (supportedMetrics.has(metric.name))
-            result[metric.name] = metric.value;
-        }
-        return result;
-      }
-      _handleException(exceptionDetails) {
-        const message = helper_js_1.helper.getExceptionMessage(exceptionDetails);
-        const err = new Error(message);
-        err.stack = "";
-        this.emit("pageerror", err);
-      }
-      async _onConsoleAPI(event) {
-        if (event.executionContextId === 0) {
-          return;
-        }
-        const context = this._frameManager.executionContextById(event.executionContextId, this._client);
-        const values = event.args.map((arg) => (0, JSHandle_js_1.createJSHandle)(context, arg));
-        this._addConsoleMessage(event.type, values, event.stackTrace);
-      }
-      async _onBindingCalled(event) {
-        let payload;
-        try {
-          payload = JSON.parse(event.payload);
-        } catch {
-          return;
-        }
-        const { type, name, seq, args } = payload;
-        if (type !== "exposedFun" || !this._pageBindings.has(name))
-          return;
-        let expression = null;
-        try {
-          const result = await this._pageBindings.get(name)(...args);
-          expression = helper_js_1.helper.pageBindingDeliverResultString(name, seq, result);
-        } catch (error) {
-          if (error instanceof Error)
-            expression = helper_js_1.helper.pageBindingDeliverErrorString(name, seq, error.message, error.stack);
-          else
-            expression = helper_js_1.helper.pageBindingDeliverErrorValueString(name, seq, error);
-        }
-        this._client.send("Runtime.evaluate", {
-          expression,
-          contextId: event.executionContextId
-        }).catch(helper_js_1.debugError);
-      }
-      _addConsoleMessage(type, args, stackTrace) {
-        if (!this.listenerCount("console")) {
-          args.forEach((arg) => arg.dispose());
-          return;
-        }
-        const textTokens = [];
-        for (const arg of args) {
-          const remoteObject = arg._remoteObject;
-          if (remoteObject.objectId)
-            textTokens.push(arg.toString());
-          else
-            textTokens.push(helper_js_1.helper.valueFromRemoteObject(remoteObject));
-        }
-        const stackTraceLocations = [];
-        if (stackTrace) {
-          for (const callFrame of stackTrace.callFrames) {
-            stackTraceLocations.push({
-              url: callFrame.url,
-              lineNumber: callFrame.lineNumber,
-              columnNumber: callFrame.columnNumber
-            });
-          }
-        }
-        const message = new ConsoleMessage_js_1.ConsoleMessage(type, textTokens.join(" "), args, stackTraceLocations);
-        this.emit("console", message);
-      }
-      _onDialog(event) {
-        let dialogType = null;
-        const validDialogTypes = /* @__PURE__ */ new Set([
-          "alert",
-          "confirm",
-          "prompt",
-          "beforeunload"
-        ]);
-        if (validDialogTypes.has(event.type)) {
-          dialogType = event.type;
-        }
-        (0, assert_js_1.assert)(dialogType, "Unknown javascript dialog type: " + event.type);
-        const dialog = new Dialog_js_1.Dialog(this._client, dialogType, event.message, event.defaultPrompt);
-        this.emit("dialog", dialog);
-      }
-      async _resetDefaultBackgroundColor() {
-        await this._client.send("Emulation.setDefaultBackgroundColorOverride");
-      }
-      async _setTransparentBackgroundColor() {
-        await this._client.send("Emulation.setDefaultBackgroundColorOverride", {
-          color: { r: 0, g: 0, b: 0, a: 0 }
-        });
-      }
-      url() {
-        return this.mainFrame().url();
-      }
-      async content() {
-        return await this._frameManager.mainFrame().content();
-      }
-      async setContent(html, options = {}) {
-        await this._frameManager.mainFrame().setContent(html, options);
-      }
-      async goto(url, options = {}) {
-        return await this._frameManager.mainFrame().goto(url, options);
-      }
-      async reload(options) {
-        const result = await Promise.all([
-          this.waitForNavigation(options),
-          this._client.send("Page.reload")
-        ]);
-        return result[0];
-      }
-      async waitForNavigation(options = {}) {
-        return await this._frameManager.mainFrame().waitForNavigation(options);
-      }
-      _sessionClosePromise() {
-        if (!this._disconnectPromise)
-          this._disconnectPromise = new Promise((fulfill) => this._client.once(Connection_js_1.CDPSessionEmittedEvents.Disconnected, () => fulfill(new Error("Target closed"))));
-        return this._disconnectPromise;
-      }
-      async waitForRequest(urlOrPredicate, options = {}) {
-        const { timeout = this._timeoutSettings.timeout() } = options;
-        return helper_js_1.helper.waitForEvent(this._frameManager.networkManager(), NetworkManager_js_1.NetworkManagerEmittedEvents.Request, (request) => {
-          if (helper_js_1.helper.isString(urlOrPredicate))
-            return urlOrPredicate === request.url();
-          if (typeof urlOrPredicate === "function")
-            return !!urlOrPredicate(request);
-          return false;
-        }, timeout, this._sessionClosePromise());
-      }
-      async waitForResponse(urlOrPredicate, options = {}) {
-        const { timeout = this._timeoutSettings.timeout() } = options;
-        return helper_js_1.helper.waitForEvent(this._frameManager.networkManager(), NetworkManager_js_1.NetworkManagerEmittedEvents.Response, async (response) => {
-          if (helper_js_1.helper.isString(urlOrPredicate))
-            return urlOrPredicate === response.url();
-          if (typeof urlOrPredicate === "function")
-            return !!await urlOrPredicate(response);
-          return false;
-        }, timeout, this._sessionClosePromise());
-      }
-      async waitForNetworkIdle(options = {}) {
-        const { idleTime = 500, timeout = this._timeoutSettings.timeout() } = options;
-        const networkManager = this._frameManager.networkManager();
-        let idleResolveCallback;
-        const idlePromise = new Promise((resolve) => {
-          idleResolveCallback = resolve;
-        });
-        let abortRejectCallback;
-        const abortPromise = new Promise((_, reject) => {
-          abortRejectCallback = reject;
-        });
-        let idleTimer;
-        const onIdle = () => idleResolveCallback();
-        const cleanup = () => {
-          idleTimer && clearTimeout(idleTimer);
-          abortRejectCallback(new Error("abort"));
-        };
-        const evaluate = () => {
-          idleTimer && clearTimeout(idleTimer);
-          if (networkManager.numRequestsInProgress() === 0)
-            idleTimer = setTimeout(onIdle, idleTime);
-        };
-        evaluate();
-        const eventHandler = () => {
-          evaluate();
-          return false;
-        };
-        const listenToEvent = (event) => helper_js_1.helper.waitForEvent(networkManager, event, eventHandler, timeout, abortPromise);
-        const eventPromises = [
-          listenToEvent(NetworkManager_js_1.NetworkManagerEmittedEvents.Request),
-          listenToEvent(NetworkManager_js_1.NetworkManagerEmittedEvents.Response)
-        ];
-        await Promise.race([
-          idlePromise,
-          ...eventPromises,
-          this._sessionClosePromise()
-        ]).then((r) => {
-          cleanup();
-          return r;
-        }, (error) => {
-          cleanup();
-          throw error;
-        });
-      }
-      async waitForFrame(urlOrPredicate, options = {}) {
-        const { timeout = this._timeoutSettings.timeout() } = options;
-        async function predicate(frame) {
-          if (helper_js_1.helper.isString(urlOrPredicate))
-            return urlOrPredicate === frame.url();
-          if (typeof urlOrPredicate === "function")
-            return !!await urlOrPredicate(frame);
-          return false;
-        }
-        return Promise.race([
-          helper_js_1.helper.waitForEvent(this._frameManager, FrameManager_js_1.FrameManagerEmittedEvents.FrameAttached, predicate, timeout, this._sessionClosePromise()),
-          helper_js_1.helper.waitForEvent(this._frameManager, FrameManager_js_1.FrameManagerEmittedEvents.FrameNavigated, predicate, timeout, this._sessionClosePromise())
-        ]);
-      }
-      async goBack(options = {}) {
-        return this._go(-1, options);
-      }
-      async goForward(options = {}) {
-        return this._go(1, options);
-      }
-      async _go(delta, options) {
-        const history = await this._client.send("Page.getNavigationHistory");
-        const entry = history.entries[history.currentIndex + delta];
-        if (!entry)
-          return null;
-        const result = await Promise.all([
-          this.waitForNavigation(options),
-          this._client.send("Page.navigateToHistoryEntry", { entryId: entry.id })
-        ]);
-        return result[0];
-      }
-      async bringToFront() {
-        await this._client.send("Page.bringToFront");
-      }
-      async emulate(options) {
-        await Promise.all([
-          this.setViewport(options.viewport),
-          this.setUserAgent(options.userAgent)
-        ]);
-      }
-      async setJavaScriptEnabled(enabled) {
-        if (this._javascriptEnabled === enabled)
-          return;
-        this._javascriptEnabled = enabled;
-        await this._client.send("Emulation.setScriptExecutionDisabled", {
-          value: !enabled
-        });
-      }
-      async setBypassCSP(enabled) {
-        await this._client.send("Page.setBypassCSP", { enabled });
-      }
-      async emulateMediaType(type) {
-        (0, assert_js_1.assert)(type === "screen" || type === "print" || type === null, "Unsupported media type: " + type);
-        await this._client.send("Emulation.setEmulatedMedia", {
-          media: type || ""
-        });
-      }
-      async emulateCPUThrottling(factor) {
-        (0, assert_js_1.assert)(factor === null || factor >= 1, "Throttling rate should be greater or equal to 1");
-        await this._client.send("Emulation.setCPUThrottlingRate", {
-          rate: factor !== null ? factor : 1
-        });
-      }
-      async emulateMediaFeatures(features) {
-        if (features === null)
-          await this._client.send("Emulation.setEmulatedMedia", { features: null });
-        if (Array.isArray(features)) {
-          features.every((mediaFeature) => {
-            const name = mediaFeature.name;
-            (0, assert_js_1.assert)(/^(?:prefers-(?:color-scheme|reduced-motion)|color-gamut)$/.test(name), "Unsupported media feature: " + name);
-            return true;
-          });
-          await this._client.send("Emulation.setEmulatedMedia", {
-            features
-          });
-        }
-      }
-      async emulateTimezone(timezoneId) {
-        try {
-          await this._client.send("Emulation.setTimezoneOverride", {
-            timezoneId: timezoneId || ""
-          });
-        } catch (error) {
-          if (error.message.includes("Invalid timezone"))
-            throw new Error(`Invalid timezone ID: ${timezoneId}`);
-          throw error;
-        }
-      }
-      async emulateIdleState(overrides) {
-        if (overrides) {
-          await this._client.send("Emulation.setIdleOverride", {
-            isUserActive: overrides.isUserActive,
-            isScreenUnlocked: overrides.isScreenUnlocked
-          });
-        } else {
-          await this._client.send("Emulation.clearIdleOverride");
-        }
-      }
-      async emulateVisionDeficiency(type) {
-        const visionDeficiencies = /* @__PURE__ */ new Set([
-          "none",
-          "achromatopsia",
-          "blurredVision",
-          "deuteranopia",
-          "protanopia",
-          "tritanopia"
-        ]);
-        try {
-          (0, assert_js_1.assert)(!type || visionDeficiencies.has(type), `Unsupported vision deficiency: ${type}`);
-          await this._client.send("Emulation.setEmulatedVisionDeficiency", {
-            type: type || "none"
-          });
-        } catch (error) {
-          throw error;
-        }
-      }
-      async setViewport(viewport) {
-        const needsReload = await this._emulationManager.emulateViewport(viewport);
-        this._viewport = viewport;
-        if (needsReload)
-          await this.reload();
-      }
-      viewport() {
-        return this._viewport;
-      }
-      async evaluate(pageFunction, ...args) {
-        return this._frameManager.mainFrame().evaluate(pageFunction, ...args);
-      }
-      async evaluateOnNewDocument(pageFunction, ...args) {
-        const source = helper_js_1.helper.evaluationString(pageFunction, ...args);
-        await this._client.send("Page.addScriptToEvaluateOnNewDocument", {
-          source
-        });
-      }
-      async setCacheEnabled(enabled = true) {
-        await this._frameManager.networkManager().setCacheEnabled(enabled);
-      }
-      async screenshot(options = {}) {
-        let screenshotType = null;
-        if (options.type) {
-          const type = options.type;
-          if (type !== "png" && type !== "jpeg" && type !== "webp") {
-            (0, assert_js_1.assertNever)(type, "Unknown options.type value: " + type);
-          }
-          screenshotType = options.type;
-        } else if (options.path) {
-          const filePath = options.path;
-          const extension = filePath.slice(filePath.lastIndexOf(".") + 1).toLowerCase();
-          if (extension === "png")
-            screenshotType = "png";
-          else if (extension === "jpg" || extension === "jpeg")
-            screenshotType = "jpeg";
-          else if (extension === "webp")
-            screenshotType = "webp";
-          (0, assert_js_1.assert)(screenshotType, `Unsupported screenshot type for extension \`.${extension}\``);
-        }
-        if (!screenshotType)
-          screenshotType = "png";
-        if (options.quality) {
-          (0, assert_js_1.assert)(screenshotType === "jpeg" || screenshotType === "webp", "options.quality is unsupported for the " + screenshotType + " screenshots");
-          (0, assert_js_1.assert)(typeof options.quality === "number", "Expected options.quality to be a number but found " + typeof options.quality);
-          (0, assert_js_1.assert)(Number.isInteger(options.quality), "Expected options.quality to be an integer");
-          (0, assert_js_1.assert)(options.quality >= 0 && options.quality <= 100, "Expected options.quality to be between 0 and 100 (inclusive), got " + options.quality);
-        }
-        (0, assert_js_1.assert)(!options.clip || !options.fullPage, "options.clip and options.fullPage are exclusive");
-        if (options.clip) {
-          (0, assert_js_1.assert)(typeof options.clip.x === "number", "Expected options.clip.x to be a number but found " + typeof options.clip.x);
-          (0, assert_js_1.assert)(typeof options.clip.y === "number", "Expected options.clip.y to be a number but found " + typeof options.clip.y);
-          (0, assert_js_1.assert)(typeof options.clip.width === "number", "Expected options.clip.width to be a number but found " + typeof options.clip.width);
-          (0, assert_js_1.assert)(typeof options.clip.height === "number", "Expected options.clip.height to be a number but found " + typeof options.clip.height);
-          (0, assert_js_1.assert)(options.clip.width !== 0, "Expected options.clip.width not to be 0.");
-          (0, assert_js_1.assert)(options.clip.height !== 0, "Expected options.clip.height not to be 0.");
-        }
-        return this._screenshotTaskQueue.postTask(() => this._screenshotTask(screenshotType, options));
-      }
-      async _screenshotTask(format, options) {
-        await this._client.send("Target.activateTarget", {
-          targetId: this._target._targetId
-        });
-        let clip = options.clip ? processClip(options.clip) : void 0;
-        let { captureBeyondViewport = true } = options;
-        captureBeyondViewport = typeof captureBeyondViewport === "boolean" ? captureBeyondViewport : true;
-        if (options.fullPage) {
-          const metrics = await this._client.send("Page.getLayoutMetrics");
-          const { width, height } = metrics.cssContentSize || metrics.contentSize;
-          clip = { x: 0, y: 0, width, height, scale: 1 };
-          if (!captureBeyondViewport) {
-            const { isMobile = false, deviceScaleFactor = 1, isLandscape = false } = this._viewport || {};
-            const screenOrientation = isLandscape ? { angle: 90, type: "landscapePrimary" } : { angle: 0, type: "portraitPrimary" };
-            await this._client.send("Emulation.setDeviceMetricsOverride", {
-              mobile: isMobile,
-              width,
-              height,
-              deviceScaleFactor,
-              screenOrientation
-            });
-          }
-        }
-        const shouldSetDefaultBackground = options.omitBackground && (format === "png" || format === "webp");
-        if (shouldSetDefaultBackground) {
-          await this._setTransparentBackgroundColor();
-        }
-        const result = await this._client.send("Page.captureScreenshot", {
-          format,
-          quality: options.quality,
-          clip,
-          captureBeyondViewport
-        });
-        if (shouldSetDefaultBackground) {
-          await this._resetDefaultBackgroundColor();
-        }
-        if (options.fullPage && this._viewport)
-          await this.setViewport(this._viewport);
-        const buffer = options.encoding === "base64" ? result.data : Buffer.from(result.data, "base64");
-        if (options.path) {
-          if (!environment_js_1.isNode) {
-            throw new Error("Screenshots can only be written to a file path in a Node environment.");
-          }
-          const fs = await helper_js_1.helper.importFSModule();
-          await fs.promises.writeFile(options.path, buffer);
-        }
-        return buffer;
-        function processClip(clip2) {
-          const x = Math.round(clip2.x);
-          const y = Math.round(clip2.y);
-          const width = Math.round(clip2.width + clip2.x - x);
-          const height = Math.round(clip2.height + clip2.y - y);
-          return { x, y, width, height, scale: 1 };
-        }
-      }
-      async createPDFStream(options = {}) {
-        const { scale = 1, displayHeaderFooter = false, headerTemplate = "", footerTemplate = "", printBackground = false, landscape = false, pageRanges = "", preferCSSPageSize = false, margin = {}, omitBackground = false, timeout = 3e4 } = options;
-        let paperWidth = 8.5;
-        let paperHeight = 11;
-        if (options.format) {
-          const format = PDFOptions_js_1.paperFormats[options.format.toLowerCase()];
-          (0, assert_js_1.assert)(format, "Unknown paper format: " + options.format);
-          paperWidth = format.width;
-          paperHeight = format.height;
-        } else {
-          paperWidth = convertPrintParameterToInches(options.width) || paperWidth;
-          paperHeight = convertPrintParameterToInches(options.height) || paperHeight;
-        }
-        const marginTop = convertPrintParameterToInches(margin.top) || 0;
-        const marginLeft = convertPrintParameterToInches(margin.left) || 0;
-        const marginBottom = convertPrintParameterToInches(margin.bottom) || 0;
-        const marginRight = convertPrintParameterToInches(margin.right) || 0;
-        if (omitBackground) {
-          await this._setTransparentBackgroundColor();
-        }
-        const printCommandPromise = this._client.send("Page.printToPDF", {
-          transferMode: "ReturnAsStream",
-          landscape,
-          displayHeaderFooter,
-          headerTemplate,
-          footerTemplate,
-          printBackground,
-          scale,
-          paperWidth,
-          paperHeight,
-          marginTop,
-          marginBottom,
-          marginLeft,
-          marginRight,
-          pageRanges,
-          preferCSSPageSize
-        });
-        const result = await helper_js_1.helper.waitWithTimeout(printCommandPromise, "Page.printToPDF", timeout);
-        if (omitBackground) {
-          await this._resetDefaultBackgroundColor();
-        }
-        return helper_js_1.helper.getReadableFromProtocolStream(this._client, result.stream);
-      }
-      async pdf(options = {}) {
-        const { path = void 0 } = options;
-        const readable = await this.createPDFStream(options);
-        return await helper_js_1.helper.getReadableAsBuffer(readable, path);
-      }
-      async title() {
-        return this.mainFrame().title();
-      }
-      async close(options = { runBeforeUnload: void 0 }) {
-        (0, assert_js_1.assert)(!!this._client._connection, "Protocol error: Connection closed. Most likely the page has been closed.");
-        const runBeforeUnload = !!options.runBeforeUnload;
-        if (runBeforeUnload) {
-          await this._client.send("Page.close");
-        } else {
-          await this._client._connection.send("Target.closeTarget", {
-            targetId: this._target._targetId
-          });
-          await this._target._isClosedPromise;
-        }
-      }
-      isClosed() {
-        return this._closed;
-      }
-      get mouse() {
-        return this._mouse;
-      }
-      click(selector, options = {}) {
-        return this.mainFrame().click(selector, options);
-      }
-      focus(selector) {
-        return this.mainFrame().focus(selector);
-      }
-      hover(selector) {
-        return this.mainFrame().hover(selector);
-      }
-      select(selector, ...values) {
-        return this.mainFrame().select(selector, ...values);
-      }
-      tap(selector) {
-        return this.mainFrame().tap(selector);
-      }
-      type(selector, text, options) {
-        return this.mainFrame().type(selector, text, options);
-      }
-      waitFor(selectorOrFunctionOrTimeout, options = {}, ...args) {
-        return this.mainFrame().waitFor(selectorOrFunctionOrTimeout, options, ...args);
-      }
-      waitForTimeout(milliseconds) {
-        return this.mainFrame().waitForTimeout(milliseconds);
-      }
-      waitForSelector(selector, options = {}) {
-        return this.mainFrame().waitForSelector(selector, options);
-      }
-      waitForXPath(xpath, options = {}) {
-        return this.mainFrame().waitForXPath(xpath, options);
-      }
-      waitForFunction(pageFunction, options = {}, ...args) {
-        return this.mainFrame().waitForFunction(pageFunction, options, ...args);
-      }
-    };
-    exports.Page = Page;
-    var supportedMetrics = /* @__PURE__ */ new Set([
-      "Timestamp",
-      "Documents",
-      "Frames",
-      "JSEventListeners",
-      "Nodes",
-      "LayoutCount",
-      "RecalcStyleCount",
-      "LayoutDuration",
-      "RecalcStyleDuration",
-      "ScriptDuration",
-      "TaskDuration",
-      "JSHeapUsedSize",
-      "JSHeapTotalSize"
-    ]);
-    var unitToPixels = {
-      px: 1,
-      in: 96,
-      cm: 37.8,
-      mm: 3.78
-    };
-    function convertPrintParameterToInches(parameter) {
-      if (typeof parameter === "undefined")
-        return void 0;
-      let pixels;
-      if (helper_js_1.helper.isNumber(parameter)) {
-        pixels = parameter;
-      } else if (helper_js_1.helper.isString(parameter)) {
-        const text = parameter;
-        let unit = text.substring(text.length - 2).toLowerCase();
-        let valueText = "";
-        if (unitToPixels.hasOwnProperty(unit)) {
-          valueText = text.substring(0, text.length - 2);
-        } else {
-          unit = "px";
-          valueText = text;
-        }
-        const value = Number(valueText);
-        (0, assert_js_1.assert)(!isNaN(value), "Failed to parse parameter value: " + text);
-        pixels = value * unitToPixels[unit];
-      } else {
-        throw new Error("page.pdf() Cannot handle parameter type: " + typeof parameter);
-      }
-      return pixels / 96;
-    }
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/Target.js
-var require_Target = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/Target.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Target = void 0;
-    var Page_js_1 = require_Page();
-    var WebWorker_js_1 = require_WebWorker();
-    var Target = class {
-      constructor(targetInfo, browserContext, sessionFactory, ignoreHTTPSErrors, defaultViewport, screenshotTaskQueue) {
-        this._targetInfo = targetInfo;
-        this._browserContext = browserContext;
-        this._targetId = targetInfo.targetId;
-        this._sessionFactory = sessionFactory;
-        this._ignoreHTTPSErrors = ignoreHTTPSErrors;
-        this._defaultViewport = defaultViewport;
-        this._screenshotTaskQueue = screenshotTaskQueue;
-        this._pagePromise = null;
-        this._workerPromise = null;
-        this._initializedPromise = new Promise((fulfill) => this._initializedCallback = fulfill).then(async (success) => {
-          if (!success)
-            return false;
-          const opener = this.opener();
-          if (!opener || !opener._pagePromise || this.type() !== "page")
-            return true;
-          const openerPage = await opener._pagePromise;
-          if (!openerPage.listenerCount("popup"))
-            return true;
-          const popupPage = await this.page();
-          openerPage.emit("popup", popupPage);
-          return true;
-        });
-        this._isClosedPromise = new Promise((fulfill) => this._closedCallback = fulfill);
-        this._isInitialized = this._targetInfo.type !== "page" || this._targetInfo.url !== "";
-        if (this._isInitialized)
-          this._initializedCallback(true);
-      }
-      createCDPSession() {
-        return this._sessionFactory();
-      }
-      async page() {
-        if ((this._targetInfo.type === "page" || this._targetInfo.type === "background_page" || this._targetInfo.type === "webview") && !this._pagePromise) {
-          this._pagePromise = this._sessionFactory().then((client) => Page_js_1.Page.create(client, this, this._ignoreHTTPSErrors, this._defaultViewport, this._screenshotTaskQueue));
-        }
-        return this._pagePromise;
-      }
-      async worker() {
-        if (this._targetInfo.type !== "service_worker" && this._targetInfo.type !== "shared_worker")
-          return null;
-        if (!this._workerPromise) {
-          this._workerPromise = this._sessionFactory().then((client) => new WebWorker_js_1.WebWorker(client, this._targetInfo.url, () => {
-          }, () => {
-          }));
-        }
-        return this._workerPromise;
-      }
-      url() {
-        return this._targetInfo.url;
-      }
-      type() {
-        const type = this._targetInfo.type;
-        if (type === "page" || type === "background_page" || type === "service_worker" || type === "shared_worker" || type === "browser" || type === "webview")
-          return type;
-        return "other";
-      }
-      browser() {
-        return this._browserContext.browser();
-      }
-      browserContext() {
-        return this._browserContext;
-      }
-      opener() {
-        const { openerId } = this._targetInfo;
-        if (!openerId)
-          return null;
-        return this.browser()._targets.get(openerId);
-      }
-      _targetInfoChanged(targetInfo) {
-        this._targetInfo = targetInfo;
-        if (!this._isInitialized && (this._targetInfo.type !== "page" || this._targetInfo.url !== "")) {
-          this._isInitialized = true;
-          this._initializedCallback(true);
-          return;
-        }
-      }
-    };
-    exports.Target = Target;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/TaskQueue.js
-var require_TaskQueue = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/TaskQueue.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.TaskQueue = void 0;
-    var TaskQueue = class {
-      constructor() {
-        this._chain = Promise.resolve();
-      }
-      postTask(task) {
-        const result = this._chain.then(task);
-        this._chain = result.then(() => void 0, () => void 0);
-        return result;
-      }
-    };
-    exports.TaskQueue = TaskQueue;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/Browser.js
-var require_Browser = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/Browser.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.BrowserContext = exports.Browser = void 0;
-    var assert_js_1 = require_assert();
-    var helper_js_1 = require_helper();
-    var Target_js_1 = require_Target();
-    var EventEmitter_js_1 = require_EventEmitter();
-    var Connection_js_1 = require_Connection();
-    var TaskQueue_js_1 = require_TaskQueue();
-    var WEB_PERMISSION_TO_PROTOCOL_PERMISSION = /* @__PURE__ */ new Map([
-      ["geolocation", "geolocation"],
-      ["midi", "midi"],
-      ["notifications", "notifications"],
-      ["camera", "videoCapture"],
-      ["microphone", "audioCapture"],
-      ["background-sync", "backgroundSync"],
-      ["ambient-light-sensor", "sensors"],
-      ["accelerometer", "sensors"],
-      ["gyroscope", "sensors"],
-      ["magnetometer", "sensors"],
-      ["accessibility-events", "accessibilityEvents"],
-      ["clipboard-read", "clipboardReadWrite"],
-      ["clipboard-write", "clipboardReadWrite"],
-      ["payment-handler", "paymentHandler"],
-      ["persistent-storage", "durableStorage"],
-      ["idle-detection", "idleDetection"],
-      ["midi-sysex", "midiSysex"]
-    ]);
-    var Browser = class extends EventEmitter_js_1.EventEmitter {
-      constructor(connection, contextIds, ignoreHTTPSErrors, defaultViewport, process2, closeCallback, targetFilterCallback) {
-        super();
-        this._ignoredTargets = /* @__PURE__ */ new Set();
-        this._ignoreHTTPSErrors = ignoreHTTPSErrors;
-        this._defaultViewport = defaultViewport;
-        this._process = process2;
-        this._screenshotTaskQueue = new TaskQueue_js_1.TaskQueue();
-        this._connection = connection;
-        this._closeCallback = closeCallback || function() {
-        };
-        this._targetFilterCallback = targetFilterCallback || (() => true);
-        this._defaultContext = new BrowserContext(this._connection, this);
-        this._contexts = /* @__PURE__ */ new Map();
-        for (const contextId of contextIds)
-          this._contexts.set(contextId, new BrowserContext(this._connection, this, contextId));
-        this._targets = /* @__PURE__ */ new Map();
-        this._connection.on(Connection_js_1.ConnectionEmittedEvents.Disconnected, () => this.emit("disconnected"));
-        this._connection.on("Target.targetCreated", this._targetCreated.bind(this));
-        this._connection.on("Target.targetDestroyed", this._targetDestroyed.bind(this));
-        this._connection.on("Target.targetInfoChanged", this._targetInfoChanged.bind(this));
-      }
-      static async create(connection, contextIds, ignoreHTTPSErrors, defaultViewport, process2, closeCallback, targetFilterCallback) {
-        const browser = new Browser(connection, contextIds, ignoreHTTPSErrors, defaultViewport, process2, closeCallback, targetFilterCallback);
-        await connection.send("Target.setDiscoverTargets", { discover: true });
-        return browser;
-      }
-      process() {
-        var _a;
-        return (_a = this._process) !== null && _a !== void 0 ? _a : null;
-      }
-      async createIncognitoBrowserContext(options = {}) {
-        const { proxyServer = "", proxyBypassList = [] } = options;
-        const { browserContextId } = await this._connection.send("Target.createBrowserContext", {
-          proxyServer,
-          proxyBypassList: proxyBypassList && proxyBypassList.join(",")
-        });
-        const context = new BrowserContext(this._connection, this, browserContextId);
-        this._contexts.set(browserContextId, context);
-        return context;
-      }
-      browserContexts() {
-        return [this._defaultContext, ...Array.from(this._contexts.values())];
-      }
-      defaultBrowserContext() {
-        return this._defaultContext;
-      }
-      async _disposeContext(contextId) {
-        if (!contextId) {
-          return;
-        }
-        await this._connection.send("Target.disposeBrowserContext", {
-          browserContextId: contextId
-        });
-        this._contexts.delete(contextId);
-      }
-      async _targetCreated(event) {
-        var _a;
-        const targetInfo = event.targetInfo;
-        const { browserContextId } = targetInfo;
-        const context = browserContextId && this._contexts.has(browserContextId) ? this._contexts.get(browserContextId) : this._defaultContext;
-        if (!context) {
-          throw new Error("Missing browser context");
-        }
-        const shouldAttachToTarget = this._targetFilterCallback(targetInfo);
-        if (!shouldAttachToTarget) {
-          this._ignoredTargets.add(targetInfo.targetId);
-          return;
-        }
-        const target = new Target_js_1.Target(targetInfo, context, () => this._connection.createSession(targetInfo), this._ignoreHTTPSErrors, (_a = this._defaultViewport) !== null && _a !== void 0 ? _a : null, this._screenshotTaskQueue);
-        (0, assert_js_1.assert)(!this._targets.has(event.targetInfo.targetId), "Target should not exist before targetCreated");
-        this._targets.set(event.targetInfo.targetId, target);
-        if (await target._initializedPromise) {
-          this.emit("targetcreated", target);
-          context.emit("targetcreated", target);
-        }
-      }
-      async _targetDestroyed(event) {
-        if (this._ignoredTargets.has(event.targetId))
-          return;
-        const target = this._targets.get(event.targetId);
-        if (!target) {
-          throw new Error(`Missing target in _targetDestroyed (id = ${event.targetId})`);
-        }
-        target._initializedCallback(false);
-        this._targets.delete(event.targetId);
-        target._closedCallback();
-        if (await target._initializedPromise) {
-          this.emit("targetdestroyed", target);
-          target.browserContext().emit("targetdestroyed", target);
-        }
-      }
-      _targetInfoChanged(event) {
-        if (this._ignoredTargets.has(event.targetInfo.targetId))
-          return;
-        const target = this._targets.get(event.targetInfo.targetId);
-        if (!target) {
-          throw new Error(`Missing target in targetInfoChanged (id = ${event.targetInfo.targetId})`);
-        }
-        const previousURL = target.url();
-        const wasInitialized = target._isInitialized;
-        target._targetInfoChanged(event.targetInfo);
-        if (wasInitialized && previousURL !== target.url()) {
-          this.emit("targetchanged", target);
-          target.browserContext().emit("targetchanged", target);
-        }
-      }
-      wsEndpoint() {
-        return this._connection.url();
-      }
-      async newPage() {
-        return this._defaultContext.newPage();
-      }
-      async _createPageInContext(contextId) {
-        const { targetId } = await this._connection.send("Target.createTarget", {
-          url: "about:blank",
-          browserContextId: contextId || void 0
-        });
-        const target = this._targets.get(targetId);
-        if (!target) {
-          throw new Error(`Missing target for page (id = ${targetId})`);
-        }
-        const initialized = await target._initializedPromise;
-        if (!initialized) {
-          throw new Error(`Failed to create target for page (id = ${targetId})`);
-        }
-        const page = await target.page();
-        if (!page) {
-          throw new Error(`Failed to create a page for context (id = ${contextId})`);
-        }
-        return page;
-      }
-      targets() {
-        return Array.from(this._targets.values()).filter((target) => target._isInitialized);
-      }
-      target() {
-        const browserTarget = this.targets().find((target) => target.type() === "browser");
-        if (!browserTarget) {
-          throw new Error("Browser target is not found");
-        }
-        return browserTarget;
-      }
-      async waitForTarget(predicate, options = {}) {
-        const { timeout = 3e4 } = options;
-        let resolve;
-        const targetPromise = new Promise((x) => resolve = x);
-        this.on("targetcreated", check);
-        this.on("targetchanged", check);
-        try {
-          if (!timeout)
-            return await targetPromise;
-          return await helper_js_1.helper.waitWithTimeout(Promise.race([
-            targetPromise,
-            (async () => {
-              for (const target of this.targets()) {
-                if (await predicate(target)) {
-                  return target;
-                }
-              }
-              await targetPromise;
-            })()
-          ]), "target", timeout);
-        } finally {
-          this.removeListener("targetcreated", check);
-          this.removeListener("targetchanged", check);
-        }
-        async function check(target) {
-          if (await predicate(target))
-            resolve(target);
-        }
-      }
-      async pages() {
-        const contextPages = await Promise.all(this.browserContexts().map((context) => context.pages()));
-        return contextPages.reduce((acc, x) => acc.concat(x), []);
-      }
-      async version() {
-        const version = await this._getVersion();
-        return version.product;
-      }
-      async userAgent() {
-        const version = await this._getVersion();
-        return version.userAgent;
-      }
-      async close() {
-        await this._closeCallback.call(null);
-        this.disconnect();
-      }
-      disconnect() {
-        this._connection.dispose();
-      }
-      isConnected() {
-        return !this._connection._closed;
-      }
-      _getVersion() {
-        return this._connection.send("Browser.getVersion");
-      }
-    };
-    exports.Browser = Browser;
-    var BrowserContext = class extends EventEmitter_js_1.EventEmitter {
-      constructor(connection, browser, contextId) {
-        super();
-        this._connection = connection;
-        this._browser = browser;
-        this._id = contextId;
-      }
-      targets() {
-        return this._browser.targets().filter((target) => target.browserContext() === this);
-      }
-      waitForTarget(predicate, options = {}) {
-        return this._browser.waitForTarget((target) => target.browserContext() === this && predicate(target), options);
-      }
-      async pages() {
-        const pages = await Promise.all(this.targets().filter((target) => target.type() === "page").map((target) => target.page()));
-        return pages.filter((page) => !!page);
-      }
-      isIncognito() {
-        return !!this._id;
-      }
-      async overridePermissions(origin, permissions) {
-        const protocolPermissions = permissions.map((permission) => {
-          const protocolPermission = WEB_PERMISSION_TO_PROTOCOL_PERMISSION.get(permission);
-          if (!protocolPermission)
-            throw new Error("Unknown permission: " + permission);
-          return protocolPermission;
-        });
-        await this._connection.send("Browser.grantPermissions", {
-          origin,
-          browserContextId: this._id || void 0,
-          permissions: protocolPermissions
-        });
-      }
-      async clearPermissionOverrides() {
-        await this._connection.send("Browser.resetPermissions", {
-          browserContextId: this._id || void 0
-        });
-      }
-      newPage() {
-        return this._browser._createPageInContext(this._id);
-      }
-      browser() {
-        return this._browser;
-      }
-      async close() {
-        (0, assert_js_1.assert)(this._id, "Non-incognito profiles cannot be closed!");
-        await this._browser._disposeContext(this._id);
-      }
-    };
-    exports.BrowserContext = BrowserContext;
   }
 });
 
@@ -9255,14 +1420,14 @@ var require_url_state_machine = __commonJS({
       return url.replace(/\u0009|\u000A|\u000D/g, "");
     }
     function shortenPath(url) {
-      const path = url.path;
-      if (path.length === 0) {
+      const path4 = url.path;
+      if (path4.length === 0) {
         return;
       }
-      if (url.scheme === "file" && path.length === 1 && isNormalizedWindowsDriveLetter(path[0])) {
+      if (url.scheme === "file" && path4.length === 1 && isNormalizedWindowsDriveLetter(path4[0])) {
         return;
       }
-      path.pop();
+      path4.pop();
     }
     function includesCredentials(url) {
       return url.username !== "" || url.password !== "";
@@ -10100,8 +2265,8 @@ var require_URL = __commonJS({
     var utils = require_utils();
     var Impl = require_URL_impl();
     var impl = utils.implSymbol;
-    function URL2(url) {
-      if (!this || this[impl] || !(this instanceof URL2)) {
+    function URL3(url) {
+      if (!this || this[impl] || !(this instanceof URL3)) {
         throw new TypeError("Failed to construct 'URL': Please use the 'new' operator, this DOM object constructor cannot be called as a function.");
       }
       if (arguments.length < 1) {
@@ -10117,7 +2282,7 @@ var require_URL = __commonJS({
       }
       module.exports.setup(this, args);
     }
-    URL2.prototype.toJSON = function toJSON() {
+    URL3.prototype.toJSON = function toJSON() {
       if (!this || !module.exports.is(this)) {
         throw new TypeError("Illegal invocation");
       }
@@ -10127,7 +2292,7 @@ var require_URL = __commonJS({
       }
       return this[impl].toJSON.apply(this[impl], args);
     };
-    Object.defineProperty(URL2.prototype, "href", {
+    Object.defineProperty(URL3.prototype, "href", {
       get() {
         return this[impl].href;
       },
@@ -10138,20 +2303,20 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    URL2.prototype.toString = function() {
+    URL3.prototype.toString = function() {
       if (!this || !module.exports.is(this)) {
         throw new TypeError("Illegal invocation");
       }
       return this.href;
     };
-    Object.defineProperty(URL2.prototype, "origin", {
+    Object.defineProperty(URL3.prototype, "origin", {
       get() {
         return this[impl].origin;
       },
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "protocol", {
+    Object.defineProperty(URL3.prototype, "protocol", {
       get() {
         return this[impl].protocol;
       },
@@ -10162,7 +2327,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "username", {
+    Object.defineProperty(URL3.prototype, "username", {
       get() {
         return this[impl].username;
       },
@@ -10173,7 +2338,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "password", {
+    Object.defineProperty(URL3.prototype, "password", {
       get() {
         return this[impl].password;
       },
@@ -10184,7 +2349,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "host", {
+    Object.defineProperty(URL3.prototype, "host", {
       get() {
         return this[impl].host;
       },
@@ -10195,7 +2360,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "hostname", {
+    Object.defineProperty(URL3.prototype, "hostname", {
       get() {
         return this[impl].hostname;
       },
@@ -10206,7 +2371,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "port", {
+    Object.defineProperty(URL3.prototype, "port", {
       get() {
         return this[impl].port;
       },
@@ -10217,7 +2382,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "pathname", {
+    Object.defineProperty(URL3.prototype, "pathname", {
       get() {
         return this[impl].pathname;
       },
@@ -10228,7 +2393,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "search", {
+    Object.defineProperty(URL3.prototype, "search", {
       get() {
         return this[impl].search;
       },
@@ -10239,7 +2404,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "hash", {
+    Object.defineProperty(URL3.prototype, "hash", {
       get() {
         return this[impl].hash;
       },
@@ -10255,7 +2420,7 @@ var require_URL = __commonJS({
         return !!obj && obj[impl] instanceof Impl.implementation;
       },
       create(constructorArgs, privateData) {
-        let obj = Object.create(URL2.prototype);
+        let obj = Object.create(URL3.prototype);
         this.setup(obj, constructorArgs, privateData);
         return obj;
       },
@@ -10266,10 +2431,10 @@ var require_URL = __commonJS({
         obj[impl] = new Impl.implementation(constructorArgs, privateData);
         obj[impl][utils.wrapperSymbol] = obj;
       },
-      interface: URL2,
+      interface: URL3,
       expose: {
-        Window: { URL: URL2 },
-        Worker: { URL: URL2 }
+        Window: { URL: URL3 },
+        Worker: { URL: URL3 }
       }
     };
   }
@@ -10300,10 +2465,10 @@ var require_lib2 = __commonJS({
       return ex && typeof ex === "object" && "default" in ex ? ex["default"] : ex;
     }
     var Stream = _interopDefault(__require("stream"));
-    var http = _interopDefault(__require("http"));
+    var http2 = _interopDefault(__require("http"));
     var Url = _interopDefault(__require("url"));
     var whatwgUrl = _interopDefault(require_public_api());
-    var https = _interopDefault(__require("https"));
+    var https2 = _interopDefault(__require("https"));
     var zlib = _interopDefault(__require("zlib"));
     var Readable = Stream.Readable;
     var BUFFER = Symbol("buffer");
@@ -10549,7 +2714,7 @@ var require_lib2 = __commonJS({
       let accum = [];
       let accumBytes = 0;
       let abort = false;
-      return new Body.Promise(function(resolve, reject) {
+      return new Body.Promise(function(resolve3, reject) {
         let resTimeout;
         if (_this4.timeout) {
           resTimeout = setTimeout(function() {
@@ -10583,7 +2748,7 @@ var require_lib2 = __commonJS({
           }
           clearTimeout(resTimeout);
           try {
-            resolve(Buffer.concat(accum, accumBytes));
+            resolve3(Buffer.concat(accum, accumBytes));
           } catch (err) {
             reject(new FetchError(`Could not create Buffer from response body for ${_this4.url}: ${err.message}`, "system", err));
           }
@@ -10941,7 +3106,7 @@ var require_lib2 = __commonJS({
       return headers;
     }
     var INTERNALS$1 = Symbol("Response internals");
-    var STATUS_CODES = http.STATUS_CODES;
+    var STATUS_CODES = http2.STATUS_CODES;
     var Response = class {
       constructor() {
         let body = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null;
@@ -11009,12 +3174,12 @@ var require_lib2 = __commonJS({
       configurable: true
     });
     var INTERNALS$2 = Symbol("Request internals");
-    var URL2 = Url.URL || whatwgUrl.URL;
+    var URL3 = Url.URL || whatwgUrl.URL;
     var parse_url = Url.parse;
     var format_url = Url.format;
     function parseURL(urlStr) {
       if (/^[a-zA-Z][a-zA-Z\d+\-.]*:/.exec(urlStr)) {
-        urlStr = new URL2(urlStr).toString();
+        urlStr = new URL3(urlStr).toString();
       }
       return parse_url(urlStr);
     }
@@ -11109,9 +3274,9 @@ var require_lib2 = __commonJS({
       clone: { enumerable: true },
       signal: { enumerable: true }
     });
-    function getNodeRequestOptions(request) {
-      const parsedURL = request[INTERNALS$2].parsedURL;
-      const headers = new Headers(request[INTERNALS$2].headers);
+    function getNodeRequestOptions(request3) {
+      const parsedURL = request3[INTERNALS$2].parsedURL;
+      const headers = new Headers(request3[INTERNALS$2].headers);
       if (!headers.has("Accept")) {
         headers.set("Accept", "*/*");
       }
@@ -11121,15 +3286,15 @@ var require_lib2 = __commonJS({
       if (!/^https?:$/.test(parsedURL.protocol)) {
         throw new TypeError("Only HTTP(S) protocols are supported");
       }
-      if (request.signal && request.body instanceof Stream.Readable && !streamDestructionSupported) {
+      if (request3.signal && request3.body instanceof Stream.Readable && !streamDestructionSupported) {
         throw new Error("Cancellation of streamed requests with AbortSignal is not supported in node < 8");
       }
       let contentLengthValue = null;
-      if (request.body == null && /^(POST|PUT)$/i.test(request.method)) {
+      if (request3.body == null && /^(POST|PUT)$/i.test(request3.method)) {
         contentLengthValue = "0";
       }
-      if (request.body != null) {
-        const totalBytes = getTotalBytes(request);
+      if (request3.body != null) {
+        const totalBytes = getTotalBytes(request3);
         if (typeof totalBytes === "number") {
           contentLengthValue = String(totalBytes);
         }
@@ -11140,10 +3305,10 @@ var require_lib2 = __commonJS({
       if (!headers.has("User-Agent")) {
         headers.set("User-Agent", "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)");
       }
-      if (request.compress && !headers.has("Accept-Encoding")) {
+      if (request3.compress && !headers.has("Accept-Encoding")) {
         headers.set("Accept-Encoding", "gzip,deflate");
       }
-      let agent = request.agent;
+      let agent = request3.agent;
       if (typeof agent === "function") {
         agent = agent(parsedURL);
       }
@@ -11151,7 +3316,7 @@ var require_lib2 = __commonJS({
         headers.set("Connection", "close");
       }
       return Object.assign({}, parsedURL, {
-        method: request.method,
+        method: request3.method,
         headers: exportNodeCompatibleHeaders(headers),
         agent
       });
@@ -11177,17 +3342,17 @@ var require_lib2 = __commonJS({
         throw new Error("native promise missing, set fetch.Promise to your favorite alternative");
       }
       Body.Promise = fetch.Promise;
-      return new fetch.Promise(function(resolve, reject) {
-        const request = new Request(url, opts);
-        const options = getNodeRequestOptions(request);
-        const send = (options.protocol === "https:" ? https : http).request;
-        const signal = request.signal;
+      return new fetch.Promise(function(resolve3, reject) {
+        const request3 = new Request(url, opts);
+        const options = getNodeRequestOptions(request3);
+        const send = (options.protocol === "https:" ? https2 : http2).request;
+        const signal = request3.signal;
         let response = null;
         const abort = function abort2() {
           let error = new AbortError("The user aborted a request.");
           reject(error);
-          if (request.body && request.body instanceof Stream.Readable) {
-            request.body.destroy(error);
+          if (request3.body && request3.body instanceof Stream.Readable) {
+            request3.body.destroy(error);
           }
           if (!response || !response.body)
             return;
@@ -11212,16 +3377,16 @@ var require_lib2 = __commonJS({
             signal.removeEventListener("abort", abortAndFinalize);
           clearTimeout(reqTimeout);
         }
-        if (request.timeout) {
+        if (request3.timeout) {
           req.once("socket", function(socket) {
             reqTimeout = setTimeout(function() {
-              reject(new FetchError(`network timeout at: ${request.url}`, "request-timeout"));
+              reject(new FetchError(`network timeout at: ${request3.url}`, "request-timeout"));
               finalize();
-            }, request.timeout);
+            }, request3.timeout);
           });
         }
         req.on("error", function(err) {
-          reject(new FetchError(`request to ${request.url} failed, reason: ${err.message}`, "system", err));
+          reject(new FetchError(`request to ${request3.url} failed, reason: ${err.message}`, "system", err));
           finalize();
         });
         req.on("response", function(res) {
@@ -11231,17 +3396,17 @@ var require_lib2 = __commonJS({
             const location = headers.get("Location");
             let locationURL = null;
             try {
-              locationURL = location === null ? null : new URL$1(location, request.url).toString();
+              locationURL = location === null ? null : new URL$1(location, request3.url).toString();
             } catch (err) {
-              if (request.redirect !== "manual") {
+              if (request3.redirect !== "manual") {
                 reject(new FetchError(`uri requested responds with an invalid redirect URL: ${location}`, "invalid-redirect"));
                 finalize();
                 return;
               }
             }
-            switch (request.redirect) {
+            switch (request3.redirect) {
               case "error":
-                reject(new FetchError(`uri requested responds with a redirect, redirect mode is set to error: ${request.url}`, "no-redirect"));
+                reject(new FetchError(`uri requested responds with a redirect, redirect mode is set to error: ${request3.url}`, "no-redirect"));
                 finalize();
                 return;
               case "manual":
@@ -11257,39 +3422,39 @@ var require_lib2 = __commonJS({
                 if (locationURL === null) {
                   break;
                 }
-                if (request.counter >= request.follow) {
-                  reject(new FetchError(`maximum redirect reached at: ${request.url}`, "max-redirect"));
+                if (request3.counter >= request3.follow) {
+                  reject(new FetchError(`maximum redirect reached at: ${request3.url}`, "max-redirect"));
                   finalize();
                   return;
                 }
                 const requestOpts = {
-                  headers: new Headers(request.headers),
-                  follow: request.follow,
-                  counter: request.counter + 1,
-                  agent: request.agent,
-                  compress: request.compress,
-                  method: request.method,
-                  body: request.body,
-                  signal: request.signal,
-                  timeout: request.timeout,
-                  size: request.size
+                  headers: new Headers(request3.headers),
+                  follow: request3.follow,
+                  counter: request3.counter + 1,
+                  agent: request3.agent,
+                  compress: request3.compress,
+                  method: request3.method,
+                  body: request3.body,
+                  signal: request3.signal,
+                  timeout: request3.timeout,
+                  size: request3.size
                 };
-                if (!isDomainOrSubdomain(request.url, locationURL)) {
+                if (!isDomainOrSubdomain(request3.url, locationURL)) {
                   for (const name of ["authorization", "www-authenticate", "cookie", "cookie2"]) {
                     requestOpts.headers.delete(name);
                   }
                 }
-                if (res.statusCode !== 303 && request.body && getTotalBytes(request) === null) {
+                if (res.statusCode !== 303 && request3.body && getTotalBytes(request3) === null) {
                   reject(new FetchError("Cannot follow redirect with body being a readable stream", "unsupported-redirect"));
                   finalize();
                   return;
                 }
-                if (res.statusCode === 303 || (res.statusCode === 301 || res.statusCode === 302) && request.method === "POST") {
+                if (res.statusCode === 303 || (res.statusCode === 301 || res.statusCode === 302) && request3.method === "POST") {
                   requestOpts.method = "GET";
                   requestOpts.body = void 0;
                   requestOpts.headers.delete("content-length");
                 }
-                resolve(fetch(new Request(locationURL, requestOpts)));
+                resolve3(fetch(new Request(locationURL, requestOpts)));
                 finalize();
                 return;
             }
@@ -11300,18 +3465,18 @@ var require_lib2 = __commonJS({
           });
           let body = res.pipe(new PassThrough$1());
           const response_options = {
-            url: request.url,
+            url: request3.url,
             status: res.statusCode,
             statusText: res.statusMessage,
             headers,
-            size: request.size,
-            timeout: request.timeout,
-            counter: request.counter
+            size: request3.size,
+            timeout: request3.timeout,
+            counter: request3.counter
           };
           const codings = headers.get("Content-Encoding");
-          if (!request.compress || request.method === "HEAD" || codings === null || res.statusCode === 204 || res.statusCode === 304) {
+          if (!request3.compress || request3.method === "HEAD" || codings === null || res.statusCode === 204 || res.statusCode === 304) {
             response = new Response(body, response_options);
-            resolve(response);
+            resolve3(response);
             return;
           }
           const zlibOptions = {
@@ -11321,7 +3486,7 @@ var require_lib2 = __commonJS({
           if (codings == "gzip" || codings == "x-gzip") {
             body = body.pipe(zlib.createGunzip(zlibOptions));
             response = new Response(body, response_options);
-            resolve(response);
+            resolve3(response);
             return;
           }
           if (codings == "deflate" || codings == "x-deflate") {
@@ -11333,20 +3498,20 @@ var require_lib2 = __commonJS({
                 body = body.pipe(zlib.createInflateRaw());
               }
               response = new Response(body, response_options);
-              resolve(response);
+              resolve3(response);
             });
             return;
           }
           if (codings == "br" && typeof zlib.createBrotliDecompress === "function") {
             body = body.pipe(zlib.createBrotliDecompress());
             response = new Response(body, response_options);
-            resolve(response);
+            resolve3(response);
             return;
           }
           response = new Response(body, response_options);
-          resolve(response);
+          resolve3(response);
         });
-        writeToStream(req, request);
+        writeToStream(req, request3);
       });
     }
     fetch.isRedirect = function(code) {
@@ -11384,45 +3549,107 @@ var require_node_ponyfill = __commonJS({
   }
 });
 
-// node_modules/puppeteer/lib/cjs/puppeteer/common/fetch.js
-var require_fetch = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/fetch.js"(exports) {
+// node_modules/ws/lib/stream.js
+var require_stream = __commonJS({
+  "node_modules/ws/lib/stream.js"(exports, module) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      Object.defineProperty(o, k2, { enumerable: true, get: function() {
-        return m[k];
-      } });
-    } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      o[k2] = m[k];
-    });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
-      Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
-      o["default"] = v;
-    });
-    var __importStar = exports && exports.__importStar || function(mod) {
-      if (mod && mod.__esModule)
-        return mod;
-      var result = {};
-      if (mod != null) {
-        for (var k in mod)
-          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
-            __createBinding(result, mod, k);
+    var { Duplex } = __require("stream");
+    function emitClose(stream) {
+      stream.emit("close");
+    }
+    function duplexOnEnd() {
+      if (!this.destroyed && this._writableState.finished) {
+        this.destroy();
       }
-      __setModuleDefault(result, mod);
-      return result;
-    };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getFetch = void 0;
-    var environment_js_1 = require_environment();
-    var getFetch = async () => {
-      return environment_js_1.isNode ? (await Promise.resolve().then(() => __importStar(require_node_ponyfill()))).fetch : globalThis.fetch;
-    };
-    exports.getFetch = getFetch;
+    }
+    function duplexOnError(err) {
+      this.removeListener("error", duplexOnError);
+      this.destroy();
+      if (this.listenerCount("error") === 0) {
+        this.emit("error", err);
+      }
+    }
+    function createWebSocketStream2(ws, options) {
+      let terminateOnDestroy = true;
+      const duplex = new Duplex(__spreadProps(__spreadValues({}, options), {
+        autoDestroy: false,
+        emitClose: false,
+        objectMode: false,
+        writableObjectMode: false
+      }));
+      ws.on("message", function message(msg, isBinary) {
+        const data = !isBinary && duplex._readableState.objectMode ? msg.toString() : msg;
+        if (!duplex.push(data))
+          ws.pause();
+      });
+      ws.once("error", function error(err) {
+        if (duplex.destroyed)
+          return;
+        terminateOnDestroy = false;
+        duplex.destroy(err);
+      });
+      ws.once("close", function close() {
+        if (duplex.destroyed)
+          return;
+        duplex.push(null);
+      });
+      duplex._destroy = function(err, callback) {
+        if (ws.readyState === ws.CLOSED) {
+          callback(err);
+          process.nextTick(emitClose, duplex);
+          return;
+        }
+        let called = false;
+        ws.once("error", function error(err2) {
+          called = true;
+          callback(err2);
+        });
+        ws.once("close", function close() {
+          if (!called)
+            callback(err);
+          process.nextTick(emitClose, duplex);
+        });
+        if (terminateOnDestroy)
+          ws.terminate();
+      };
+      duplex._final = function(callback) {
+        if (ws.readyState === ws.CONNECTING) {
+          ws.once("open", function open() {
+            duplex._final(callback);
+          });
+          return;
+        }
+        if (ws._socket === null)
+          return;
+        if (ws._socket._writableState.finished) {
+          callback();
+          if (duplex._readableState.endEmitted)
+            duplex.destroy();
+        } else {
+          ws._socket.once("finish", function finish() {
+            callback();
+          });
+          ws.close();
+        }
+      };
+      duplex._read = function() {
+        if (ws.isPaused)
+          ws.resume();
+      };
+      duplex._write = function(chunk, encoding, callback) {
+        if (ws.readyState === ws.CONNECTING) {
+          ws.once("open", function open() {
+            duplex._write(chunk, encoding, callback);
+          });
+          return;
+        }
+        ws.send(chunk, callback);
+      };
+      duplex.on("end", duplexOnEnd);
+      duplex.on("error", duplexOnError);
+      return duplex;
+    }
+    module.exports = createWebSocketStream2;
   }
 });
 
@@ -12022,7 +4249,7 @@ var require_receiver = __commonJS({
     var GET_MASK = 3;
     var GET_DATA = 4;
     var INFLATING = 5;
-    var Receiver = class extends Writable {
+    var Receiver2 = class extends Writable {
       constructor(options = {}) {
         super();
         this._binaryType = options.binaryType || BINARY_TYPES[0];
@@ -12316,7 +4543,7 @@ var require_receiver = __commonJS({
         this._state = GET_INFO;
       }
     };
-    module.exports = Receiver;
+    module.exports = Receiver2;
     function error(ErrorCtor, message, prefix, statusCode, errorCode) {
       const err = new ErrorCtor(prefix ? `Invalid WebSocket frame: ${message}` : message);
       Error.captureStackTrace(err, error);
@@ -12340,7 +4567,7 @@ var require_sender = __commonJS({
     var { mask: applyMask, toBuffer } = require_buffer_util();
     var kByteLength = Symbol("kByteLength");
     var maskBuffer = Buffer.alloc(4);
-    var Sender = class {
+    var Sender2 = class {
       constructor(socket, extensions, generateMask) {
         this._extensions = extensions || {};
         if (generateMask) {
@@ -12451,7 +4678,7 @@ var require_sender = __commonJS({
         if (this._deflating) {
           this.enqueue([this.dispatch, buf, false, options, cb]);
         } else {
-          this.sendFrame(Sender.frame(buf, options), cb);
+          this.sendFrame(Sender2.frame(buf, options), cb);
         }
       }
       ping(data, mask, cb) {
@@ -12481,7 +4708,7 @@ var require_sender = __commonJS({
         if (this._deflating) {
           this.enqueue([this.dispatch, data, false, options, cb]);
         } else {
-          this.sendFrame(Sender.frame(data, options), cb);
+          this.sendFrame(Sender2.frame(data, options), cb);
         }
       }
       pong(data, mask, cb) {
@@ -12511,7 +4738,7 @@ var require_sender = __commonJS({
         if (this._deflating) {
           this.enqueue([this.dispatch, data, false, options, cb]);
         } else {
-          this.sendFrame(Sender.frame(data, options), cb);
+          this.sendFrame(Sender2.frame(data, options), cb);
         }
       }
       send(data, options, cb) {
@@ -12557,7 +4784,7 @@ var require_sender = __commonJS({
             this.dispatch(data, this._compress, opts, cb);
           }
         } else {
-          this.sendFrame(Sender.frame(data, {
+          this.sendFrame(Sender2.frame(data, {
             [kByteLength]: byteLength,
             fin: options.fin,
             generateMask: this._generateMask,
@@ -12571,7 +4798,7 @@ var require_sender = __commonJS({
       }
       dispatch(data, compress, options, cb) {
         if (!compress) {
-          this.sendFrame(Sender.frame(data, options), cb);
+          this.sendFrame(Sender2.frame(data, options), cb);
           return;
         }
         const perMessageDeflate = this._extensions[PerMessageDeflate.extensionName];
@@ -12593,7 +4820,7 @@ var require_sender = __commonJS({
           this._bufferedBytes -= options[kByteLength];
           this._deflating = false;
           options.readOnly = false;
-          this.sendFrame(Sender.frame(buf, options), cb);
+          this.sendFrame(Sender2.frame(buf, options), cb);
           this.dequeue();
         });
       }
@@ -12619,7 +4846,7 @@ var require_sender = __commonJS({
         }
       }
     };
-    module.exports = Sender;
+    module.exports = Sender2;
   }
 });
 
@@ -12772,7 +4999,7 @@ var require_extension = __commonJS({
       else
         dest[name].push(elem);
     }
-    function parse(header) {
+    function parse2(header) {
       const offers = /* @__PURE__ */ Object.create(null);
       let params = /* @__PURE__ */ Object.create(null);
       let mustUnescape = false;
@@ -12910,7 +5137,7 @@ var require_extension = __commonJS({
       }
       return offers;
     }
-    function format(extensions) {
+    function format2(extensions) {
       return Object.keys(extensions).map((extension) => {
         let configurations = extensions[extension];
         if (!Array.isArray(configurations))
@@ -12925,7 +5152,7 @@ var require_extension = __commonJS({
         }).join(", ");
       }).join(", ");
     }
-    module.exports = { format, parse };
+    module.exports = { format: format2, parse: parse2 };
   }
 });
 
@@ -12933,17 +5160,17 @@ var require_extension = __commonJS({
 var require_websocket = __commonJS({
   "node_modules/ws/lib/websocket.js"(exports, module) {
     "use strict";
-    var EventEmitter = __require("events");
-    var https = __require("https");
-    var http = __require("http");
+    var EventEmitter2 = __require("events");
+    var https2 = __require("https");
+    var http2 = __require("http");
     var net = __require("net");
     var tls = __require("tls");
     var { randomBytes, createHash } = __require("crypto");
     var { Readable } = __require("stream");
-    var { URL: URL2 } = __require("url");
+    var { URL: URL3 } = __require("url");
     var PerMessageDeflate = require_permessage_deflate();
-    var Receiver = require_receiver();
-    var Sender = require_sender();
+    var Receiver2 = require_receiver();
+    var Sender2 = require_sender();
     var {
       BINARY_TYPES,
       EMPTY_BUFFER,
@@ -12955,15 +5182,16 @@ var require_websocket = __commonJS({
       NOOP
     } = require_constants();
     var {
-      EventTarget: { addEventListener, removeEventListener }
+      EventTarget: { addEventListener: addEventListener2, removeEventListener }
     } = require_event_target();
-    var { format, parse } = require_extension();
+    var { format: format2, parse: parse2 } = require_extension();
     var { toBuffer } = require_buffer_util();
+    var closeTimeout = 30 * 1e3;
+    var kAborted = Symbol("kAborted");
+    var protocolVersions = [8, 13];
     var readyStates = ["CONNECTING", "OPEN", "CLOSING", "CLOSED"];
     var subprotocolRegex = /^[!#$%&'*+\-.0-9A-Z^_`|a-z~]+$/;
-    var protocolVersions = [8, 13];
-    var closeTimeout = 30 * 1e3;
-    var WebSocket2 = class extends EventEmitter {
+    var WebSocket3 = class extends EventEmitter2 {
       constructor(address, protocols, options) {
         super();
         this._binaryType = BINARY_TYPES[0];
@@ -12975,7 +5203,7 @@ var require_websocket = __commonJS({
         this._extensions = {};
         this._paused = false;
         this._protocol = "";
-        this._readyState = WebSocket2.CONNECTING;
+        this._readyState = WebSocket3.CONNECTING;
         this._receiver = null;
         this._sender = null;
         this._socket = null;
@@ -13041,14 +5269,14 @@ var require_websocket = __commonJS({
         return this._url;
       }
       setSocket(socket, head, options) {
-        const receiver = new Receiver({
+        const receiver = new Receiver2({
           binaryType: this.binaryType,
           extensions: this._extensions,
           isServer: this._isServer,
           maxPayload: options.maxPayload,
           skipUTF8Validation: options.skipUTF8Validation
         });
-        this._sender = new Sender(socket, this._extensions, options.generateMask);
+        this._sender = new Sender2(socket, this._extensions, options.generateMask);
         this._receiver = receiver;
         this._socket = socket;
         receiver[kWebSocket] = this;
@@ -13067,12 +5295,12 @@ var require_websocket = __commonJS({
         socket.on("data", socketOnData);
         socket.on("end", socketOnEnd);
         socket.on("error", socketOnError);
-        this._readyState = WebSocket2.OPEN;
+        this._readyState = WebSocket3.OPEN;
         this.emit("open");
       }
       emitClose() {
         if (!this._socket) {
-          this._readyState = WebSocket2.CLOSED;
+          this._readyState = WebSocket3.CLOSED;
           this.emit("close", this._closeCode, this._closeMessage);
           return;
         }
@@ -13080,23 +5308,23 @@ var require_websocket = __commonJS({
           this._extensions[PerMessageDeflate.extensionName].cleanup();
         }
         this._receiver.removeAllListeners();
-        this._readyState = WebSocket2.CLOSED;
+        this._readyState = WebSocket3.CLOSED;
         this.emit("close", this._closeCode, this._closeMessage);
       }
       close(code, data) {
-        if (this.readyState === WebSocket2.CLOSED)
+        if (this.readyState === WebSocket3.CLOSED)
           return;
-        if (this.readyState === WebSocket2.CONNECTING) {
+        if (this.readyState === WebSocket3.CONNECTING) {
           const msg = "WebSocket was closed before the connection was established";
           return abortHandshake(this, this._req, msg);
         }
-        if (this.readyState === WebSocket2.CLOSING) {
+        if (this.readyState === WebSocket3.CLOSING) {
           if (this._closeFrameSent && (this._closeFrameReceived || this._receiver._writableState.errorEmitted)) {
             this._socket.end();
           }
           return;
         }
-        this._readyState = WebSocket2.CLOSING;
+        this._readyState = WebSocket3.CLOSING;
         this._sender.close(code, data, !this._isServer, (err) => {
           if (err)
             return;
@@ -13108,14 +5336,14 @@ var require_websocket = __commonJS({
         this._closeTimer = setTimeout(this._socket.destroy.bind(this._socket), closeTimeout);
       }
       pause() {
-        if (this.readyState === WebSocket2.CONNECTING || this.readyState === WebSocket2.CLOSED) {
+        if (this.readyState === WebSocket3.CONNECTING || this.readyState === WebSocket3.CLOSED) {
           return;
         }
         this._paused = true;
         this._socket.pause();
       }
       ping(data, mask, cb) {
-        if (this.readyState === WebSocket2.CONNECTING) {
+        if (this.readyState === WebSocket3.CONNECTING) {
           throw new Error("WebSocket is not open: readyState 0 (CONNECTING)");
         }
         if (typeof data === "function") {
@@ -13127,7 +5355,7 @@ var require_websocket = __commonJS({
         }
         if (typeof data === "number")
           data = data.toString();
-        if (this.readyState !== WebSocket2.OPEN) {
+        if (this.readyState !== WebSocket3.OPEN) {
           sendAfterClose(this, data, cb);
           return;
         }
@@ -13136,7 +5364,7 @@ var require_websocket = __commonJS({
         this._sender.ping(data || EMPTY_BUFFER, mask, cb);
       }
       pong(data, mask, cb) {
-        if (this.readyState === WebSocket2.CONNECTING) {
+        if (this.readyState === WebSocket3.CONNECTING) {
           throw new Error("WebSocket is not open: readyState 0 (CONNECTING)");
         }
         if (typeof data === "function") {
@@ -13148,7 +5376,7 @@ var require_websocket = __commonJS({
         }
         if (typeof data === "number")
           data = data.toString();
-        if (this.readyState !== WebSocket2.OPEN) {
+        if (this.readyState !== WebSocket3.OPEN) {
           sendAfterClose(this, data, cb);
           return;
         }
@@ -13157,7 +5385,7 @@ var require_websocket = __commonJS({
         this._sender.pong(data || EMPTY_BUFFER, mask, cb);
       }
       resume() {
-        if (this.readyState === WebSocket2.CONNECTING || this.readyState === WebSocket2.CLOSED) {
+        if (this.readyState === WebSocket3.CONNECTING || this.readyState === WebSocket3.CLOSED) {
           return;
         }
         this._paused = false;
@@ -13165,7 +5393,7 @@ var require_websocket = __commonJS({
           this._socket.resume();
       }
       send(data, options, cb) {
-        if (this.readyState === WebSocket2.CONNECTING) {
+        if (this.readyState === WebSocket3.CONNECTING) {
           throw new Error("WebSocket is not open: readyState 0 (CONNECTING)");
         }
         if (typeof options === "function") {
@@ -13174,7 +5402,7 @@ var require_websocket = __commonJS({
         }
         if (typeof data === "number")
           data = data.toString();
-        if (this.readyState !== WebSocket2.OPEN) {
+        if (this.readyState !== WebSocket3.OPEN) {
           sendAfterClose(this, data, cb);
           return;
         }
@@ -13190,47 +5418,47 @@ var require_websocket = __commonJS({
         this._sender.send(data || EMPTY_BUFFER, opts, cb);
       }
       terminate() {
-        if (this.readyState === WebSocket2.CLOSED)
+        if (this.readyState === WebSocket3.CLOSED)
           return;
-        if (this.readyState === WebSocket2.CONNECTING) {
+        if (this.readyState === WebSocket3.CONNECTING) {
           const msg = "WebSocket was closed before the connection was established";
           return abortHandshake(this, this._req, msg);
         }
         if (this._socket) {
-          this._readyState = WebSocket2.CLOSING;
+          this._readyState = WebSocket3.CLOSING;
           this._socket.destroy();
         }
       }
     };
-    Object.defineProperty(WebSocket2, "CONNECTING", {
+    Object.defineProperty(WebSocket3, "CONNECTING", {
       enumerable: true,
       value: readyStates.indexOf("CONNECTING")
     });
-    Object.defineProperty(WebSocket2.prototype, "CONNECTING", {
+    Object.defineProperty(WebSocket3.prototype, "CONNECTING", {
       enumerable: true,
       value: readyStates.indexOf("CONNECTING")
     });
-    Object.defineProperty(WebSocket2, "OPEN", {
+    Object.defineProperty(WebSocket3, "OPEN", {
       enumerable: true,
       value: readyStates.indexOf("OPEN")
     });
-    Object.defineProperty(WebSocket2.prototype, "OPEN", {
+    Object.defineProperty(WebSocket3.prototype, "OPEN", {
       enumerable: true,
       value: readyStates.indexOf("OPEN")
     });
-    Object.defineProperty(WebSocket2, "CLOSING", {
+    Object.defineProperty(WebSocket3, "CLOSING", {
       enumerable: true,
       value: readyStates.indexOf("CLOSING")
     });
-    Object.defineProperty(WebSocket2.prototype, "CLOSING", {
+    Object.defineProperty(WebSocket3.prototype, "CLOSING", {
       enumerable: true,
       value: readyStates.indexOf("CLOSING")
     });
-    Object.defineProperty(WebSocket2, "CLOSED", {
+    Object.defineProperty(WebSocket3, "CLOSED", {
       enumerable: true,
       value: readyStates.indexOf("CLOSED")
     });
-    Object.defineProperty(WebSocket2.prototype, "CLOSED", {
+    Object.defineProperty(WebSocket3.prototype, "CLOSED", {
       enumerable: true,
       value: readyStates.indexOf("CLOSED")
     });
@@ -13243,10 +5471,10 @@ var require_websocket = __commonJS({
       "readyState",
       "url"
     ].forEach((property) => {
-      Object.defineProperty(WebSocket2.prototype, property, { enumerable: true });
+      Object.defineProperty(WebSocket3.prototype, property, { enumerable: true });
     });
     ["open", "error", "close", "message"].forEach((method) => {
-      Object.defineProperty(WebSocket2.prototype, `on${method}`, {
+      Object.defineProperty(WebSocket3.prototype, `on${method}`, {
         enumerable: true,
         get() {
           for (const listener of this.listeners(method)) {
@@ -13270,9 +5498,9 @@ var require_websocket = __commonJS({
         }
       });
     });
-    WebSocket2.prototype.addEventListener = addEventListener;
-    WebSocket2.prototype.removeEventListener = removeEventListener;
-    module.exports = WebSocket2;
+    WebSocket3.prototype.addEventListener = addEventListener2;
+    WebSocket3.prototype.removeEventListener = removeEventListener;
+    module.exports = WebSocket3;
     function initAsClient(websocket, address, protocols, options) {
       const opts = __spreadProps(__spreadValues({
         protocolVersion: protocolVersions[1],
@@ -13287,7 +5515,7 @@ var require_websocket = __commonJS({
         hostname: void 0,
         protocol: void 0,
         timeout: void 0,
-        method: void 0,
+        method: "GET",
         host: void 0,
         path: void 0,
         port: void 0
@@ -13296,12 +5524,12 @@ var require_websocket = __commonJS({
         throw new RangeError(`Unsupported protocol version: ${opts.protocolVersion} (supported versions: ${protocolVersions.join(", ")})`);
       }
       let parsedUrl;
-      if (address instanceof URL2) {
+      if (address instanceof URL3) {
         parsedUrl = address;
         websocket._url = address.href;
       } else {
         try {
-          parsedUrl = new URL2(address);
+          parsedUrl = new URL3(address);
         } catch (e) {
           throw new SyntaxError(`Invalid URL: ${address}`);
         }
@@ -13328,7 +5556,7 @@ var require_websocket = __commonJS({
       }
       const defaultPort = isSecure ? 443 : 80;
       const key = randomBytes(16).toString("base64");
-      const get = isSecure ? https.get : http.get;
+      const request3 = isSecure ? https2.request : http2.request;
       const protocolSet = /* @__PURE__ */ new Set();
       let perMessageDeflate;
       opts.createConnection = isSecure ? tlsConnect : netConnect;
@@ -13345,7 +5573,7 @@ var require_websocket = __commonJS({
       opts.timeout = opts.handshakeTimeout;
       if (opts.perMessageDeflate) {
         perMessageDeflate = new PerMessageDeflate(opts.perMessageDeflate !== true ? opts.perMessageDeflate : {}, false, opts.maxPayload);
-        opts.headers["Sec-WebSocket-Extensions"] = format({
+        opts.headers["Sec-WebSocket-Extensions"] = format2({
           [PerMessageDeflate.extensionName]: perMessageDeflate.offer()
         });
       }
@@ -13373,6 +5601,7 @@ var require_websocket = __commonJS({
         opts.socketPath = parts[0];
         opts.path = parts[1];
       }
+      let req;
       if (opts.followRedirects) {
         if (websocket._redirects === 0) {
           websocket._originalHost = parsedUrl.host;
@@ -13383,7 +5612,7 @@ var require_websocket = __commonJS({
               options.headers[key2.toLowerCase()] = value;
             }
           }
-        } else if (parsedUrl.host !== websocket._originalHost) {
+        } else if (websocket.listenerCount("redirect") === 0 && parsedUrl.host !== websocket._originalHost) {
           delete opts.headers.authorization;
           delete opts.headers.cookie;
           delete opts.headers.host;
@@ -13392,15 +5621,20 @@ var require_websocket = __commonJS({
         if (opts.auth && !options.headers.authorization) {
           options.headers.authorization = "Basic " + Buffer.from(opts.auth).toString("base64");
         }
+        req = websocket._req = request3(opts);
+        if (websocket._redirects) {
+          websocket.emit("redirect", websocket.url, req);
+        }
+      } else {
+        req = websocket._req = request3(opts);
       }
-      let req = websocket._req = get(opts);
       if (opts.timeout) {
         req.on("timeout", () => {
           abortHandshake(websocket, req, "Opening handshake has timed out");
         });
       }
       req.on("error", (err) => {
-        if (req === null || req.aborted)
+        if (req === null || req[kAborted])
           return;
         req = websocket._req = null;
         emitErrorAndClose(websocket, err);
@@ -13416,7 +5650,7 @@ var require_websocket = __commonJS({
           req.abort();
           let addr;
           try {
-            addr = new URL2(location, address);
+            addr = new URL3(location, address);
           } catch (e) {
             const err = new SyntaxError(`Invalid URL: ${location}`);
             emitErrorAndClose(websocket, err);
@@ -13429,7 +5663,7 @@ var require_websocket = __commonJS({
       });
       req.on("upgrade", (res, socket, head) => {
         websocket.emit("upgrade", res);
-        if (websocket.readyState !== WebSocket2.CONNECTING)
+        if (websocket.readyState !== WebSocket3.CONNECTING)
           return;
         req = websocket._req = null;
         const digest = createHash("sha1").update(key + GUID).digest("base64");
@@ -13463,7 +5697,7 @@ var require_websocket = __commonJS({
           }
           let extensions;
           try {
-            extensions = parse(secWebSocketExtensions);
+            extensions = parse2(secWebSocketExtensions);
           } catch (err) {
             const message = "Invalid Sec-WebSocket-Extensions header";
             abortHandshake(websocket, socket, message);
@@ -13490,9 +5724,10 @@ var require_websocket = __commonJS({
           skipUTF8Validation: opts.skipUTF8Validation
         });
       });
+      req.end();
     }
     function emitErrorAndClose(websocket, err) {
-      websocket._readyState = WebSocket2.CLOSING;
+      websocket._readyState = WebSocket3.CLOSING;
       websocket.emit("error", err);
       websocket.emitClose();
     }
@@ -13508,16 +5743,16 @@ var require_websocket = __commonJS({
       return tls.connect(options);
     }
     function abortHandshake(websocket, stream, message) {
-      websocket._readyState = WebSocket2.CLOSING;
+      websocket._readyState = WebSocket3.CLOSING;
       const err = new Error(message);
       Error.captureStackTrace(err, abortHandshake);
       if (stream.setHeader) {
+        stream[kAborted] = true;
         stream.abort();
         if (stream.socket && !stream.socket.destroyed) {
           stream.socket.destroy();
         }
-        stream.once("abort", websocket.emitClose.bind(websocket));
-        websocket.emit("error", err);
+        process.nextTick(emitErrorAndClose, websocket, err);
       } else {
         stream.destroy(err);
         stream.once("error", websocket.emit.bind(websocket, "error"));
@@ -13587,7 +5822,7 @@ var require_websocket = __commonJS({
       this.removeListener("close", socketOnClose);
       this.removeListener("data", socketOnData);
       this.removeListener("end", socketOnEnd);
-      websocket._readyState = WebSocket2.CLOSING;
+      websocket._readyState = WebSocket3.CLOSING;
       let chunk;
       if (!this._readableState.endEmitted && !websocket._closeFrameReceived && !websocket._receiver._writableState.errorEmitted && (chunk = websocket._socket.read()) !== null) {
         websocket._receiver.write(chunk);
@@ -13609,7 +5844,7 @@ var require_websocket = __commonJS({
     }
     function socketOnEnd() {
       const websocket = this[kWebSocket];
-      websocket._readyState = WebSocket2.CLOSING;
+      websocket._readyState = WebSocket3.CLOSING;
       websocket._receiver.end();
       this.end();
     }
@@ -13618,114 +5853,10 @@ var require_websocket = __commonJS({
       this.removeListener("error", socketOnError);
       this.on("error", NOOP);
       if (websocket) {
-        websocket._readyState = WebSocket2.CLOSING;
+        websocket._readyState = WebSocket3.CLOSING;
         this.destroy();
       }
     }
-  }
-});
-
-// node_modules/ws/lib/stream.js
-var require_stream = __commonJS({
-  "node_modules/ws/lib/stream.js"(exports, module) {
-    "use strict";
-    var { Duplex } = __require("stream");
-    function emitClose(stream) {
-      stream.emit("close");
-    }
-    function duplexOnEnd() {
-      if (!this.destroyed && this._writableState.finished) {
-        this.destroy();
-      }
-    }
-    function duplexOnError(err) {
-      this.removeListener("error", duplexOnError);
-      this.destroy();
-      if (this.listenerCount("error") === 0) {
-        this.emit("error", err);
-      }
-    }
-    function createWebSocketStream(ws, options) {
-      let terminateOnDestroy = true;
-      const duplex = new Duplex(__spreadProps(__spreadValues({}, options), {
-        autoDestroy: false,
-        emitClose: false,
-        objectMode: false,
-        writableObjectMode: false
-      }));
-      ws.on("message", function message(msg, isBinary) {
-        const data = !isBinary && duplex._readableState.objectMode ? msg.toString() : msg;
-        if (!duplex.push(data))
-          ws.pause();
-      });
-      ws.once("error", function error(err) {
-        if (duplex.destroyed)
-          return;
-        terminateOnDestroy = false;
-        duplex.destroy(err);
-      });
-      ws.once("close", function close() {
-        if (duplex.destroyed)
-          return;
-        duplex.push(null);
-      });
-      duplex._destroy = function(err, callback) {
-        if (ws.readyState === ws.CLOSED) {
-          callback(err);
-          process.nextTick(emitClose, duplex);
-          return;
-        }
-        let called = false;
-        ws.once("error", function error(err2) {
-          called = true;
-          callback(err2);
-        });
-        ws.once("close", function close() {
-          if (!called)
-            callback(err);
-          process.nextTick(emitClose, duplex);
-        });
-        if (terminateOnDestroy)
-          ws.terminate();
-      };
-      duplex._final = function(callback) {
-        if (ws.readyState === ws.CONNECTING) {
-          ws.once("open", function open() {
-            duplex._final(callback);
-          });
-          return;
-        }
-        if (ws._socket === null)
-          return;
-        if (ws._socket._writableState.finished) {
-          callback();
-          if (duplex._readableState.endEmitted)
-            duplex.destroy();
-        } else {
-          ws._socket.once("finish", function finish() {
-            callback();
-          });
-          ws.close();
-        }
-      };
-      duplex._read = function() {
-        if (ws.isPaused)
-          ws.resume();
-      };
-      duplex._write = function(chunk, encoding, callback) {
-        if (ws.readyState === ws.CONNECTING) {
-          ws.once("open", function open() {
-            duplex._write(chunk, encoding, callback);
-          });
-          return;
-        }
-        ws.send(chunk, callback);
-      };
-      duplex.on("end", duplexOnEnd);
-      duplex.on("error", duplexOnError);
-      return duplex;
-    }
-    module.exports = createWebSocketStream;
   }
 });
 
@@ -13734,7 +5865,7 @@ var require_subprotocol = __commonJS({
   "node_modules/ws/lib/subprotocol.js"(exports, module) {
     "use strict";
     var { tokenChars } = require_validation();
-    function parse(header) {
+    function parse2(header) {
       const protocols = /* @__PURE__ */ new Set();
       let start = -1;
       let end = -1;
@@ -13773,7 +5904,7 @@ var require_subprotocol = __commonJS({
       protocols.add(protocol);
       return protocols;
     }
-    module.exports = { parse };
+    module.exports = { parse: parse2 };
   }
 });
 
@@ -13781,22 +5912,22 @@ var require_subprotocol = __commonJS({
 var require_websocket_server = __commonJS({
   "node_modules/ws/lib/websocket-server.js"(exports, module) {
     "use strict";
-    var EventEmitter = __require("events");
-    var http = __require("http");
-    var https = __require("https");
+    var EventEmitter2 = __require("events");
+    var http2 = __require("http");
+    var https2 = __require("https");
     var net = __require("net");
     var tls = __require("tls");
     var { createHash } = __require("crypto");
     var extension = require_extension();
     var PerMessageDeflate = require_permessage_deflate();
     var subprotocol = require_subprotocol();
-    var WebSocket2 = require_websocket();
+    var WebSocket3 = require_websocket();
     var { GUID, kWebSocket } = require_constants();
     var keyRegex = /^[+/0-9A-Za-z]{22}==$/;
     var RUNNING = 0;
     var CLOSING = 1;
     var CLOSED = 2;
-    var WebSocketServer = class extends EventEmitter {
+    var WebSocketServer2 = class extends EventEmitter2 {
       constructor(options, callback) {
         super();
         options = __spreadValues({
@@ -13812,14 +5943,14 @@ var require_websocket_server = __commonJS({
           host: null,
           path: null,
           port: null,
-          WebSocket: WebSocket2
+          WebSocket: WebSocket3
         }, options);
         if (options.port == null && !options.server && !options.noServer || options.port != null && (options.server || options.noServer) || options.server && options.noServer) {
           throw new TypeError('One and only one of the "port", "server", or "noServer" options must be specified');
         }
         if (options.port != null) {
-          this._server = http.createServer((req, res) => {
-            const body = http.STATUS_CODES[426];
+          this._server = http2.createServer((req, res) => {
+            const body = http2.STATUS_CODES[426];
             res.writeHead(426, {
               "Content-Length": body.length,
               "Content-Type": "text/plain"
@@ -14004,7 +6135,7 @@ var require_websocket_server = __commonJS({
         cb(ws, req);
       }
     };
-    module.exports = WebSocketServer;
+    module.exports = WebSocketServer2;
     function addListeners(server, map) {
       for (const event of Object.keys(map))
         server.on(event, map[event]);
@@ -14023,13 +6154,13 @@ var require_websocket_server = __commonJS({
     }
     function abortHandshake(socket, code, message, headers) {
       if (socket.writable) {
-        message = message || http.STATUS_CODES[code];
+        message = message || http2.STATUS_CODES[code];
         headers = __spreadValues({
           Connection: "close",
           "Content-Type": "text/html",
           "Content-Length": Buffer.byteLength(message)
         }, headers);
-        socket.write(`HTTP/1.1 ${code} ${http.STATUS_CODES[code]}\r
+        socket.write(`HTTP/1.1 ${code} ${http2.STATUS_CODES[code]}\r
 ` + Object.keys(headers).map((h) => `${h}: ${headers[h]}`).join("\r\n") + "\r\n\r\n" + message);
       }
       socket.removeListener("error", socketOnError);
@@ -14038,156 +6169,38 @@ var require_websocket_server = __commonJS({
   }
 });
 
-// node_modules/ws/index.js
-var require_ws = __commonJS({
-  "node_modules/ws/index.js"(exports, module) {
-    "use strict";
-    var WebSocket2 = require_websocket();
-    WebSocket2.createWebSocketStream = require_stream();
-    WebSocket2.Server = require_websocket_server();
-    WebSocket2.Receiver = require_receiver();
-    WebSocket2.Sender = require_sender();
-    WebSocket2.WebSocket = WebSocket2;
-    WebSocket2.WebSocketServer = WebSocket2.Server;
-    module.exports = WebSocket2;
+// node_modules/ws/wrapper.mjs
+var import_stream, import_receiver, import_sender, import_websocket, import_websocket_server, wrapper_default;
+var init_wrapper = __esm({
+  "node_modules/ws/wrapper.mjs"() {
+    import_stream = __toESM(require_stream(), 1);
+    import_receiver = __toESM(require_receiver(), 1);
+    import_sender = __toESM(require_sender(), 1);
+    import_websocket = __toESM(require_websocket(), 1);
+    import_websocket_server = __toESM(require_websocket_server(), 1);
+    wrapper_default = import_websocket.default;
   }
 });
 
-// node_modules/puppeteer/package.json
-var require_package = __commonJS({
-  "node_modules/puppeteer/package.json"(exports, module) {
-    module.exports = {
-      name: "puppeteer",
-      version: "13.4.0",
-      description: "A high-level API to control headless Chrome over the DevTools Protocol",
-      main: "./cjs-entry.js",
-      types: "lib/types.d.ts",
-      repository: "github:puppeteer/puppeteer",
-      engines: {
-        node: ">=10.18.1"
-      },
-      scripts: {
-        "test-browser": "wtr",
-        "test-browser-watch": "wtr --watch",
-        unit: "npm run tsc-cjs && mocha --config mocha-config/puppeteer-unit-tests.js",
-        "unit-debug": "npm run tsc-cjs && mocha --inspect-brk --config mocha-config/puppeteer-unit-tests.js",
-        "unit-with-coverage": "cross-env COVERAGE=1 npm run unit",
-        "assert-unit-coverage": "cross-env COVERAGE=1 mocha --config mocha-config/coverage-tests.js",
-        funit: "cross-env PUPPETEER_PRODUCT=firefox npm run unit",
-        test: "npm run tsc && npm run lint --silent && npm run unit-with-coverage && npm run test-browser",
-        prepare: "node typescript-if-required.js && husky install",
-        prepublishOnly: "npm run build",
-        "dev-install": "npm run tsc && node install.js",
-        install: "node install.js",
-        eslint: '([ "$CI" = true ] && eslint --ext js --ext ts --quiet -f codeframe . || eslint --ext js --ext ts .)',
-        "eslint-fix": "eslint --ext js --ext ts --fix .",
-        commitlint: "commitlint --from=HEAD~1",
-        prettier: "prettier --check .",
-        "prettier-fix": "prettier --write .",
-        lint: "npm run eslint && npm run build && npm run doc && npm run prettier",
-        doc: "node utils/doclint/cli.js",
-        "clean-lib": "rimraf lib",
-        build: "npm run tsc && npm run generate-d-ts",
-        tsc: "npm run clean-lib && tsc --version && npm run tsc-cjs && npm run tsc-esm",
-        "tsc-cjs": "tsc -b src/tsconfig.cjs.json",
-        "tsc-esm": "tsc -b src/tsconfig.esm.json",
-        "apply-next-version": "node utils/apply_next_version.js",
-        "test-install": "scripts/test-install.sh",
-        "clean-docs": "rimraf website/docs && rimraf docs-api-json",
-        "generate-d-ts": "npm run clean-docs && api-extractor run --local --verbose",
-        "generate-docs": "npm run generate-d-ts && api-documenter markdown -i docs-api-json -o website/docs && node utils/remove-tag.js",
-        "ensure-correct-devtools-protocol-revision": "ts-node -s scripts/ensure-correct-devtools-protocol-package",
-        "ensure-pinned-deps": "ts-node -s scripts/ensure-pinned-deps",
-        "test-types-file": "ts-node -s scripts/test-ts-definition-files.ts",
-        release: "node utils/remove_version_suffix.js && standard-version --commit-all",
-        "build-docs-production": "cd website && npm install && npm run build"
-      },
-      files: [
-        "lib/types.d.ts",
-        "lib/**/*.d.ts",
-        "lib/**/*.d.ts.map",
-        "lib/**/*.js",
-        "lib/**/*.js.map",
-        "install.js",
-        "typescript-if-required.js",
-        "cjs-entry.js",
-        "cjs-entry-core.js"
-      ],
-      author: "The Chromium Authors",
-      license: "Apache-2.0",
-      dependencies: {
-        "cross-fetch": "3.1.5",
-        debug: "4.3.3",
-        "devtools-protocol": "0.0.960912",
-        "extract-zip": "2.0.1",
-        "https-proxy-agent": "5.0.0",
-        "pkg-dir": "4.2.0",
-        progress: "2.0.3",
-        "proxy-from-env": "1.1.0",
-        rimraf: "3.0.2",
-        "tar-fs": "2.1.1",
-        "unbzip2-stream": "1.4.3",
-        ws: "8.5.0"
-      },
-      devDependencies: {
-        "@commitlint/cli": "16.2.1",
-        "@commitlint/config-conventional": "16.2.1",
-        "@microsoft/api-documenter": "7.15.3",
-        "@microsoft/api-extractor": "7.19.4",
-        "@types/debug": "4.1.7",
-        "@types/mime": "2.0.3",
-        "@types/mocha": "9.1.0",
-        "@types/node": "17.0.19",
-        "@types/progress": "2.0.5",
-        "@types/proxy-from-env": "1.0.1",
-        "@types/rimraf": "3.0.2",
-        "@types/sinon": "10.0.11",
-        "@types/tar-fs": "2.0.1",
-        "@types/ws": "8.2.3",
-        "@typescript-eslint/eslint-plugin": "5.12.1",
-        "@typescript-eslint/parser": "5.12.1",
-        "@web/test-runner": "0.13.27",
-        commonmark: "0.30.0",
-        "cross-env": "7.0.3",
-        eslint: "8.9.0",
-        "eslint-config-prettier": "8.4.0",
-        "eslint-plugin-import": "2.25.4",
-        "eslint-plugin-mocha": "10.0.3",
-        "eslint-plugin-prettier": "4.0.0",
-        "eslint-plugin-unicorn": "41.0.0",
-        esprima: "4.0.1",
-        expect: "25.2.7",
-        husky: "7.0.4",
-        "jpeg-js": "0.4.3",
-        mime: "3.0.0",
-        minimist: "1.2.5",
-        mocha: "9.2.1",
-        ncp: "2.0.0",
-        pixelmatch: "5.2.1",
-        pngjs: "6.0.0",
-        prettier: "2.5.1",
-        sinon: "13.0.1",
-        "source-map-support": "0.5.21",
-        "standard-version": "9.3.2",
-        "text-diff": "1.0.1",
-        "ts-node": "10.5.0",
-        typescript: "4.5.5"
-      }
-    };
+// node_modules/puppeteer/lib/esm/puppeteer/generated/version.js
+var packageVersion;
+var init_version = __esm({
+  "node_modules/puppeteer/lib/esm/puppeteer/generated/version.js"() {
+    packageVersion = "14.1.1";
   }
 });
 
-// node_modules/puppeteer/lib/cjs/puppeteer/node/NodeWebSocketTransport.js
-var require_NodeWebSocketTransport = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/node/NodeWebSocketTransport.js"(exports) {
-    "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
-      return mod && mod.__esModule ? mod : { "default": mod };
-    };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NodeWebSocketTransport = void 0;
-    var ws_1 = __importDefault(require_ws());
-    var NodeWebSocketTransport = class {
+// node_modules/puppeteer/lib/esm/puppeteer/node/NodeWebSocketTransport.js
+var NodeWebSocketTransport_exports = {};
+__export(NodeWebSocketTransport_exports, {
+  NodeWebSocketTransport: () => NodeWebSocketTransport
+});
+var NodeWebSocketTransport;
+var init_NodeWebSocketTransport = __esm({
+  "node_modules/puppeteer/lib/esm/puppeteer/node/NodeWebSocketTransport.js"() {
+    init_wrapper();
+    init_version();
+    NodeWebSocketTransport = class {
       constructor(ws) {
         this._ws = ws;
         this._ws.addEventListener("message", (event) => {
@@ -14204,17 +6217,16 @@ var require_NodeWebSocketTransport = __commonJS({
         this.onclose = null;
       }
       static create(url) {
-        const pkg = require_package();
-        return new Promise((resolve, reject) => {
-          const ws = new ws_1.default(url, [], {
+        return new Promise((resolve3, reject) => {
+          const ws = new wrapper_default(url, [], {
             followRedirects: true,
             perMessageDeflate: false,
             maxPayload: 256 * 1024 * 1024,
             headers: {
-              "User-Agent": `Puppeteer ${pkg.version}`
+              "User-Agent": `Puppeteer ${packageVersion}`
             }
           });
-          ws.addEventListener("open", () => resolve(new NodeWebSocketTransport(ws)));
+          ws.addEventListener("open", () => resolve3(new NodeWebSocketTransport(ws)));
           ws.addEventListener("error", reject);
         });
       }
@@ -14225,17 +6237,18 @@ var require_NodeWebSocketTransport = __commonJS({
         this._ws.close();
       }
     };
-    exports.NodeWebSocketTransport = NodeWebSocketTransport;
   }
 });
 
-// node_modules/puppeteer/lib/cjs/puppeteer/common/BrowserWebSocketTransport.js
-var require_BrowserWebSocketTransport = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/BrowserWebSocketTransport.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.BrowserWebSocketTransport = void 0;
-    var BrowserWebSocketTransport = class {
+// node_modules/puppeteer/lib/esm/puppeteer/common/BrowserWebSocketTransport.js
+var BrowserWebSocketTransport_exports = {};
+__export(BrowserWebSocketTransport_exports, {
+  BrowserWebSocketTransport: () => BrowserWebSocketTransport
+});
+var BrowserWebSocketTransport;
+var init_BrowserWebSocketTransport = __esm({
+  "node_modules/puppeteer/lib/esm/puppeteer/common/BrowserWebSocketTransport.js"() {
+    BrowserWebSocketTransport = class {
       constructor(ws) {
         this._ws = ws;
         this._ws.addEventListener("message", (event) => {
@@ -14252,9 +6265,9 @@ var require_BrowserWebSocketTransport = __commonJS({
         this.onclose = null;
       }
       static create(url) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve3, reject) => {
           const ws = new WebSocket(url);
-          ws.addEventListener("open", () => resolve(new BrowserWebSocketTransport(ws)));
+          ws.addEventListener("open", () => resolve3(new BrowserWebSocketTransport(ws)));
           ws.addEventListener("error", reject);
         });
       }
@@ -14265,156 +6278,6 @@ var require_BrowserWebSocketTransport = __commonJS({
         this._ws.close();
       }
     };
-    exports.BrowserWebSocketTransport = BrowserWebSocketTransport;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/BrowserConnector.js
-var require_BrowserConnector = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/BrowserConnector.js"(exports) {
-    "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      Object.defineProperty(o, k2, { enumerable: true, get: function() {
-        return m[k];
-      } });
-    } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      o[k2] = m[k];
-    });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
-      Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
-      o["default"] = v;
-    });
-    var __importStar = exports && exports.__importStar || function(mod) {
-      if (mod && mod.__esModule)
-        return mod;
-      var result = {};
-      if (mod != null) {
-        for (var k in mod)
-          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
-            __createBinding(result, mod, k);
-      }
-      __setModuleDefault(result, mod);
-      return result;
-    };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.connectToBrowser = void 0;
-    var Browser_js_1 = require_Browser();
-    var assert_js_1 = require_assert();
-    var helper_js_1 = require_helper();
-    var Connection_js_1 = require_Connection();
-    var environment_js_1 = require_environment();
-    var fetch_js_1 = require_fetch();
-    var getWebSocketTransportClass = async () => {
-      return environment_js_1.isNode ? (await Promise.resolve().then(() => __importStar(require_NodeWebSocketTransport()))).NodeWebSocketTransport : (await Promise.resolve().then(() => __importStar(require_BrowserWebSocketTransport()))).BrowserWebSocketTransport;
-    };
-    var connectToBrowser = async (options) => {
-      const { browserWSEndpoint, browserURL, ignoreHTTPSErrors = false, defaultViewport = { width: 800, height: 600 }, transport, slowMo = 0, targetFilter } = options;
-      (0, assert_js_1.assert)(Number(!!browserWSEndpoint) + Number(!!browserURL) + Number(!!transport) === 1, "Exactly one of browserWSEndpoint, browserURL or transport must be passed to puppeteer.connect");
-      let connection = null;
-      if (transport) {
-        connection = new Connection_js_1.Connection("", transport, slowMo);
-      } else if (browserWSEndpoint) {
-        const WebSocketClass = await getWebSocketTransportClass();
-        const connectionTransport = await WebSocketClass.create(browserWSEndpoint);
-        connection = new Connection_js_1.Connection(browserWSEndpoint, connectionTransport, slowMo);
-      } else if (browserURL) {
-        const connectionURL = await getWSEndpoint(browserURL);
-        const WebSocketClass = await getWebSocketTransportClass();
-        const connectionTransport = await WebSocketClass.create(connectionURL);
-        connection = new Connection_js_1.Connection(connectionURL, connectionTransport, slowMo);
-      }
-      const { browserContextIds } = await connection.send("Target.getBrowserContexts");
-      return Browser_js_1.Browser.create(connection, browserContextIds, ignoreHTTPSErrors, defaultViewport, null, () => connection.send("Browser.close").catch(helper_js_1.debugError), targetFilter);
-    };
-    exports.connectToBrowser = connectToBrowser;
-    async function getWSEndpoint(browserURL) {
-      const endpointURL = new URL("/json/version", browserURL);
-      const fetch = await (0, fetch_js_1.getFetch)();
-      try {
-        const result = await fetch(endpointURL.toString(), {
-          method: "GET"
-        });
-        if (!result.ok) {
-          throw new Error(`HTTP ${result.statusText}`);
-        }
-        const data = await result.json();
-        return data.webSocketDebuggerUrl;
-      } catch (error) {
-        error.message = `Failed to fetch browser webSocket URL from ${endpointURL}: ` + error.message;
-        throw error;
-      }
-    }
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/NetworkConditions.js
-var require_NetworkConditions = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/NetworkConditions.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.networkConditions = void 0;
-    exports.networkConditions = {
-      "Slow 3G": {
-        download: 500 * 1e3 / 8 * 0.8,
-        upload: 500 * 1e3 / 8 * 0.8,
-        latency: 400 * 5
-      },
-      "Fast 3G": {
-        download: 1.6 * 1e3 * 1e3 / 8 * 0.9,
-        upload: 750 * 1e3 / 8 * 0.9,
-        latency: 150 * 3.75
-      }
-    };
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/common/Puppeteer.js
-var require_Puppeteer = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/common/Puppeteer.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Puppeteer = void 0;
-    var Errors_js_1 = require_Errors();
-    var DeviceDescriptors_js_1 = require_DeviceDescriptors();
-    var QueryHandler_js_1 = require_QueryHandler();
-    var BrowserConnector_js_1 = require_BrowserConnector();
-    var NetworkConditions_js_1 = require_NetworkConditions();
-    var Puppeteer = class {
-      constructor(settings) {
-        this._changedProduct = false;
-        this._isPuppeteerCore = settings.isPuppeteerCore;
-      }
-      connect(options) {
-        return (0, BrowserConnector_js_1.connectToBrowser)(options);
-      }
-      get devices() {
-        return DeviceDescriptors_js_1.devicesMap;
-      }
-      get errors() {
-        return Errors_js_1.puppeteerErrors;
-      }
-      get networkConditions() {
-        return NetworkConditions_js_1.networkConditions;
-      }
-      registerCustomQueryHandler(name, queryHandler) {
-        (0, QueryHandler_js_1.registerCustomQueryHandler)(name, queryHandler);
-      }
-      unregisterCustomQueryHandler(name) {
-        (0, QueryHandler_js_1.unregisterCustomQueryHandler)(name);
-      }
-      customQueryHandlerNames() {
-        return (0, QueryHandler_js_1.customQueryHandlerNames)();
-      }
-      clearCustomQueryHandlers() {
-        (0, QueryHandler_js_1.clearCustomQueryHandlers)();
-      }
-    };
-    exports.Puppeteer = Puppeteer;
   }
 });
 
@@ -14594,7 +6457,7 @@ var require_pump = __commonJS({
   "node_modules/pump/index.js"(exports, module) {
     var once = require_once();
     var eos = require_end_of_stream();
-    var fs = __require("fs");
+    var fs4 = __require("fs");
     var noop = function() {
     };
     var ancient = /^v?\.0/.test(process.version);
@@ -14604,9 +6467,9 @@ var require_pump = __commonJS({
     var isFS = function(stream) {
       if (!ancient)
         return false;
-      if (!fs)
+      if (!fs4)
         return false;
-      return (stream instanceof (fs.ReadStream || noop) || stream instanceof (fs.WriteStream || noop)) && isFn(stream.close);
+      return (stream instanceof (fs4.ReadStream || noop) || stream instanceof (fs4.WriteStream || noop)) && isFn(stream.close);
     };
     var isRequest = function(stream) {
       return stream.setHeader && isFn(stream.abort);
@@ -14740,7 +6603,7 @@ var require_get_stream = __commonJS({
       }, options);
       const { maxBuffer } = options;
       let stream;
-      await new Promise((resolve, reject) => {
+      await new Promise((resolve3, reject) => {
         const rejectPromise = (error) => {
           if (error && stream.getBufferedLength() <= BufferConstants.MAX_LENGTH) {
             error.bufferedData = stream.getBufferedValue();
@@ -14752,7 +6615,7 @@ var require_get_stream = __commonJS({
             rejectPromise(error);
             return;
           }
-          resolve();
+          resolve3();
         });
         stream.on("data", () => {
           if (stream.getBufferedLength() > maxBuffer) {
@@ -14829,22 +6692,22 @@ var require_pend = __commonJS({
 // node_modules/fd-slicer/index.js
 var require_fd_slicer = __commonJS({
   "node_modules/fd-slicer/index.js"(exports) {
-    var fs = __require("fs");
-    var util = __require("util");
+    var fs4 = __require("fs");
+    var util2 = __require("util");
     var stream = __require("stream");
     var Readable = stream.Readable;
     var Writable = stream.Writable;
     var PassThrough = stream.PassThrough;
     var Pend = require_pend();
-    var EventEmitter = __require("events").EventEmitter;
+    var EventEmitter2 = __require("events").EventEmitter;
     exports.createFromBuffer = createFromBuffer;
     exports.createFromFd = createFromFd;
     exports.BufferSlicer = BufferSlicer;
     exports.FdSlicer = FdSlicer;
-    util.inherits(FdSlicer, EventEmitter);
+    util2.inherits(FdSlicer, EventEmitter2);
     function FdSlicer(fd, options) {
       options = options || {};
-      EventEmitter.call(this);
+      EventEmitter2.call(this);
       this.fd = fd;
       this.pend = new Pend();
       this.pend.max = 1;
@@ -14854,7 +6717,7 @@ var require_fd_slicer = __commonJS({
     FdSlicer.prototype.read = function(buffer, offset, length, position, callback) {
       var self = this;
       self.pend.go(function(cb) {
-        fs.read(self.fd, buffer, offset, length, position, function(err, bytesRead, buffer2) {
+        fs4.read(self.fd, buffer, offset, length, position, function(err, bytesRead, buffer2) {
           cb();
           callback(err, bytesRead, buffer2);
         });
@@ -14863,7 +6726,7 @@ var require_fd_slicer = __commonJS({
     FdSlicer.prototype.write = function(buffer, offset, length, position, callback) {
       var self = this;
       self.pend.go(function(cb) {
-        fs.write(self.fd, buffer, offset, length, position, function(err, written, buffer2) {
+        fs4.write(self.fd, buffer, offset, length, position, function(err, written, buffer2) {
           cb();
           callback(err, written, buffer2);
         });
@@ -14886,7 +6749,7 @@ var require_fd_slicer = __commonJS({
       if (self.refCount < 0)
         throw new Error("invalid unref");
       if (self.autoClose) {
-        fs.close(self.fd, onCloseDone);
+        fs4.close(self.fd, onCloseDone);
       }
       function onCloseDone(err) {
         if (err) {
@@ -14896,7 +6759,7 @@ var require_fd_slicer = __commonJS({
         }
       }
     };
-    util.inherits(ReadStream, Readable);
+    util2.inherits(ReadStream, Readable);
     function ReadStream(context, options) {
       options = options || {};
       Readable.call(this, options);
@@ -14925,7 +6788,7 @@ var require_fd_slicer = __commonJS({
         if (self.destroyed)
           return cb();
         var buffer = new Buffer(toRead);
-        fs.read(self.context.fd, buffer, 0, toRead, self.pos, function(err, bytesRead) {
+        fs4.read(self.context.fd, buffer, 0, toRead, self.pos, function(err, bytesRead) {
           if (err) {
             self.destroy(err);
           } else if (bytesRead === 0) {
@@ -14948,7 +6811,7 @@ var require_fd_slicer = __commonJS({
       this.emit("error", err);
       this.context.unref();
     };
-    util.inherits(WriteStream, Writable);
+    util2.inherits(WriteStream, Writable);
     function WriteStream(context, options) {
       options = options || {};
       Writable.call(this, options);
@@ -14975,7 +6838,7 @@ var require_fd_slicer = __commonJS({
       self.context.pend.go(function(cb) {
         if (self.destroyed)
           return cb();
-        fs.write(self.context.fd, buffer, 0, buffer.length, self.pos, function(err2, bytes) {
+        fs4.write(self.context.fd, buffer, 0, buffer.length, self.pos, function(err2, bytes) {
           if (err2) {
             self.destroy();
             cb();
@@ -14996,9 +6859,9 @@ var require_fd_slicer = __commonJS({
       this.destroyed = true;
       this.context.unref();
     };
-    util.inherits(BufferSlicer, EventEmitter);
+    util2.inherits(BufferSlicer, EventEmitter2);
     function BufferSlicer(buffer, options) {
-      EventEmitter.call(this);
+      EventEmitter2.call(this);
       options = options || {};
       this.refCount = 0;
       this.buffer = buffer;
@@ -15404,12 +7267,12 @@ var require_buffer_crc32 = __commonJS({
 // node_modules/yauzl/index.js
 var require_yauzl = __commonJS({
   "node_modules/yauzl/index.js"(exports) {
-    var fs = __require("fs");
+    var fs4 = __require("fs");
     var zlib = __require("zlib");
     var fd_slicer = require_fd_slicer();
     var crc32 = require_buffer_crc32();
-    var util = __require("util");
-    var EventEmitter = __require("events").EventEmitter;
+    var util2 = __require("util");
+    var EventEmitter2 = __require("events").EventEmitter;
     var Transform = __require("stream").Transform;
     var PassThrough = __require("stream").PassThrough;
     var Writable = __require("stream").Writable;
@@ -15422,7 +7285,7 @@ var require_yauzl = __commonJS({
     exports.ZipFile = ZipFile;
     exports.Entry = Entry;
     exports.RandomAccessReader = RandomAccessReader;
-    function open(path, options, callback) {
+    function open(path4, options, callback) {
       if (typeof options === "function") {
         callback = options;
         options = null;
@@ -15441,12 +7304,12 @@ var require_yauzl = __commonJS({
         options.strictFileNames = false;
       if (callback == null)
         callback = defaultCallback;
-      fs.open(path, "r", function(err, fd) {
+      fs4.open(path4, "r", function(err, fd) {
         if (err)
           return callback(err);
         fromFd(fd, options, function(err2, zipfile) {
           if (err2)
-            fs.close(fd, defaultCallback);
+            fs4.close(fd, defaultCallback);
           callback(err2, zipfile);
         });
       });
@@ -15470,7 +7333,7 @@ var require_yauzl = __commonJS({
         options.strictFileNames = false;
       if (callback == null)
         callback = defaultCallback;
-      fs.fstat(fd, function(err, stats) {
+      fs4.fstat(fd, function(err, stats) {
         if (err)
           return callback(err);
         var reader = fd_slicer.createFromFd(fd, { autoClose: true });
@@ -15575,10 +7438,10 @@ var require_yauzl = __commonJS({
         callback(new Error("end of central directory record signature not found"));
       });
     }
-    util.inherits(ZipFile, EventEmitter);
+    util2.inherits(ZipFile, EventEmitter2);
     function ZipFile(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings, validateEntrySizes, strictFileNames) {
       var self = this;
-      EventEmitter.call(self);
+      EventEmitter2.call(self);
       self.reader = reader;
       self.reader.on("error", function(err) {
         emitError(self, err);
@@ -15949,7 +7812,7 @@ var require_yauzl = __commonJS({
         callback();
       });
     }
-    util.inherits(AssertByteCountStream, Transform);
+    util2.inherits(AssertByteCountStream, Transform);
     function AssertByteCountStream(byteCount) {
       Transform.call(this);
       this.actualByteCount = 0;
@@ -15970,9 +7833,9 @@ var require_yauzl = __commonJS({
       }
       cb();
     };
-    util.inherits(RandomAccessReader, EventEmitter);
+    util2.inherits(RandomAccessReader, EventEmitter2);
     function RandomAccessReader() {
-      EventEmitter.call(this);
+      EventEmitter2.call(this);
       this.refCount = 0;
     }
     RandomAccessReader.prototype.ref = function() {
@@ -16051,7 +7914,7 @@ var require_yauzl = __commonJS({
     RandomAccessReader.prototype.close = function(callback) {
       setImmediate(callback);
     };
-    util.inherits(RefUnrefFilter, PassThrough);
+    util2.inherits(RefUnrefFilter, PassThrough);
     function RefUnrefFilter(context) {
       PassThrough.call(this);
       this.context = context;
@@ -16105,25 +7968,25 @@ var require_yauzl = __commonJS({
 // node_modules/extract-zip/index.js
 var require_extract_zip = __commonJS({
   "node_modules/extract-zip/index.js"(exports, module) {
-    var debug = require_src()("extract-zip");
-    var { createWriteStream, promises: fs } = __require("fs");
+    var debug2 = require_src()("extract-zip");
+    var { createWriteStream: createWriteStream2, promises: fs4 } = __require("fs");
     var getStream = require_get_stream();
-    var path = __require("path");
-    var { promisify } = __require("util");
+    var path4 = __require("path");
+    var { promisify: promisify4 } = __require("util");
     var stream = __require("stream");
     var yauzl = require_yauzl();
-    var openZip = promisify(yauzl.open);
-    var pipeline = promisify(stream.pipeline);
+    var openZip = promisify4(yauzl.open);
+    var pipeline = promisify4(stream.pipeline);
     var Extractor = class {
       constructor(zipPath, opts) {
         this.zipPath = zipPath;
         this.opts = opts;
       }
       async extract() {
-        debug("opening", this.zipPath, "with opts", this.opts);
+        debug2("opening", this.zipPath, "with opts", this.opts);
         this.zipfile = await openZip(this.zipPath, { lazyEntries: true });
         this.canceled = false;
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve3, reject) => {
           this.zipfile.on("error", (err) => {
             this.canceled = true;
             reject(err);
@@ -16131,30 +7994,30 @@ var require_extract_zip = __commonJS({
           this.zipfile.readEntry();
           this.zipfile.on("close", () => {
             if (!this.canceled) {
-              debug("zip extraction complete");
-              resolve();
+              debug2("zip extraction complete");
+              resolve3();
             }
           });
           this.zipfile.on("entry", async (entry) => {
             if (this.canceled) {
-              debug("skipping entry", entry.fileName, { cancelled: this.canceled });
+              debug2("skipping entry", entry.fileName, { cancelled: this.canceled });
               return;
             }
-            debug("zipfile entry", entry.fileName);
+            debug2("zipfile entry", entry.fileName);
             if (entry.fileName.startsWith("__MACOSX/")) {
               this.zipfile.readEntry();
               return;
             }
-            const destDir = path.dirname(path.join(this.opts.dir, entry.fileName));
+            const destDir = path4.dirname(path4.join(this.opts.dir, entry.fileName));
             try {
-              await fs.mkdir(destDir, { recursive: true });
-              const canonicalDestDir = await fs.realpath(destDir);
-              const relativeDestDir = path.relative(this.opts.dir, canonicalDestDir);
-              if (relativeDestDir.split(path.sep).includes("..")) {
+              await fs4.mkdir(destDir, { recursive: true });
+              const canonicalDestDir = await fs4.realpath(destDir);
+              const relativeDestDir = path4.relative(this.opts.dir, canonicalDestDir);
+              if (relativeDestDir.split(path4.sep).includes("..")) {
                 throw new Error(`Out of bound path "${canonicalDestDir}" found while processing file ${entry.fileName}`);
               }
               await this.extractEntry(entry);
-              debug("finished processing", entry.fileName);
+              debug2("finished processing", entry.fileName);
               this.zipfile.readEntry();
             } catch (err) {
               this.canceled = true;
@@ -16166,13 +8029,13 @@ var require_extract_zip = __commonJS({
       }
       async extractEntry(entry) {
         if (this.canceled) {
-          debug("skipping entry extraction", entry.fileName, { cancelled: this.canceled });
+          debug2("skipping entry extraction", entry.fileName, { cancelled: this.canceled });
           return;
         }
         if (this.opts.onEntry) {
           this.opts.onEntry(entry, this.zipfile);
         }
-        const dest = path.join(this.opts.dir, entry.fileName);
+        const dest = path4.join(this.opts.dir, entry.fileName);
         const mode = entry.externalFileAttributes >> 16 & 65535;
         const IFMT = 61440;
         const IFDIR = 16384;
@@ -16185,25 +8048,25 @@ var require_extract_zip = __commonJS({
         const madeBy = entry.versionMadeBy >> 8;
         if (!isDir)
           isDir = madeBy === 0 && entry.externalFileAttributes === 16;
-        debug("extracting entry", { filename: entry.fileName, isDir, isSymlink: symlink });
+        debug2("extracting entry", { filename: entry.fileName, isDir, isSymlink: symlink });
         const procMode = this.getExtractedMode(mode, isDir) & 511;
-        const destDir = isDir ? dest : path.dirname(dest);
+        const destDir = isDir ? dest : path4.dirname(dest);
         const mkdirOptions = { recursive: true };
         if (isDir) {
           mkdirOptions.mode = procMode;
         }
-        debug("mkdir", __spreadValues({ dir: destDir }, mkdirOptions));
-        await fs.mkdir(destDir, mkdirOptions);
+        debug2("mkdir", __spreadValues({ dir: destDir }, mkdirOptions));
+        await fs4.mkdir(destDir, mkdirOptions);
         if (isDir)
           return;
-        debug("opening read stream", dest);
-        const readStream = await promisify(this.zipfile.openReadStream.bind(this.zipfile))(entry);
+        debug2("opening read stream", dest);
+        const readStream = await promisify4(this.zipfile.openReadStream.bind(this.zipfile))(entry);
         if (symlink) {
           const link = await getStream(readStream);
-          debug("creating symlink", link, dest);
-          await fs.symlink(link, dest);
+          debug2("creating symlink", link, dest);
+          await fs4.symlink(link, dest);
         } else {
-          await pipeline(readStream, createWriteStream(dest, { mode: procMode }));
+          await pipeline(readStream, createWriteStream2(dest, { mode: procMode }));
         }
       }
       getExtractedMode(entryMode, isDir) {
@@ -16229,12 +8092,12 @@ var require_extract_zip = __commonJS({
       }
     };
     module.exports = async function(zipPath, opts) {
-      debug("creating target directory", opts.dir);
-      if (!path.isAbsolute(opts.dir)) {
+      debug2("creating target directory", opts.dir);
+      if (!path4.isAbsolute(opts.dir)) {
         throw new Error("Target directory is expected to be absolute");
       }
-      await fs.mkdir(opts.dir, { recursive: true });
-      opts.dir = await fs.realpath(opts.dir);
+      await fs4.mkdir(opts.dir, { recursive: true });
+      opts.dir = await fs4.realpath(opts.dir);
       return new Extractor(zipPath, opts).extract();
     };
   }
@@ -16245,7 +8108,7 @@ var require_old = __commonJS({
   "node_modules/fs.realpath/old.js"(exports) {
     var pathModule = __require("path");
     var isWindows = process.platform === "win32";
-    var fs = __require("fs");
+    var fs4 = __require("fs");
     var DEBUG = process.env.NODE_DEBUG && /fs/.test(process.env.NODE_DEBUG);
     function rethrow() {
       var callback;
@@ -16310,7 +8173,7 @@ var require_old = __commonJS({
         base = m[0];
         previous = "";
         if (isWindows && !knownHard[base]) {
-          fs.lstatSync(base);
+          fs4.lstatSync(base);
           knownHard[base] = true;
         }
       }
@@ -16328,8 +8191,8 @@ var require_old = __commonJS({
         if (cache && Object.prototype.hasOwnProperty.call(cache, base)) {
           resolvedLink = cache[base];
         } else {
-          var stat = fs.lstatSync(base);
-          if (!stat.isSymbolicLink()) {
+          var stat2 = fs4.lstatSync(base);
+          if (!stat2.isSymbolicLink()) {
             knownHard[base] = true;
             if (cache)
               cache[base] = base;
@@ -16337,14 +8200,14 @@ var require_old = __commonJS({
           }
           var linkTarget = null;
           if (!isWindows) {
-            var id = stat.dev.toString(32) + ":" + stat.ino.toString(32);
+            var id = stat2.dev.toString(32) + ":" + stat2.ino.toString(32);
             if (seenLinks.hasOwnProperty(id)) {
               linkTarget = seenLinks[id];
             }
           }
           if (linkTarget === null) {
-            fs.statSync(base);
-            linkTarget = fs.readlinkSync(base);
+            fs4.statSync(base);
+            linkTarget = fs4.readlinkSync(base);
           }
           resolvedLink = pathModule.resolve(previous, linkTarget);
           if (cache)
@@ -16381,7 +8244,7 @@ var require_old = __commonJS({
         base = m[0];
         previous = "";
         if (isWindows && !knownHard[base]) {
-          fs.lstat(base, function(err) {
+          fs4.lstat(base, function(err) {
             if (err)
               return cb(err);
             knownHard[base] = true;
@@ -16409,27 +8272,27 @@ var require_old = __commonJS({
         if (cache && Object.prototype.hasOwnProperty.call(cache, base)) {
           return gotResolvedLink(cache[base]);
         }
-        return fs.lstat(base, gotStat);
+        return fs4.lstat(base, gotStat);
       }
-      function gotStat(err, stat) {
+      function gotStat(err, stat2) {
         if (err)
           return cb(err);
-        if (!stat.isSymbolicLink()) {
+        if (!stat2.isSymbolicLink()) {
           knownHard[base] = true;
           if (cache)
             cache[base] = base;
           return process.nextTick(LOOP);
         }
         if (!isWindows) {
-          var id = stat.dev.toString(32) + ":" + stat.ino.toString(32);
+          var id = stat2.dev.toString(32) + ":" + stat2.ino.toString(32);
           if (seenLinks.hasOwnProperty(id)) {
             return gotTarget(null, seenLinks[id], base);
           }
         }
-        fs.stat(base, function(err2) {
+        fs4.stat(base, function(err2) {
           if (err2)
             return cb(err2);
-          fs.readlink(base, function(err3, target) {
+          fs4.readlink(base, function(err3, target) {
             if (!isWindows)
               seenLinks[id] = target;
             gotTarget(err3, target);
@@ -16461,9 +8324,9 @@ var require_fs = __commonJS({
     realpath.realpathSync = realpathSync;
     realpath.monkeypatch = monkeypatch;
     realpath.unmonkeypatch = unmonkeypatch;
-    var fs = __require("fs");
-    var origRealpath = fs.realpath;
-    var origRealpathSync = fs.realpathSync;
+    var fs4 = __require("fs");
+    var origRealpath = fs4.realpath;
+    var origRealpathSync = fs4.realpathSync;
     var version = process.version;
     var ok = /^v[0-5]\./.test(version);
     var old = require_old();
@@ -16501,12 +8364,12 @@ var require_fs = __commonJS({
       }
     }
     function monkeypatch() {
-      fs.realpath = realpath;
-      fs.realpathSync = realpathSync;
+      fs4.realpath = realpath;
+      fs4.realpathSync = realpathSync;
     }
     function unmonkeypatch() {
-      fs.realpath = origRealpath;
-      fs.realpathSync = origRealpathSync;
+      fs4.realpath = origRealpath;
+      fs4.realpathSync = origRealpathSync;
     }
   }
 });
@@ -16741,7 +8604,7 @@ var require_minimatch = __commonJS({
   "node_modules/minimatch/minimatch.js"(exports, module) {
     module.exports = minimatch;
     minimatch.Minimatch = Minimatch;
-    var path = function() {
+    var path4 = function() {
       try {
         return __require("path");
       } catch (e) {
@@ -16749,7 +8612,7 @@ var require_minimatch = __commonJS({
     }() || {
       sep: "/"
     };
-    minimatch.sep = path.sep;
+    minimatch.sep = path4.sep;
     var GLOBSTAR = minimatch.GLOBSTAR = Minimatch.GLOBSTAR = {};
     var expand = require_brace_expansion();
     var plTypes = {
@@ -16840,8 +8703,8 @@ var require_minimatch = __commonJS({
       if (!options)
         options = {};
       pattern = pattern.trim();
-      if (!options.allowWindowsEscape && path.sep !== "/") {
-        pattern = pattern.split(path.sep).join("/");
+      if (!options.allowWindowsEscape && path4.sep !== "/") {
+        pattern = pattern.split(path4.sep).join("/");
       }
       this.options = options;
       this.set = [];
@@ -16870,7 +8733,7 @@ var require_minimatch = __commonJS({
       this.parseNegate();
       var set = this.globSet = this.braceExpand();
       if (options.debug)
-        this.debug = function debug() {
+        this.debug = function debug2() {
           console.error.apply(console, arguments);
         };
       this.debug(this.pattern, set);
@@ -16932,9 +8795,9 @@ var require_minimatch = __commonJS({
         throw new TypeError("pattern is too long");
       }
     };
-    Minimatch.prototype.parse = parse;
+    Minimatch.prototype.parse = parse2;
     var SUBPARSE = {};
-    function parse(pattern, isSub) {
+    function parse2(pattern, isSub) {
       assertValidPattern(pattern);
       var options = this.options;
       if (pattern === "**") {
@@ -17218,8 +9081,8 @@ var require_minimatch = __commonJS({
       if (f === "/" && partial)
         return true;
       var options = this.options;
-      if (path.sep !== "/") {
-        f = f.split(path.sep).join("/");
+      if (path4.sep !== "/") {
+        f = f.split(path4.sep).join("/");
       }
       f = f.split(slashSplit);
       this.debug(this.pattern, "split", f);
@@ -17359,14 +9222,14 @@ var require_inherits_browser = __commonJS({
 var require_inherits = __commonJS({
   "node_modules/inherits/inherits.js"(exports, module) {
     try {
-      util = __require("util");
-      if (typeof util.inherits !== "function")
+      util2 = __require("util");
+      if (typeof util2.inherits !== "function")
         throw "";
-      module.exports = util.inherits;
+      module.exports = util2.inherits;
     } catch (e) {
       module.exports = require_inherits_browser();
     }
-    var util;
+    var util2;
   }
 });
 
@@ -17374,12 +9237,12 @@ var require_inherits = __commonJS({
 var require_path_is_absolute = __commonJS({
   "node_modules/path-is-absolute/index.js"(exports, module) {
     "use strict";
-    function posix(path) {
-      return path.charAt(0) === "/";
+    function posix(path4) {
+      return path4.charAt(0) === "/";
     }
-    function win32(path) {
+    function win32(path4) {
       var splitDeviceRe = /^([a-zA-Z]:|[\\\/]{2}[^\\\/]+[\\\/]+[^\\\/]+)?([\\\/])?([\s\S]*?)$/;
-      var result = splitDeviceRe.exec(path);
+      var result = splitDeviceRe.exec(path4);
       var device = result[1] || "";
       var isUnc = Boolean(device && device.charAt(1) !== ":");
       return Boolean(result[2] || isUnc);
@@ -17403,8 +9266,8 @@ var require_common2 = __commonJS({
     function ownProp(obj, field) {
       return Object.prototype.hasOwnProperty.call(obj, field);
     }
-    var fs = __require("fs");
-    var path = __require("path");
+    var fs4 = __require("fs");
+    var path4 = __require("path");
     var minimatch = require_minimatch();
     var isAbsolute = require_path_is_absolute();
     var Minimatch = minimatch.Minimatch;
@@ -17458,7 +9321,7 @@ var require_common2 = __commonJS({
       self.stat = !!options.stat;
       self.noprocess = !!options.noprocess;
       self.absolute = !!options.absolute;
-      self.fs = options.fs || fs;
+      self.fs = options.fs || fs4;
       self.maxLength = options.maxLength || Infinity;
       self.cache = options.cache || /* @__PURE__ */ Object.create(null);
       self.statCache = options.statCache || /* @__PURE__ */ Object.create(null);
@@ -17469,11 +9332,11 @@ var require_common2 = __commonJS({
       if (!ownProp(options, "cwd"))
         self.cwd = cwd;
       else {
-        self.cwd = path.resolve(options.cwd);
+        self.cwd = path4.resolve(options.cwd);
         self.changedCwd = self.cwd !== cwd;
       }
-      self.root = options.root || path.resolve(self.cwd, "/");
-      self.root = path.resolve(self.root);
+      self.root = options.root || path4.resolve(self.cwd, "/");
+      self.root = path4.resolve(self.root);
       if (process.platform === "win32")
         self.root = self.root.replace(/\\/g, "/");
       self.cwdAbs = isAbsolute(self.cwd) ? self.cwd : makeAbs(self, self.cwd);
@@ -17482,6 +9345,7 @@ var require_common2 = __commonJS({
       self.nomount = !!options.nomount;
       options.nonegate = true;
       options.nocomment = true;
+      options.allowWindowsEscape = false;
       self.minimatch = new Minimatch(pattern, options);
       self.options = self.minimatch.options;
     }
@@ -17554,30 +9418,30 @@ var require_common2 = __commonJS({
     function makeAbs(self, f) {
       var abs = f;
       if (f.charAt(0) === "/") {
-        abs = path.join(self.root, f);
+        abs = path4.join(self.root, f);
       } else if (isAbsolute(f) || f === "") {
         abs = f;
       } else if (self.changedCwd) {
-        abs = path.resolve(self.cwd, f);
+        abs = path4.resolve(self.cwd, f);
       } else {
-        abs = path.resolve(f);
+        abs = path4.resolve(f);
       }
       if (process.platform === "win32")
         abs = abs.replace(/\\/g, "/");
       return abs;
     }
-    function isIgnored(self, path2) {
+    function isIgnored(self, path5) {
       if (!self.ignore.length)
         return false;
       return self.ignore.some(function(item) {
-        return item.matcher.match(path2) || !!(item.gmatcher && item.gmatcher.match(path2));
+        return item.matcher.match(path5) || !!(item.gmatcher && item.gmatcher.match(path5));
       });
     }
-    function childrenIgnored(self, path2) {
+    function childrenIgnored(self, path5) {
       if (!self.ignore.length)
         return false;
       return self.ignore.some(function(item) {
-        return !!(item.gmatcher && item.gmatcher.match(path2));
+        return !!(item.gmatcher && item.gmatcher.match(path5));
       });
     }
   }
@@ -17592,9 +9456,9 @@ var require_sync = __commonJS({
     var minimatch = require_minimatch();
     var Minimatch = minimatch.Minimatch;
     var Glob = require_glob().Glob;
-    var util = __require("util");
-    var path = __require("path");
-    var assert = __require("assert");
+    var util2 = __require("util");
+    var path4 = __require("path");
+    var assert2 = __require("assert");
     var isAbsolute = require_path_is_absolute();
     var common = require_common2();
     var setopts = common.setopts;
@@ -17624,7 +9488,7 @@ var require_sync = __commonJS({
       this._finish();
     }
     GlobSync.prototype._finish = function() {
-      assert(this instanceof GlobSync);
+      assert2.ok(this instanceof GlobSync);
       if (this.realpath) {
         var self = this;
         this.matches.forEach(function(matchset, index) {
@@ -17646,7 +9510,7 @@ var require_sync = __commonJS({
       common.finish(this);
     };
     GlobSync.prototype._process = function(pattern, index, inGlobStar) {
-      assert(this instanceof GlobSync);
+      assert2.ok(this instanceof GlobSync);
       var n = 0;
       while (typeof pattern[n] === "string") {
         n++;
@@ -17667,7 +9531,9 @@ var require_sync = __commonJS({
       var read;
       if (prefix === null)
         read = ".";
-      else if (isAbsolute(prefix) || isAbsolute(pattern.join("/"))) {
+      else if (isAbsolute(prefix) || isAbsolute(pattern.map(function(p) {
+        return typeof p === "string" ? p : "[*]";
+      }).join("/"))) {
         if (!prefix || !isAbsolute(prefix))
           prefix = "/" + prefix;
         read = prefix;
@@ -17719,7 +9585,7 @@ var require_sync = __commonJS({
               e = prefix + e;
           }
           if (e.charAt(0) === "/" && !this.nomount) {
-            e = path.join(this.root, e);
+            e = path4.join(this.root, e);
           }
           this._emitMatch(index, e);
         }
@@ -17761,7 +9627,7 @@ var require_sync = __commonJS({
         return this._readdir(abs, false);
       var entries;
       var lstat;
-      var stat;
+      var stat2;
       try {
         lstat = this.fs.lstatSync(abs);
       } catch (er) {
@@ -17868,9 +9734,9 @@ var require_sync = __commonJS({
       if (prefix && isAbsolute(prefix) && !this.nomount) {
         var trail = /[\/\\]$/.test(prefix);
         if (prefix.charAt(0) === "/") {
-          prefix = path.join(this.root, prefix);
+          prefix = path4.join(this.root, prefix);
         } else {
-          prefix = path.resolve(this.root, prefix);
+          prefix = path4.resolve(this.root, prefix);
           if (trail)
             prefix += "/";
         }
@@ -17894,8 +9760,8 @@ var require_sync = __commonJS({
           return false;
       }
       var exists;
-      var stat = this.statCache[abs];
-      if (!stat) {
+      var stat2 = this.statCache[abs];
+      if (!stat2) {
         var lstat;
         try {
           lstat = this.fs.lstatSync(abs);
@@ -17907,18 +9773,18 @@ var require_sync = __commonJS({
         }
         if (lstat && lstat.isSymbolicLink()) {
           try {
-            stat = this.fs.statSync(abs);
+            stat2 = this.fs.statSync(abs);
           } catch (er) {
-            stat = lstat;
+            stat2 = lstat;
           }
         } else {
-          stat = lstat;
+          stat2 = lstat;
         }
       }
-      this.statCache[abs] = stat;
+      this.statCache[abs] = stat2;
       var c = true;
-      if (stat)
-        c = stat.isDirectory() ? "DIR" : "FILE";
+      if (stat2)
+        c = stat2.isDirectory() ? "DIR" : "FILE";
       this.cache[abs] = this.cache[abs] || c;
       if (needDir && c === "FILE")
         return false;
@@ -17989,15 +9855,15 @@ var require_glob = __commonJS({
     var Minimatch = minimatch.Minimatch;
     var inherits = require_inherits();
     var EE = __require("events").EventEmitter;
-    var path = __require("path");
-    var assert = __require("assert");
+    var path4 = __require("path");
+    var assert2 = __require("assert");
     var isAbsolute = require_path_is_absolute();
     var globSync = require_sync();
     var common = require_common2();
     var setopts = common.setopts;
     var ownProp = common.ownProp;
     var inflight = require_inflight();
-    var util = __require("util");
+    var util2 = __require("util");
     var childrenIgnored = common.childrenIgnored;
     var isIgnored = common.isIgnored;
     var once = require_once();
@@ -18076,15 +9942,15 @@ var require_glob = __commonJS({
         return this;
       if (n === 0)
         return done();
-      var sync = true;
+      var sync2 = true;
       for (var i = 0; i < n; i++) {
         this._process(this.minimatch.set[i], i, false, done);
       }
-      sync = false;
+      sync2 = false;
       function done() {
         --self._processing;
         if (self._processing <= 0) {
-          if (sync) {
+          if (sync2) {
             process.nextTick(function() {
               self._finish();
             });
@@ -18095,7 +9961,7 @@ var require_glob = __commonJS({
       }
     }
     Glob.prototype._finish = function() {
-      assert(this instanceof Glob);
+      assert2(this instanceof Glob);
       if (this.aborted)
         return;
       if (this.realpath && !this._didRealpath)
@@ -18184,8 +10050,8 @@ var require_glob = __commonJS({
       }
     };
     Glob.prototype._process = function(pattern, index, inGlobStar, cb) {
-      assert(this instanceof Glob);
-      assert(typeof cb === "function");
+      assert2(this instanceof Glob);
+      assert2(typeof cb === "function");
       if (this.aborted)
         return;
       this._processing++;
@@ -18213,7 +10079,9 @@ var require_glob = __commonJS({
       var read;
       if (prefix === null)
         read = ".";
-      else if (isAbsolute(prefix) || isAbsolute(pattern.join("/"))) {
+      else if (isAbsolute(prefix) || isAbsolute(pattern.map(function(p) {
+        return typeof p === "string" ? p : "[*]";
+      }).join("/"))) {
         if (!prefix || !isAbsolute(prefix))
           prefix = "/" + prefix;
         read = prefix;
@@ -18270,7 +10138,7 @@ var require_glob = __commonJS({
               e = prefix + e;
           }
           if (e.charAt(0) === "/" && !this.nomount) {
-            e = path.join(this.root, e);
+            e = path4.join(this.root, e);
           }
           this._emitMatch(index, e);
         }
@@ -18457,9 +10325,9 @@ var require_glob = __commonJS({
       if (prefix && isAbsolute(prefix) && !this.nomount) {
         var trail = /[\/\\]$/.test(prefix);
         if (prefix.charAt(0) === "/") {
-          prefix = path.join(this.root, prefix);
+          prefix = path4.join(this.root, prefix);
         } else {
-          prefix = path.resolve(this.root, prefix);
+          prefix = path4.resolve(this.root, prefix);
           if (trail)
             prefix += "/";
         }
@@ -18484,16 +10352,16 @@ var require_glob = __commonJS({
           return cb();
       }
       var exists;
-      var stat = this.statCache[abs];
-      if (stat !== void 0) {
-        if (stat === false)
-          return cb(null, stat);
+      var stat2 = this.statCache[abs];
+      if (stat2 !== void 0) {
+        if (stat2 === false)
+          return cb(null, stat2);
         else {
-          var type = stat.isDirectory() ? "DIR" : "FILE";
+          var type = stat2.isDirectory() ? "DIR" : "FILE";
           if (needDir && type === "FILE")
             return cb();
           else
-            return cb(null, type, stat);
+            return cb(null, type, stat2);
         }
       }
       var self = this;
@@ -18502,33 +10370,33 @@ var require_glob = __commonJS({
         self.fs.lstat(abs, statcb);
       function lstatcb_(er, lstat) {
         if (lstat && lstat.isSymbolicLink()) {
-          return self.fs.stat(abs, function(er2, stat2) {
+          return self.fs.stat(abs, function(er2, stat3) {
             if (er2)
               self._stat2(f, abs, null, lstat, cb);
             else
-              self._stat2(f, abs, er2, stat2, cb);
+              self._stat2(f, abs, er2, stat3, cb);
           });
         } else {
           self._stat2(f, abs, er, lstat, cb);
         }
       }
     };
-    Glob.prototype._stat2 = function(f, abs, er, stat, cb) {
+    Glob.prototype._stat2 = function(f, abs, er, stat2, cb) {
       if (er && (er.code === "ENOENT" || er.code === "ENOTDIR")) {
         this.statCache[abs] = false;
         return cb();
       }
       var needDir = f.slice(-1) === "/";
-      this.statCache[abs] = stat;
-      if (abs.slice(-1) === "/" && stat && !stat.isDirectory())
-        return cb(null, false, stat);
+      this.statCache[abs] = stat2;
+      if (abs.slice(-1) === "/" && stat2 && !stat2.isDirectory())
+        return cb(null, false, stat2);
       var c = true;
-      if (stat)
-        c = stat.isDirectory() ? "DIR" : "FILE";
+      if (stat2)
+        c = stat2.isDirectory() ? "DIR" : "FILE";
       this.cache[abs] = this.cache[abs] || c;
       if (needDir && c === "FILE")
         return cb();
-      return cb(null, c, stat);
+      return cb(null, c, stat2);
     };
   }
 });
@@ -18536,9 +10404,9 @@ var require_glob = __commonJS({
 // node_modules/rimraf/rimraf.js
 var require_rimraf = __commonJS({
   "node_modules/rimraf/rimraf.js"(exports, module) {
-    var assert = __require("assert");
-    var path = __require("path");
-    var fs = __require("fs");
+    var assert2 = __require("assert");
+    var path4 = __require("path");
+    var fs4 = __require("fs");
     var glob = void 0;
     try {
       glob = require_glob();
@@ -18560,9 +10428,9 @@ var require_rimraf = __commonJS({
         "readdir"
       ];
       methods.forEach((m) => {
-        options[m] = options[m] || fs[m];
+        options[m] = options[m] || fs4[m];
         m = m + "Sync";
-        options[m] = options[m] || fs[m];
+        options[m] = options[m] || fs4[m];
       });
       options.maxBusyTries = options.maxBusyTries || 3;
       options.emfileWait = options.emfileWait || 1e3;
@@ -18580,11 +10448,11 @@ var require_rimraf = __commonJS({
         cb = options;
         options = {};
       }
-      assert(p, "rimraf: missing path");
-      assert.equal(typeof p, "string", "rimraf: path should be a string");
-      assert.equal(typeof cb, "function", "rimraf: callback function required");
-      assert(options, "rimraf: invalid options argument provided");
-      assert.equal(typeof options, "object", "rimraf: options should be object");
+      assert2(p, "rimraf: missing path");
+      assert2.equal(typeof p, "string", "rimraf: path should be a string");
+      assert2.equal(typeof cb, "function", "rimraf: callback function required");
+      assert2(options, "rimraf: invalid options argument provided");
+      assert2.equal(typeof options, "object", "rimraf: options should be object");
       defaults(options);
       let busyTries = 0;
       let errState = null;
@@ -18621,16 +10489,16 @@ var require_rimraf = __commonJS({
       };
       if (options.disableGlob || !glob.hasMagic(p))
         return afterGlob(null, [p]);
-      options.lstat(p, (er, stat) => {
+      options.lstat(p, (er, stat2) => {
         if (!er)
           return afterGlob(null, [p]);
         glob(p, options.glob, afterGlob);
       });
     };
     var rimraf_ = (p, options, cb) => {
-      assert(p);
-      assert(options);
-      assert(typeof cb === "function");
+      assert2(p);
+      assert2(options);
+      assert2(typeof cb === "function");
       options.lstat(p, (er, st) => {
         if (er && er.code === "ENOENT")
           return cb(null);
@@ -18652,9 +10520,9 @@ var require_rimraf = __commonJS({
       });
     };
     var fixWinEPERM = (p, options, er, cb) => {
-      assert(p);
-      assert(options);
-      assert(typeof cb === "function");
+      assert2(p);
+      assert2(options);
+      assert2(typeof cb === "function");
       options.chmod(p, 438, (er2) => {
         if (er2)
           cb(er2.code === "ENOENT" ? null : er);
@@ -18670,8 +10538,8 @@ var require_rimraf = __commonJS({
       });
     };
     var fixWinEPERMSync = (p, options, er) => {
-      assert(p);
-      assert(options);
+      assert2(p);
+      assert2(options);
       try {
         options.chmodSync(p, 438);
       } catch (er2) {
@@ -18695,9 +10563,9 @@ var require_rimraf = __commonJS({
         options.unlinkSync(p);
     };
     var rmdir = (p, options, originalEr, cb) => {
-      assert(p);
-      assert(options);
-      assert(typeof cb === "function");
+      assert2(p);
+      assert2(options);
+      assert2(typeof cb === "function");
       options.rmdir(p, (er) => {
         if (er && (er.code === "ENOTEMPTY" || er.code === "EEXIST" || er.code === "EPERM"))
           rmkids(p, options, cb);
@@ -18708,9 +10576,9 @@ var require_rimraf = __commonJS({
       });
     };
     var rmkids = (p, options, cb) => {
-      assert(p);
-      assert(options);
-      assert(typeof cb === "function");
+      assert2(p);
+      assert2(options);
+      assert2(typeof cb === "function");
       options.readdir(p, (er, files) => {
         if (er)
           return cb(er);
@@ -18719,7 +10587,7 @@ var require_rimraf = __commonJS({
           return options.rmdir(p, cb);
         let errState;
         files.forEach((f) => {
-          rimraf(path.join(p, f), options, (er2) => {
+          rimraf(path4.join(p, f), options, (er2) => {
             if (errState)
               return;
             if (er2)
@@ -18733,10 +10601,10 @@ var require_rimraf = __commonJS({
     var rimrafSync = (p, options) => {
       options = options || {};
       defaults(options);
-      assert(p, "rimraf: missing path");
-      assert.equal(typeof p, "string", "rimraf: path should be a string");
-      assert(options, "rimraf: missing options");
-      assert.equal(typeof options, "object", "rimraf: options should be object");
+      assert2(p, "rimraf: missing path");
+      assert2.equal(typeof p, "string", "rimraf: path should be a string");
+      assert2(options, "rimraf: missing options");
+      assert2.equal(typeof options, "object", "rimraf: options should be object");
       let results;
       if (options.disableGlob || !glob.hasMagic(p)) {
         results = [p];
@@ -18778,8 +10646,8 @@ var require_rimraf = __commonJS({
       }
     };
     var rmdirSync = (p, options, originalEr) => {
-      assert(p);
-      assert(options);
+      assert2(p);
+      assert2(options);
       try {
         options.rmdirSync(p);
       } catch (er) {
@@ -18792,9 +10660,9 @@ var require_rimraf = __commonJS({
       }
     };
     var rmkidsSync = (p, options) => {
-      assert(p);
-      assert(options);
-      options.readdirSync(p).forEach((f) => rimrafSync(path.join(p, f), options));
+      assert2(p);
+      assert2(options);
+      options.readdirSync(p).forEach((f) => rimrafSync(path4.join(p, f), options));
       const retries = isWindows ? 100 : 1;
       let i = 0;
       do {
@@ -18819,25 +10687,25 @@ var require_promisify = __commonJS({
   "node_modules/agent-base/dist/src/promisify.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function promisify(fn) {
+    function promisify4(fn) {
       return function(req, opts) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve3, reject) => {
           fn.call(this, req, opts, (err, rtn) => {
             if (err) {
               reject(err);
             } else {
-              resolve(rtn);
+              resolve3(rtn);
             }
           });
         });
       };
     }
-    exports.default = promisify;
+    exports.default = promisify4;
   }
 });
 
 // node_modules/agent-base/dist/src/index.js
-var require_src3 = __commonJS({
+var require_src2 = __commonJS({
   "node_modules/agent-base/dist/src/index.js"(exports, module) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
@@ -18846,7 +10714,7 @@ var require_src3 = __commonJS({
     var events_1 = __require("events");
     var debug_1 = __importDefault(require_src());
     var promisify_1 = __importDefault(require_promisify());
-    var debug = debug_1.default("agent-base");
+    var debug2 = debug_1.default("agent-base");
     function isAgent(v) {
       return Boolean(v) && typeof v.addRequest === "function";
     }
@@ -18959,7 +10827,7 @@ var require_src3 = __commonJS({
               timeoutId = null;
             }
             if (isAgent(socket)) {
-              debug("Callback returned another Agent instance %o", socket.constructor.name);
+              debug2("Callback returned another Agent instance %o", socket.constructor.name);
               socket.addRequest(req, opts);
               return;
             }
@@ -18979,7 +10847,7 @@ var require_src3 = __commonJS({
           }
           if (!this.promisifiedCallback) {
             if (this.callback.length >= 3) {
-              debug("Converting legacy callback function to promise");
+              debug2("Converting legacy callback function to promise");
               this.promisifiedCallback = promisify_1.default(this.callback);
             } else {
               this.promisifiedCallback = this.callback;
@@ -18992,18 +10860,18 @@ var require_src3 = __commonJS({
             opts.port = Number(opts.port);
           }
           try {
-            debug("Resolving socket for %o request: %o", opts.protocol, `${req.method} ${req.path}`);
+            debug2("Resolving socket for %o request: %o", opts.protocol, `${req.method} ${req.path}`);
             Promise.resolve(this.promisifiedCallback(req, opts)).then(onsocket, callbackError);
           } catch (err) {
             Promise.reject(err).catch(callbackError);
           }
         }
         freeSocket(socket, opts) {
-          debug("Freeing socket %o %o", socket.constructor.name, opts);
+          debug2("Freeing socket %o %o", socket.constructor.name, opts);
           socket.destroy();
         }
         destroy() {
-          debug("Destroying agent %o", this.constructor.name);
+          debug2("Destroying agent %o", this.constructor.name);
         }
       }
       createAgent2.Agent = Agent;
@@ -19022,9 +10890,9 @@ var require_parse_proxy_response = __commonJS({
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     var debug_1 = __importDefault(require_src());
-    var debug = debug_1.default("https-proxy-agent:parse-proxy-response");
+    var debug2 = debug_1.default("https-proxy-agent:parse-proxy-response");
     function parseProxyResponse(socket) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve3, reject) => {
         let buffersLength = 0;
         const buffers = [];
         function read() {
@@ -19041,14 +10909,14 @@ var require_parse_proxy_response = __commonJS({
           socket.removeListener("readable", read);
         }
         function onclose(err) {
-          debug("onclose had error %o", err);
+          debug2("onclose had error %o", err);
         }
         function onend() {
-          debug("onend");
+          debug2("onend");
         }
         function onerror(err) {
           cleanup();
-          debug("onerror %o", err);
+          debug2("onerror %o", err);
           reject(err);
         }
         function ondata(b) {
@@ -19057,14 +10925,14 @@ var require_parse_proxy_response = __commonJS({
           const buffered = Buffer.concat(buffers, buffersLength);
           const endOfHeaders = buffered.indexOf("\r\n\r\n");
           if (endOfHeaders === -1) {
-            debug("have not received end of HTTP headers yet...");
+            debug2("have not received end of HTTP headers yet...");
             read();
             return;
           }
           const firstLine = buffered.toString("ascii", 0, buffered.indexOf("\r\n"));
           const statusCode = +firstLine.split(" ")[1];
-          debug("got proxy server response: %o", firstLine);
-          resolve({
+          debug2("got proxy server response: %o", firstLine);
+          resolve3({
             statusCode,
             buffered
           });
@@ -19085,11 +10953,11 @@ var require_agent = __commonJS({
     "use strict";
     var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
       function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve) {
-          resolve(value);
+        return value instanceof P ? value : new P(function(resolve3) {
+          resolve3(value);
         });
       }
-      return new (P || (P = Promise))(function(resolve, reject) {
+      return new (P || (P = Promise))(function(resolve3, reject) {
         function fulfilled(value) {
           try {
             step(generator.next(value));
@@ -19105,7 +10973,7 @@ var require_agent = __commonJS({
           }
         }
         function step(result) {
-          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+          result.done ? resolve3(result.value) : adopt(result.value).then(fulfilled, rejected);
         }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
       });
@@ -19119,9 +10987,9 @@ var require_agent = __commonJS({
     var url_1 = __importDefault(__require("url"));
     var assert_1 = __importDefault(__require("assert"));
     var debug_1 = __importDefault(require_src());
-    var agent_base_1 = require_src3();
+    var agent_base_1 = require_src2();
     var parse_proxy_response_1 = __importDefault(require_parse_proxy_response());
-    var debug = debug_1.default("https-proxy-agent:agent");
+    var debug2 = debug_1.default("https-proxy-agent:agent");
     var HttpsProxyAgent = class extends agent_base_1.Agent {
       constructor(_opts) {
         let opts;
@@ -19133,7 +11001,7 @@ var require_agent = __commonJS({
         if (!opts) {
           throw new Error("an HTTP(S) proxy server `host` and `port` must be specified!");
         }
-        debug("creating new HttpsProxyAgent instance: %o", opts);
+        debug2("creating new HttpsProxyAgent instance: %o", opts);
         super(opts);
         const proxy = Object.assign({}, opts);
         this.secureProxy = opts.secureProxy || isHTTPS(proxy.protocol);
@@ -19158,10 +11026,10 @@ var require_agent = __commonJS({
           const { proxy, secureProxy } = this;
           let socket;
           if (secureProxy) {
-            debug("Creating `tls.Socket`: %o", proxy);
+            debug2("Creating `tls.Socket`: %o", proxy);
             socket = tls_1.default.connect(proxy);
           } else {
-            debug("Creating `net.Socket`: %o", proxy);
+            debug2("Creating `net.Socket`: %o", proxy);
             socket = net_1.default.connect(proxy);
           }
           const headers = Object.assign({}, proxy.headers);
@@ -19188,11 +11056,8 @@ var require_agent = __commonJS({
           if (statusCode === 200) {
             req.once("socket", resume);
             if (opts.secureEndpoint) {
+              debug2("Upgrading socket connection to TLS");
               const servername = opts.servername || opts.host;
-              if (!servername) {
-                throw new Error('Could not determine "servername"');
-              }
-              debug("Upgrading socket connection to TLS");
               return tls_1.default.connect(Object.assign(Object.assign({}, omit(opts, "host", "hostname", "path", "port")), {
                 socket,
                 servername
@@ -19201,10 +11066,10 @@ var require_agent = __commonJS({
             return socket;
           }
           socket.destroy();
-          const fakeSocket = new net_1.default.Socket();
+          const fakeSocket = new net_1.default.Socket({ writable: false });
           fakeSocket.readable = true;
           req.once("socket", (s) => {
-            debug("replaying proxy buffer for failed request");
+            debug2("replaying proxy buffer for failed request");
             assert_1.default(s.listenerCount("data") > 0);
             s.push(buffered);
             s.push(null);
@@ -19244,14 +11109,14 @@ var require_dist = __commonJS({
       return mod && mod.__esModule ? mod : { "default": mod };
     };
     var agent_1 = __importDefault(require_agent());
-    function createHttpsProxyAgent(opts) {
+    function createHttpsProxyAgent2(opts) {
       return new agent_1.default(opts);
     }
-    (function(createHttpsProxyAgent2) {
-      createHttpsProxyAgent2.HttpsProxyAgent = agent_1.default;
-      createHttpsProxyAgent2.prototype = agent_1.default.prototype;
-    })(createHttpsProxyAgent || (createHttpsProxyAgent = {}));
-    module.exports = createHttpsProxyAgent;
+    (function(createHttpsProxyAgent3) {
+      createHttpsProxyAgent3.HttpsProxyAgent = agent_1.default;
+      createHttpsProxyAgent3.prototype = agent_1.default.prototype;
+    })(createHttpsProxyAgent2 || (createHttpsProxyAgent2 = {}));
+    module.exports = createHttpsProxyAgent2;
   }
 });
 
@@ -19271,7 +11136,7 @@ var require_proxy_from_env = __commonJS({
     var stringEndsWith = String.prototype.endsWith || function(s) {
       return s.length <= this.length && this.indexOf(s, this.length - s.length) !== -1;
     };
-    function getProxyForUrl(url) {
+    function getProxyForUrl2(url) {
       var parsedUrl = typeof url === "string" ? parseUrl(url) : url || {};
       var proto = parsedUrl.protocol;
       var hostname = parsedUrl.host;
@@ -19321,7 +11186,7 @@ var require_proxy_from_env = __commonJS({
     function getEnv(key) {
       return process.env[key.toLowerCase()] || process.env[key.toUpperCase()] || "";
     }
-    exports.getProxyForUrl = getProxyForUrl;
+    exports.getProxyForUrl = getProxyForUrl2;
   }
 });
 
@@ -19329,74 +11194,74 @@ var require_proxy_from_env = __commonJS({
 var require_chownr = __commonJS({
   "node_modules/chownr/chownr.js"(exports, module) {
     "use strict";
-    var fs = __require("fs");
-    var path = __require("path");
-    var LCHOWN = fs.lchown ? "lchown" : "chown";
-    var LCHOWNSYNC = fs.lchownSync ? "lchownSync" : "chownSync";
-    var needEISDIRHandled = fs.lchown && !process.version.match(/v1[1-9]+\./) && !process.version.match(/v10\.[6-9]/);
-    var lchownSync = (path2, uid, gid) => {
+    var fs4 = __require("fs");
+    var path4 = __require("path");
+    var LCHOWN = fs4.lchown ? "lchown" : "chown";
+    var LCHOWNSYNC = fs4.lchownSync ? "lchownSync" : "chownSync";
+    var needEISDIRHandled = fs4.lchown && !process.version.match(/v1[1-9]+\./) && !process.version.match(/v10\.[6-9]/);
+    var lchownSync = (path5, uid, gid) => {
       try {
-        return fs[LCHOWNSYNC](path2, uid, gid);
+        return fs4[LCHOWNSYNC](path5, uid, gid);
       } catch (er) {
         if (er.code !== "ENOENT")
           throw er;
       }
     };
-    var chownSync = (path2, uid, gid) => {
+    var chownSync = (path5, uid, gid) => {
       try {
-        return fs.chownSync(path2, uid, gid);
+        return fs4.chownSync(path5, uid, gid);
       } catch (er) {
         if (er.code !== "ENOENT")
           throw er;
       }
     };
-    var handleEISDIR = needEISDIRHandled ? (path2, uid, gid, cb) => (er) => {
+    var handleEISDIR = needEISDIRHandled ? (path5, uid, gid, cb) => (er) => {
       if (!er || er.code !== "EISDIR")
         cb(er);
       else
-        fs.chown(path2, uid, gid, cb);
+        fs4.chown(path5, uid, gid, cb);
     } : (_, __, ___, cb) => cb;
-    var handleEISDirSync = needEISDIRHandled ? (path2, uid, gid) => {
+    var handleEISDirSync = needEISDIRHandled ? (path5, uid, gid) => {
       try {
-        return lchownSync(path2, uid, gid);
+        return lchownSync(path5, uid, gid);
       } catch (er) {
         if (er.code !== "EISDIR")
           throw er;
-        chownSync(path2, uid, gid);
+        chownSync(path5, uid, gid);
       }
-    } : (path2, uid, gid) => lchownSync(path2, uid, gid);
+    } : (path5, uid, gid) => lchownSync(path5, uid, gid);
     var nodeVersion = process.version;
-    var readdir = (path2, options, cb) => fs.readdir(path2, options, cb);
-    var readdirSync = (path2, options) => fs.readdirSync(path2, options);
+    var readdir2 = (path5, options, cb) => fs4.readdir(path5, options, cb);
+    var readdirSync = (path5, options) => fs4.readdirSync(path5, options);
     if (/^v4\./.test(nodeVersion))
-      readdir = (path2, options, cb) => fs.readdir(path2, cb);
+      readdir2 = (path5, options, cb) => fs4.readdir(path5, cb);
     var chown = (cpath, uid, gid, cb) => {
-      fs[LCHOWN](cpath, uid, gid, handleEISDIR(cpath, uid, gid, (er) => {
+      fs4[LCHOWN](cpath, uid, gid, handleEISDIR(cpath, uid, gid, (er) => {
         cb(er && er.code !== "ENOENT" ? er : null);
       }));
     };
     var chownrKid = (p, child, uid, gid, cb) => {
       if (typeof child === "string")
-        return fs.lstat(path.resolve(p, child), (er, stats) => {
+        return fs4.lstat(path4.resolve(p, child), (er, stats) => {
           if (er)
             return cb(er.code !== "ENOENT" ? er : null);
           stats.name = child;
           chownrKid(p, stats, uid, gid, cb);
         });
       if (child.isDirectory()) {
-        chownr(path.resolve(p, child.name), uid, gid, (er) => {
+        chownr(path4.resolve(p, child.name), uid, gid, (er) => {
           if (er)
             return cb(er);
-          const cpath = path.resolve(p, child.name);
+          const cpath = path4.resolve(p, child.name);
           chown(cpath, uid, gid, cb);
         });
       } else {
-        const cpath = path.resolve(p, child.name);
+        const cpath = path4.resolve(p, child.name);
         chown(cpath, uid, gid, cb);
       }
     };
     var chownr = (p, uid, gid, cb) => {
-      readdir(p, { withFileTypes: true }, (er, children) => {
+      readdir2(p, { withFileTypes: true }, (er, children) => {
         if (er) {
           if (er.code === "ENOENT")
             return cb();
@@ -19421,7 +11286,7 @@ var require_chownr = __commonJS({
     var chownrKidSync = (p, child, uid, gid) => {
       if (typeof child === "string") {
         try {
-          const stats = fs.lstatSync(path.resolve(p, child));
+          const stats = fs4.lstatSync(path4.resolve(p, child));
           stats.name = child;
           child = stats;
         } catch (er) {
@@ -19432,8 +11297,8 @@ var require_chownr = __commonJS({
         }
       }
       if (child.isDirectory())
-        chownrSync(path.resolve(p, child.name), uid, gid);
-      handleEISDirSync(path.resolve(p, child.name), uid, gid);
+        chownrSync(path4.resolve(p, child.name), uid, gid);
+      handleEISDirSync(path4.resolve(p, child.name), uid, gid);
     };
     var chownrSync = (p, uid, gid) => {
       let children;
@@ -19588,7 +11453,7 @@ var require_buffer_list = __commonJS({
         }
       }, {
         key: "join",
-        value: function join(s) {
+        value: function join4(s) {
           if (this.length === 0)
             return "";
           var p = this.head;
@@ -20203,9 +12068,9 @@ var require_stream_writable = __commonJS({
         stream._write(chunk, encoding, state.onwrite);
       state.sync = false;
     }
-    function onwriteError(stream, state, sync, er, cb) {
+    function onwriteError(stream, state, sync2, er, cb) {
       --state.pendingcb;
-      if (sync) {
+      if (sync2) {
         process.nextTick(cb, er);
         process.nextTick(finishMaybe, stream, state);
         stream._writableState.errorEmitted = true;
@@ -20225,19 +12090,19 @@ var require_stream_writable = __commonJS({
     }
     function onwrite(stream, er) {
       var state = stream._writableState;
-      var sync = state.sync;
+      var sync2 = state.sync;
       var cb = state.writecb;
       if (typeof cb !== "function")
         throw new ERR_MULTIPLE_CALLBACK();
       onwriteStateUpdate(state);
       if (er)
-        onwriteError(stream, state, sync, er, cb);
+        onwriteError(stream, state, sync2, er, cb);
       else {
         var finished = needFinish(state) || stream.destroyed;
         if (!finished && !state.corked && !state.bufferProcessing && state.bufferedRequest) {
           clearBuffer(stream, state);
         }
-        if (sync) {
+        if (sync2) {
           process.nextTick(afterWrite, stream, state, finished, cb);
         } else {
           afterWrite(stream, state, finished, cb);
@@ -20958,14 +12823,14 @@ var require_async_iterator = __commonJS({
       };
     }
     function readAndResolve(iter) {
-      var resolve = iter[kLastResolve];
-      if (resolve !== null) {
+      var resolve3 = iter[kLastResolve];
+      if (resolve3 !== null) {
         var data = iter[kStream].read();
         if (data !== null) {
           iter[kLastPromise] = null;
           iter[kLastResolve] = null;
           iter[kLastReject] = null;
-          resolve(createIterResult(data, false));
+          resolve3(createIterResult(data, false));
         }
       }
     }
@@ -20973,13 +12838,13 @@ var require_async_iterator = __commonJS({
       process.nextTick(readAndResolve, iter);
     }
     function wrapForNext(lastPromise, iter) {
-      return function(resolve, reject) {
+      return function(resolve3, reject) {
         lastPromise.then(function() {
           if (iter[kEnded]) {
-            resolve(createIterResult(void 0, true));
+            resolve3(createIterResult(void 0, true));
             return;
           }
-          iter[kHandlePromise](resolve, reject);
+          iter[kHandlePromise](resolve3, reject);
         }, reject);
       };
     }
@@ -20999,12 +12864,12 @@ var require_async_iterator = __commonJS({
           return Promise.resolve(createIterResult(void 0, true));
         }
         if (this[kStream].destroyed) {
-          return new Promise(function(resolve, reject) {
+          return new Promise(function(resolve3, reject) {
             process.nextTick(function() {
               if (_this[kError]) {
                 reject(_this[kError]);
               } else {
-                resolve(createIterResult(void 0, true));
+                resolve3(createIterResult(void 0, true));
               }
             });
           });
@@ -21027,13 +12892,13 @@ var require_async_iterator = __commonJS({
       return this;
     }), _defineProperty(_Object$setPrototypeO, "return", function _return() {
       var _this2 = this;
-      return new Promise(function(resolve, reject) {
+      return new Promise(function(resolve3, reject) {
         _this2[kStream].destroy(null, function(err) {
           if (err) {
             reject(err);
             return;
           }
-          resolve(createIterResult(void 0, true));
+          resolve3(createIterResult(void 0, true));
         });
       });
     }), _Object$setPrototypeO), AsyncIteratorPrototype);
@@ -21055,15 +12920,15 @@ var require_async_iterator = __commonJS({
         value: stream._readableState.endEmitted,
         writable: true
       }), _defineProperty(_Object$create, kHandlePromise, {
-        value: function value(resolve, reject) {
+        value: function value(resolve3, reject) {
           var data = iterator[kStream].read();
           if (data) {
             iterator[kLastPromise] = null;
             iterator[kLastResolve] = null;
             iterator[kLastReject] = null;
-            resolve(createIterResult(data, false));
+            resolve3(createIterResult(data, false));
           } else {
-            iterator[kLastResolve] = resolve;
+            iterator[kLastResolve] = resolve3;
             iterator[kLastReject] = reject;
           }
         },
@@ -21082,12 +12947,12 @@ var require_async_iterator = __commonJS({
           iterator[kError] = err;
           return;
         }
-        var resolve = iterator[kLastResolve];
-        if (resolve !== null) {
+        var resolve3 = iterator[kLastResolve];
+        if (resolve3 !== null) {
           iterator[kLastPromise] = null;
           iterator[kLastResolve] = null;
           iterator[kLastReject] = null;
-          resolve(createIterResult(void 0, true));
+          resolve3(createIterResult(void 0, true));
         }
         iterator[kEnded] = true;
       });
@@ -21102,7 +12967,7 @@ var require_async_iterator = __commonJS({
 var require_from = __commonJS({
   "node_modules/readable-stream/lib/internal/streams/from.js"(exports, module) {
     "use strict";
-    function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+    function asyncGeneratorStep(gen, resolve3, reject, _next, _throw, key, arg) {
       try {
         var info = gen[key](arg);
         var value = info.value;
@@ -21111,7 +12976,7 @@ var require_from = __commonJS({
         return;
       }
       if (info.done) {
-        resolve(value);
+        resolve3(value);
       } else {
         Promise.resolve(value).then(_next, _throw);
       }
@@ -21119,13 +12984,13 @@ var require_from = __commonJS({
     function _asyncToGenerator(fn) {
       return function() {
         var self = this, args = arguments;
-        return new Promise(function(resolve, reject) {
+        return new Promise(function(resolve3, reject) {
           var gen = fn.apply(self, args);
           function _next(value) {
-            asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+            asyncGeneratorStep(gen, resolve3, reject, _next, _throw, "next", value);
           }
           function _throw(err) {
-            asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+            asyncGeneratorStep(gen, resolve3, reject, _next, _throw, "throw", err);
           }
           _next(void 0);
         });
@@ -21237,11 +13102,11 @@ var require_stream_readable = __commonJS({
       return Buffer2.isBuffer(obj) || obj instanceof OurUint8Array;
     }
     var debugUtil = __require("util");
-    var debug;
+    var debug2;
     if (debugUtil && debugUtil.debuglog) {
-      debug = debugUtil.debuglog("stream");
+      debug2 = debugUtil.debuglog("stream");
     } else {
-      debug = function debug2() {
+      debug2 = function debug3() {
       };
     }
     var BufferList = require_buffer_list();
@@ -21363,7 +13228,7 @@ var require_stream_readable = __commonJS({
       return readableAddChunk(this, chunk, null, true, false);
     };
     function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
-      debug("readableAddChunk", chunk);
+      debug2("readableAddChunk", chunk);
       var state = stream._readableState;
       if (chunk === null) {
         state.reading = false;
@@ -21486,14 +13351,14 @@ var require_stream_readable = __commonJS({
       return state.length;
     }
     Readable.prototype.read = function(n) {
-      debug("read", n);
+      debug2("read", n);
       n = parseInt(n, 10);
       var state = this._readableState;
       var nOrig = n;
       if (n !== 0)
         state.emittedReadable = false;
       if (n === 0 && state.needReadable && ((state.highWaterMark !== 0 ? state.length >= state.highWaterMark : state.length > 0) || state.ended)) {
-        debug("read: emitReadable", state.length, state.ended);
+        debug2("read: emitReadable", state.length, state.ended);
         if (state.length === 0 && state.ended)
           endReadable(this);
         else
@@ -21507,16 +13372,16 @@ var require_stream_readable = __commonJS({
         return null;
       }
       var doRead = state.needReadable;
-      debug("need readable", doRead);
+      debug2("need readable", doRead);
       if (state.length === 0 || state.length - n < state.highWaterMark) {
         doRead = true;
-        debug("length less than watermark", doRead);
+        debug2("length less than watermark", doRead);
       }
       if (state.ended || state.reading) {
         doRead = false;
-        debug("reading or ended", doRead);
+        debug2("reading or ended", doRead);
       } else if (doRead) {
-        debug("do read");
+        debug2("do read");
         state.reading = true;
         state.sync = true;
         if (state.length === 0)
@@ -21549,7 +13414,7 @@ var require_stream_readable = __commonJS({
       return ret;
     };
     function onEofChunk(stream, state) {
-      debug("onEofChunk");
+      debug2("onEofChunk");
       if (state.ended)
         return;
       if (state.decoder) {
@@ -21572,17 +13437,17 @@ var require_stream_readable = __commonJS({
     }
     function emitReadable(stream) {
       var state = stream._readableState;
-      debug("emitReadable", state.needReadable, state.emittedReadable);
+      debug2("emitReadable", state.needReadable, state.emittedReadable);
       state.needReadable = false;
       if (!state.emittedReadable) {
-        debug("emitReadable", state.flowing);
+        debug2("emitReadable", state.flowing);
         state.emittedReadable = true;
         process.nextTick(emitReadable_, stream);
       }
     }
     function emitReadable_(stream) {
       var state = stream._readableState;
-      debug("emitReadable_", state.destroyed, state.length, state.ended);
+      debug2("emitReadable_", state.destroyed, state.length, state.ended);
       if (!state.destroyed && (state.length || state.ended)) {
         stream.emit("readable");
         state.emittedReadable = false;
@@ -21599,7 +13464,7 @@ var require_stream_readable = __commonJS({
     function maybeReadMore_(stream, state) {
       while (!state.reading && !state.ended && (state.length < state.highWaterMark || state.flowing && state.length === 0)) {
         var len = state.length;
-        debug("maybeReadMore read 0");
+        debug2("maybeReadMore read 0");
         stream.read(0);
         if (len === state.length)
           break;
@@ -21624,7 +13489,7 @@ var require_stream_readable = __commonJS({
           break;
       }
       state.pipesCount += 1;
-      debug("pipe count=%d opts=%j", state.pipesCount, pipeOpts);
+      debug2("pipe count=%d opts=%j", state.pipesCount, pipeOpts);
       var doEnd = (!pipeOpts || pipeOpts.end !== false) && dest !== process.stdout && dest !== process.stderr;
       var endFn = doEnd ? onend : unpipe;
       if (state.endEmitted)
@@ -21633,7 +13498,7 @@ var require_stream_readable = __commonJS({
         src.once("end", endFn);
       dest.on("unpipe", onunpipe);
       function onunpipe(readable, unpipeInfo) {
-        debug("onunpipe");
+        debug2("onunpipe");
         if (readable === src) {
           if (unpipeInfo && unpipeInfo.hasUnpiped === false) {
             unpipeInfo.hasUnpiped = true;
@@ -21642,14 +13507,14 @@ var require_stream_readable = __commonJS({
         }
       }
       function onend() {
-        debug("onend");
+        debug2("onend");
         dest.end();
       }
       var ondrain = pipeOnDrain(src);
       dest.on("drain", ondrain);
       var cleanedUp = false;
       function cleanup() {
-        debug("cleanup");
+        debug2("cleanup");
         dest.removeListener("close", onclose);
         dest.removeListener("finish", onfinish);
         dest.removeListener("drain", ondrain);
@@ -21664,19 +13529,19 @@ var require_stream_readable = __commonJS({
       }
       src.on("data", ondata);
       function ondata(chunk) {
-        debug("ondata");
+        debug2("ondata");
         var ret = dest.write(chunk);
-        debug("dest.write", ret);
+        debug2("dest.write", ret);
         if (ret === false) {
           if ((state.pipesCount === 1 && state.pipes === dest || state.pipesCount > 1 && indexOf(state.pipes, dest) !== -1) && !cleanedUp) {
-            debug("false write response, pause", state.awaitDrain);
+            debug2("false write response, pause", state.awaitDrain);
             state.awaitDrain++;
           }
           src.pause();
         }
       }
       function onerror(er) {
-        debug("onerror", er);
+        debug2("onerror", er);
         unpipe();
         dest.removeListener("error", onerror);
         if (EElistenerCount(dest, "error") === 0)
@@ -21689,18 +13554,18 @@ var require_stream_readable = __commonJS({
       }
       dest.once("close", onclose);
       function onfinish() {
-        debug("onfinish");
+        debug2("onfinish");
         dest.removeListener("close", onclose);
         unpipe();
       }
       dest.once("finish", onfinish);
       function unpipe() {
-        debug("unpipe");
+        debug2("unpipe");
         src.unpipe(dest);
       }
       dest.emit("pipe", src);
       if (!state.flowing) {
-        debug("pipe resume");
+        debug2("pipe resume");
         src.resume();
       }
       return dest;
@@ -21708,7 +13573,7 @@ var require_stream_readable = __commonJS({
     function pipeOnDrain(src) {
       return function pipeOnDrainFunctionResult() {
         var state = src._readableState;
-        debug("pipeOnDrain", state.awaitDrain);
+        debug2("pipeOnDrain", state.awaitDrain);
         if (state.awaitDrain)
           state.awaitDrain--;
         if (state.awaitDrain === 0 && EElistenerCount(src, "data")) {
@@ -21771,7 +13636,7 @@ var require_stream_readable = __commonJS({
           state.readableListening = state.needReadable = true;
           state.flowing = false;
           state.emittedReadable = false;
-          debug("on readable", state.length, state.reading);
+          debug2("on readable", state.length, state.reading);
           if (state.length) {
             emitReadable(this);
           } else if (!state.reading) {
@@ -21806,13 +13671,13 @@ var require_stream_readable = __commonJS({
       }
     }
     function nReadingNextTick(self) {
-      debug("readable nexttick read 0");
+      debug2("readable nexttick read 0");
       self.read(0);
     }
     Readable.prototype.resume = function() {
       var state = this._readableState;
       if (!state.flowing) {
-        debug("resume");
+        debug2("resume");
         state.flowing = !state.readableListening;
         resume(this, state);
       }
@@ -21826,7 +13691,7 @@ var require_stream_readable = __commonJS({
       }
     }
     function resume_(stream, state) {
-      debug("resume", state.reading);
+      debug2("resume", state.reading);
       if (!state.reading) {
         stream.read(0);
       }
@@ -21837,9 +13702,9 @@ var require_stream_readable = __commonJS({
         stream.read(0);
     }
     Readable.prototype.pause = function() {
-      debug("call pause flowing=%j", this._readableState.flowing);
+      debug2("call pause flowing=%j", this._readableState.flowing);
       if (this._readableState.flowing !== false) {
-        debug("pause");
+        debug2("pause");
         this._readableState.flowing = false;
         this.emit("pause");
       }
@@ -21848,7 +13713,7 @@ var require_stream_readable = __commonJS({
     };
     function flow(stream) {
       var state = stream._readableState;
-      debug("flow", state.flowing);
+      debug2("flow", state.flowing);
       while (state.flowing && stream.read() !== null) {
         ;
       }
@@ -21858,7 +13723,7 @@ var require_stream_readable = __commonJS({
       var state = this._readableState;
       var paused = false;
       stream.on("end", function() {
-        debug("wrapped end");
+        debug2("wrapped end");
         if (state.decoder && !state.ended) {
           var chunk = state.decoder.end();
           if (chunk && chunk.length)
@@ -21867,7 +13732,7 @@ var require_stream_readable = __commonJS({
         _this.push(null);
       });
       stream.on("data", function(chunk) {
-        debug("wrapped data");
+        debug2("wrapped data");
         if (state.decoder)
           chunk = state.decoder.write(chunk);
         if (state.objectMode && (chunk === null || chunk === void 0))
@@ -21893,7 +13758,7 @@ var require_stream_readable = __commonJS({
         stream.on(kProxyEvents[n], this.emit.bind(this, kProxyEvents[n]));
       }
       this._read = function(n2) {
-        debug("wrapped _read", n2);
+        debug2("wrapped _read", n2);
         if (paused) {
           paused = false;
           stream.resume();
@@ -21960,14 +13825,14 @@ var require_stream_readable = __commonJS({
     }
     function endReadable(stream) {
       var state = stream._readableState;
-      debug("endReadable", state.endEmitted);
+      debug2("endReadable", state.endEmitted);
       if (!state.endEmitted) {
         state.ended = true;
         process.nextTick(endReadableNT, state, stream);
       }
     }
     function endReadableNT(state, stream) {
-      debug("endReadableNT", state.endEmitted, state.length);
+      debug2("endReadableNT", state.endEmitted, state.length);
       if (!state.endEmitted && state.length === 0) {
         state.endEmitted = true;
         stream.readable = false;
@@ -22898,7 +14763,7 @@ var require_headers = __commonJS({
 // node_modules/tar-stream/extract.js
 var require_extract = __commonJS({
   "node_modules/tar-stream/extract.js"(exports, module) {
-    var util = __require("util");
+    var util2 = __require("util");
     var bl = require_bl();
     var headers = require_headers();
     var Writable = require_readable().Writable;
@@ -22929,7 +14794,7 @@ var require_extract = __commonJS({
       this.offset = offset;
       PassThrough.call(this, { autoDestroy: false });
     };
-    util.inherits(Source, PassThrough);
+    util2.inherits(Source, PassThrough);
     Source.prototype.destroy = function(err) {
       this._parent.destroy(err);
     };
@@ -23066,7 +14931,7 @@ var require_extract = __commonJS({
       this._onheader = onheader;
       this._parse(512, onheader);
     };
-    util.inherits(Extract, Writable);
+    util2.inherits(Extract, Writable);
     Extract.prototype.destroy = function(err) {
       if (this._destroyed)
         return;
@@ -23391,8 +15256,8 @@ var require_tar_stream = __commonJS({
 // node_modules/mkdirp-classic/index.js
 var require_mkdirp_classic = __commonJS({
   "node_modules/mkdirp-classic/index.js"(exports, module) {
-    var path = __require("path");
-    var fs = __require("fs");
+    var path4 = __require("path");
+    var fs4 = __require("fs");
     var _0777 = parseInt("0777", 8);
     module.exports = mkdirP.mkdirp = mkdirP.mkdirP = mkdirP;
     function mkdirP(p, opts, f, made) {
@@ -23403,7 +15268,7 @@ var require_mkdirp_classic = __commonJS({
         opts = { mode: opts };
       }
       var mode = opts.mode;
-      var xfs = opts.fs || fs;
+      var xfs = opts.fs || fs4;
       if (mode === void 0) {
         mode = _0777 & ~process.umask();
       }
@@ -23411,7 +15276,7 @@ var require_mkdirp_classic = __commonJS({
         made = null;
       var cb = f || function() {
       };
-      p = path.resolve(p);
+      p = path4.resolve(p);
       xfs.mkdir(p, mode, function(er) {
         if (!er) {
           made = made || p;
@@ -23419,7 +15284,7 @@ var require_mkdirp_classic = __commonJS({
         }
         switch (er.code) {
           case "ENOENT":
-            mkdirP(path.dirname(p), opts, function(er2, made2) {
+            mkdirP(path4.dirname(p), opts, function(er2, made2) {
               if (er2)
                 cb(er2, made2);
               else
@@ -23427,8 +15292,8 @@ var require_mkdirp_classic = __commonJS({
             });
             break;
           default:
-            xfs.stat(p, function(er2, stat) {
-              if (er2 || !stat.isDirectory())
+            xfs.stat(p, function(er2, stat2) {
+              if (er2 || !stat2.isDirectory())
                 cb(er, made);
               else
                 cb(null, made);
@@ -23437,35 +15302,35 @@ var require_mkdirp_classic = __commonJS({
         }
       });
     }
-    mkdirP.sync = function sync(p, opts, made) {
+    mkdirP.sync = function sync2(p, opts, made) {
       if (!opts || typeof opts !== "object") {
         opts = { mode: opts };
       }
       var mode = opts.mode;
-      var xfs = opts.fs || fs;
+      var xfs = opts.fs || fs4;
       if (mode === void 0) {
         mode = _0777 & ~process.umask();
       }
       if (!made)
         made = null;
-      p = path.resolve(p);
+      p = path4.resolve(p);
       try {
         xfs.mkdirSync(p, mode);
         made = made || p;
       } catch (err0) {
         switch (err0.code) {
           case "ENOENT":
-            made = sync(path.dirname(p), opts, made);
-            sync(p, opts, made);
+            made = sync2(path4.dirname(p), opts, made);
+            sync2(p, opts, made);
             break;
           default:
-            var stat;
+            var stat2;
             try {
-              stat = xfs.statSync(p);
+              stat2 = xfs.statSync(p);
             } catch (err1) {
               throw err0;
             }
-            if (!stat.isDirectory())
+            if (!stat2.isDirectory())
               throw err0;
             break;
         }
@@ -23479,13 +15344,13 @@ var require_mkdirp_classic = __commonJS({
 var require_tar_fs = __commonJS({
   "node_modules/tar-fs/index.js"(exports) {
     var chownr = require_chownr();
-    var tar = require_tar_stream();
+    var tar2 = require_tar_stream();
     var pump = require_pump();
     var mkdirp = require_mkdirp_classic();
-    var fs = __require("fs");
-    var path = __require("path");
-    var os = __require("os");
-    var win32 = os.platform() === "win32";
+    var fs4 = __require("fs");
+    var path4 = __require("path");
+    var os3 = __require("os");
+    var win32 = os3.platform() === "win32";
     var noop = function() {
     };
     var echo = function(name) {
@@ -23494,28 +15359,28 @@ var require_tar_fs = __commonJS({
     var normalize = !win32 ? echo : function(name) {
       return name.replace(/\\/g, "/").replace(/[:?<>|]/g, "_");
     };
-    var statAll = function(fs2, stat, cwd, ignore, entries, sort) {
+    var statAll = function(fs5, stat2, cwd, ignore, entries, sort) {
       var queue = entries || ["."];
       return function loop(callback) {
         if (!queue.length)
           return callback();
         var next = queue.shift();
-        var nextAbs = path.join(cwd, next);
-        stat.call(fs2, nextAbs, function(err, stat2) {
+        var nextAbs = path4.join(cwd, next);
+        stat2.call(fs5, nextAbs, function(err, stat3) {
           if (err)
             return callback(err);
-          if (!stat2.isDirectory())
-            return callback(null, next, stat2);
-          fs2.readdir(nextAbs, function(err2, files) {
+          if (!stat3.isDirectory())
+            return callback(null, next, stat3);
+          fs5.readdir(nextAbs, function(err2, files) {
             if (err2)
               return callback(err2);
             if (sort)
               files.sort();
             for (var i = 0; i < files.length; i++) {
-              if (!ignore(path.join(cwd, next, files[i])))
-                queue.push(path.join(next, files[i]));
+              if (!ignore(path4.join(cwd, next, files[i])))
+                queue.push(path4.join(next, files[i]));
             }
-            callback(null, next, stat2);
+            callback(null, next, stat3);
           });
         });
       };
@@ -23524,7 +15389,7 @@ var require_tar_fs = __commonJS({
       return function(header) {
         header.name = header.name.split("/").slice(level).join("/");
         var linkname = header.linkname;
-        if (linkname && (header.type === "link" || path.isAbsolute(linkname))) {
+        if (linkname && (header.type === "link" || path4.isAbsolute(linkname))) {
           header.linkname = linkname.split("/").slice(level).join("/");
         }
         return map(header);
@@ -23535,7 +15400,7 @@ var require_tar_fs = __commonJS({
         cwd = ".";
       if (!opts)
         opts = {};
-      var xfs = opts.fs || fs;
+      var xfs = opts.fs || fs4;
       var ignore = opts.ignore || opts.filter || noop;
       var map = opts.map || noop;
       var mapStream = opts.mapStream || echo;
@@ -23544,7 +15409,7 @@ var require_tar_fs = __commonJS({
       var umask = typeof opts.umask === "number" ? ~opts.umask : ~processUmask();
       var dmode = typeof opts.dmode === "number" ? opts.dmode : 0;
       var fmode = typeof opts.fmode === "number" ? opts.fmode : 0;
-      var pack = opts.pack || tar.pack();
+      var pack = opts.pack || tar2.pack();
       var finish = opts.finish || noop;
       if (opts.strip)
         map = strip(map, opts.strip);
@@ -23557,14 +15422,14 @@ var require_tar_fs = __commonJS({
         fmode |= parseInt(222, 8);
       }
       var onsymlink = function(filename, header) {
-        xfs.readlink(path.join(cwd, filename), function(err, linkname) {
+        xfs.readlink(path4.join(cwd, filename), function(err, linkname) {
           if (err)
             return pack.destroy(err);
           header.linkname = normalize(linkname);
           pack.entry(header, onnextentry);
         });
       };
-      var onstat = function(err, filename, stat) {
+      var onstat = function(err, filename, stat2) {
         if (err)
           return pack.destroy(err);
         if (!filename) {
@@ -23572,31 +15437,31 @@ var require_tar_fs = __commonJS({
             pack.finalize();
           return finish(pack);
         }
-        if (stat.isSocket())
+        if (stat2.isSocket())
           return onnextentry();
         var header = {
           name: normalize(filename),
-          mode: (stat.mode | (stat.isDirectory() ? dmode : fmode)) & umask,
-          mtime: stat.mtime,
-          size: stat.size,
+          mode: (stat2.mode | (stat2.isDirectory() ? dmode : fmode)) & umask,
+          mtime: stat2.mtime,
+          size: stat2.size,
           type: "file",
-          uid: stat.uid,
-          gid: stat.gid
+          uid: stat2.uid,
+          gid: stat2.gid
         };
-        if (stat.isDirectory()) {
+        if (stat2.isDirectory()) {
           header.size = 0;
           header.type = "directory";
           header = map(header) || header;
           return pack.entry(header, onnextentry);
         }
-        if (stat.isSymbolicLink()) {
+        if (stat2.isSymbolicLink()) {
           header.size = 0;
           header.type = "symlink";
           header = map(header) || header;
           return onsymlink(filename, header);
         }
         header = map(header) || header;
-        if (!stat.isFile()) {
+        if (!stat2.isFile()) {
           if (strict)
             return pack.destroy(new Error("unsupported type for " + filename));
           return onnextentry();
@@ -23604,7 +15469,7 @@ var require_tar_fs = __commonJS({
         var entry = pack.entry(header, onnextentry);
         if (!entry)
           return;
-        var rs = mapStream(xfs.createReadStream(path.join(cwd, filename), { start: 0, end: header.size > 0 ? header.size - 1 : header.size }), header);
+        var rs = mapStream(xfs.createReadStream(path4.join(cwd, filename), { start: 0, end: header.size > 0 ? header.size - 1 : header.size }), header);
         rs.on("error", function(err2) {
           entry.destroy(err2);
         });
@@ -23632,12 +15497,12 @@ var require_tar_fs = __commonJS({
         cwd = ".";
       if (!opts)
         opts = {};
-      var xfs = opts.fs || fs;
+      var xfs = opts.fs || fs4;
       var ignore = opts.ignore || opts.filter || noop;
       var map = opts.map || noop;
       var mapStream = opts.mapStream || echo;
       var own = opts.chown !== false && !win32 && processGetuid() === 0;
-      var extract = opts.extract || tar.extract();
+      var extract = opts.extract || tar2.extract();
       var stack = [];
       var now = new Date();
       var umask = typeof opts.umask === "number" ? ~opts.umask : ~processUmask();
@@ -23677,9 +15542,9 @@ var require_tar_fs = __commonJS({
       };
       var chperm = function(name, header, cb) {
         var link = header.type === "symlink";
-        var chmod = link ? xfs.lchmod : xfs.chmod;
+        var chmod2 = link ? xfs.lchmod : xfs.chmod;
         var chown = link ? xfs.lchown : xfs.chown;
-        if (!chmod)
+        if (!chmod2)
           return cb();
         var mode = (header.mode | (header.type === "directory" ? dmode : fmode)) & umask;
         if (chown && own)
@@ -23689,20 +15554,20 @@ var require_tar_fs = __commonJS({
         function onchown(err) {
           if (err)
             return cb(err);
-          if (!chmod)
+          if (!chmod2)
             return cb();
-          chmod.call(xfs, name, mode, cb);
+          chmod2.call(xfs, name, mode, cb);
         }
       };
       extract.on("entry", function(header, stream, next) {
         header = map(header) || header;
         header.name = normalize(header.name);
-        var name = path.join(cwd, path.join("/", header.name));
+        var name = path4.join(cwd, path4.join("/", header.name));
         if (ignore(name, header)) {
           stream.resume();
           return next();
         }
-        var stat = function(err) {
+        var stat2 = function(err) {
           if (err)
             return next(err);
           utimes(name, header, function(err2) {
@@ -23717,20 +15582,20 @@ var require_tar_fs = __commonJS({
           if (win32)
             return next();
           xfs.unlink(name, function() {
-            xfs.symlink(header.linkname, name, stat);
+            xfs.symlink(header.linkname, name, stat2);
           });
         };
         var onlink = function() {
           if (win32)
             return next();
           xfs.unlink(name, function() {
-            var srcpath = path.join(cwd, path.join("/", header.linkname));
+            var srcpath = path4.join(cwd, path4.join("/", header.linkname));
             xfs.link(srcpath, name, function(err) {
               if (err && err.code === "EPERM" && opts.hardlinkAsFilesFallback) {
                 stream = xfs.createReadStream(srcpath);
                 return onfile();
               }
-              stat(err);
+              stat2(err);
             });
           });
         };
@@ -23743,7 +15608,7 @@ var require_tar_fs = __commonJS({
           pump(rs, ws, function(err) {
             if (err)
               return next(err);
-            ws.on("close", stat);
+            ws.on("close", stat2);
           });
         };
         if (header.type === "directory") {
@@ -23753,10 +15618,10 @@ var require_tar_fs = __commonJS({
             own,
             uid: header.uid,
             gid: header.gid
-          }, stat);
+          }, stat2);
         }
-        var dir = path.dirname(name);
-        validate(xfs, dir, path.join(cwd, "."), function(err, valid) {
+        var dir = path4.dirname(name);
+        validate(xfs, dir, path4.join(cwd, "."), function(err, valid) {
           if (err)
             return next(err);
           if (!valid)
@@ -23788,14 +15653,14 @@ var require_tar_fs = __commonJS({
         extract.on("finish", opts.finish);
       return extract;
     };
-    function validate(fs2, name, root, cb) {
+    function validate(fs5, name, root, cb) {
       if (name === root)
         return cb(null, true);
-      fs2.lstat(name, function(err, st) {
+      fs5.lstat(name, function(err, st) {
         if (err && err.code !== "ENOENT")
           return cb(err);
         if (err || st.isDirectory())
-          return validate(fs2, path.join(name, ".."), root, cb);
+          return validate(fs5, path4.join(name, ".."), root, cb);
         cb(null, false);
       });
     }
@@ -24570,1300 +16435,12 @@ var require_unbzip2_stream = __commonJS({
   }
 });
 
-// node_modules/puppeteer/lib/cjs/puppeteer/node/BrowserFetcher.js
-var require_BrowserFetcher = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/node/BrowserFetcher.js"(exports) {
-    "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      Object.defineProperty(o, k2, { enumerable: true, get: function() {
-        return m[k];
-      } });
-    } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      o[k2] = m[k];
-    });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
-      Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
-      o["default"] = v;
-    });
-    var __importStar = exports && exports.__importStar || function(mod) {
-      if (mod && mod.__esModule)
-        return mod;
-      var result = {};
-      if (mod != null) {
-        for (var k in mod)
-          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
-            __createBinding(result, mod, k);
-      }
-      __setModuleDefault(result, mod);
-      return result;
-    };
-    var __importDefault = exports && exports.__importDefault || function(mod) {
-      return mod && mod.__esModule ? mod : { "default": mod };
-    };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.BrowserFetcher = void 0;
-    var os = __importStar(__require("os"));
-    var fs = __importStar(__require("fs"));
-    var path = __importStar(__require("path"));
-    var util = __importStar(__require("util"));
-    var childProcess = __importStar(__require("child_process"));
-    var https = __importStar(__require("https"));
-    var http = __importStar(__require("http"));
-    var extract_zip_1 = __importDefault(require_extract_zip());
-    var Debug_js_1 = require_Debug();
-    var util_1 = __require("util");
-    var rimraf_1 = __importDefault(require_rimraf());
-    var URL2 = __importStar(__require("url"));
-    var https_proxy_agent_1 = __importDefault(require_dist());
-    var proxy_from_env_1 = require_proxy_from_env();
-    var assert_js_1 = require_assert();
-    var debugFetcher = (0, Debug_js_1.debug)("puppeteer:fetcher");
-    var downloadURLs = {
-      chrome: {
-        linux: "%s/chromium-browser-snapshots/Linux_x64/%d/%s.zip",
-        mac: "%s/chromium-browser-snapshots/Mac/%d/%s.zip",
-        win32: "%s/chromium-browser-snapshots/Win/%d/%s.zip",
-        win64: "%s/chromium-browser-snapshots/Win_x64/%d/%s.zip"
-      },
-      firefox: {
-        linux: "%s/firefox-%s.en-US.%s-x86_64.tar.bz2",
-        mac: "%s/firefox-%s.en-US.%s.dmg",
-        win32: "%s/firefox-%s.en-US.%s.zip",
-        win64: "%s/firefox-%s.en-US.%s.zip"
-      }
-    };
-    var browserConfig = {
-      chrome: {
-        host: "https://storage.googleapis.com",
-        destination: ".local-chromium"
-      },
-      firefox: {
-        host: "https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central",
-        destination: ".local-firefox"
-      }
-    };
-    function archiveName(product, platform, revision) {
-      if (product === "chrome") {
-        if (platform === "linux")
-          return "chrome-linux";
-        if (platform === "mac")
-          return "chrome-mac";
-        if (platform === "win32" || platform === "win64") {
-          return parseInt(revision, 10) > 591479 ? "chrome-win" : "chrome-win32";
-        }
-      } else if (product === "firefox") {
-        return platform;
-      }
-    }
-    function downloadURL(product, platform, host, revision) {
-      const url = util.format(downloadURLs[product][platform], host, revision, archiveName(product, platform, revision));
-      return url;
-    }
-    function handleArm64() {
-      fs.stat("/usr/bin/chromium-browser", function(err, stats) {
-        if (stats === void 0) {
-          fs.stat("/usr/bin/chromium", function(err2, stats2) {
-            if (stats2 === void 0) {
-              console.error("The chromium binary is not available for arm64.\nIf you are on Ubuntu, you can install with: \n\n sudo apt install chromium\n\n\n sudo apt install chromium-browser\n");
-              throw new Error();
-            }
-          });
-        }
-      });
-    }
-    var readdirAsync = (0, util_1.promisify)(fs.readdir.bind(fs));
-    var mkdirAsync = (0, util_1.promisify)(fs.mkdir.bind(fs));
-    var unlinkAsync = (0, util_1.promisify)(fs.unlink.bind(fs));
-    var chmodAsync = (0, util_1.promisify)(fs.chmod.bind(fs));
-    function existsAsync(filePath) {
-      return new Promise((resolve) => {
-        fs.access(filePath, (err) => resolve(!err));
-      });
-    }
-    var BrowserFetcher = class {
-      constructor(projectRoot, options = {}) {
-        this._product = (options.product || "chrome").toLowerCase();
-        (0, assert_js_1.assert)(this._product === "chrome" || this._product === "firefox", `Unknown product: "${options.product}"`);
-        this._downloadsFolder = options.path || path.join(projectRoot, browserConfig[this._product].destination);
-        this._downloadHost = options.host || browserConfig[this._product].host;
-        this.setPlatform(options.platform);
-        (0, assert_js_1.assert)(downloadURLs[this._product][this._platform], "Unsupported platform: " + this._platform);
-      }
-      setPlatform(platformFromOptions) {
-        if (platformFromOptions) {
-          this._platform = platformFromOptions;
-          return;
-        }
-        const platform = os.platform();
-        if (platform === "darwin")
-          this._platform = "mac";
-        else if (platform === "linux")
-          this._platform = "linux";
-        else if (platform === "win32")
-          this._platform = os.arch() === "x64" ? "win64" : "win32";
-        else
-          (0, assert_js_1.assert)(this._platform, "Unsupported platform: " + platform);
-      }
-      platform() {
-        return this._platform;
-      }
-      product() {
-        return this._product;
-      }
-      host() {
-        return this._downloadHost;
-      }
-      canDownload(revision) {
-        const url = downloadURL(this._product, this._platform, this._downloadHost, revision);
-        return new Promise((resolve) => {
-          const request = httpRequest(url, "HEAD", (response) => {
-            resolve(response.statusCode === 200);
-          });
-          request.on("error", (error) => {
-            console.error(error);
-            resolve(false);
-          });
-        });
-      }
-      async download(revision, progressCallback = () => {
-      }) {
-        const url = downloadURL(this._product, this._platform, this._downloadHost, revision);
-        const fileName = url.split("/").pop();
-        const archivePath = path.join(this._downloadsFolder, fileName);
-        const outputPath = this._getFolderPath(revision);
-        if (await existsAsync(outputPath))
-          return this.revisionInfo(revision);
-        if (!await existsAsync(this._downloadsFolder))
-          await mkdirAsync(this._downloadsFolder);
-        if (os.platform() !== "darwin" && os.arch() === "arm64") {
-          handleArm64();
-          return;
-        }
-        try {
-          await downloadFile(url, archivePath, progressCallback);
-          await install(archivePath, outputPath);
-        } finally {
-          if (await existsAsync(archivePath))
-            await unlinkAsync(archivePath);
-        }
-        const revisionInfo = this.revisionInfo(revision);
-        if (revisionInfo)
-          await chmodAsync(revisionInfo.executablePath, 493);
-        return revisionInfo;
-      }
-      async localRevisions() {
-        if (!await existsAsync(this._downloadsFolder))
-          return [];
-        const fileNames = await readdirAsync(this._downloadsFolder);
-        return fileNames.map((fileName) => parseFolderPath(this._product, fileName)).filter((entry) => entry && entry.platform === this._platform).map((entry) => entry.revision);
-      }
-      async remove(revision) {
-        const folderPath = this._getFolderPath(revision);
-        (0, assert_js_1.assert)(await existsAsync(folderPath), `Failed to remove: revision ${revision} is not downloaded`);
-        await new Promise((fulfill) => (0, rimraf_1.default)(folderPath, fulfill));
-      }
-      revisionInfo(revision) {
-        const folderPath = this._getFolderPath(revision);
-        let executablePath = "";
-        if (this._product === "chrome") {
-          if (this._platform === "mac")
-            executablePath = path.join(folderPath, archiveName(this._product, this._platform, revision), "Chromium.app", "Contents", "MacOS", "Chromium");
-          else if (this._platform === "linux")
-            executablePath = path.join(folderPath, archiveName(this._product, this._platform, revision), "chrome");
-          else if (this._platform === "win32" || this._platform === "win64")
-            executablePath = path.join(folderPath, archiveName(this._product, this._platform, revision), "chrome.exe");
-          else
-            throw new Error("Unsupported platform: " + this._platform);
-        } else if (this._product === "firefox") {
-          if (this._platform === "mac")
-            executablePath = path.join(folderPath, "Firefox Nightly.app", "Contents", "MacOS", "firefox");
-          else if (this._platform === "linux")
-            executablePath = path.join(folderPath, "firefox", "firefox");
-          else if (this._platform === "win32" || this._platform === "win64")
-            executablePath = path.join(folderPath, "firefox", "firefox.exe");
-          else
-            throw new Error("Unsupported platform: " + this._platform);
-        } else
-          throw new Error("Unsupported product: " + this._product);
-        const url = downloadURL(this._product, this._platform, this._downloadHost, revision);
-        const local = fs.existsSync(folderPath);
-        debugFetcher({
-          revision,
-          executablePath,
-          folderPath,
-          local,
-          url,
-          product: this._product
-        });
-        return {
-          revision,
-          executablePath,
-          folderPath,
-          local,
-          url,
-          product: this._product
-        };
-      }
-      _getFolderPath(revision) {
-        return path.resolve(this._downloadsFolder, `${this._platform}-${revision}`);
-      }
-    };
-    exports.BrowserFetcher = BrowserFetcher;
-    function parseFolderPath(product, folderPath) {
-      const name = path.basename(folderPath);
-      const splits = name.split("-");
-      if (splits.length !== 2)
-        return null;
-      const [platform, revision] = splits;
-      if (!downloadURLs[product][platform])
-        return null;
-      return { product, platform, revision };
-    }
-    function downloadFile(url, destinationPath, progressCallback) {
-      debugFetcher(`Downloading binary from ${url}`);
-      let fulfill, reject;
-      let downloadedBytes = 0;
-      let totalBytes = 0;
-      const promise = new Promise((x, y) => {
-        fulfill = x;
-        reject = y;
-      });
-      const request = httpRequest(url, "GET", (response) => {
-        if (response.statusCode !== 200) {
-          const error = new Error(`Download failed: server returned code ${response.statusCode}. URL: ${url}`);
-          response.resume();
-          reject(error);
-          return;
-        }
-        const file = fs.createWriteStream(destinationPath);
-        file.on("finish", () => fulfill());
-        file.on("error", (error) => reject(error));
-        response.pipe(file);
-        totalBytes = parseInt(response.headers["content-length"], 10);
-        if (progressCallback)
-          response.on("data", onData);
-      });
-      request.on("error", (error) => reject(error));
-      return promise;
-      function onData(chunk) {
-        downloadedBytes += chunk.length;
-        progressCallback(downloadedBytes, totalBytes);
-      }
-    }
-    function install(archivePath, folderPath) {
-      debugFetcher(`Installing ${archivePath} to ${folderPath}`);
-      if (archivePath.endsWith(".zip"))
-        return (0, extract_zip_1.default)(archivePath, { dir: folderPath });
-      else if (archivePath.endsWith(".tar.bz2"))
-        return extractTar(archivePath, folderPath);
-      else if (archivePath.endsWith(".dmg"))
-        return mkdirAsync(folderPath).then(() => installDMG(archivePath, folderPath));
-      else
-        throw new Error(`Unsupported archive format: ${archivePath}`);
-    }
-    function extractTar(tarPath, folderPath) {
-      const tar = require_tar_fs();
-      const bzip = require_unbzip2_stream();
-      return new Promise((fulfill, reject) => {
-        const tarStream = tar.extract(folderPath);
-        tarStream.on("error", reject);
-        tarStream.on("finish", fulfill);
-        const readStream = fs.createReadStream(tarPath);
-        readStream.pipe(bzip()).pipe(tarStream);
-      });
-    }
-    function installDMG(dmgPath, folderPath) {
-      let mountPath;
-      function mountAndCopy(fulfill, reject) {
-        const mountCommand = `hdiutil attach -nobrowse -noautoopen "${dmgPath}"`;
-        childProcess.exec(mountCommand, (err, stdout) => {
-          if (err)
-            return reject(err);
-          const volumes = stdout.match(/\/Volumes\/(.*)/m);
-          if (!volumes)
-            return reject(new Error(`Could not find volume path in ${stdout}`));
-          mountPath = volumes[0];
-          readdirAsync(mountPath).then((fileNames) => {
-            const appName = fileNames.find((item) => typeof item === "string" && item.endsWith(".app"));
-            if (!appName)
-              return reject(new Error(`Cannot find app in ${mountPath}`));
-            const copyPath = path.join(mountPath, appName);
-            debugFetcher(`Copying ${copyPath} to ${folderPath}`);
-            childProcess.exec(`cp -R "${copyPath}" "${folderPath}"`, (err2) => {
-              if (err2)
-                reject(err2);
-              else
-                fulfill();
-            });
-          }).catch(reject);
-        });
-      }
-      function unmount() {
-        if (!mountPath)
-          return;
-        const unmountCommand = `hdiutil detach "${mountPath}" -quiet`;
-        debugFetcher(`Unmounting ${mountPath}`);
-        childProcess.exec(unmountCommand, (err) => {
-          if (err)
-            console.error(`Error unmounting dmg: ${err}`);
-        });
-      }
-      return new Promise(mountAndCopy).catch((error) => {
-        console.error(error);
-      }).finally(unmount);
-    }
-    function httpRequest(url, method, response) {
-      const urlParsed = URL2.parse(url);
-      let options = __spreadProps(__spreadValues({}, urlParsed), {
-        method
-      });
-      const proxyURL = (0, proxy_from_env_1.getProxyForUrl)(url);
-      if (proxyURL) {
-        if (url.startsWith("http:")) {
-          const proxy = URL2.parse(proxyURL);
-          options = {
-            path: options.href,
-            host: proxy.hostname,
-            port: proxy.port
-          };
-        } else {
-          const parsedProxyURL = URL2.parse(proxyURL);
-          const proxyOptions = __spreadProps(__spreadValues({}, parsedProxyURL), {
-            secureProxy: parsedProxyURL.protocol === "https:"
-          });
-          options.agent = (0, https_proxy_agent_1.default)(proxyOptions);
-          options.rejectUnauthorized = false;
-        }
-      }
-      const requestCallback = (res) => {
-        if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location)
-          httpRequest(res.headers.location, method, response);
-        else
-          response(res);
-      };
-      const request = options.protocol === "https:" ? https.request(options, requestCallback) : http.request(options, requestCallback);
-      request.end();
-      return request;
-    }
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/node/PipeTransport.js
-var require_PipeTransport = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/node/PipeTransport.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.PipeTransport = void 0;
-    var helper_js_1 = require_helper();
-    var PipeTransport = class {
-      constructor(pipeWrite, pipeRead) {
-        this._pipeWrite = pipeWrite;
-        this._pendingMessage = "";
-        this._eventListeners = [
-          helper_js_1.helper.addEventListener(pipeRead, "data", (buffer) => this._dispatch(buffer)),
-          helper_js_1.helper.addEventListener(pipeRead, "close", () => {
-            if (this.onclose)
-              this.onclose.call(null);
-          }),
-          helper_js_1.helper.addEventListener(pipeRead, "error", helper_js_1.debugError),
-          helper_js_1.helper.addEventListener(pipeWrite, "error", helper_js_1.debugError)
-        ];
-        this.onmessage = null;
-        this.onclose = null;
-      }
-      send(message) {
-        this._pipeWrite.write(message);
-        this._pipeWrite.write("\0");
-      }
-      _dispatch(buffer) {
-        let end = buffer.indexOf("\0");
-        if (end === -1) {
-          this._pendingMessage += buffer.toString();
-          return;
-        }
-        const message = this._pendingMessage + buffer.toString(void 0, 0, end);
-        if (this.onmessage)
-          this.onmessage.call(null, message);
-        let start = end + 1;
-        end = buffer.indexOf("\0", start);
-        while (end !== -1) {
-          if (this.onmessage)
-            this.onmessage.call(null, buffer.toString(void 0, start, end));
-          start = end + 1;
-          end = buffer.indexOf("\0", start);
-        }
-        this._pendingMessage = buffer.toString(void 0, start);
-      }
-      close() {
-        this._pipeWrite = null;
-        helper_js_1.helper.removeEventListeners(this._eventListeners);
-      }
-    };
-    exports.PipeTransport = PipeTransport;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/node/BrowserRunner.js
-var require_BrowserRunner = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/node/BrowserRunner.js"(exports) {
-    "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      Object.defineProperty(o, k2, { enumerable: true, get: function() {
-        return m[k];
-      } });
-    } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      o[k2] = m[k];
-    });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
-      Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
-      o["default"] = v;
-    });
-    var __importStar = exports && exports.__importStar || function(mod) {
-      if (mod && mod.__esModule)
-        return mod;
-      var result = {};
-      if (mod != null) {
-        for (var k in mod)
-          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
-            __createBinding(result, mod, k);
-      }
-      __setModuleDefault(result, mod);
-      return result;
-    };
-    var __importDefault = exports && exports.__importDefault || function(mod) {
-      return mod && mod.__esModule ? mod : { "default": mod };
-    };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.BrowserRunner = void 0;
-    var Debug_js_1 = require_Debug();
-    var childProcess = __importStar(__require("child_process"));
-    var fs = __importStar(__require("fs"));
-    var path = __importStar(__require("path"));
-    var readline = __importStar(__require("readline"));
-    var rimraf_1 = __importDefault(require_rimraf());
-    var util_1 = __require("util");
-    var assert_js_1 = require_assert();
-    var helper_js_1 = require_helper();
-    var Connection_js_1 = require_Connection();
-    var NodeWebSocketTransport_js_1 = require_NodeWebSocketTransport();
-    var PipeTransport_js_1 = require_PipeTransport();
-    var Errors_js_1 = require_Errors();
-    var removeFolderAsync = (0, util_1.promisify)(rimraf_1.default);
-    var renameAsync = (0, util_1.promisify)(fs.rename);
-    var unlinkAsync = (0, util_1.promisify)(fs.unlink);
-    var debugLauncher = (0, Debug_js_1.debug)("puppeteer:launcher");
-    var PROCESS_ERROR_EXPLANATION = `Puppeteer was unable to kill the process which ran the browser binary.
-This means that, on future Puppeteer launches, Puppeteer might not be able to launch the browser.
-Please check your open processes and ensure that the browser processes that Puppeteer launched have been killed.
-If you think this is a bug, please report it on the Puppeteer issue tracker.`;
-    var BrowserRunner = class {
-      constructor(product, executablePath, processArguments, userDataDir, isTempUserDataDir) {
-        this.proc = null;
-        this.connection = null;
-        this._closed = true;
-        this._listeners = [];
-        this._product = product;
-        this._executablePath = executablePath;
-        this._processArguments = processArguments;
-        this._userDataDir = userDataDir;
-        this._isTempUserDataDir = isTempUserDataDir;
-      }
-      start(options) {
-        const { handleSIGINT, handleSIGTERM, handleSIGHUP, dumpio, env, pipe } = options;
-        let stdio;
-        if (pipe) {
-          if (dumpio)
-            stdio = ["ignore", "pipe", "pipe", "pipe", "pipe"];
-          else
-            stdio = ["ignore", "ignore", "ignore", "pipe", "pipe"];
-        } else {
-          if (dumpio)
-            stdio = ["pipe", "pipe", "pipe"];
-          else
-            stdio = ["pipe", "ignore", "pipe"];
-        }
-        (0, assert_js_1.assert)(!this.proc, "This process has previously been started.");
-        debugLauncher(`Calling ${this._executablePath} ${this._processArguments.join(" ")}`);
-        this.proc = childProcess.spawn(this._executablePath, this._processArguments, {
-          detached: process.platform !== "win32",
-          env,
-          stdio
-        });
-        if (dumpio) {
-          this.proc.stderr.pipe(process.stderr);
-          this.proc.stdout.pipe(process.stdout);
-        }
-        this._closed = false;
-        this._processClosing = new Promise((fulfill, reject) => {
-          this.proc.once("exit", async () => {
-            this._closed = true;
-            if (this._isTempUserDataDir) {
-              try {
-                await removeFolderAsync(this._userDataDir);
-                fulfill();
-              } catch (error) {
-                (0, helper_js_1.debugError)(error);
-                reject(error);
-              }
-            } else {
-              if (this._product === "firefox") {
-                try {
-                  await unlinkAsync(path.join(this._userDataDir, "user.js"));
-                  const prefsBackupPath = path.join(this._userDataDir, "prefs.js.puppeteer");
-                  if (fs.existsSync(prefsBackupPath)) {
-                    const prefsPath = path.join(this._userDataDir, "prefs.js");
-                    await unlinkAsync(prefsPath);
-                    await renameAsync(prefsBackupPath, prefsPath);
-                  }
-                } catch (error) {
-                  (0, helper_js_1.debugError)(error);
-                  reject(error);
-                }
-              }
-              fulfill();
-            }
-          });
-        });
-        this._listeners = [
-          helper_js_1.helper.addEventListener(process, "exit", this.kill.bind(this))
-        ];
-        if (handleSIGINT)
-          this._listeners.push(helper_js_1.helper.addEventListener(process, "SIGINT", () => {
-            this.kill();
-            process.exit(130);
-          }));
-        if (handleSIGTERM)
-          this._listeners.push(helper_js_1.helper.addEventListener(process, "SIGTERM", this.close.bind(this)));
-        if (handleSIGHUP)
-          this._listeners.push(helper_js_1.helper.addEventListener(process, "SIGHUP", this.close.bind(this)));
-      }
-      close() {
-        if (this._closed)
-          return Promise.resolve();
-        if (this._isTempUserDataDir && this._product !== "firefox") {
-          this.kill();
-        } else if (this.connection) {
-          this.connection.send("Browser.close").catch((error) => {
-            (0, helper_js_1.debugError)(error);
-            this.kill();
-          });
-        }
-        helper_js_1.helper.removeEventListeners(this._listeners);
-        return this._processClosing;
-      }
-      kill() {
-        if (this.proc && this.proc.pid && pidExists(this.proc.pid)) {
-          try {
-            if (process.platform === "win32") {
-              childProcess.exec(`taskkill /pid ${this.proc.pid} /T /F`, () => {
-              });
-            } else {
-              const processGroupId = -this.proc.pid;
-              process.kill(processGroupId, "SIGKILL");
-            }
-          } catch (error) {
-            throw new Error(`${PROCESS_ERROR_EXPLANATION}
-Error cause: ${error.stack}`);
-          }
-        }
-        try {
-          if (this._isTempUserDataDir) {
-            rimraf_1.default.sync(this._userDataDir);
-          }
-        } catch (error) {
-        }
-        helper_js_1.helper.removeEventListeners(this._listeners);
-      }
-      async setupConnection(options) {
-        const { usePipe, timeout, slowMo, preferredRevision } = options;
-        if (!usePipe) {
-          const browserWSEndpoint = await waitForWSEndpoint(this.proc, timeout, preferredRevision);
-          const transport = await NodeWebSocketTransport_js_1.NodeWebSocketTransport.create(browserWSEndpoint);
-          this.connection = new Connection_js_1.Connection(browserWSEndpoint, transport, slowMo);
-        } else {
-          const { 3: pipeWrite, 4: pipeRead } = this.proc.stdio;
-          const transport = new PipeTransport_js_1.PipeTransport(pipeWrite, pipeRead);
-          this.connection = new Connection_js_1.Connection("", transport, slowMo);
-        }
-        return this.connection;
-      }
-    };
-    exports.BrowserRunner = BrowserRunner;
-    function waitForWSEndpoint(browserProcess, timeout, preferredRevision) {
-      return new Promise((resolve, reject) => {
-        const rl = readline.createInterface({ input: browserProcess.stderr });
-        let stderr = "";
-        const listeners = [
-          helper_js_1.helper.addEventListener(rl, "line", onLine),
-          helper_js_1.helper.addEventListener(rl, "close", () => onClose()),
-          helper_js_1.helper.addEventListener(browserProcess, "exit", () => onClose()),
-          helper_js_1.helper.addEventListener(browserProcess, "error", (error) => onClose(error))
-        ];
-        const timeoutId = timeout ? setTimeout(onTimeout, timeout) : 0;
-        function onClose(error) {
-          cleanup();
-          reject(new Error([
-            "Failed to launch the browser process!" + (error ? " " + error.message : ""),
-            stderr,
-            "",
-            "TROUBLESHOOTING: https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md",
-            ""
-          ].join("\n")));
-        }
-        function onTimeout() {
-          cleanup();
-          reject(new Errors_js_1.TimeoutError(`Timed out after ${timeout} ms while trying to connect to the browser! Only Chrome at revision r${preferredRevision} is guaranteed to work.`));
-        }
-        function onLine(line) {
-          stderr += line + "\n";
-          const match = line.match(/^DevTools listening on (ws:\/\/.*)$/);
-          if (!match)
-            return;
-          cleanup();
-          resolve(match[1]);
-        }
-        function cleanup() {
-          if (timeoutId)
-            clearTimeout(timeoutId);
-          helper_js_1.helper.removeEventListeners(listeners);
-        }
-      });
-    }
-    function pidExists(pid) {
-      try {
-        return process.kill(pid, 0);
-      } catch (error) {
-        if (error && error.code && error.code === "ESRCH") {
-          return false;
-        } else {
-          throw error;
-        }
-      }
-    }
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/node/Launcher.js
-var require_Launcher = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/node/Launcher.js"(exports) {
-    "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      Object.defineProperty(o, k2, { enumerable: true, get: function() {
-        return m[k];
-      } });
-    } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      o[k2] = m[k];
-    });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
-      Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
-      o["default"] = v;
-    });
-    var __importStar = exports && exports.__importStar || function(mod) {
-      if (mod && mod.__esModule)
-        return mod;
-      var result = {};
-      if (mod != null) {
-        for (var k in mod)
-          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
-            __createBinding(result, mod, k);
-      }
-      __setModuleDefault(result, mod);
-      return result;
-    };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var os = __importStar(__require("os"));
-    var path = __importStar(__require("path"));
-    var fs = __importStar(__require("fs"));
-    var assert_js_1 = require_assert();
-    var BrowserFetcher_js_1 = require_BrowserFetcher();
-    var Browser_js_1 = require_Browser();
-    var BrowserRunner_js_1 = require_BrowserRunner();
-    var util_1 = __require("util");
-    var copyFileAsync = (0, util_1.promisify)(fs.copyFile);
-    var mkdtempAsync = (0, util_1.promisify)(fs.mkdtemp);
-    var writeFileAsync = (0, util_1.promisify)(fs.writeFile);
-    var tmpDir = () => process.env.PUPPETEER_TMP_DIR || os.tmpdir();
-    var ChromeLauncher = class {
-      constructor(projectRoot, preferredRevision, isPuppeteerCore) {
-        this._projectRoot = projectRoot;
-        this._preferredRevision = preferredRevision;
-        this._isPuppeteerCore = isPuppeteerCore;
-      }
-      async launch(options = {}) {
-        var _a;
-        const { ignoreDefaultArgs = false, args = [], dumpio = false, channel = null, executablePath = null, pipe = false, env = process.env, handleSIGINT = true, handleSIGTERM = true, handleSIGHUP = true, ignoreHTTPSErrors = false, defaultViewport = { width: 800, height: 600 }, slowMo = 0, timeout = 3e4, waitForInitialPage = true, debuggingPort = null } = options;
-        const chromeArguments = [];
-        if (!ignoreDefaultArgs)
-          chromeArguments.push(...this.defaultArgs(options));
-        else if (Array.isArray(ignoreDefaultArgs))
-          chromeArguments.push(...this.defaultArgs(options).filter((arg) => !ignoreDefaultArgs.includes(arg)));
-        else
-          chromeArguments.push(...args);
-        if (!chromeArguments.some((argument) => argument.startsWith("--remote-debugging-"))) {
-          if (pipe) {
-            (0, assert_js_1.assert)(debuggingPort === null, "Browser should be launched with either pipe or debugging port - not both.");
-            chromeArguments.push("--remote-debugging-pipe");
-          } else {
-            chromeArguments.push(`--remote-debugging-port=${debuggingPort || 0}`);
-          }
-        }
-        let userDataDir;
-        let isTempUserDataDir = true;
-        const userDataDirIndex = chromeArguments.findIndex((arg) => {
-          return arg.startsWith("--user-data-dir");
-        });
-        if (userDataDirIndex !== -1) {
-          userDataDir = chromeArguments[userDataDirIndex].split("=")[1];
-          if (!fs.existsSync(userDataDir)) {
-            throw new Error(`Chrome user data dir not found at '${userDataDir}'`);
-          }
-          isTempUserDataDir = false;
-        } else {
-          userDataDir = await mkdtempAsync(path.join(tmpDir(), "puppeteer_dev_chrome_profile-"));
-          chromeArguments.push(`--user-data-dir=${userDataDir}`);
-        }
-        let chromeExecutable = executablePath;
-        if (channel) {
-          (0, assert_js_1.assert)(!executablePath, "`executablePath` must not be specified when `channel` is given.");
-          chromeExecutable = executablePathForChannel(channel);
-        } else if (!executablePath) {
-          const { missingText, executablePath: executablePath2 } = resolveExecutablePath(this);
-          if (missingText)
-            throw new Error(missingText);
-          chromeExecutable = executablePath2;
-        }
-        if (!chromeExecutable) {
-          throw new Error("chromeExecutable is not found.");
-        }
-        const usePipe = chromeArguments.includes("--remote-debugging-pipe");
-        const runner = new BrowserRunner_js_1.BrowserRunner(this.product, chromeExecutable, chromeArguments, userDataDir, isTempUserDataDir);
-        runner.start({
-          handleSIGHUP,
-          handleSIGTERM,
-          handleSIGINT,
-          dumpio,
-          env,
-          pipe: usePipe
-        });
-        let browser;
-        try {
-          const connection = await runner.setupConnection({
-            usePipe,
-            timeout,
-            slowMo,
-            preferredRevision: this._preferredRevision
-          });
-          browser = await Browser_js_1.Browser.create(connection, [], ignoreHTTPSErrors, defaultViewport, (_a = runner.proc) !== null && _a !== void 0 ? _a : void 0, runner.close.bind(runner));
-        } catch (error) {
-          runner.kill();
-          throw error;
-        }
-        if (waitForInitialPage) {
-          try {
-            await browser.waitForTarget((t) => t.type() === "page", { timeout });
-          } catch (error) {
-            await browser.close();
-            throw error;
-          }
-        }
-        return browser;
-      }
-      defaultArgs(options = {}) {
-        const chromeArguments = [
-          "--disable-background-networking",
-          "--enable-features=NetworkService,NetworkServiceInProcess",
-          "--disable-background-timer-throttling",
-          "--disable-backgrounding-occluded-windows",
-          "--disable-breakpad",
-          "--disable-client-side-phishing-detection",
-          "--disable-component-extensions-with-background-pages",
-          "--disable-default-apps",
-          "--disable-dev-shm-usage",
-          "--disable-extensions",
-          "--disable-features=Translate",
-          "--disable-hang-monitor",
-          "--disable-ipc-flooding-protection",
-          "--disable-popup-blocking",
-          "--disable-prompt-on-repost",
-          "--disable-renderer-backgrounding",
-          "--disable-sync",
-          "--force-color-profile=srgb",
-          "--metrics-recording-only",
-          "--no-first-run",
-          "--enable-automation",
-          "--password-store=basic",
-          "--use-mock-keychain",
-          "--enable-blink-features=IdleDetection",
-          "--export-tagged-pdf"
-        ];
-        const { devtools = false, headless = !devtools, args = [], userDataDir = null } = options;
-        if (userDataDir)
-          chromeArguments.push(`--user-data-dir=${path.resolve(userDataDir)}`);
-        if (devtools)
-          chromeArguments.push("--auto-open-devtools-for-tabs");
-        if (headless) {
-          chromeArguments.push("--headless", "--hide-scrollbars", "--mute-audio");
-        }
-        if (args.every((arg) => arg.startsWith("-")))
-          chromeArguments.push("about:blank");
-        chromeArguments.push(...args);
-        return chromeArguments;
-      }
-      executablePath(channel) {
-        if (channel) {
-          return executablePathForChannel(channel);
-        } else {
-          return resolveExecutablePath(this).executablePath;
-        }
-      }
-      get product() {
-        return "chrome";
-      }
-    };
-    var FirefoxLauncher = class {
-      constructor(projectRoot, preferredRevision, isPuppeteerCore) {
-        this._projectRoot = projectRoot;
-        this._preferredRevision = preferredRevision;
-        this._isPuppeteerCore = isPuppeteerCore;
-      }
-      async launch(options = {}) {
-        const { ignoreDefaultArgs = false, args = [], dumpio = false, executablePath = null, pipe = false, env = process.env, handleSIGINT = true, handleSIGTERM = true, handleSIGHUP = true, ignoreHTTPSErrors = false, defaultViewport = { width: 800, height: 600 }, slowMo = 0, timeout = 3e4, extraPrefsFirefox = {}, waitForInitialPage = true, debuggingPort = null } = options;
-        const firefoxArguments = [];
-        if (!ignoreDefaultArgs)
-          firefoxArguments.push(...this.defaultArgs(options));
-        else if (Array.isArray(ignoreDefaultArgs))
-          firefoxArguments.push(...this.defaultArgs(options).filter((arg) => !ignoreDefaultArgs.includes(arg)));
-        else
-          firefoxArguments.push(...args);
-        if (!firefoxArguments.some((argument) => argument.startsWith("--remote-debugging-"))) {
-          if (pipe) {
-            (0, assert_js_1.assert)(debuggingPort === null, "Browser should be launched with either pipe or debugging port - not both.");
-          }
-          firefoxArguments.push(`--remote-debugging-port=${debuggingPort || 0}`);
-        }
-        let userDataDir = null;
-        let isTempUserDataDir = true;
-        const profileArgIndex = firefoxArguments.findIndex((arg) => {
-          return ["-profile", "--profile"].includes(arg);
-        });
-        if (profileArgIndex !== -1) {
-          userDataDir = firefoxArguments[profileArgIndex + 1];
-          if (!fs.existsSync(userDataDir)) {
-            throw new Error(`Firefox profile not found at '${userDataDir}'`);
-          }
-          isTempUserDataDir = false;
-          const prefs = this.defaultPreferences(extraPrefsFirefox);
-          this.writePreferences(prefs, userDataDir);
-        } else {
-          userDataDir = await this._createProfile(extraPrefsFirefox);
-          firefoxArguments.push("--profile");
-          firefoxArguments.push(userDataDir);
-        }
-        await this._updateRevision();
-        let firefoxExecutable = executablePath;
-        if (!executablePath) {
-          const { missingText, executablePath: executablePath2 } = resolveExecutablePath(this);
-          if (missingText)
-            throw new Error(missingText);
-          firefoxExecutable = executablePath2;
-        }
-        if (!firefoxExecutable) {
-          throw new Error("firefoxExecutable is not found.");
-        }
-        const runner = new BrowserRunner_js_1.BrowserRunner(this.product, firefoxExecutable, firefoxArguments, userDataDir, isTempUserDataDir);
-        runner.start({
-          handleSIGHUP,
-          handleSIGTERM,
-          handleSIGINT,
-          dumpio,
-          env,
-          pipe
-        });
-        let browser;
-        try {
-          const connection = await runner.setupConnection({
-            usePipe: pipe,
-            timeout,
-            slowMo,
-            preferredRevision: this._preferredRevision
-          });
-          browser = await Browser_js_1.Browser.create(connection, [], ignoreHTTPSErrors, defaultViewport, runner.proc, runner.close.bind(runner));
-        } catch (error) {
-          runner.kill();
-          throw error;
-        }
-        if (waitForInitialPage) {
-          try {
-            await browser.waitForTarget((t) => t.type() === "page", { timeout });
-          } catch (error) {
-            await browser.close();
-            throw error;
-          }
-        }
-        return browser;
-      }
-      executablePath() {
-        return resolveExecutablePath(this).executablePath;
-      }
-      async _updateRevision() {
-        if (this._preferredRevision === "latest") {
-          if (!this._projectRoot) {
-            throw new Error("_projectRoot is undefined. Unable to create a BrowserFetcher.");
-          }
-          const browserFetcher = new BrowserFetcher_js_1.BrowserFetcher(this._projectRoot, {
-            product: this.product
-          });
-          const localRevisions = await browserFetcher.localRevisions();
-          if (localRevisions[0])
-            this._preferredRevision = localRevisions[0];
-        }
-      }
-      get product() {
-        return "firefox";
-      }
-      defaultArgs(options = {}) {
-        const { devtools = false, headless = !devtools, args = [], userDataDir = null } = options;
-        const firefoxArguments = ["--no-remote"];
-        if (os.platform() === "darwin")
-          firefoxArguments.push("--foreground");
-        else if (os.platform().startsWith("win")) {
-          firefoxArguments.push("--wait-for-browser");
-        }
-        if (userDataDir) {
-          firefoxArguments.push("--profile");
-          firefoxArguments.push(userDataDir);
-        }
-        if (headless)
-          firefoxArguments.push("--headless");
-        if (devtools)
-          firefoxArguments.push("--devtools");
-        if (args.every((arg) => arg.startsWith("-")))
-          firefoxArguments.push("about:blank");
-        firefoxArguments.push(...args);
-        return firefoxArguments;
-      }
-      defaultPreferences(extraPrefs) {
-        const server = "dummy.test";
-        const defaultPrefs = {
-          "app.normandy.api_url": "",
-          "app.update.checkInstallTime": false,
-          "app.update.disabledForTesting": true,
-          "apz.content_response_timeout": 6e4,
-          "browser.contentblocking.features.standard": "-tp,tpPrivate,cookieBehavior0,-cm,-fp",
-          "browser.dom.window.dump.enabled": true,
-          "browser.newtabpage.activity-stream.feeds.system.topstories": false,
-          "browser.newtabpage.enabled": false,
-          "browser.pagethumbnails.capturing_disabled": true,
-          "browser.safebrowsing.blockedURIs.enabled": false,
-          "browser.safebrowsing.downloads.enabled": false,
-          "browser.safebrowsing.malware.enabled": false,
-          "browser.safebrowsing.passwords.enabled": false,
-          "browser.safebrowsing.phishing.enabled": false,
-          "browser.search.update": false,
-          "browser.sessionstore.resume_from_crash": false,
-          "browser.shell.checkDefaultBrowser": false,
-          "browser.startup.homepage": "about:blank",
-          "browser.startup.homepage_override.mstone": "ignore",
-          "browser.startup.page": 0,
-          "browser.tabs.disableBackgroundZombification": false,
-          "browser.tabs.warnOnCloseOtherTabs": false,
-          "browser.tabs.warnOnOpen": false,
-          "browser.uitour.enabled": false,
-          "browser.urlbar.suggest.searches": false,
-          "browser.usedOnWindows10.introURL": "",
-          "browser.warnOnQuit": false,
-          "datareporting.healthreport.documentServerURI": `http://${server}/dummy/healthreport/`,
-          "datareporting.healthreport.logging.consoleEnabled": false,
-          "datareporting.healthreport.service.enabled": false,
-          "datareporting.healthreport.service.firstRun": false,
-          "datareporting.healthreport.uploadEnabled": false,
-          "datareporting.policy.dataSubmissionEnabled": false,
-          "datareporting.policy.dataSubmissionPolicyBypassNotification": true,
-          "devtools.jsonview.enabled": false,
-          "dom.disable_open_during_load": false,
-          "dom.file.createInChild": true,
-          "dom.ipc.reportProcessHangs": false,
-          "dom.max_chrome_script_run_time": 0,
-          "dom.max_script_run_time": 0,
-          "extensions.autoDisableScopes": 0,
-          "extensions.enabledScopes": 5,
-          "extensions.getAddons.cache.enabled": false,
-          "extensions.installDistroAddons": false,
-          "extensions.screenshots.disabled": true,
-          "extensions.update.enabled": false,
-          "extensions.update.notifyUser": false,
-          "extensions.webservice.discoverURL": `http://${server}/dummy/discoveryURL`,
-          "fission.bfcacheInParent": false,
-          "fission.webContentIsolationStrategy": 0,
-          "focusmanager.testmode": true,
-          "general.useragent.updates.enabled": false,
-          "geo.provider.testing": true,
-          "geo.wifi.scan": false,
-          "hangmonitor.timeout": 0,
-          "javascript.options.showInConsole": true,
-          "media.gmp-manager.updateEnabled": false,
-          "network.cookie.cookieBehavior": 0,
-          "network.cookie.sameSite.laxByDefault": false,
-          "network.http.prompt-temp-redirect": false,
-          "network.http.speculative-parallel-limit": 0,
-          "network.manage-offline-status": false,
-          "network.sntp.pools": server,
-          "plugin.state.flash": 0,
-          "privacy.trackingprotection.enabled": false,
-          "remote.enabled": true,
-          "security.certerrors.mitm.priming.enabled": false,
-          "security.fileuri.strict_origin_policy": false,
-          "security.notification_enable_delay": 0,
-          "services.settings.server": `http://${server}/dummy/blocklist/`,
-          "signon.autofillForms": false,
-          "signon.rememberSignons": false,
-          "startup.homepage_welcome_url": "about:blank",
-          "startup.homepage_welcome_url.additional": "",
-          "toolkit.cosmeticAnimations.enabled": false,
-          "toolkit.startup.max_resumed_crashes": -1
-        };
-        return Object.assign(defaultPrefs, extraPrefs);
-      }
-      async writePreferences(prefs, profilePath) {
-        const lines = Object.entries(prefs).map(([key, value]) => {
-          return `user_pref(${JSON.stringify(key)}, ${JSON.stringify(value)});`;
-        });
-        await writeFileAsync(path.join(profilePath, "user.js"), lines.join("\n"));
-        const prefsPath = path.join(profilePath, "prefs.js");
-        if (fs.existsSync(prefsPath)) {
-          const prefsBackupPath = path.join(profilePath, "prefs.js.puppeteer");
-          await copyFileAsync(prefsPath, prefsBackupPath);
-        }
-      }
-      async _createProfile(extraPrefs) {
-        const temporaryProfilePath = await mkdtempAsync(path.join(tmpDir(), "puppeteer_dev_firefox_profile-"));
-        const prefs = this.defaultPreferences(extraPrefs);
-        await this.writePreferences(prefs, temporaryProfilePath);
-        return temporaryProfilePath;
-      }
-    };
-    function executablePathForChannel(channel) {
-      const platform = os.platform();
-      let chromePath;
-      switch (platform) {
-        case "win32":
-          switch (channel) {
-            case "chrome":
-              chromePath = `${process.env.PROGRAMFILES}\\Google\\Chrome\\Application\\chrome.exe`;
-              break;
-            case "chrome-beta":
-              chromePath = `${process.env.PROGRAMFILES}\\Google\\Chrome Beta\\Application\\chrome.exe`;
-              break;
-            case "chrome-canary":
-              chromePath = `${process.env.PROGRAMFILES}\\Google\\Chrome SxS\\Application\\chrome.exe`;
-              break;
-            case "chrome-dev":
-              chromePath = `${process.env.PROGRAMFILES}\\Google\\Chrome Dev\\Application\\chrome.exe`;
-              break;
-          }
-          break;
-        case "darwin":
-          switch (channel) {
-            case "chrome":
-              chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-              break;
-            case "chrome-beta":
-              chromePath = "/Applications/Google Chrome Beta.app/Contents/MacOS/Google Chrome Beta";
-              break;
-            case "chrome-canary":
-              chromePath = "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary";
-              break;
-            case "chrome-dev":
-              chromePath = "/Applications/Google Chrome Dev.app/Contents/MacOS/Google Chrome Dev";
-              break;
-          }
-          break;
-        case "linux":
-          switch (channel) {
-            case "chrome":
-              chromePath = "/opt/google/chrome/chrome";
-              break;
-            case "chrome-beta":
-              chromePath = "/opt/google/chrome-beta/chrome";
-              break;
-            case "chrome-dev":
-              chromePath = "/opt/google/chrome-unstable/chrome";
-              break;
-          }
-          break;
-      }
-      if (!chromePath) {
-        throw new Error(`Unable to detect browser executable path for '${channel}' on ${platform}.`);
-      }
-      try {
-        fs.accessSync(chromePath);
-      } catch (error) {
-        throw new Error(`Could not find Google Chrome executable for channel '${channel}' at '${chromePath}'.`);
-      }
-      return chromePath;
-    }
-    function resolveExecutablePath(launcher) {
-      const { product, _isPuppeteerCore, _projectRoot, _preferredRevision } = launcher;
-      let downloadPath;
-      if (!_isPuppeteerCore) {
-        const executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || process.env.npm_config_puppeteer_executable_path || process.env.npm_package_config_puppeteer_executable_path;
-        if (executablePath) {
-          const missingText2 = !fs.existsSync(executablePath) ? "Tried to use PUPPETEER_EXECUTABLE_PATH env variable to launch browser but did not find any executable at: " + executablePath : void 0;
-          return { executablePath, missingText: missingText2 };
-        }
-        const ubuntuChromiumPath = "/usr/bin/chromium-browser";
-        if (product === "chrome" && os.platform() !== "darwin" && os.arch() === "arm64" && fs.existsSync(ubuntuChromiumPath)) {
-          return { executablePath: ubuntuChromiumPath, missingText: void 0 };
-        }
-        downloadPath = process.env.PUPPETEER_DOWNLOAD_PATH || process.env.npm_config_puppeteer_download_path || process.env.npm_package_config_puppeteer_download_path;
-      }
-      if (!_projectRoot) {
-        throw new Error("_projectRoot is undefined. Unable to create a BrowserFetcher.");
-      }
-      const browserFetcher = new BrowserFetcher_js_1.BrowserFetcher(_projectRoot, {
-        product,
-        path: downloadPath
-      });
-      if (!_isPuppeteerCore && product === "chrome") {
-        const revision = process.env["PUPPETEER_CHROMIUM_REVISION"];
-        if (revision) {
-          const revisionInfo2 = browserFetcher.revisionInfo(revision);
-          const missingText2 = !revisionInfo2.local ? "Tried to use PUPPETEER_CHROMIUM_REVISION env variable to launch browser but did not find executable at: " + revisionInfo2.executablePath : void 0;
-          return { executablePath: revisionInfo2.executablePath, missingText: missingText2 };
-        }
-      }
-      const revisionInfo = browserFetcher.revisionInfo(_preferredRevision);
-      const firefoxHelp = `Run \`PUPPETEER_PRODUCT=firefox npm install\` to download a supported Firefox browser binary.`;
-      const chromeHelp = `Run \`npm install\` to download the correct Chromium revision (${launcher._preferredRevision}).`;
-      const missingText = !revisionInfo.local ? `Could not find expected browser (${product}) locally. ${product === "chrome" ? chromeHelp : firefoxHelp}` : void 0;
-      return { executablePath: revisionInfo.executablePath, missingText };
-    }
-    function Launcher(projectRoot, preferredRevision, isPuppeteerCore, product) {
-      if (!product && !isPuppeteerCore)
-        product = process.env.PUPPETEER_PRODUCT || process.env.npm_config_puppeteer_product || process.env.npm_package_config_puppeteer_product;
-      switch (product) {
-        case "firefox":
-          return new FirefoxLauncher(projectRoot, preferredRevision, isPuppeteerCore);
-        case "chrome":
-        default:
-          if (typeof product !== "undefined" && product !== "chrome") {
-            console.warn(`Warning: unknown product name ${product}. Falling back to chrome.`);
-          }
-          return new ChromeLauncher(projectRoot, preferredRevision, isPuppeteerCore);
-      }
-    }
-    exports.default = Launcher;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/revisions.js
-var require_revisions = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/revisions.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.PUPPETEER_REVISIONS = void 0;
-    exports.PUPPETEER_REVISIONS = {
-      chromium: "961656",
-      firefox: "latest"
-    };
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/node/Puppeteer.js
-var require_Puppeteer2 = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/node/Puppeteer.js"(exports) {
-    "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
-      return mod && mod.__esModule ? mod : { "default": mod };
-    };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.PuppeteerNode = void 0;
-    var Puppeteer_js_1 = require_Puppeteer();
-    var BrowserFetcher_js_1 = require_BrowserFetcher();
-    var Launcher_js_1 = __importDefault(require_Launcher());
-    var revisions_js_1 = require_revisions();
-    var PuppeteerNode = class extends Puppeteer_js_1.Puppeteer {
-      constructor(settings) {
-        const _a = settings, { projectRoot, preferredRevision, productName } = _a, commonSettings = __objRest(_a, ["projectRoot", "preferredRevision", "productName"]);
-        super(commonSettings);
-        this._projectRoot = projectRoot;
-        this.__productName = productName;
-        this._preferredRevision = preferredRevision;
-      }
-      connect(options) {
-        if (options.product)
-          this._productName = options.product;
-        return super.connect(options);
-      }
-      get _productName() {
-        return this.__productName;
-      }
-      set _productName(name) {
-        if (this.__productName !== name)
-          this._changedProduct = true;
-        this.__productName = name;
-      }
-      launch(options = {}) {
-        if (options.product)
-          this._productName = options.product;
-        return this._launcher.launch(options);
-      }
-      executablePath(channel) {
-        return this._launcher.executablePath(channel);
-      }
-      get _launcher() {
-        if (!this._lazyLauncher || this._lazyLauncher.product !== this._productName || this._changedProduct) {
-          switch (this._productName) {
-            case "firefox":
-              this._preferredRevision = revisions_js_1.PUPPETEER_REVISIONS.firefox;
-              break;
-            case "chrome":
-            default:
-              this._preferredRevision = revisions_js_1.PUPPETEER_REVISIONS.chromium;
-          }
-          this._changedProduct = false;
-          this._lazyLauncher = (0, Launcher_js_1.default)(this._projectRoot, this._preferredRevision, this._isPuppeteerCore, this._productName);
-        }
-        return this._lazyLauncher;
-      }
-      get product() {
-        return this._launcher.product;
-      }
-      defaultArgs(options = {}) {
-        return this._launcher.defaultArgs(options);
-      }
-      createBrowserFetcher(options) {
-        if (!this._projectRoot) {
-          throw new Error("_projectRoot is undefined. Unable to create a BrowserFetcher.");
-        }
-        return new BrowserFetcher_js_1.BrowserFetcher(this._projectRoot, options);
-      }
-    };
-    exports.PuppeteerNode = PuppeteerNode;
-  }
-});
-
 // node_modules/p-try/index.js
 var require_p_try = __commonJS({
   "node_modules/p-try/index.js"(exports, module) {
     "use strict";
-    var pTry = (fn, ...arguments_) => new Promise((resolve) => {
-      resolve(fn(...arguments_));
+    var pTry = (fn, ...arguments_) => new Promise((resolve3) => {
+      resolve3(fn(...arguments_));
     });
     module.exports = pTry;
     module.exports.default = pTry;
@@ -25887,20 +16464,20 @@ var require_p_limit = __commonJS({
           queue.shift()();
         }
       };
-      const run = (fn, resolve, ...args) => {
+      const run = (fn, resolve3, ...args) => {
         activeCount++;
         const result = pTry(fn, ...args);
-        resolve(result);
+        resolve3(result);
         result.then(next, next);
       };
-      const enqueue = (fn, resolve, ...args) => {
+      const enqueue = (fn, resolve3, ...args) => {
         if (activeCount < concurrency) {
-          run(fn, resolve, ...args);
+          run(fn, resolve3, ...args);
         } else {
-          queue.push(run.bind(null, fn, resolve, ...args));
+          queue.push(run.bind(null, fn, resolve3, ...args));
         }
       };
-      const generator = (fn, ...args) => new Promise((resolve) => enqueue(fn, resolve, ...args));
+      const generator = (fn, ...args) => new Promise((resolve3) => enqueue(fn, resolve3, ...args));
       Object.defineProperties(generator, {
         activeCount: {
           get: () => activeCount
@@ -25966,12 +16543,12 @@ var require_p_locate = __commonJS({
 var require_locate_path = __commonJS({
   "node_modules/locate-path/index.js"(exports, module) {
     "use strict";
-    var path = __require("path");
-    var fs = __require("fs");
-    var { promisify } = __require("util");
+    var path4 = __require("path");
+    var fs4 = __require("fs");
+    var { promisify: promisify4 } = __require("util");
     var pLocate = require_p_locate();
-    var fsStat = promisify(fs.stat);
-    var fsLStat = promisify(fs.lstat);
+    var fsStat = promisify4(fs4.stat);
+    var fsLStat = promisify4(fs4.lstat);
     var typeMappings = {
       directory: "isDirectory",
       file: "isFile"
@@ -25982,7 +16559,7 @@ var require_locate_path = __commonJS({
       }
       throw new Error(`Invalid type specified: ${type}`);
     }
-    var matchType = (type, stat) => type === void 0 || stat[typeMappings[type]]();
+    var matchType = (type, stat2) => type === void 0 || stat2[typeMappings[type]]();
     module.exports = async (paths, options) => {
       options = __spreadValues({
         cwd: process.cwd(),
@@ -25993,8 +16570,8 @@ var require_locate_path = __commonJS({
       const statFn = options.allowSymlinks ? fsStat : fsLStat;
       return pLocate(paths, async (path_) => {
         try {
-          const stat = await statFn(path.resolve(options.cwd, path_));
-          return matchType(options.type, stat);
+          const stat2 = await statFn(path4.resolve(options.cwd, path_));
+          return matchType(options.type, stat2);
         } catch (_) {
           return false;
         }
@@ -26007,11 +16584,11 @@ var require_locate_path = __commonJS({
         type: "file"
       }, options);
       checkType(options);
-      const statFn = options.allowSymlinks ? fs.statSync : fs.lstatSync;
+      const statFn = options.allowSymlinks ? fs4.statSync : fs4.lstatSync;
       for (const path_ of paths) {
         try {
-          const stat = statFn(path.resolve(options.cwd, path_));
-          if (matchType(options.type, stat)) {
+          const stat2 = statFn(path4.resolve(options.cwd, path_));
+          if (matchType(options.type, stat2)) {
             return path_;
           }
         } catch (_) {
@@ -26025,20 +16602,20 @@ var require_locate_path = __commonJS({
 var require_path_exists = __commonJS({
   "node_modules/path-exists/index.js"(exports, module) {
     "use strict";
-    var fs = __require("fs");
-    var { promisify } = __require("util");
-    var pAccess = promisify(fs.access);
-    module.exports = async (path) => {
+    var fs4 = __require("fs");
+    var { promisify: promisify4 } = __require("util");
+    var pAccess = promisify4(fs4.access);
+    module.exports = async (path4) => {
       try {
-        await pAccess(path);
+        await pAccess(path4);
         return true;
       } catch (_) {
         return false;
       }
     };
-    module.exports.sync = (path) => {
+    module.exports.sync = (path4) => {
       try {
-        fs.accessSync(path);
+        fs4.accessSync(path4);
         return true;
       } catch (_) {
         return false;
@@ -26051,13 +16628,13 @@ var require_path_exists = __commonJS({
 var require_find_up = __commonJS({
   "node_modules/find-up/index.js"(exports, module) {
     "use strict";
-    var path = __require("path");
+    var path4 = __require("path");
     var locatePath = require_locate_path();
     var pathExists = require_path_exists();
     var stop = Symbol("findUp.stop");
     module.exports = async (name, options = {}) => {
-      let directory = path.resolve(options.cwd || "");
-      const { root } = path.parse(directory);
+      let directory = path4.resolve(options.cwd || "");
+      const { root } = path4.parse(directory);
       const paths = [].concat(name);
       const runMatcher = async (locateOptions) => {
         if (typeof name !== "function") {
@@ -26075,17 +16652,17 @@ var require_find_up = __commonJS({
           return;
         }
         if (foundPath) {
-          return path.resolve(directory, foundPath);
+          return path4.resolve(directory, foundPath);
         }
         if (directory === root) {
           return;
         }
-        directory = path.dirname(directory);
+        directory = path4.dirname(directory);
       }
     };
     module.exports.sync = (name, options = {}) => {
-      let directory = path.resolve(options.cwd || "");
-      const { root } = path.parse(directory);
+      let directory = path4.resolve(options.cwd || "");
+      const { root } = path4.parse(directory);
       const paths = [].concat(name);
       const runMatcher = (locateOptions) => {
         if (typeof name !== "function") {
@@ -26103,12 +16680,12 @@ var require_find_up = __commonJS({
           return;
         }
         if (foundPath) {
-          return path.resolve(directory, foundPath);
+          return path4.resolve(directory, foundPath);
         }
         if (directory === root) {
           return;
         }
-        directory = path.dirname(directory);
+        directory = path4.dirname(directory);
       }
     };
     module.exports.exists = pathExists;
@@ -26121,96 +16698,8814 @@ var require_find_up = __commonJS({
 var require_pkg_dir = __commonJS({
   "node_modules/pkg-dir/index.js"(exports, module) {
     "use strict";
-    var path = __require("path");
+    var path4 = __require("path");
     var findUp = require_find_up();
     var pkgDir = async (cwd) => {
       const filePath = await findUp("package.json", { cwd });
-      return filePath && path.dirname(filePath);
+      return filePath && path4.dirname(filePath);
     };
     module.exports = pkgDir;
     module.exports.default = pkgDir;
     module.exports.sync = (cwd) => {
       const filePath = findUp.sync("package.json", { cwd });
-      return filePath && path.dirname(filePath);
+      return filePath && path4.dirname(filePath);
     };
   }
 });
 
-// node_modules/puppeteer/lib/cjs/puppeteer/initialize-node.js
-var require_initialize_node = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/initialize-node.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.initializePuppeteerNode = void 0;
-    var Puppeteer_js_1 = require_Puppeteer2();
-    var revisions_js_1 = require_revisions();
-    var pkg_dir_1 = require_pkg_dir();
-    var path_1 = __require("path");
-    function resolvePuppeteerRootDirectory() {
-      try {
-        return (0, pkg_dir_1.sync)((0, path_1.dirname)(__require.resolve("./initialize-node")));
-      } catch (error) {
-        return (0, pkg_dir_1.sync)(__dirname);
+// node_modules/puppeteer/lib/esm/puppeteer/common/Errors.js
+var CustomError = class extends Error {
+  constructor(message) {
+    super(message);
+    this.name = this.constructor.name;
+    Error.captureStackTrace(this, this.constructor);
+  }
+};
+var TimeoutError = class extends CustomError {
+};
+var ProtocolError = class extends CustomError {
+  constructor() {
+    super(...arguments);
+    this.originalMessage = "";
+  }
+};
+var puppeteerErrors = {
+  TimeoutError
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/DeviceDescriptors.js
+var devices = [
+  {
+    name: "Blackberry PlayBook",
+    userAgent: "Mozilla/5.0 (PlayBook; U; RIM Tablet OS 2.1.0; en-US) AppleWebKit/536.2+ (KHTML like Gecko) Version/7.2.1.0 Safari/536.2+",
+    viewport: {
+      width: 600,
+      height: 1024,
+      deviceScaleFactor: 1,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Blackberry PlayBook landscape",
+    userAgent: "Mozilla/5.0 (PlayBook; U; RIM Tablet OS 2.1.0; en-US) AppleWebKit/536.2+ (KHTML like Gecko) Version/7.2.1.0 Safari/536.2+",
+    viewport: {
+      width: 1024,
+      height: 600,
+      deviceScaleFactor: 1,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "BlackBerry Z30",
+    userAgent: "Mozilla/5.0 (BB10; Touch) AppleWebKit/537.10+ (KHTML, like Gecko) Version/10.0.9.2372 Mobile Safari/537.10+",
+    viewport: {
+      width: 360,
+      height: 640,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "BlackBerry Z30 landscape",
+    userAgent: "Mozilla/5.0 (BB10; Touch) AppleWebKit/537.10+ (KHTML, like Gecko) Version/10.0.9.2372 Mobile Safari/537.10+",
+    viewport: {
+      width: 640,
+      height: 360,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Galaxy Note 3",
+    userAgent: "Mozilla/5.0 (Linux; U; Android 4.3; en-us; SM-N900T Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
+    viewport: {
+      width: 360,
+      height: 640,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Galaxy Note 3 landscape",
+    userAgent: "Mozilla/5.0 (Linux; U; Android 4.3; en-us; SM-N900T Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
+    viewport: {
+      width: 640,
+      height: 360,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Galaxy Note II",
+    userAgent: "Mozilla/5.0 (Linux; U; Android 4.1; en-us; GT-N7100 Build/JRO03C) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
+    viewport: {
+      width: 360,
+      height: 640,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Galaxy Note II landscape",
+    userAgent: "Mozilla/5.0 (Linux; U; Android 4.1; en-us; GT-N7100 Build/JRO03C) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
+    viewport: {
+      width: 640,
+      height: 360,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Galaxy S III",
+    userAgent: "Mozilla/5.0 (Linux; U; Android 4.0; en-us; GT-I9300 Build/IMM76D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
+    viewport: {
+      width: 360,
+      height: 640,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Galaxy S III landscape",
+    userAgent: "Mozilla/5.0 (Linux; U; Android 4.0; en-us; GT-I9300 Build/IMM76D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
+    viewport: {
+      width: 640,
+      height: 360,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Galaxy S5",
+    userAgent: "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 360,
+      height: 640,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Galaxy S5 landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 640,
+      height: 360,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Galaxy S8",
+    userAgent: "Mozilla/5.0 (Linux; Android 7.0; SM-G950U Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36",
+    viewport: {
+      width: 360,
+      height: 740,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Galaxy S8 landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 7.0; SM-G950U Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36",
+    viewport: {
+      width: 740,
+      height: 360,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Galaxy S9+",
+    userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; SM-G965U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.111 Mobile Safari/537.36",
+    viewport: {
+      width: 320,
+      height: 658,
+      deviceScaleFactor: 4.5,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Galaxy S9+ landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; SM-G965U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.111 Mobile Safari/537.36",
+    viewport: {
+      width: 658,
+      height: 320,
+      deviceScaleFactor: 4.5,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Galaxy Tab S4",
+    userAgent: "Mozilla/5.0 (Linux; Android 8.1.0; SM-T837A) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Safari/537.36",
+    viewport: {
+      width: 712,
+      height: 1138,
+      deviceScaleFactor: 2.25,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Galaxy Tab S4 landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 8.1.0; SM-T837A) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Safari/537.36",
+    viewport: {
+      width: 1138,
+      height: 712,
+      deviceScaleFactor: 2.25,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPad",
+    userAgent: "Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1",
+    viewport: {
+      width: 768,
+      height: 1024,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPad landscape",
+    userAgent: "Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1",
+    viewport: {
+      width: 1024,
+      height: 768,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPad (gen 6)",
+    userAgent: "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 768,
+      height: 1024,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPad (gen 6) landscape",
+    userAgent: "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 1024,
+      height: 768,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPad (gen 7)",
+    userAgent: "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 810,
+      height: 1080,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPad (gen 7) landscape",
+    userAgent: "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 1080,
+      height: 810,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPad Mini",
+    userAgent: "Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1",
+    viewport: {
+      width: 768,
+      height: 1024,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPad Mini landscape",
+    userAgent: "Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1",
+    viewport: {
+      width: 1024,
+      height: 768,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPad Pro",
+    userAgent: "Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1",
+    viewport: {
+      width: 1024,
+      height: 1366,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPad Pro landscape",
+    userAgent: "Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1",
+    viewport: {
+      width: 1366,
+      height: 1024,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPad Pro 11",
+    userAgent: "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 834,
+      height: 1194,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPad Pro 11 landscape",
+    userAgent: "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 1194,
+      height: 834,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 4",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_2 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D257 Safari/9537.53",
+    viewport: {
+      width: 320,
+      height: 480,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 4 landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_2 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D257 Safari/9537.53",
+    viewport: {
+      width: 480,
+      height: 320,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 5",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
+    viewport: {
+      width: 320,
+      height: 568,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 5 landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
+    viewport: {
+      width: 568,
+      height: 320,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 6",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 375,
+      height: 667,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 6 landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 667,
+      height: 375,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 6 Plus",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 414,
+      height: 736,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 6 Plus landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 736,
+      height: 414,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 7",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 375,
+      height: 667,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 7 landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 667,
+      height: 375,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 7 Plus",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 414,
+      height: 736,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 7 Plus landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 736,
+      height: 414,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 8",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 375,
+      height: 667,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 8 landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 667,
+      height: 375,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 8 Plus",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 414,
+      height: 736,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 8 Plus landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 736,
+      height: 414,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone SE",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
+    viewport: {
+      width: 320,
+      height: 568,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone SE landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
+    viewport: {
+      width: 568,
+      height: 320,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone X",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 375,
+      height: 812,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone X landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    viewport: {
+      width: 812,
+      height: 375,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone XR",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 414,
+      height: 896,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone XR landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 896,
+      height: 414,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 11",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 414,
+      height: 828,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 11 landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 828,
+      height: 414,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 11 Pro",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 375,
+      height: 812,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 11 Pro landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 812,
+      height: 375,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 11 Pro Max",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 414,
+      height: 896,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 11 Pro Max landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 896,
+      height: 414,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 12",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 390,
+      height: 844,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 12 landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 844,
+      height: 390,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 12 Pro",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 390,
+      height: 844,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 12 Pro landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 844,
+      height: 390,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 12 Pro Max",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 428,
+      height: 926,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 12 Pro Max landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 926,
+      height: 428,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 12 Mini",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 375,
+      height: 812,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 12 Mini landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 812,
+      height: 375,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 13",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 390,
+      height: 844,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 13 landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 844,
+      height: 390,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 13 Pro",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 390,
+      height: 844,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 13 Pro landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 844,
+      height: 390,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 13 Pro Max",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 428,
+      height: 926,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 13 Pro Max landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 926,
+      height: 428,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "iPhone 13 Mini",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 375,
+      height: 812,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "iPhone 13 Mini landscape",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1",
+    viewport: {
+      width: 812,
+      height: 375,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "JioPhone 2",
+    userAgent: "Mozilla/5.0 (Mobile; LYF/F300B/LYF-F300B-001-01-15-130718-i;Android; rv:48.0) Gecko/48.0 Firefox/48.0 KAIOS/2.5",
+    viewport: {
+      width: 240,
+      height: 320,
+      deviceScaleFactor: 1,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "JioPhone 2 landscape",
+    userAgent: "Mozilla/5.0 (Mobile; LYF/F300B/LYF-F300B-001-01-15-130718-i;Android; rv:48.0) Gecko/48.0 Firefox/48.0 KAIOS/2.5",
+    viewport: {
+      width: 320,
+      height: 240,
+      deviceScaleFactor: 1,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Kindle Fire HDX",
+    userAgent: "Mozilla/5.0 (Linux; U; en-us; KFAPWI Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Silk/3.13 Safari/535.19 Silk-Accelerated=true",
+    viewport: {
+      width: 800,
+      height: 1280,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Kindle Fire HDX landscape",
+    userAgent: "Mozilla/5.0 (Linux; U; en-us; KFAPWI Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Silk/3.13 Safari/535.19 Silk-Accelerated=true",
+    viewport: {
+      width: 1280,
+      height: 800,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "LG Optimus L70",
+    userAgent: "Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; LGMS323 Build/KOT49I.MS32310c) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 384,
+      height: 640,
+      deviceScaleFactor: 1.25,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "LG Optimus L70 landscape",
+    userAgent: "Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; LGMS323 Build/KOT49I.MS32310c) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 640,
+      height: 384,
+      deviceScaleFactor: 1.25,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Microsoft Lumia 550",
+    userAgent: "Mozilla/5.0 (Windows Phone 10.0; Android 4.2.1; Microsoft; Lumia 550) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Mobile Safari/537.36 Edge/14.14263",
+    viewport: {
+      width: 640,
+      height: 360,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Microsoft Lumia 950",
+    userAgent: "Mozilla/5.0 (Windows Phone 10.0; Android 4.2.1; Microsoft; Lumia 950) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Mobile Safari/537.36 Edge/14.14263",
+    viewport: {
+      width: 360,
+      height: 640,
+      deviceScaleFactor: 4,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Microsoft Lumia 950 landscape",
+    userAgent: "Mozilla/5.0 (Windows Phone 10.0; Android 4.2.1; Microsoft; Lumia 950) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Mobile Safari/537.36 Edge/14.14263",
+    viewport: {
+      width: 640,
+      height: 360,
+      deviceScaleFactor: 4,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Nexus 10",
+    userAgent: "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 10 Build/MOB31T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Safari/537.36",
+    viewport: {
+      width: 800,
+      height: 1280,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Nexus 10 landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 10 Build/MOB31T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Safari/537.36",
+    viewport: {
+      width: 1280,
+      height: 800,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Nexus 4",
+    userAgent: "Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 384,
+      height: 640,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Nexus 4 landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 640,
+      height: 384,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Nexus 5",
+    userAgent: "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 360,
+      height: 640,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Nexus 5 landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 640,
+      height: 360,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Nexus 5X",
+    userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; Nexus 5X Build/OPR4.170623.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 412,
+      height: 732,
+      deviceScaleFactor: 2.625,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Nexus 5X landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; Nexus 5X Build/OPR4.170623.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 732,
+      height: 412,
+      deviceScaleFactor: 2.625,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Nexus 6",
+    userAgent: "Mozilla/5.0 (Linux; Android 7.1.1; Nexus 6 Build/N6F26U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 412,
+      height: 732,
+      deviceScaleFactor: 3.5,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Nexus 6 landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 7.1.1; Nexus 6 Build/N6F26U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 732,
+      height: 412,
+      deviceScaleFactor: 3.5,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Nexus 6P",
+    userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; Nexus 6P Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 412,
+      height: 732,
+      deviceScaleFactor: 3.5,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Nexus 6P landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; Nexus 6P Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 732,
+      height: 412,
+      deviceScaleFactor: 3.5,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Nexus 7",
+    userAgent: "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 7 Build/MOB30X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Safari/537.36",
+    viewport: {
+      width: 600,
+      height: 960,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Nexus 7 landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 7 Build/MOB30X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Safari/537.36",
+    viewport: {
+      width: 960,
+      height: 600,
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Nokia Lumia 520",
+    userAgent: "Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 520)",
+    viewport: {
+      width: 320,
+      height: 533,
+      deviceScaleFactor: 1.5,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Nokia Lumia 520 landscape",
+    userAgent: "Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 520)",
+    viewport: {
+      width: 533,
+      height: 320,
+      deviceScaleFactor: 1.5,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Nokia N9",
+    userAgent: "Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13",
+    viewport: {
+      width: 480,
+      height: 854,
+      deviceScaleFactor: 1,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Nokia N9 landscape",
+    userAgent: "Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13",
+    viewport: {
+      width: 854,
+      height: 480,
+      deviceScaleFactor: 1,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Pixel 2",
+    userAgent: "Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 411,
+      height: 731,
+      deviceScaleFactor: 2.625,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Pixel 2 landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 731,
+      height: 411,
+      deviceScaleFactor: 2.625,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Pixel 2 XL",
+    userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 411,
+      height: 823,
+      deviceScaleFactor: 3.5,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Pixel 2 XL landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3765.0 Mobile Safari/537.36",
+    viewport: {
+      width: 823,
+      height: 411,
+      deviceScaleFactor: 3.5,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Pixel 3",
+    userAgent: "Mozilla/5.0 (Linux; Android 9; Pixel 3 Build/PQ1A.181105.017.A1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.158 Mobile Safari/537.36",
+    viewport: {
+      width: 393,
+      height: 786,
+      deviceScaleFactor: 2.75,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Pixel 3 landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 9; Pixel 3 Build/PQ1A.181105.017.A1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.158 Mobile Safari/537.36",
+    viewport: {
+      width: 786,
+      height: 393,
+      deviceScaleFactor: 2.75,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Pixel 4",
+    userAgent: "Mozilla/5.0 (Linux; Android 10; Pixel 4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36",
+    viewport: {
+      width: 353,
+      height: 745,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Pixel 4 landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 10; Pixel 4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36",
+    viewport: {
+      width: 745,
+      height: 353,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Pixel 4a (5G)",
+    userAgent: "Mozilla/5.0 (Linux; Android 11; Pixel 4a (5G)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4812.0 Mobile Safari/537.36",
+    viewport: {
+      width: 353,
+      height: 745,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Pixel 4a (5G) landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 11; Pixel 4a (5G)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4812.0 Mobile Safari/537.36",
+    viewport: {
+      width: 745,
+      height: 353,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Pixel 5",
+    userAgent: "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4812.0 Mobile Safari/537.36",
+    viewport: {
+      width: 393,
+      height: 851,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Pixel 5 landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4812.0 Mobile Safari/537.36",
+    viewport: {
+      width: 851,
+      height: 393,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  },
+  {
+    name: "Moto G4",
+    userAgent: "Mozilla/5.0 (Linux; Android 7.0; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4812.0 Mobile Safari/537.36",
+    viewport: {
+      width: 360,
+      height: 640,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: false
+    }
+  },
+  {
+    name: "Moto G4 landscape",
+    userAgent: "Mozilla/5.0 (Linux; Android 7.0; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4812.0 Mobile Safari/537.36",
+    viewport: {
+      width: 640,
+      height: 360,
+      deviceScaleFactor: 3,
+      isMobile: true,
+      hasTouch: true,
+      isLandscape: true
+    }
+  }
+];
+var devicesMap = {};
+for (const device of devices)
+  devicesMap[device.name] = device;
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/AriaQueryHandler.js
+async function queryAXTree(client, element, accessibleName, role) {
+  const { nodes } = await client.send("Accessibility.queryAXTree", {
+    objectId: element._remoteObject.objectId,
+    accessibleName,
+    role
+  });
+  const filteredNodes = nodes.filter((node) => node.role.value !== "StaticText");
+  return filteredNodes;
+}
+var normalizeValue = (value) => value.replace(/ +/g, " ").trim();
+var knownAttributes = /* @__PURE__ */ new Set(["name", "role"]);
+var attributeRegexp = /\[\s*(?<attribute>\w+)\s*=\s*(?<quote>"|')(?<value>\\.|.*?(?=\k<quote>))\k<quote>\s*\]/g;
+function parseAriaSelector(selector) {
+  const queryOptions = {};
+  const defaultName = selector.replace(attributeRegexp, (_, attribute, quote, value) => {
+    attribute = attribute.trim();
+    if (!knownAttributes.has(attribute))
+      throw new Error(`Unknown aria attribute "${attribute}" in selector`);
+    queryOptions[attribute] = normalizeValue(value);
+    return "";
+  });
+  if (defaultName && !queryOptions.name)
+    queryOptions.name = normalizeValue(defaultName);
+  return queryOptions;
+}
+var queryOne = async (element, selector) => {
+  const exeCtx = element.executionContext();
+  const { name, role } = parseAriaSelector(selector);
+  const res = await queryAXTree(exeCtx._client, element, name, role);
+  if (res.length < 1) {
+    return null;
+  }
+  return exeCtx._adoptBackendNodeId(res[0].backendDOMNodeId);
+};
+var waitFor = async (domWorld, selector, options) => {
+  const binding = {
+    name: "ariaQuerySelector",
+    pptrFunction: async (selector2) => {
+      const root = options.root || await domWorld._document();
+      const element = await queryOne(root, selector2);
+      return element;
+    }
+  };
+  return domWorld.waitForSelectorInPage((_, selector2) => globalThis.ariaQuerySelector(selector2), selector, options, binding);
+};
+var queryAll = async (element, selector) => {
+  const exeCtx = element.executionContext();
+  const { name, role } = parseAriaSelector(selector);
+  const res = await queryAXTree(exeCtx._client, element, name, role);
+  return Promise.all(res.map((axNode) => exeCtx._adoptBackendNodeId(axNode.backendDOMNodeId)));
+};
+var queryAllArray = async (element, selector) => {
+  const elementHandles = await queryAll(element, selector);
+  const exeCtx = element.executionContext();
+  const jsHandle = exeCtx.evaluateHandle((...elements) => elements, ...elementHandles);
+  return jsHandle;
+};
+var ariaHandler = {
+  queryOne,
+  waitFor,
+  queryAll,
+  queryAllArray
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/QueryHandler.js
+function makeQueryHandler(handler) {
+  const internalHandler = {};
+  if (handler.queryOne) {
+    internalHandler.queryOne = async (element, selector) => {
+      const jsHandle = await element.evaluateHandle(handler.queryOne, selector);
+      const elementHandle = jsHandle.asElement();
+      if (elementHandle)
+        return elementHandle;
+      await jsHandle.dispose();
+      return null;
+    };
+    internalHandler.waitFor = (domWorld, selector, options) => domWorld.waitForSelectorInPage(handler.queryOne, selector, options);
+  }
+  if (handler.queryAll) {
+    internalHandler.queryAll = async (element, selector) => {
+      const jsHandle = await element.evaluateHandle(handler.queryAll, selector);
+      const properties = await jsHandle.getProperties();
+      await jsHandle.dispose();
+      const result = [];
+      for (const property of properties.values()) {
+        const elementHandle = property.asElement();
+        if (elementHandle)
+          result.push(elementHandle);
+      }
+      return result;
+    };
+    internalHandler.queryAllArray = async (element, selector) => {
+      const resultHandle = await element.evaluateHandle(handler.queryAll, selector);
+      const arrayHandle = await resultHandle.evaluateHandle((res) => Array.from(res));
+      return arrayHandle;
+    };
+  }
+  return internalHandler;
+}
+var _defaultHandler = makeQueryHandler({
+  queryOne: (element, selector) => element.querySelector(selector),
+  queryAll: (element, selector) => element.querySelectorAll(selector)
+});
+var pierceHandler = makeQueryHandler({
+  queryOne: (element, selector) => {
+    let found = null;
+    const search = (root) => {
+      const iter = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+      do {
+        const currentNode = iter.currentNode;
+        if (currentNode.shadowRoot) {
+          search(currentNode.shadowRoot);
+        }
+        if (currentNode instanceof ShadowRoot) {
+          continue;
+        }
+        if (currentNode !== root && !found && currentNode.matches(selector)) {
+          found = currentNode;
+        }
+      } while (!found && iter.nextNode());
+    };
+    if (element instanceof Document) {
+      element = element.documentElement;
+    }
+    search(element);
+    return found;
+  },
+  queryAll: (element, selector) => {
+    const result = [];
+    const collect = (root) => {
+      const iter = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+      do {
+        const currentNode = iter.currentNode;
+        if (currentNode.shadowRoot) {
+          collect(currentNode.shadowRoot);
+        }
+        if (currentNode instanceof ShadowRoot) {
+          continue;
+        }
+        if (currentNode !== root && currentNode.matches(selector)) {
+          result.push(currentNode);
+        }
+      } while (iter.nextNode());
+    };
+    if (element instanceof Document) {
+      element = element.documentElement;
+    }
+    collect(element);
+    return result;
+  }
+});
+var _builtInHandlers = /* @__PURE__ */ new Map([
+  ["aria", ariaHandler],
+  ["pierce", pierceHandler]
+]);
+var _queryHandlers = new Map(_builtInHandlers);
+function registerCustomQueryHandler(name, handler) {
+  if (_queryHandlers.get(name))
+    throw new Error(`A custom query handler named "${name}" already exists`);
+  const isValidName = /^[a-zA-Z]+$/.test(name);
+  if (!isValidName)
+    throw new Error(`Custom query handler names may only contain [a-zA-Z]`);
+  const internalHandler = makeQueryHandler(handler);
+  _queryHandlers.set(name, internalHandler);
+}
+function unregisterCustomQueryHandler(name) {
+  if (_queryHandlers.has(name) && !_builtInHandlers.has(name)) {
+    _queryHandlers.delete(name);
+  }
+}
+function customQueryHandlerNames() {
+  return [..._queryHandlers.keys()].filter((name) => !_builtInHandlers.has(name));
+}
+function clearCustomQueryHandlers() {
+  customQueryHandlerNames().forEach(unregisterCustomQueryHandler);
+}
+function getQueryHandlerAndSelector(selector) {
+  const hasCustomQueryHandler = /^[a-zA-Z]+\//.test(selector);
+  if (!hasCustomQueryHandler)
+    return { updatedSelector: selector, queryHandler: _defaultHandler };
+  const index = selector.indexOf("/");
+  const name = selector.slice(0, index);
+  const updatedSelector = selector.slice(index + 1);
+  const queryHandler = _queryHandlers.get(name);
+  if (!queryHandler)
+    throw new Error(`Query set to use "${name}", but no query handler of that name was found`);
+  return {
+    updatedSelector,
+    queryHandler
+  };
+}
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/assert.js
+var assert = (value, message) => {
+  if (!value)
+    throw new Error(message);
+};
+var assertNever = (value, message) => {
+  if (value)
+    throw new Error(message);
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/environment.js
+var isNode = !!(typeof process !== "undefined" && process.version);
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/Debug.js
+var debug = (prefix) => {
+  if (isNode) {
+    return async (...logArgs) => {
+      (await Promise.resolve().then(() => __toESM(require_src(), 1))).default(prefix)(logArgs);
+    };
+  }
+  return (...logArgs) => {
+    const debugLevel = globalThis.__PUPPETEER_DEBUG;
+    if (!debugLevel)
+      return;
+    const everythingShouldBeLogged = debugLevel === "*";
+    const prefixMatchesDebugLevel = everythingShouldBeLogged || (debugLevel.endsWith("*") ? prefix.startsWith(debugLevel) : prefix === debugLevel);
+    if (!prefixMatchesDebugLevel)
+      return;
+    console.log(`${prefix}:`, ...logArgs);
+  };
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/helper.js
+var debugError = debug("puppeteer:error");
+function getExceptionMessage(exceptionDetails) {
+  if (exceptionDetails.exception)
+    return exceptionDetails.exception.description || exceptionDetails.exception.value;
+  let message = exceptionDetails.text;
+  if (exceptionDetails.stackTrace) {
+    for (const callframe of exceptionDetails.stackTrace.callFrames) {
+      const location = callframe.url + ":" + callframe.lineNumber + ":" + callframe.columnNumber;
+      const functionName = callframe.functionName || "<anonymous>";
+      message += `
+    at ${functionName} (${location})`;
+    }
+  }
+  return message;
+}
+function valueFromRemoteObject(remoteObject) {
+  assert(!remoteObject.objectId, "Cannot extract value when objectId is given");
+  if (remoteObject.unserializableValue) {
+    if (remoteObject.type === "bigint" && typeof BigInt !== "undefined")
+      return BigInt(remoteObject.unserializableValue.replace("n", ""));
+    switch (remoteObject.unserializableValue) {
+      case "-0":
+        return -0;
+      case "NaN":
+        return NaN;
+      case "Infinity":
+        return Infinity;
+      case "-Infinity":
+        return -Infinity;
+      default:
+        throw new Error("Unsupported unserializable value: " + remoteObject.unserializableValue);
+    }
+  }
+  return remoteObject.value;
+}
+async function releaseObject(client, remoteObject) {
+  if (!remoteObject.objectId)
+    return;
+  await client.send("Runtime.releaseObject", { objectId: remoteObject.objectId }).catch((error) => {
+    debugError(error);
+  });
+}
+function addEventListener(emitter, eventName, handler) {
+  emitter.on(eventName, handler);
+  return { emitter, eventName, handler };
+}
+function removeEventListeners(listeners) {
+  for (const listener of listeners)
+    listener.emitter.removeListener(listener.eventName, listener.handler);
+  listeners.length = 0;
+}
+function isString(obj) {
+  return typeof obj === "string" || obj instanceof String;
+}
+function isNumber(obj) {
+  return typeof obj === "number" || obj instanceof Number;
+}
+async function waitForEvent(emitter, eventName, predicate, timeout, abortPromise) {
+  let eventTimeout;
+  let resolveCallback;
+  let rejectCallback;
+  const promise = new Promise((resolve3, reject) => {
+    resolveCallback = resolve3;
+    rejectCallback = reject;
+  });
+  const listener = addEventListener(emitter, eventName, async (event) => {
+    if (!await predicate(event))
+      return;
+    resolveCallback(event);
+  });
+  if (timeout) {
+    eventTimeout = setTimeout(() => {
+      rejectCallback(new TimeoutError("Timeout exceeded while waiting for event"));
+    }, timeout);
+  }
+  function cleanup() {
+    removeEventListeners([listener]);
+    clearTimeout(eventTimeout);
+  }
+  const result = await Promise.race([promise, abortPromise]).then((r) => {
+    cleanup();
+    return r;
+  }, (error) => {
+    cleanup();
+    throw error;
+  });
+  if (result instanceof Error)
+    throw result;
+  return result;
+}
+function evaluationString(fun, ...args) {
+  if (isString(fun)) {
+    assert(args.length === 0, "Cannot evaluate a string with arguments");
+    return fun;
+  }
+  function serializeArgument(arg) {
+    if (Object.is(arg, void 0))
+      return "undefined";
+    return JSON.stringify(arg);
+  }
+  return `(${fun})(${args.map(serializeArgument).join(",")})`;
+}
+function pageBindingInitString(type, name) {
+  function addPageBinding(type2, bindingName) {
+    const win = window;
+    const binding = win[bindingName];
+    win[bindingName] = (...args) => {
+      const me = window[bindingName];
+      let callbacks = me.callbacks;
+      if (!callbacks) {
+        callbacks = /* @__PURE__ */ new Map();
+        me.callbacks = callbacks;
+      }
+      const seq = (me.lastSeq || 0) + 1;
+      me.lastSeq = seq;
+      const promise = new Promise((resolve3, reject) => callbacks.set(seq, { resolve: resolve3, reject }));
+      binding(JSON.stringify({ type: type2, name: bindingName, seq, args }));
+      return promise;
+    };
+  }
+  return evaluationString(addPageBinding, type, name);
+}
+function pageBindingDeliverResultString(name, seq, result) {
+  function deliverResult(name2, seq2, result2) {
+    window[name2].callbacks.get(seq2).resolve(result2);
+    window[name2].callbacks.delete(seq2);
+  }
+  return evaluationString(deliverResult, name, seq, result);
+}
+function pageBindingDeliverErrorString(name, seq, message, stack) {
+  function deliverError(name2, seq2, message2, stack2) {
+    const error = new Error(message2);
+    error.stack = stack2;
+    window[name2].callbacks.get(seq2).reject(error);
+    window[name2].callbacks.delete(seq2);
+  }
+  return evaluationString(deliverError, name, seq, message, stack);
+}
+function pageBindingDeliverErrorValueString(name, seq, value) {
+  function deliverErrorValue(name2, seq2, value2) {
+    window[name2].callbacks.get(seq2).reject(value2);
+    window[name2].callbacks.delete(seq2);
+  }
+  return evaluationString(deliverErrorValue, name, seq, value);
+}
+function makePredicateString(predicate, predicateQueryHandler2) {
+  function checkWaitForOptions2(node, waitForVisible, waitForHidden) {
+    if (!node)
+      return waitForHidden;
+    if (!waitForVisible && !waitForHidden)
+      return node;
+    const element = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
+    const style = window.getComputedStyle(element);
+    const isVisible = style && style.visibility !== "hidden" && hasVisibleBoundingBox();
+    const success = waitForVisible === isVisible || waitForHidden === !isVisible;
+    return success ? node : null;
+    function hasVisibleBoundingBox() {
+      const rect = element.getBoundingClientRect();
+      return !!(rect.top || rect.bottom || rect.width || rect.height);
+    }
+  }
+  const predicateQueryHandlerDef = predicateQueryHandler2 ? `const predicateQueryHandler = ${predicateQueryHandler2};` : "";
+  return `
+    (() => {
+      ${predicateQueryHandlerDef}
+      const checkWaitForOptions = ${checkWaitForOptions2};
+      return (${predicate})(...args)
+    })() `;
+}
+async function waitWithTimeout(promise, taskName, timeout) {
+  let reject;
+  const timeoutError = new TimeoutError(`waiting for ${taskName} failed: timeout ${timeout}ms exceeded`);
+  const timeoutPromise = new Promise((resolve3, x) => reject = x);
+  let timeoutTimer = null;
+  if (timeout)
+    timeoutTimer = setTimeout(() => reject(timeoutError), timeout);
+  try {
+    return await Promise.race([promise, timeoutPromise]);
+  } finally {
+    if (timeoutTimer)
+      clearTimeout(timeoutTimer);
+  }
+}
+async function getReadableAsBuffer(readable, path4) {
+  if (!isNode && path4) {
+    throw new Error("Cannot write to a path outside of Node.js environment.");
+  }
+  const fs4 = isNode ? await importFSModule() : null;
+  let fileHandle;
+  if (path4 && fs4) {
+    fileHandle = await fs4.promises.open(path4, "w");
+  }
+  const buffers = [];
+  for await (const chunk of readable) {
+    buffers.push(chunk);
+    if (fileHandle && fs4) {
+      await fs4.promises.writeFile(fileHandle, chunk);
+    }
+  }
+  if (path4 && fileHandle)
+    await fileHandle.close();
+  let resultBuffer = null;
+  try {
+    resultBuffer = Buffer.concat(buffers);
+  } finally {
+    return resultBuffer;
+  }
+}
+async function getReadableFromProtocolStream(client, handle) {
+  if (!isNode) {
+    throw new Error("Cannot create a stream outside of Node.js environment.");
+  }
+  const { Readable } = await import("stream");
+  let eof = false;
+  return new Readable({
+    async read(size) {
+      if (eof) {
+        return null;
+      }
+      const response = await client.send("IO.read", { handle, size });
+      this.push(response.data, response.base64Encoded ? "base64" : void 0);
+      if (response.eof) {
+        eof = true;
+        await client.send("IO.close", { handle });
+        this.push(null);
       }
     }
-    var initializePuppeteerNode = (packageName) => {
-      const puppeteerRootDirectory = resolvePuppeteerRootDirectory();
-      let preferredRevision = revisions_js_1.PUPPETEER_REVISIONS.chromium;
-      const isPuppeteerCore = packageName === "puppeteer-core";
-      const productName = isPuppeteerCore ? void 0 : process.env.PUPPETEER_PRODUCT || process.env.npm_config_puppeteer_product || process.env.npm_package_config_puppeteer_product;
-      if (!isPuppeteerCore && productName === "firefox")
-        preferredRevision = revisions_js_1.PUPPETEER_REVISIONS.firefox;
-      return new Puppeteer_js_1.PuppeteerNode({
-        projectRoot: puppeteerRootDirectory,
-        preferredRevision,
-        isPuppeteerCore,
-        productName
+  });
+}
+async function importFSModule() {
+  if (!isNode) {
+    throw new Error("Cannot load the fs module API outside of Node.");
+  }
+  const fs4 = await import("fs");
+  if (fs4.promises) {
+    return fs4;
+  }
+  return fs4.default;
+}
+var helper = {
+  evaluationString,
+  pageBindingInitString,
+  pageBindingDeliverResultString,
+  pageBindingDeliverErrorString,
+  pageBindingDeliverErrorValueString,
+  makePredicateString,
+  getReadableAsBuffer,
+  getReadableFromProtocolStream,
+  waitWithTimeout,
+  waitForEvent,
+  isString,
+  isNumber,
+  importFSModule,
+  addEventListener,
+  removeEventListeners,
+  valueFromRemoteObject,
+  getExceptionMessage,
+  releaseObject
+};
+
+// node_modules/puppeteer/lib/esm/vendor/mitt/src/index.js
+function mitt(all) {
+  all = all || /* @__PURE__ */ new Map();
+  return {
+    all,
+    on(type, handler) {
+      const handlers = all.get(type);
+      const added = handlers && handlers.push(handler);
+      if (!added) {
+        all.set(type, [handler]);
+      }
+    },
+    off(type, handler) {
+      const handlers = all.get(type);
+      if (handlers) {
+        handlers.splice(handlers.indexOf(handler) >>> 0, 1);
+      }
+    },
+    emit(type, evt) {
+      (all.get(type) || []).slice().map((handler) => {
+        handler(evt);
       });
-    };
-    exports.initializePuppeteerNode = initializePuppeteerNode;
-  }
-});
-
-// node_modules/puppeteer/lib/cjs/puppeteer/node.js
-var require_node3 = __commonJS({
-  "node_modules/puppeteer/lib/cjs/puppeteer/node.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var initialize_node_js_1 = require_initialize_node();
-    var environment_js_1 = require_environment();
-    if (!environment_js_1.isNode) {
-      throw new Error("Trying to run Puppeteer-Node in a web environment.");
+      (all.get("*") || []).slice().map((handler) => {
+        handler(type, evt);
+      });
     }
-    exports.default = (0, initialize_node_js_1.initializePuppeteerNode)("puppeteer");
-  }
-});
+  };
+}
 
-// node_modules/puppeteer/cjs-entry.js
-var require_cjs_entry = __commonJS({
-  "node_modules/puppeteer/cjs-entry.js"(exports, module) {
-    var puppeteerExport = require_node3();
-    module.exports = puppeteerExport.default;
+// node_modules/puppeteer/lib/esm/puppeteer/common/EventEmitter.js
+var EventEmitter = class {
+  constructor() {
+    this.eventsMap = /* @__PURE__ */ new Map();
+    this.emitter = mitt(this.eventsMap);
   }
-});
+  on(event, handler) {
+    this.emitter.on(event, handler);
+    return this;
+  }
+  off(event, handler) {
+    this.emitter.off(event, handler);
+    return this;
+  }
+  removeListener(event, handler) {
+    this.off(event, handler);
+    return this;
+  }
+  addListener(event, handler) {
+    this.on(event, handler);
+    return this;
+  }
+  emit(event, eventData) {
+    this.emitter.emit(event, eventData);
+    return this.eventListenersCount(event) > 0;
+  }
+  once(event, handler) {
+    const onceHandler = (eventData) => {
+      handler(eventData);
+      this.off(event, onceHandler);
+    };
+    return this.on(event, onceHandler);
+  }
+  listenerCount(event) {
+    return this.eventListenersCount(event);
+  }
+  removeAllListeners(event) {
+    if (event) {
+      this.eventsMap.delete(event);
+    } else {
+      this.eventsMap.clear();
+    }
+    return this;
+  }
+  eventListenersCount(event) {
+    var _a;
+    return ((_a = this.eventsMap.get(event)) === null || _a === void 0 ? void 0 : _a.length) || 0;
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/Connection.js
+var debugProtocolSend = debug("puppeteer:protocol:SEND \u25BA");
+var debugProtocolReceive = debug("puppeteer:protocol:RECV \u25C0");
+var ConnectionEmittedEvents = {
+  Disconnected: Symbol("Connection.Disconnected")
+};
+var Connection = class extends EventEmitter {
+  constructor(url, transport, delay = 0) {
+    super();
+    this._lastId = 0;
+    this._sessions = /* @__PURE__ */ new Map();
+    this._closed = false;
+    this._callbacks = /* @__PURE__ */ new Map();
+    this._url = url;
+    this._delay = delay;
+    this._transport = transport;
+    this._transport.onmessage = this._onMessage.bind(this);
+    this._transport.onclose = this._onClose.bind(this);
+  }
+  static fromSession(session) {
+    return session._connection;
+  }
+  session(sessionId) {
+    return this._sessions.get(sessionId) || null;
+  }
+  url() {
+    return this._url;
+  }
+  send(method, ...paramArgs) {
+    const params = paramArgs.length ? paramArgs[0] : void 0;
+    const id = this._rawSend({ method, params });
+    return new Promise((resolve3, reject) => {
+      this._callbacks.set(id, {
+        resolve: resolve3,
+        reject,
+        error: new ProtocolError(),
+        method
+      });
+    });
+  }
+  _rawSend(message) {
+    const id = ++this._lastId;
+    const stringifiedMessage = JSON.stringify(Object.assign({}, message, { id }));
+    debugProtocolSend(stringifiedMessage);
+    this._transport.send(stringifiedMessage);
+    return id;
+  }
+  async _onMessage(message) {
+    if (this._delay)
+      await new Promise((f) => setTimeout(f, this._delay));
+    debugProtocolReceive(message);
+    const object = JSON.parse(message);
+    if (object.method === "Target.attachedToTarget") {
+      const sessionId = object.params.sessionId;
+      const session = new CDPSession(this, object.params.targetInfo.type, sessionId);
+      this._sessions.set(sessionId, session);
+      this.emit("sessionattached", session);
+      const parentSession = this._sessions.get(object.sessionId);
+      if (parentSession) {
+        parentSession.emit("sessionattached", session);
+      }
+    } else if (object.method === "Target.detachedFromTarget") {
+      const session = this._sessions.get(object.params.sessionId);
+      if (session) {
+        session._onClosed();
+        this._sessions.delete(object.params.sessionId);
+        this.emit("sessiondetached", session);
+        const parentSession = this._sessions.get(object.sessionId);
+        if (parentSession) {
+          parentSession.emit("sessiondetached", session);
+        }
+      }
+    }
+    if (object.sessionId) {
+      const session = this._sessions.get(object.sessionId);
+      if (session)
+        session._onMessage(object);
+    } else if (object.id) {
+      const callback = this._callbacks.get(object.id);
+      if (callback) {
+        this._callbacks.delete(object.id);
+        if (object.error)
+          callback.reject(createProtocolError(callback.error, callback.method, object));
+        else
+          callback.resolve(object.result);
+      }
+    } else {
+      this.emit(object.method, object.params);
+    }
+  }
+  _onClose() {
+    if (this._closed)
+      return;
+    this._closed = true;
+    this._transport.onmessage = void 0;
+    this._transport.onclose = void 0;
+    for (const callback of this._callbacks.values())
+      callback.reject(rewriteError(callback.error, `Protocol error (${callback.method}): Target closed.`));
+    this._callbacks.clear();
+    for (const session of this._sessions.values())
+      session._onClosed();
+    this._sessions.clear();
+    this.emit(ConnectionEmittedEvents.Disconnected);
+  }
+  dispose() {
+    this._onClose();
+    this._transport.close();
+  }
+  async createSession(targetInfo) {
+    const { sessionId } = await this.send("Target.attachToTarget", {
+      targetId: targetInfo.targetId,
+      flatten: true
+    });
+    const session = this._sessions.get(sessionId);
+    if (!session) {
+      throw new Error("CDPSession creation failed.");
+    }
+    return session;
+  }
+};
+var CDPSessionEmittedEvents = {
+  Disconnected: Symbol("CDPSession.Disconnected")
+};
+var CDPSession = class extends EventEmitter {
+  constructor(connection, targetType, sessionId) {
+    super();
+    this._callbacks = /* @__PURE__ */ new Map();
+    this._connection = connection;
+    this._targetType = targetType;
+    this._sessionId = sessionId;
+  }
+  connection() {
+    return this._connection;
+  }
+  send(method, ...paramArgs) {
+    if (!this._connection)
+      return Promise.reject(new Error(`Protocol error (${method}): Session closed. Most likely the ${this._targetType} has been closed.`));
+    const params = paramArgs.length ? paramArgs[0] : void 0;
+    const id = this._connection._rawSend({
+      sessionId: this._sessionId,
+      method,
+      params
+    });
+    return new Promise((resolve3, reject) => {
+      this._callbacks.set(id, {
+        resolve: resolve3,
+        reject,
+        error: new ProtocolError(),
+        method
+      });
+    });
+  }
+  _onMessage(object) {
+    const callback = object.id ? this._callbacks.get(object.id) : void 0;
+    if (object.id && callback) {
+      this._callbacks.delete(object.id);
+      if (object.error)
+        callback.reject(createProtocolError(callback.error, callback.method, object));
+      else
+        callback.resolve(object.result);
+    } else {
+      assert(!object.id);
+      this.emit(object.method, object.params);
+    }
+  }
+  async detach() {
+    if (!this._connection)
+      throw new Error(`Session already detached. Most likely the ${this._targetType} has been closed.`);
+    await this._connection.send("Target.detachFromTarget", {
+      sessionId: this._sessionId
+    });
+  }
+  _onClosed() {
+    for (const callback of this._callbacks.values())
+      callback.reject(rewriteError(callback.error, `Protocol error (${callback.method}): Target closed.`));
+    this._callbacks.clear();
+    this._connection = void 0;
+    this.emit(CDPSessionEmittedEvents.Disconnected);
+  }
+  id() {
+    return this._sessionId;
+  }
+};
+function createProtocolError(error, method, object) {
+  let message = `Protocol error (${method}): ${object.error.message}`;
+  if ("data" in object.error)
+    message += ` ${object.error.data}`;
+  return rewriteError(error, message, object.error.message);
+}
+function rewriteError(error, message, originalMessage) {
+  error.message = message;
+  error.originalMessage = originalMessage !== null && originalMessage !== void 0 ? originalMessage : error.originalMessage;
+  return error;
+}
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/Dialog.js
+var Dialog = class {
+  constructor(client, type, message, defaultValue = "") {
+    this._handled = false;
+    this._client = client;
+    this._type = type;
+    this._message = message;
+    this._defaultValue = defaultValue;
+  }
+  type() {
+    return this._type;
+  }
+  message() {
+    return this._message;
+  }
+  defaultValue() {
+    return this._defaultValue;
+  }
+  async accept(promptText) {
+    assert(!this._handled, "Cannot accept dialog which is already handled!");
+    this._handled = true;
+    await this._client.send("Page.handleJavaScriptDialog", {
+      accept: true,
+      promptText
+    });
+  }
+  async dismiss() {
+    assert(!this._handled, "Cannot dismiss dialog which is already handled!");
+    this._handled = true;
+    await this._client.send("Page.handleJavaScriptDialog", {
+      accept: false
+    });
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/EmulationManager.js
+var EmulationManager = class {
+  constructor(client) {
+    this._emulatingMobile = false;
+    this._hasTouch = false;
+    this._client = client;
+  }
+  async emulateViewport(viewport) {
+    const mobile = viewport.isMobile || false;
+    const width = viewport.width;
+    const height = viewport.height;
+    const deviceScaleFactor = viewport.deviceScaleFactor || 1;
+    const screenOrientation = viewport.isLandscape ? { angle: 90, type: "landscapePrimary" } : { angle: 0, type: "portraitPrimary" };
+    const hasTouch = viewport.hasTouch || false;
+    await Promise.all([
+      this._client.send("Emulation.setDeviceMetricsOverride", {
+        mobile,
+        width,
+        height,
+        deviceScaleFactor,
+        screenOrientation
+      }),
+      this._client.send("Emulation.setTouchEmulationEnabled", {
+        enabled: hasTouch
+      })
+    ]);
+    const reloadNeeded = this._emulatingMobile !== mobile || this._hasTouch !== hasTouch;
+    this._emulatingMobile = mobile;
+    this._hasTouch = hasTouch;
+    return reloadNeeded;
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/JSHandle.js
+function createJSHandle(context, remoteObject) {
+  const frame = context.frame();
+  if (remoteObject.subtype === "node" && frame) {
+    const frameManager = frame._frameManager;
+    return new ElementHandle(context, context._client, remoteObject, frame, frameManager.page(), frameManager);
+  }
+  return new JSHandle(context, context._client, remoteObject);
+}
+var applyOffsetsToQuad = (quad, offsetX, offsetY) => quad.map((part) => ({ x: part.x + offsetX, y: part.y + offsetY }));
+var JSHandle = class {
+  constructor(context, client, remoteObject) {
+    this._disposed = false;
+    this._context = context;
+    this._client = client;
+    this._remoteObject = remoteObject;
+  }
+  executionContext() {
+    return this._context;
+  }
+  async evaluate(pageFunction, ...args) {
+    return await this.executionContext().evaluate(pageFunction, this, ...args);
+  }
+  async evaluateHandle(pageFunction, ...args) {
+    return await this.executionContext().evaluateHandle(pageFunction, this, ...args);
+  }
+  async getProperty(propertyName) {
+    const objectHandle = await this.evaluateHandle((object, propertyName2) => {
+      const result2 = { __proto__: null };
+      result2[propertyName2] = object[propertyName2];
+      return result2;
+    }, propertyName);
+    const properties = await objectHandle.getProperties();
+    const result = properties.get(propertyName);
+    assert(result instanceof JSHandle);
+    await objectHandle.dispose();
+    return result;
+  }
+  async getProperties() {
+    const response = await this._client.send("Runtime.getProperties", {
+      objectId: this._remoteObject.objectId,
+      ownProperties: true
+    });
+    const result = /* @__PURE__ */ new Map();
+    for (const property of response.result) {
+      if (!property.enumerable)
+        continue;
+      result.set(property.name, createJSHandle(this._context, property.value));
+    }
+    return result;
+  }
+  async jsonValue() {
+    if (this._remoteObject.objectId) {
+      const response = await this._client.send("Runtime.callFunctionOn", {
+        functionDeclaration: "function() { return this; }",
+        objectId: this._remoteObject.objectId,
+        returnByValue: true,
+        awaitPromise: true
+      });
+      return helper.valueFromRemoteObject(response.result);
+    }
+    return helper.valueFromRemoteObject(this._remoteObject);
+  }
+  asElement() {
+    return null;
+  }
+  async dispose() {
+    if (this._disposed)
+      return;
+    this._disposed = true;
+    await helper.releaseObject(this._client, this._remoteObject);
+  }
+  toString() {
+    if (this._remoteObject.objectId) {
+      const type = this._remoteObject.subtype || this._remoteObject.type;
+      return "JSHandle@" + type;
+    }
+    return "JSHandle:" + helper.valueFromRemoteObject(this._remoteObject);
+  }
+};
+var ElementHandle = class extends JSHandle {
+  constructor(context, client, remoteObject, frame, page, frameManager) {
+    super(context, client, remoteObject);
+    this._client = client;
+    this._remoteObject = remoteObject;
+    this._frame = frame;
+    this._page = page;
+    this._frameManager = frameManager;
+  }
+  async waitForSelector(selector, options = {}) {
+    const frame = this._context.frame();
+    const secondaryContext = await frame._secondaryWorld.executionContext();
+    const adoptedRoot = await secondaryContext._adoptElementHandle(this);
+    const handle = await frame._secondaryWorld.waitForSelector(selector, __spreadProps(__spreadValues({}, options), {
+      root: adoptedRoot
+    }));
+    await adoptedRoot.dispose();
+    if (!handle)
+      return null;
+    const mainExecutionContext = await frame._mainWorld.executionContext();
+    const result = await mainExecutionContext._adoptElementHandle(handle);
+    await handle.dispose();
+    return result;
+  }
+  async waitForXPath(xpath, options = {}) {
+    const frame = this._context.frame();
+    const secondaryContext = await frame._secondaryWorld.executionContext();
+    const adoptedRoot = await secondaryContext._adoptElementHandle(this);
+    xpath = xpath.startsWith("//") ? "." + xpath : xpath;
+    if (!xpath.startsWith(".//")) {
+      await adoptedRoot.dispose();
+      throw new Error("Unsupported xpath expression: " + xpath);
+    }
+    const handle = await frame._secondaryWorld.waitForXPath(xpath, __spreadProps(__spreadValues({}, options), {
+      root: adoptedRoot
+    }));
+    await adoptedRoot.dispose();
+    if (!handle)
+      return null;
+    const mainExecutionContext = await frame._mainWorld.executionContext();
+    const result = await mainExecutionContext._adoptElementHandle(handle);
+    await handle.dispose();
+    return result;
+  }
+  asElement() {
+    return this;
+  }
+  async contentFrame() {
+    const nodeInfo = await this._client.send("DOM.describeNode", {
+      objectId: this._remoteObject.objectId
+    });
+    if (typeof nodeInfo.node.frameId !== "string")
+      return null;
+    return this._frameManager.frame(nodeInfo.node.frameId);
+  }
+  async _scrollIntoViewIfNeeded() {
+    const error = await this.evaluate(async (element, pageJavascriptEnabled) => {
+      if (!element.isConnected)
+        return "Node is detached from document";
+      if (element.nodeType !== Node.ELEMENT_NODE)
+        return "Node is not of type HTMLElement";
+      if (!pageJavascriptEnabled) {
+        element.scrollIntoView({
+          block: "center",
+          inline: "center",
+          behavior: "instant"
+        });
+        return false;
+      }
+      const visibleRatio = await new Promise((resolve3) => {
+        const observer = new IntersectionObserver((entries) => {
+          resolve3(entries[0].intersectionRatio);
+          observer.disconnect();
+        });
+        observer.observe(element);
+      });
+      if (visibleRatio !== 1) {
+        element.scrollIntoView({
+          block: "center",
+          inline: "center",
+          behavior: "instant"
+        });
+      }
+      return false;
+    }, this._page.isJavaScriptEnabled());
+    if (error)
+      throw new Error(error);
+  }
+  async _getOOPIFOffsets(frame) {
+    let offsetX = 0;
+    let offsetY = 0;
+    while (frame.parentFrame()) {
+      const parent = frame.parentFrame();
+      if (!frame.isOOPFrame()) {
+        frame = parent;
+        continue;
+      }
+      const { backendNodeId } = await parent._client.send("DOM.getFrameOwner", {
+        frameId: frame._id
+      });
+      const result = await parent._client.send("DOM.getBoxModel", {
+        backendNodeId
+      });
+      if (!result) {
+        break;
+      }
+      const contentBoxQuad = result.model.content;
+      const topLeftCorner = this._fromProtocolQuad(contentBoxQuad)[0];
+      offsetX += topLeftCorner.x;
+      offsetY += topLeftCorner.y;
+      frame = parent;
+    }
+    return { offsetX, offsetY };
+  }
+  async clickablePoint(offset) {
+    const [result, layoutMetrics] = await Promise.all([
+      this._client.send("DOM.getContentQuads", {
+        objectId: this._remoteObject.objectId
+      }).catch(debugError),
+      this._page.client().send("Page.getLayoutMetrics")
+    ]);
+    if (!result || !result.quads.length)
+      throw new Error("Node is either not clickable or not an HTMLElement");
+    const { clientWidth, clientHeight } = layoutMetrics.cssLayoutViewport || layoutMetrics.layoutViewport;
+    const { offsetX, offsetY } = await this._getOOPIFOffsets(this._frame);
+    const quads = result.quads.map((quad2) => this._fromProtocolQuad(quad2)).map((quad2) => applyOffsetsToQuad(quad2, offsetX, offsetY)).map((quad2) => this._intersectQuadWithViewport(quad2, clientWidth, clientHeight)).filter((quad2) => computeQuadArea(quad2) > 1);
+    if (!quads.length)
+      throw new Error("Node is either not clickable or not an HTMLElement");
+    const quad = quads[0];
+    if (offset) {
+      let minX = Number.MAX_SAFE_INTEGER;
+      let minY = Number.MAX_SAFE_INTEGER;
+      for (const point of quad) {
+        if (point.x < minX) {
+          minX = point.x;
+        }
+        if (point.y < minY) {
+          minY = point.y;
+        }
+      }
+      if (minX !== Number.MAX_SAFE_INTEGER && minY !== Number.MAX_SAFE_INTEGER) {
+        return {
+          x: minX + offset.x,
+          y: minY + offset.y
+        };
+      }
+    }
+    let x = 0;
+    let y = 0;
+    for (const point of quad) {
+      x += point.x;
+      y += point.y;
+    }
+    return {
+      x: x / 4,
+      y: y / 4
+    };
+  }
+  _getBoxModel() {
+    const params = {
+      objectId: this._remoteObject.objectId
+    };
+    return this._client.send("DOM.getBoxModel", params).catch((error) => debugError(error));
+  }
+  _fromProtocolQuad(quad) {
+    return [
+      { x: quad[0], y: quad[1] },
+      { x: quad[2], y: quad[3] },
+      { x: quad[4], y: quad[5] },
+      { x: quad[6], y: quad[7] }
+    ];
+  }
+  _intersectQuadWithViewport(quad, width, height) {
+    return quad.map((point) => ({
+      x: Math.min(Math.max(point.x, 0), width),
+      y: Math.min(Math.max(point.y, 0), height)
+    }));
+  }
+  async hover() {
+    await this._scrollIntoViewIfNeeded();
+    const { x, y } = await this.clickablePoint();
+    await this._page.mouse.move(x, y);
+  }
+  async click(options = {}) {
+    await this._scrollIntoViewIfNeeded();
+    const { x, y } = await this.clickablePoint(options.offset);
+    await this._page.mouse.click(x, y, options);
+  }
+  async drag(target) {
+    assert(this._page.isDragInterceptionEnabled(), "Drag Interception is not enabled!");
+    await this._scrollIntoViewIfNeeded();
+    const start = await this.clickablePoint();
+    return await this._page.mouse.drag(start, target);
+  }
+  async dragEnter(data = { items: [], dragOperationsMask: 1 }) {
+    await this._scrollIntoViewIfNeeded();
+    const target = await this.clickablePoint();
+    await this._page.mouse.dragEnter(target, data);
+  }
+  async dragOver(data = { items: [], dragOperationsMask: 1 }) {
+    await this._scrollIntoViewIfNeeded();
+    const target = await this.clickablePoint();
+    await this._page.mouse.dragOver(target, data);
+  }
+  async drop(data = { items: [], dragOperationsMask: 1 }) {
+    await this._scrollIntoViewIfNeeded();
+    const destination = await this.clickablePoint();
+    await this._page.mouse.drop(destination, data);
+  }
+  async dragAndDrop(target, options) {
+    await this._scrollIntoViewIfNeeded();
+    const startPoint = await this.clickablePoint();
+    const targetPoint = await target.clickablePoint();
+    await this._page.mouse.dragAndDrop(startPoint, targetPoint, options);
+  }
+  async select(...values) {
+    for (const value of values)
+      assert(helper.isString(value), 'Values must be strings. Found value "' + value + '" of type "' + typeof value + '"');
+    return this.evaluate((element, values2) => {
+      if (!(element instanceof HTMLSelectElement))
+        throw new Error("Element is not a <select> element.");
+      const options = Array.from(element.options);
+      element.value = void 0;
+      for (const option of options) {
+        option.selected = values2.includes(option.value);
+        if (option.selected && !element.multiple)
+          break;
+      }
+      element.dispatchEvent(new Event("input", { bubbles: true }));
+      element.dispatchEvent(new Event("change", { bubbles: true }));
+      return options.filter((option) => option.selected).map((option) => option.value);
+    }, values);
+  }
+  async uploadFile(...filePaths) {
+    const isMultiple = await this.evaluate((element) => {
+      if (!(element instanceof HTMLInputElement)) {
+        throw new Error("uploadFile can only be called on an input element.");
+      }
+      return element.multiple;
+    });
+    assert(filePaths.length <= 1 || isMultiple, "Multiple file uploads only work with <input type=file multiple>");
+    if (!isNode) {
+      throw new Error(`JSHandle#uploadFile can only be used in Node environments.`);
+    }
+    const path4 = await import("path");
+    const fs4 = await helper.importFSModule();
+    const files = await Promise.all(filePaths.map(async (filePath) => {
+      const resolvedPath = path4.resolve(filePath);
+      try {
+        await fs4.promises.access(resolvedPath, fs4.constants.R_OK);
+      } catch (error) {
+        if (error.code === "ENOENT")
+          throw new Error(`${filePath} does not exist or is not readable`);
+      }
+      return resolvedPath;
+    }));
+    const { objectId } = this._remoteObject;
+    const { node } = await this._client.send("DOM.describeNode", { objectId });
+    const { backendNodeId } = node;
+    if (files.length === 0) {
+      await this.evaluate((element) => {
+        element.files = new DataTransfer().files;
+        element.dispatchEvent(new Event("input", { bubbles: true }));
+        element.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+    } else {
+      await this._client.send("DOM.setFileInputFiles", {
+        objectId,
+        files,
+        backendNodeId
+      });
+    }
+  }
+  async tap() {
+    await this._scrollIntoViewIfNeeded();
+    const { x, y } = await this.clickablePoint();
+    await this._page.touchscreen.tap(x, y);
+  }
+  async focus() {
+    await this.evaluate((element) => element.focus());
+  }
+  async type(text, options) {
+    await this.focus();
+    await this._page.keyboard.type(text, options);
+  }
+  async press(key, options) {
+    await this.focus();
+    await this._page.keyboard.press(key, options);
+  }
+  async boundingBox() {
+    const result = await this._getBoxModel();
+    if (!result)
+      return null;
+    const { offsetX, offsetY } = await this._getOOPIFOffsets(this._frame);
+    const quad = result.model.border;
+    const x = Math.min(quad[0], quad[2], quad[4], quad[6]);
+    const y = Math.min(quad[1], quad[3], quad[5], quad[7]);
+    const width = Math.max(quad[0], quad[2], quad[4], quad[6]) - x;
+    const height = Math.max(quad[1], quad[3], quad[5], quad[7]) - y;
+    return { x: x + offsetX, y: y + offsetY, width, height };
+  }
+  async boxModel() {
+    const result = await this._getBoxModel();
+    if (!result)
+      return null;
+    const { offsetX, offsetY } = await this._getOOPIFOffsets(this._frame);
+    const { content, padding, border, margin, width, height } = result.model;
+    return {
+      content: applyOffsetsToQuad(this._fromProtocolQuad(content), offsetX, offsetY),
+      padding: applyOffsetsToQuad(this._fromProtocolQuad(padding), offsetX, offsetY),
+      border: applyOffsetsToQuad(this._fromProtocolQuad(border), offsetX, offsetY),
+      margin: applyOffsetsToQuad(this._fromProtocolQuad(margin), offsetX, offsetY),
+      width,
+      height
+    };
+  }
+  async screenshot(options = {}) {
+    let needsViewportReset = false;
+    let boundingBox = await this.boundingBox();
+    assert(boundingBox, "Node is either not visible or not an HTMLElement");
+    const viewport = this._page.viewport();
+    if (viewport && (boundingBox.width > viewport.width || boundingBox.height > viewport.height)) {
+      const newViewport = {
+        width: Math.max(viewport.width, Math.ceil(boundingBox.width)),
+        height: Math.max(viewport.height, Math.ceil(boundingBox.height))
+      };
+      await this._page.setViewport(Object.assign({}, viewport, newViewport));
+      needsViewportReset = true;
+    }
+    await this._scrollIntoViewIfNeeded();
+    boundingBox = await this.boundingBox();
+    assert(boundingBox, "Node is either not visible or not an HTMLElement");
+    assert(boundingBox.width !== 0, "Node has 0 width.");
+    assert(boundingBox.height !== 0, "Node has 0 height.");
+    const layoutMetrics = await this._client.send("Page.getLayoutMetrics");
+    const { pageX, pageY } = layoutMetrics.cssVisualViewport || layoutMetrics.layoutViewport;
+    const clip = Object.assign({}, boundingBox);
+    clip.x += pageX;
+    clip.y += pageY;
+    const imageData = await this._page.screenshot(Object.assign({}, {
+      clip
+    }, options));
+    if (needsViewportReset)
+      await this._page.setViewport(viewport);
+    return imageData;
+  }
+  async $(selector) {
+    const { updatedSelector, queryHandler } = getQueryHandlerAndSelector(selector);
+    return queryHandler.queryOne(this, updatedSelector);
+  }
+  async $$(selector) {
+    const { updatedSelector, queryHandler } = getQueryHandlerAndSelector(selector);
+    return queryHandler.queryAll(this, updatedSelector);
+  }
+  async $eval(selector, pageFunction, ...args) {
+    const elementHandle = await this.$(selector);
+    if (!elementHandle)
+      throw new Error(`Error: failed to find element matching selector "${selector}"`);
+    const result = await elementHandle.evaluate(pageFunction, ...args);
+    await elementHandle.dispose();
+    return result;
+  }
+  async $$eval(selector, pageFunction, ...args) {
+    const { updatedSelector, queryHandler } = getQueryHandlerAndSelector(selector);
+    const arrayHandle = await queryHandler.queryAllArray(this, updatedSelector);
+    const result = await arrayHandle.evaluate(pageFunction, ...args);
+    await arrayHandle.dispose();
+    return result;
+  }
+  async $x(expression) {
+    const arrayHandle = await this.evaluateHandle((element, expression2) => {
+      const document2 = element.ownerDocument || element;
+      const iterator = document2.evaluate(expression2, element, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE);
+      const array = [];
+      let item;
+      while (item = iterator.iterateNext())
+        array.push(item);
+      return array;
+    }, expression);
+    const properties = await arrayHandle.getProperties();
+    await arrayHandle.dispose();
+    const result = [];
+    for (const property of properties.values()) {
+      const elementHandle = property.asElement();
+      if (elementHandle)
+        result.push(elementHandle);
+    }
+    return result;
+  }
+  async isIntersectingViewport(options) {
+    const { threshold = 0 } = options || {};
+    return await this.evaluate(async (element, threshold2) => {
+      const visibleRatio = await new Promise((resolve3) => {
+        const observer = new IntersectionObserver((entries) => {
+          resolve3(entries[0].intersectionRatio);
+          observer.disconnect();
+        });
+        observer.observe(element);
+      });
+      return threshold2 === 1 ? visibleRatio === 1 : visibleRatio > threshold2;
+    }, threshold);
+  }
+};
+function computeQuadArea(quad) {
+  let area = 0;
+  for (let i = 0; i < quad.length; ++i) {
+    const p1 = quad[i];
+    const p2 = quad[(i + 1) % quad.length];
+    area += (p1.x * p2.y - p2.x * p1.y) / 2;
+  }
+  return Math.abs(area);
+}
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/ExecutionContext.js
+var EVALUATION_SCRIPT_URL = "__puppeteer_evaluation_script__";
+var SOURCE_URL_REGEX = /^[\040\t]*\/\/[@#] sourceURL=\s*(\S*?)\s*$/m;
+var ExecutionContext = class {
+  constructor(client, contextPayload, world) {
+    this._client = client;
+    this._world = world;
+    this._contextId = contextPayload.id;
+    this._contextName = contextPayload.name;
+  }
+  frame() {
+    return this._world ? this._world.frame() : null;
+  }
+  async evaluate(pageFunction, ...args) {
+    return await this._evaluateInternal(true, pageFunction, ...args);
+  }
+  async evaluateHandle(pageFunction, ...args) {
+    return this._evaluateInternal(false, pageFunction, ...args);
+  }
+  async _evaluateInternal(returnByValue, pageFunction, ...args) {
+    const suffix = `//# sourceURL=${EVALUATION_SCRIPT_URL}`;
+    if (helper.isString(pageFunction)) {
+      const contextId = this._contextId;
+      const expression = pageFunction;
+      const expressionWithSourceUrl = SOURCE_URL_REGEX.test(expression) ? expression : expression + "\n" + suffix;
+      const { exceptionDetails: exceptionDetails2, result: remoteObject2 } = await this._client.send("Runtime.evaluate", {
+        expression: expressionWithSourceUrl,
+        contextId,
+        returnByValue,
+        awaitPromise: true,
+        userGesture: true
+      }).catch(rewriteError2);
+      if (exceptionDetails2)
+        throw new Error("Evaluation failed: " + helper.getExceptionMessage(exceptionDetails2));
+      return returnByValue ? helper.valueFromRemoteObject(remoteObject2) : createJSHandle(this, remoteObject2);
+    }
+    if (typeof pageFunction !== "function")
+      throw new Error(`Expected to get |string| or |function| as the first argument, but got "${pageFunction}" instead.`);
+    let functionText = pageFunction.toString();
+    try {
+      new Function("(" + functionText + ")");
+    } catch (error) {
+      if (functionText.startsWith("async "))
+        functionText = "async function " + functionText.substring("async ".length);
+      else
+        functionText = "function " + functionText;
+      try {
+        new Function("(" + functionText + ")");
+      } catch (error2) {
+        throw new Error("Passed function is not well-serializable!");
+      }
+    }
+    let callFunctionOnPromise;
+    try {
+      callFunctionOnPromise = this._client.send("Runtime.callFunctionOn", {
+        functionDeclaration: functionText + "\n" + suffix + "\n",
+        executionContextId: this._contextId,
+        arguments: args.map(convertArgument.bind(this)),
+        returnByValue,
+        awaitPromise: true,
+        userGesture: true
+      });
+    } catch (error) {
+      if (error instanceof TypeError && error.message.startsWith("Converting circular structure to JSON"))
+        error.message += " Are you passing a nested JSHandle?";
+      throw error;
+    }
+    const { exceptionDetails, result: remoteObject } = await callFunctionOnPromise.catch(rewriteError2);
+    if (exceptionDetails)
+      throw new Error("Evaluation failed: " + helper.getExceptionMessage(exceptionDetails));
+    return returnByValue ? helper.valueFromRemoteObject(remoteObject) : createJSHandle(this, remoteObject);
+    function convertArgument(arg) {
+      if (typeof arg === "bigint")
+        return { unserializableValue: `${arg.toString()}n` };
+      if (Object.is(arg, -0))
+        return { unserializableValue: "-0" };
+      if (Object.is(arg, Infinity))
+        return { unserializableValue: "Infinity" };
+      if (Object.is(arg, -Infinity))
+        return { unserializableValue: "-Infinity" };
+      if (Object.is(arg, NaN))
+        return { unserializableValue: "NaN" };
+      const objectHandle = arg && arg instanceof JSHandle ? arg : null;
+      if (objectHandle) {
+        if (objectHandle._context !== this)
+          throw new Error("JSHandles can be evaluated only in the context they were created!");
+        if (objectHandle._disposed)
+          throw new Error("JSHandle is disposed!");
+        if (objectHandle._remoteObject.unserializableValue)
+          return {
+            unserializableValue: objectHandle._remoteObject.unserializableValue
+          };
+        if (!objectHandle._remoteObject.objectId)
+          return { value: objectHandle._remoteObject.value };
+        return { objectId: objectHandle._remoteObject.objectId };
+      }
+      return { value: arg };
+    }
+    function rewriteError2(error) {
+      if (error.message.includes("Object reference chain is too long"))
+        return { result: { type: "undefined" } };
+      if (error.message.includes("Object couldn't be returned by value"))
+        return { result: { type: "undefined" } };
+      if (error.message.endsWith("Cannot find context with specified id") || error.message.endsWith("Inspected target navigated or closed"))
+        throw new Error("Execution context was destroyed, most likely because of a navigation.");
+      throw error;
+    }
+  }
+  async queryObjects(prototypeHandle) {
+    assert(!prototypeHandle._disposed, "Prototype JSHandle is disposed!");
+    assert(prototypeHandle._remoteObject.objectId, "Prototype JSHandle must not be referencing primitive value");
+    const response = await this._client.send("Runtime.queryObjects", {
+      prototypeObjectId: prototypeHandle._remoteObject.objectId
+    });
+    return createJSHandle(this, response.objects);
+  }
+  async _adoptBackendNodeId(backendNodeId) {
+    const { object } = await this._client.send("DOM.resolveNode", {
+      backendNodeId,
+      executionContextId: this._contextId
+    });
+    return createJSHandle(this, object);
+  }
+  async _adoptElementHandle(elementHandle) {
+    assert(elementHandle.executionContext() !== this, "Cannot adopt handle that already belongs to this execution context");
+    assert(this._world, "Cannot adopt handle without DOMWorld");
+    const nodeInfo = await this._client.send("DOM.describeNode", {
+      objectId: elementHandle._remoteObject.objectId
+    });
+    return this._adoptBackendNodeId(nodeInfo.node.backendNodeId);
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/HTTPRequest.js
+var HTTPRequest = class {
+  constructor(client, frame, interceptionId, allowInterception, event, redirectChain) {
+    this._failureText = null;
+    this._response = null;
+    this._fromMemoryCache = false;
+    this._interceptionHandled = false;
+    this._headers = {};
+    this._responseForRequest = null;
+    this._abortErrorReason = null;
+    this._interceptResolutionState = {
+      action: InterceptResolutionAction.None
+    };
+    this._client = client;
+    this._requestId = event.requestId;
+    this._isNavigationRequest = event.requestId === event.loaderId && event.type === "Document";
+    this._interceptionId = interceptionId;
+    this._allowInterception = allowInterception;
+    this._url = event.request.url;
+    this._resourceType = (event.type || "other").toLowerCase();
+    this._method = event.request.method;
+    this._postData = event.request.postData;
+    this._frame = frame;
+    this._redirectChain = redirectChain;
+    this._continueRequestOverrides = {};
+    this._interceptHandlers = [];
+    this._initiator = event.initiator;
+    for (const key of Object.keys(event.request.headers))
+      this._headers[key.toLowerCase()] = event.request.headers[key];
+  }
+  url() {
+    return this._url;
+  }
+  continueRequestOverrides() {
+    assert(this._allowInterception, "Request Interception is not enabled!");
+    return this._continueRequestOverrides;
+  }
+  responseForRequest() {
+    assert(this._allowInterception, "Request Interception is not enabled!");
+    return this._responseForRequest;
+  }
+  abortErrorReason() {
+    assert(this._allowInterception, "Request Interception is not enabled!");
+    return this._abortErrorReason;
+  }
+  interceptResolutionState() {
+    if (!this._allowInterception)
+      return { action: InterceptResolutionAction.Disabled };
+    if (this._interceptionHandled)
+      return { action: InterceptResolutionAction.AlreadyHandled };
+    return __spreadValues({}, this._interceptResolutionState);
+  }
+  isInterceptResolutionHandled() {
+    return this._interceptionHandled;
+  }
+  enqueueInterceptAction(pendingHandler) {
+    this._interceptHandlers.push(pendingHandler);
+  }
+  async finalizeInterceptions() {
+    await this._interceptHandlers.reduce((promiseChain, interceptAction) => promiseChain.then(interceptAction), Promise.resolve());
+    const { action } = this.interceptResolutionState();
+    switch (action) {
+      case "abort":
+        return this._abort(this._abortErrorReason);
+      case "respond":
+        if (this._responseForRequest === null) {
+          throw new Error("Response is missing for the interception");
+        }
+        return this._respond(this._responseForRequest);
+      case "continue":
+        return this._continue(this._continueRequestOverrides);
+    }
+  }
+  resourceType() {
+    return this._resourceType;
+  }
+  method() {
+    return this._method;
+  }
+  postData() {
+    return this._postData;
+  }
+  headers() {
+    return this._headers;
+  }
+  response() {
+    return this._response;
+  }
+  frame() {
+    return this._frame;
+  }
+  isNavigationRequest() {
+    return this._isNavigationRequest;
+  }
+  initiator() {
+    return this._initiator;
+  }
+  redirectChain() {
+    return this._redirectChain.slice();
+  }
+  failure() {
+    if (!this._failureText)
+      return null;
+    return {
+      errorText: this._failureText
+    };
+  }
+  async continue(overrides = {}, priority) {
+    if (this._url.startsWith("data:"))
+      return;
+    assert(this._allowInterception, "Request Interception is not enabled!");
+    assert(!this._interceptionHandled, "Request is already handled!");
+    if (priority === void 0) {
+      return this._continue(overrides);
+    }
+    this._continueRequestOverrides = overrides;
+    if (this._interceptResolutionState.priority === void 0 || priority > this._interceptResolutionState.priority) {
+      this._interceptResolutionState = {
+        action: InterceptResolutionAction.Continue,
+        priority
+      };
+      return;
+    }
+    if (priority === this._interceptResolutionState.priority) {
+      if (this._interceptResolutionState.action === "abort" || this._interceptResolutionState.action === "respond") {
+        return;
+      }
+      this._interceptResolutionState.action = InterceptResolutionAction.Continue;
+    }
+    return;
+  }
+  async _continue(overrides = {}) {
+    const { url, method, postData, headers } = overrides;
+    this._interceptionHandled = true;
+    const postDataBinaryBase64 = postData ? Buffer.from(postData).toString("base64") : void 0;
+    await this._client.send("Fetch.continueRequest", {
+      requestId: this._interceptionId,
+      url,
+      method,
+      postData: postDataBinaryBase64,
+      headers: headers ? headersArray(headers) : void 0
+    }).catch((error) => {
+      this._interceptionHandled = false;
+      return handleError(error);
+    });
+  }
+  async respond(response, priority) {
+    if (this._url.startsWith("data:"))
+      return;
+    assert(this._allowInterception, "Request Interception is not enabled!");
+    assert(!this._interceptionHandled, "Request is already handled!");
+    if (priority === void 0) {
+      return this._respond(response);
+    }
+    this._responseForRequest = response;
+    if (this._interceptResolutionState.priority === void 0 || priority > this._interceptResolutionState.priority) {
+      this._interceptResolutionState = {
+        action: InterceptResolutionAction.Respond,
+        priority
+      };
+      return;
+    }
+    if (priority === this._interceptResolutionState.priority) {
+      if (this._interceptResolutionState.action === "abort") {
+        return;
+      }
+      this._interceptResolutionState.action = InterceptResolutionAction.Respond;
+    }
+  }
+  async _respond(response) {
+    this._interceptionHandled = true;
+    const responseBody = response.body && helper.isString(response.body) ? Buffer.from(response.body) : response.body || null;
+    const responseHeaders = {};
+    if (response.headers) {
+      for (const header of Object.keys(response.headers)) {
+        const value = response.headers[header];
+        responseHeaders[header.toLowerCase()] = Array.isArray(value) ? value.map((item) => String(item)) : String(value);
+      }
+    }
+    if (response.contentType)
+      responseHeaders["content-type"] = response.contentType;
+    if (responseBody && !("content-length" in responseHeaders))
+      responseHeaders["content-length"] = String(Buffer.byteLength(responseBody));
+    const status = response.status || 200;
+    await this._client.send("Fetch.fulfillRequest", {
+      requestId: this._interceptionId,
+      responseCode: status,
+      responsePhrase: STATUS_TEXTS[status],
+      responseHeaders: headersArray(responseHeaders),
+      body: responseBody ? responseBody.toString("base64") : void 0
+    }).catch((error) => {
+      this._interceptionHandled = false;
+      return handleError(error);
+    });
+  }
+  async abort(errorCode = "failed", priority) {
+    if (this._url.startsWith("data:"))
+      return;
+    const errorReason = errorReasons[errorCode];
+    assert(errorReason, "Unknown error code: " + errorCode);
+    assert(this._allowInterception, "Request Interception is not enabled!");
+    assert(!this._interceptionHandled, "Request is already handled!");
+    if (priority === void 0) {
+      return this._abort(errorReason);
+    }
+    this._abortErrorReason = errorReason;
+    if (this._interceptResolutionState.priority === void 0 || priority >= this._interceptResolutionState.priority) {
+      this._interceptResolutionState = {
+        action: InterceptResolutionAction.Abort,
+        priority
+      };
+      return;
+    }
+  }
+  async _abort(errorReason) {
+    this._interceptionHandled = true;
+    await this._client.send("Fetch.failRequest", {
+      requestId: this._interceptionId,
+      errorReason: errorReason || "Failed"
+    }).catch(handleError);
+  }
+};
+var InterceptResolutionAction;
+(function(InterceptResolutionAction2) {
+  InterceptResolutionAction2["Abort"] = "abort";
+  InterceptResolutionAction2["Respond"] = "respond";
+  InterceptResolutionAction2["Continue"] = "continue";
+  InterceptResolutionAction2["Disabled"] = "disabled";
+  InterceptResolutionAction2["None"] = "none";
+  InterceptResolutionAction2["AlreadyHandled"] = "already-handled";
+})(InterceptResolutionAction || (InterceptResolutionAction = {}));
+var errorReasons = {
+  aborted: "Aborted",
+  accessdenied: "AccessDenied",
+  addressunreachable: "AddressUnreachable",
+  blockedbyclient: "BlockedByClient",
+  blockedbyresponse: "BlockedByResponse",
+  connectionaborted: "ConnectionAborted",
+  connectionclosed: "ConnectionClosed",
+  connectionfailed: "ConnectionFailed",
+  connectionrefused: "ConnectionRefused",
+  connectionreset: "ConnectionReset",
+  internetdisconnected: "InternetDisconnected",
+  namenotresolved: "NameNotResolved",
+  timedout: "TimedOut",
+  failed: "Failed"
+};
+function headersArray(headers) {
+  const result = [];
+  for (const name in headers) {
+    const value = headers[name];
+    if (!Object.is(value, void 0)) {
+      const values = Array.isArray(value) ? value : [value];
+      result.push(...values.map((value2) => ({ name, value: value2 + "" })));
+    }
+  }
+  return result;
+}
+async function handleError(error) {
+  if (["Invalid header"].includes(error.originalMessage)) {
+    throw error;
+  }
+  debugError(error);
+}
+var STATUS_TEXTS = {
+  "100": "Continue",
+  "101": "Switching Protocols",
+  "102": "Processing",
+  "103": "Early Hints",
+  "200": "OK",
+  "201": "Created",
+  "202": "Accepted",
+  "203": "Non-Authoritative Information",
+  "204": "No Content",
+  "205": "Reset Content",
+  "206": "Partial Content",
+  "207": "Multi-Status",
+  "208": "Already Reported",
+  "226": "IM Used",
+  "300": "Multiple Choices",
+  "301": "Moved Permanently",
+  "302": "Found",
+  "303": "See Other",
+  "304": "Not Modified",
+  "305": "Use Proxy",
+  "306": "Switch Proxy",
+  "307": "Temporary Redirect",
+  "308": "Permanent Redirect",
+  "400": "Bad Request",
+  "401": "Unauthorized",
+  "402": "Payment Required",
+  "403": "Forbidden",
+  "404": "Not Found",
+  "405": "Method Not Allowed",
+  "406": "Not Acceptable",
+  "407": "Proxy Authentication Required",
+  "408": "Request Timeout",
+  "409": "Conflict",
+  "410": "Gone",
+  "411": "Length Required",
+  "412": "Precondition Failed",
+  "413": "Payload Too Large",
+  "414": "URI Too Long",
+  "415": "Unsupported Media Type",
+  "416": "Range Not Satisfiable",
+  "417": "Expectation Failed",
+  "418": "I'm a teapot",
+  "421": "Misdirected Request",
+  "422": "Unprocessable Entity",
+  "423": "Locked",
+  "424": "Failed Dependency",
+  "425": "Too Early",
+  "426": "Upgrade Required",
+  "428": "Precondition Required",
+  "429": "Too Many Requests",
+  "431": "Request Header Fields Too Large",
+  "451": "Unavailable For Legal Reasons",
+  "500": "Internal Server Error",
+  "501": "Not Implemented",
+  "502": "Bad Gateway",
+  "503": "Service Unavailable",
+  "504": "Gateway Timeout",
+  "505": "HTTP Version Not Supported",
+  "506": "Variant Also Negotiates",
+  "507": "Insufficient Storage",
+  "508": "Loop Detected",
+  "510": "Not Extended",
+  "511": "Network Authentication Required"
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/SecurityDetails.js
+var SecurityDetails = class {
+  constructor(securityPayload) {
+    this._subjectName = securityPayload.subjectName;
+    this._issuer = securityPayload.issuer;
+    this._validFrom = securityPayload.validFrom;
+    this._validTo = securityPayload.validTo;
+    this._protocol = securityPayload.protocol;
+    this._sanList = securityPayload.sanList;
+  }
+  issuer() {
+    return this._issuer;
+  }
+  validFrom() {
+    return this._validFrom;
+  }
+  validTo() {
+    return this._validTo;
+  }
+  protocol() {
+    return this._protocol;
+  }
+  subjectName() {
+    return this._subjectName;
+  }
+  subjectAlternativeNames() {
+    return this._sanList;
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/HTTPResponse.js
+var HTTPResponse = class {
+  constructor(client, request3, responsePayload, extraInfo) {
+    this._contentPromise = null;
+    this._bodyLoadedPromiseFulfill = () => {
+    };
+    this._headers = {};
+    this._client = client;
+    this._request = request3;
+    this._bodyLoadedPromise = new Promise((fulfill) => {
+      this._bodyLoadedPromiseFulfill = fulfill;
+    });
+    this._remoteAddress = {
+      ip: responsePayload.remoteIPAddress,
+      port: responsePayload.remotePort
+    };
+    this._statusText = this._parseStatusTextFromExtrInfo(extraInfo) || responsePayload.statusText;
+    this._url = request3.url();
+    this._fromDiskCache = !!responsePayload.fromDiskCache;
+    this._fromServiceWorker = !!responsePayload.fromServiceWorker;
+    this._status = extraInfo ? extraInfo.statusCode : responsePayload.status;
+    const headers = extraInfo ? extraInfo.headers : responsePayload.headers;
+    for (const key of Object.keys(headers))
+      this._headers[key.toLowerCase()] = headers[key];
+    this._securityDetails = responsePayload.securityDetails ? new SecurityDetails(responsePayload.securityDetails) : null;
+    this._timing = responsePayload.timing || null;
+  }
+  _parseStatusTextFromExtrInfo(extraInfo) {
+    if (!extraInfo || !extraInfo.headersText)
+      return;
+    const firstLine = extraInfo.headersText.split("\r", 1)[0];
+    if (!firstLine)
+      return;
+    const match = firstLine.match(/[^ ]* [^ ]* (.*)/);
+    if (!match)
+      return;
+    const statusText = match[1];
+    if (!statusText)
+      return;
+    return statusText;
+  }
+  _resolveBody(err) {
+    if (err) {
+      return this._bodyLoadedPromiseFulfill(err);
+    }
+    return this._bodyLoadedPromiseFulfill();
+  }
+  remoteAddress() {
+    return this._remoteAddress;
+  }
+  url() {
+    return this._url;
+  }
+  ok() {
+    return this._status === 0 || this._status >= 200 && this._status <= 299;
+  }
+  status() {
+    return this._status;
+  }
+  statusText() {
+    return this._statusText;
+  }
+  headers() {
+    return this._headers;
+  }
+  securityDetails() {
+    return this._securityDetails;
+  }
+  timing() {
+    return this._timing;
+  }
+  buffer() {
+    if (!this._contentPromise) {
+      this._contentPromise = this._bodyLoadedPromise.then(async (error) => {
+        if (error)
+          throw error;
+        try {
+          const response = await this._client.send("Network.getResponseBody", {
+            requestId: this._request._requestId
+          });
+          return Buffer.from(response.body, response.base64Encoded ? "base64" : "utf8");
+        } catch (error2) {
+          if (error2 instanceof ProtocolError && error2.originalMessage === "No resource with given identifier found") {
+            throw new ProtocolError("Could not load body for this request. This might happen if the request is a preflight request.");
+          }
+          throw error2;
+        }
+      });
+    }
+    return this._contentPromise;
+  }
+  async text() {
+    const content = await this.buffer();
+    return content.toString("utf8");
+  }
+  async json() {
+    const content = await this.text();
+    return JSON.parse(content);
+  }
+  request() {
+    return this._request;
+  }
+  fromCache() {
+    return this._fromDiskCache || this._request._fromMemoryCache;
+  }
+  fromServiceWorker() {
+    return this._fromServiceWorker;
+  }
+  frame() {
+    return this._request.frame();
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/NetworkEventManager.js
+var NetworkEventManager = class {
+  constructor() {
+    this._requestWillBeSentMap = /* @__PURE__ */ new Map();
+    this._requestPausedMap = /* @__PURE__ */ new Map();
+    this._httpRequestsMap = /* @__PURE__ */ new Map();
+    this._responseReceivedExtraInfoMap = /* @__PURE__ */ new Map();
+    this._queuedRedirectInfoMap = /* @__PURE__ */ new Map();
+    this._queuedEventGroupMap = /* @__PURE__ */ new Map();
+  }
+  forget(networkRequestId) {
+    this._requestWillBeSentMap.delete(networkRequestId);
+    this._requestPausedMap.delete(networkRequestId);
+    this._queuedEventGroupMap.delete(networkRequestId);
+    this._queuedRedirectInfoMap.delete(networkRequestId);
+    this._responseReceivedExtraInfoMap.delete(networkRequestId);
+  }
+  responseExtraInfo(networkRequestId) {
+    if (!this._responseReceivedExtraInfoMap.has(networkRequestId)) {
+      this._responseReceivedExtraInfoMap.set(networkRequestId, []);
+    }
+    return this._responseReceivedExtraInfoMap.get(networkRequestId);
+  }
+  queuedRedirectInfo(fetchRequestId) {
+    if (!this._queuedRedirectInfoMap.has(fetchRequestId)) {
+      this._queuedRedirectInfoMap.set(fetchRequestId, []);
+    }
+    return this._queuedRedirectInfoMap.get(fetchRequestId);
+  }
+  queueRedirectInfo(fetchRequestId, redirectInfo) {
+    this.queuedRedirectInfo(fetchRequestId).push(redirectInfo);
+  }
+  takeQueuedRedirectInfo(fetchRequestId) {
+    return this.queuedRedirectInfo(fetchRequestId).shift();
+  }
+  numRequestsInProgress() {
+    return [...this._httpRequestsMap].filter(([, request3]) => {
+      return !request3.response();
+    }).length;
+  }
+  storeRequestWillBeSent(networkRequestId, event) {
+    this._requestWillBeSentMap.set(networkRequestId, event);
+  }
+  getRequestWillBeSent(networkRequestId) {
+    return this._requestWillBeSentMap.get(networkRequestId);
+  }
+  forgetRequestWillBeSent(networkRequestId) {
+    this._requestWillBeSentMap.delete(networkRequestId);
+  }
+  getRequestPaused(networkRequestId) {
+    return this._requestPausedMap.get(networkRequestId);
+  }
+  forgetRequestPaused(networkRequestId) {
+    this._requestPausedMap.delete(networkRequestId);
+  }
+  storeRequestPaused(networkRequestId, event) {
+    this._requestPausedMap.set(networkRequestId, event);
+  }
+  getRequest(networkRequestId) {
+    return this._httpRequestsMap.get(networkRequestId);
+  }
+  storeRequest(networkRequestId, request3) {
+    this._httpRequestsMap.set(networkRequestId, request3);
+  }
+  forgetRequest(networkRequestId) {
+    this._httpRequestsMap.delete(networkRequestId);
+  }
+  getQueuedEventGroup(networkRequestId) {
+    return this._queuedEventGroupMap.get(networkRequestId);
+  }
+  queueEventGroup(networkRequestId, event) {
+    this._queuedEventGroupMap.set(networkRequestId, event);
+  }
+  forgetQueuedEventGroup(networkRequestId) {
+    this._queuedEventGroupMap.delete(networkRequestId);
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/NetworkManager.js
+var NetworkManagerEmittedEvents = {
+  Request: Symbol("NetworkManager.Request"),
+  RequestServedFromCache: Symbol("NetworkManager.RequestServedFromCache"),
+  Response: Symbol("NetworkManager.Response"),
+  RequestFailed: Symbol("NetworkManager.RequestFailed"),
+  RequestFinished: Symbol("NetworkManager.RequestFinished")
+};
+var NetworkManager = class extends EventEmitter {
+  constructor(client, ignoreHTTPSErrors, frameManager) {
+    super();
+    this._networkEventManager = new NetworkEventManager();
+    this._extraHTTPHeaders = {};
+    this._credentials = null;
+    this._attemptedAuthentications = /* @__PURE__ */ new Set();
+    this._userRequestInterceptionEnabled = false;
+    this._protocolRequestInterceptionEnabled = false;
+    this._userCacheDisabled = false;
+    this._emulatedNetworkConditions = {
+      offline: false,
+      upload: -1,
+      download: -1,
+      latency: 0
+    };
+    this._client = client;
+    this._ignoreHTTPSErrors = ignoreHTTPSErrors;
+    this._frameManager = frameManager;
+    this._client.on("Fetch.requestPaused", this._onRequestPaused.bind(this));
+    this._client.on("Fetch.authRequired", this._onAuthRequired.bind(this));
+    this._client.on("Network.requestWillBeSent", this._onRequestWillBeSent.bind(this));
+    this._client.on("Network.requestServedFromCache", this._onRequestServedFromCache.bind(this));
+    this._client.on("Network.responseReceived", this._onResponseReceived.bind(this));
+    this._client.on("Network.loadingFinished", this._onLoadingFinished.bind(this));
+    this._client.on("Network.loadingFailed", this._onLoadingFailed.bind(this));
+    this._client.on("Network.responseReceivedExtraInfo", this._onResponseReceivedExtraInfo.bind(this));
+  }
+  async initialize() {
+    await this._client.send("Network.enable");
+    if (this._ignoreHTTPSErrors)
+      await this._client.send("Security.setIgnoreCertificateErrors", {
+        ignore: true
+      });
+  }
+  async authenticate(credentials) {
+    this._credentials = credentials;
+    await this._updateProtocolRequestInterception();
+  }
+  async setExtraHTTPHeaders(extraHTTPHeaders) {
+    this._extraHTTPHeaders = {};
+    for (const key of Object.keys(extraHTTPHeaders)) {
+      const value = extraHTTPHeaders[key];
+      assert(helper.isString(value), `Expected value of header "${key}" to be String, but "${typeof value}" is found.`);
+      this._extraHTTPHeaders[key.toLowerCase()] = value;
+    }
+    await this._client.send("Network.setExtraHTTPHeaders", {
+      headers: this._extraHTTPHeaders
+    });
+  }
+  extraHTTPHeaders() {
+    return Object.assign({}, this._extraHTTPHeaders);
+  }
+  numRequestsInProgress() {
+    return this._networkEventManager.numRequestsInProgress();
+  }
+  async setOfflineMode(value) {
+    this._emulatedNetworkConditions.offline = value;
+    await this._updateNetworkConditions();
+  }
+  async emulateNetworkConditions(networkConditions2) {
+    this._emulatedNetworkConditions.upload = networkConditions2 ? networkConditions2.upload : -1;
+    this._emulatedNetworkConditions.download = networkConditions2 ? networkConditions2.download : -1;
+    this._emulatedNetworkConditions.latency = networkConditions2 ? networkConditions2.latency : 0;
+    await this._updateNetworkConditions();
+  }
+  async _updateNetworkConditions() {
+    await this._client.send("Network.emulateNetworkConditions", {
+      offline: this._emulatedNetworkConditions.offline,
+      latency: this._emulatedNetworkConditions.latency,
+      uploadThroughput: this._emulatedNetworkConditions.upload,
+      downloadThroughput: this._emulatedNetworkConditions.download
+    });
+  }
+  async setUserAgent(userAgent, userAgentMetadata) {
+    await this._client.send("Network.setUserAgentOverride", {
+      userAgent,
+      userAgentMetadata
+    });
+  }
+  async setCacheEnabled(enabled) {
+    this._userCacheDisabled = !enabled;
+    await this._updateProtocolCacheDisabled();
+  }
+  async setRequestInterception(value) {
+    this._userRequestInterceptionEnabled = value;
+    await this._updateProtocolRequestInterception();
+  }
+  async _updateProtocolRequestInterception() {
+    const enabled = this._userRequestInterceptionEnabled || !!this._credentials;
+    if (enabled === this._protocolRequestInterceptionEnabled)
+      return;
+    this._protocolRequestInterceptionEnabled = enabled;
+    if (enabled) {
+      await Promise.all([
+        this._updateProtocolCacheDisabled(),
+        this._client.send("Fetch.enable", {
+          handleAuthRequests: true,
+          patterns: [{ urlPattern: "*" }]
+        })
+      ]);
+    } else {
+      await Promise.all([
+        this._updateProtocolCacheDisabled(),
+        this._client.send("Fetch.disable")
+      ]);
+    }
+  }
+  _cacheDisabled() {
+    return this._userCacheDisabled;
+  }
+  async _updateProtocolCacheDisabled() {
+    await this._client.send("Network.setCacheDisabled", {
+      cacheDisabled: this._cacheDisabled()
+    });
+  }
+  _onRequestWillBeSent(event) {
+    if (this._userRequestInterceptionEnabled && !event.request.url.startsWith("data:")) {
+      const { requestId: networkRequestId } = event;
+      this._networkEventManager.storeRequestWillBeSent(networkRequestId, event);
+      const requestPausedEvent = this._networkEventManager.getRequestPaused(networkRequestId);
+      if (requestPausedEvent) {
+        const { requestId: fetchRequestId } = requestPausedEvent;
+        this._patchRequestEventHeaders(event, requestPausedEvent);
+        this._onRequest(event, fetchRequestId);
+        this._networkEventManager.forgetRequestPaused(networkRequestId);
+      }
+      return;
+    }
+    this._onRequest(event, null);
+  }
+  _onAuthRequired(event) {
+    let response = "Default";
+    if (this._attemptedAuthentications.has(event.requestId)) {
+      response = "CancelAuth";
+    } else if (this._credentials) {
+      response = "ProvideCredentials";
+      this._attemptedAuthentications.add(event.requestId);
+    }
+    const { username, password } = this._credentials || {
+      username: void 0,
+      password: void 0
+    };
+    this._client.send("Fetch.continueWithAuth", {
+      requestId: event.requestId,
+      authChallengeResponse: { response, username, password }
+    }).catch(debugError);
+  }
+  _onRequestPaused(event) {
+    if (!this._userRequestInterceptionEnabled && this._protocolRequestInterceptionEnabled) {
+      this._client.send("Fetch.continueRequest", {
+        requestId: event.requestId
+      }).catch(debugError);
+    }
+    const { networkId: networkRequestId, requestId: fetchRequestId } = event;
+    if (!networkRequestId) {
+      return;
+    }
+    const requestWillBeSentEvent = (() => {
+      const requestWillBeSentEvent2 = this._networkEventManager.getRequestWillBeSent(networkRequestId);
+      if (requestWillBeSentEvent2 && (requestWillBeSentEvent2.request.url !== event.request.url || requestWillBeSentEvent2.request.method !== event.request.method)) {
+        this._networkEventManager.forgetRequestWillBeSent(networkRequestId);
+        return;
+      }
+      return requestWillBeSentEvent2;
+    })();
+    if (requestWillBeSentEvent) {
+      this._patchRequestEventHeaders(requestWillBeSentEvent, event);
+      this._onRequest(requestWillBeSentEvent, fetchRequestId);
+    } else {
+      this._networkEventManager.storeRequestPaused(networkRequestId, event);
+    }
+  }
+  _patchRequestEventHeaders(requestWillBeSentEvent, requestPausedEvent) {
+    requestWillBeSentEvent.request.headers = __spreadValues(__spreadValues({}, requestWillBeSentEvent.request.headers), requestPausedEvent.request.headers);
+  }
+  _onRequest(event, fetchRequestId) {
+    let redirectChain = [];
+    if (event.redirectResponse) {
+      let redirectResponseExtraInfo = null;
+      if (event.redirectHasExtraInfo) {
+        redirectResponseExtraInfo = this._networkEventManager.responseExtraInfo(event.requestId).shift();
+        if (!redirectResponseExtraInfo) {
+          this._networkEventManager.queueRedirectInfo(event.requestId, {
+            event,
+            fetchRequestId
+          });
+          return;
+        }
+      }
+      const request4 = this._networkEventManager.getRequest(event.requestId);
+      if (request4) {
+        this._handleRequestRedirect(request4, event.redirectResponse, redirectResponseExtraInfo);
+        redirectChain = request4._redirectChain;
+      }
+    }
+    const frame = event.frameId ? this._frameManager.frame(event.frameId) : null;
+    const request3 = new HTTPRequest(this._client, frame, fetchRequestId, this._userRequestInterceptionEnabled, event, redirectChain);
+    this._networkEventManager.storeRequest(event.requestId, request3);
+    this.emit(NetworkManagerEmittedEvents.Request, request3);
+    request3.finalizeInterceptions();
+  }
+  _onRequestServedFromCache(event) {
+    const request3 = this._networkEventManager.getRequest(event.requestId);
+    if (request3)
+      request3._fromMemoryCache = true;
+    this.emit(NetworkManagerEmittedEvents.RequestServedFromCache, request3);
+  }
+  _handleRequestRedirect(request3, responsePayload, extraInfo) {
+    const response = new HTTPResponse(this._client, request3, responsePayload, extraInfo);
+    request3._response = response;
+    request3._redirectChain.push(request3);
+    response._resolveBody(new Error("Response body is unavailable for redirect responses"));
+    this._forgetRequest(request3, false);
+    this.emit(NetworkManagerEmittedEvents.Response, response);
+    this.emit(NetworkManagerEmittedEvents.RequestFinished, request3);
+  }
+  _emitResponseEvent(responseReceived, extraInfo) {
+    const request3 = this._networkEventManager.getRequest(responseReceived.requestId);
+    if (!request3)
+      return;
+    const extraInfos = this._networkEventManager.responseExtraInfo(responseReceived.requestId);
+    if (extraInfos.length) {
+      debugError(new Error("Unexpected extraInfo events for request " + responseReceived.requestId));
+    }
+    const response = new HTTPResponse(this._client, request3, responseReceived.response, extraInfo);
+    request3._response = response;
+    this.emit(NetworkManagerEmittedEvents.Response, response);
+  }
+  _onResponseReceived(event) {
+    const request3 = this._networkEventManager.getRequest(event.requestId);
+    let extraInfo = null;
+    if (request3 && !request3._fromMemoryCache && event.hasExtraInfo) {
+      extraInfo = this._networkEventManager.responseExtraInfo(event.requestId).shift();
+      if (!extraInfo) {
+        this._networkEventManager.queueEventGroup(event.requestId, {
+          responseReceivedEvent: event
+        });
+        return;
+      }
+    }
+    this._emitResponseEvent(event, extraInfo);
+  }
+  _onResponseReceivedExtraInfo(event) {
+    const redirectInfo = this._networkEventManager.takeQueuedRedirectInfo(event.requestId);
+    if (redirectInfo) {
+      this._networkEventManager.responseExtraInfo(event.requestId).push(event);
+      this._onRequest(redirectInfo.event, redirectInfo.fetchRequestId);
+      return;
+    }
+    const queuedEvents = this._networkEventManager.getQueuedEventGroup(event.requestId);
+    if (queuedEvents) {
+      this._networkEventManager.forgetQueuedEventGroup(event.requestId);
+      this._emitResponseEvent(queuedEvents.responseReceivedEvent, event);
+      if (queuedEvents.loadingFinishedEvent) {
+        this._emitLoadingFinished(queuedEvents.loadingFinishedEvent);
+      }
+      if (queuedEvents.loadingFailedEvent) {
+        this._emitLoadingFailed(queuedEvents.loadingFailedEvent);
+      }
+      return;
+    }
+    this._networkEventManager.responseExtraInfo(event.requestId).push(event);
+  }
+  _forgetRequest(request3, events) {
+    const requestId = request3._requestId;
+    const interceptionId = request3._interceptionId;
+    this._networkEventManager.forgetRequest(requestId);
+    this._attemptedAuthentications.delete(interceptionId);
+    if (events) {
+      this._networkEventManager.forget(requestId);
+    }
+  }
+  _onLoadingFinished(event) {
+    const queuedEvents = this._networkEventManager.getQueuedEventGroup(event.requestId);
+    if (queuedEvents) {
+      queuedEvents.loadingFinishedEvent = event;
+    } else {
+      this._emitLoadingFinished(event);
+    }
+  }
+  _emitLoadingFinished(event) {
+    const request3 = this._networkEventManager.getRequest(event.requestId);
+    if (!request3)
+      return;
+    if (request3.response())
+      request3.response()._resolveBody(null);
+    this._forgetRequest(request3, true);
+    this.emit(NetworkManagerEmittedEvents.RequestFinished, request3);
+  }
+  _onLoadingFailed(event) {
+    const queuedEvents = this._networkEventManager.getQueuedEventGroup(event.requestId);
+    if (queuedEvents) {
+      queuedEvents.loadingFailedEvent = event;
+    } else {
+      this._emitLoadingFailed(event);
+    }
+  }
+  _emitLoadingFailed(event) {
+    const request3 = this._networkEventManager.getRequest(event.requestId);
+    if (!request3)
+      return;
+    request3._failureText = event.errorText;
+    const response = request3.response();
+    if (response)
+      response._resolveBody(null);
+    this._forgetRequest(request3, true);
+    this.emit(NetworkManagerEmittedEvents.RequestFailed, request3);
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/LifecycleWatcher.js
+var puppeteerToProtocolLifecycle = /* @__PURE__ */ new Map([
+  ["load", "load"],
+  ["domcontentloaded", "DOMContentLoaded"],
+  ["networkidle0", "networkIdle"],
+  ["networkidle2", "networkAlmostIdle"]
+]);
+var LifecycleWatcher = class {
+  constructor(frameManager, frame, waitUntil, timeout) {
+    if (Array.isArray(waitUntil))
+      waitUntil = waitUntil.slice();
+    else if (typeof waitUntil === "string")
+      waitUntil = [waitUntil];
+    this._expectedLifecycle = waitUntil.map((value) => {
+      const protocolEvent = puppeteerToProtocolLifecycle.get(value);
+      assert(protocolEvent, "Unknown value for options.waitUntil: " + value);
+      return protocolEvent;
+    });
+    this._frameManager = frameManager;
+    this._frame = frame;
+    this._initialLoaderId = frame._loaderId;
+    this._timeout = timeout;
+    this._navigationRequest = null;
+    this._eventListeners = [
+      helper.addEventListener(frameManager._client, CDPSessionEmittedEvents.Disconnected, () => this._terminate(new Error("Navigation failed because browser has disconnected!"))),
+      helper.addEventListener(this._frameManager, FrameManagerEmittedEvents.LifecycleEvent, this._checkLifecycleComplete.bind(this)),
+      helper.addEventListener(this._frameManager, FrameManagerEmittedEvents.FrameNavigatedWithinDocument, this._navigatedWithinDocument.bind(this)),
+      helper.addEventListener(this._frameManager, FrameManagerEmittedEvents.FrameSwapped, this._frameSwapped.bind(this)),
+      helper.addEventListener(this._frameManager, FrameManagerEmittedEvents.FrameDetached, this._onFrameDetached.bind(this)),
+      helper.addEventListener(this._frameManager.networkManager(), NetworkManagerEmittedEvents.Request, this._onRequest.bind(this))
+    ];
+    this._sameDocumentNavigationPromise = new Promise((fulfill) => {
+      this._sameDocumentNavigationCompleteCallback = fulfill;
+    });
+    this._lifecyclePromise = new Promise((fulfill) => {
+      this._lifecycleCallback = fulfill;
+    });
+    this._newDocumentNavigationPromise = new Promise((fulfill) => {
+      this._newDocumentNavigationCompleteCallback = fulfill;
+    });
+    this._timeoutPromise = this._createTimeoutPromise();
+    this._terminationPromise = new Promise((fulfill) => {
+      this._terminationCallback = fulfill;
+    });
+    this._checkLifecycleComplete();
+  }
+  _onRequest(request3) {
+    if (request3.frame() !== this._frame || !request3.isNavigationRequest())
+      return;
+    this._navigationRequest = request3;
+  }
+  _onFrameDetached(frame) {
+    if (this._frame === frame) {
+      this._terminationCallback.call(null, new Error("Navigating frame was detached"));
+      return;
+    }
+    this._checkLifecycleComplete();
+  }
+  async navigationResponse() {
+    return this._navigationRequest ? this._navigationRequest.response() : null;
+  }
+  _terminate(error) {
+    this._terminationCallback.call(null, error);
+  }
+  sameDocumentNavigationPromise() {
+    return this._sameDocumentNavigationPromise;
+  }
+  newDocumentNavigationPromise() {
+    return this._newDocumentNavigationPromise;
+  }
+  lifecyclePromise() {
+    return this._lifecyclePromise;
+  }
+  timeoutOrTerminationPromise() {
+    return Promise.race([this._timeoutPromise, this._terminationPromise]);
+  }
+  _createTimeoutPromise() {
+    if (!this._timeout)
+      return new Promise(() => {
+      });
+    const errorMessage = "Navigation timeout of " + this._timeout + " ms exceeded";
+    return new Promise((fulfill) => this._maximumTimer = setTimeout(fulfill, this._timeout)).then(() => new TimeoutError(errorMessage));
+  }
+  _navigatedWithinDocument(frame) {
+    if (frame !== this._frame)
+      return;
+    this._hasSameDocumentNavigation = true;
+    this._checkLifecycleComplete();
+  }
+  _frameSwapped(frame) {
+    if (frame !== this._frame)
+      return;
+    this._swapped = true;
+    this._checkLifecycleComplete();
+  }
+  _checkLifecycleComplete() {
+    if (!checkLifecycle(this._frame, this._expectedLifecycle))
+      return;
+    this._lifecycleCallback();
+    if (this._frame._loaderId === this._initialLoaderId && !this._hasSameDocumentNavigation) {
+      if (this._swapped) {
+        this._swapped = false;
+        this._newDocumentNavigationCompleteCallback();
+      }
+      return;
+    }
+    if (this._hasSameDocumentNavigation)
+      this._sameDocumentNavigationCompleteCallback();
+    if (this._frame._loaderId !== this._initialLoaderId)
+      this._newDocumentNavigationCompleteCallback();
+    function checkLifecycle(frame, expectedLifecycle) {
+      for (const event of expectedLifecycle) {
+        if (!frame._lifecycleEvents.has(event))
+          return false;
+      }
+      for (const child of frame.childFrames()) {
+        if (child._hasStartedLoading && !checkLifecycle(child, expectedLifecycle)) {
+          return false;
+        }
+      }
+      return true;
+    }
+  }
+  dispose() {
+    helper.removeEventListeners(this._eventListeners);
+    clearTimeout(this._maximumTimer);
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/DOMWorld.js
+var DOMWorld = class {
+  constructor(client, frameManager, frame, timeoutSettings) {
+    this._documentPromise = null;
+    this._contextPromise = null;
+    this._contextResolveCallback = null;
+    this._detached = false;
+    this._waitTasks = /* @__PURE__ */ new Set();
+    this._boundFunctions = /* @__PURE__ */ new Map();
+    this._ctxBindings = /* @__PURE__ */ new Set();
+    this._settingUpBinding = null;
+    this._client = client;
+    this._frameManager = frameManager;
+    this._frame = frame;
+    this._timeoutSettings = timeoutSettings;
+    this._setContext(null);
+    this._onBindingCalled = this._onBindingCalled.bind(this);
+    this._client.on("Runtime.bindingCalled", this._onBindingCalled);
+  }
+  frame() {
+    return this._frame;
+  }
+  async _setContext(context) {
+    if (context) {
+      assert(this._contextResolveCallback, "Execution Context has already been set.");
+      this._ctxBindings.clear();
+      this._contextResolveCallback.call(null, context);
+      this._contextResolveCallback = null;
+      for (const waitTask of this._waitTasks)
+        waitTask.rerun();
+    } else {
+      this._documentPromise = null;
+      this._contextPromise = new Promise((fulfill) => {
+        this._contextResolveCallback = fulfill;
+      });
+    }
+  }
+  _hasContext() {
+    return !this._contextResolveCallback;
+  }
+  _detach() {
+    this._detached = true;
+    this._client.off("Runtime.bindingCalled", this._onBindingCalled);
+    for (const waitTask of this._waitTasks)
+      waitTask.terminate(new Error("waitForFunction failed: frame got detached."));
+  }
+  executionContext() {
+    if (this._detached)
+      throw new Error(`Execution context is not available in detached frame "${this._frame.url()}" (are you trying to evaluate?)`);
+    return this._contextPromise;
+  }
+  async evaluateHandle(pageFunction, ...args) {
+    const context = await this.executionContext();
+    return context.evaluateHandle(pageFunction, ...args);
+  }
+  async evaluate(pageFunction, ...args) {
+    const context = await this.executionContext();
+    return context.evaluate(pageFunction, ...args);
+  }
+  async $(selector) {
+    const document2 = await this._document();
+    const value = await document2.$(selector);
+    return value;
+  }
+  async _document() {
+    if (this._documentPromise)
+      return this._documentPromise;
+    this._documentPromise = this.executionContext().then(async (context) => {
+      const document2 = await context.evaluateHandle("document");
+      return document2.asElement();
+    });
+    return this._documentPromise;
+  }
+  async $x(expression) {
+    const document2 = await this._document();
+    const value = await document2.$x(expression);
+    return value;
+  }
+  async $eval(selector, pageFunction, ...args) {
+    const document2 = await this._document();
+    return document2.$eval(selector, pageFunction, ...args);
+  }
+  async $$eval(selector, pageFunction, ...args) {
+    const document2 = await this._document();
+    const value = await document2.$$eval(selector, pageFunction, ...args);
+    return value;
+  }
+  async $$(selector) {
+    const document2 = await this._document();
+    const value = await document2.$$(selector);
+    return value;
+  }
+  async content() {
+    return await this.evaluate(() => {
+      let retVal = "";
+      if (document.doctype)
+        retVal = new XMLSerializer().serializeToString(document.doctype);
+      if (document.documentElement)
+        retVal += document.documentElement.outerHTML;
+      return retVal;
+    });
+  }
+  async setContent(html, options = {}) {
+    const { waitUntil = ["load"], timeout = this._timeoutSettings.navigationTimeout() } = options;
+    await this.evaluate((html2) => {
+      document.open();
+      document.write(html2);
+      document.close();
+    }, html);
+    const watcher = new LifecycleWatcher(this._frameManager, this._frame, waitUntil, timeout);
+    const error = await Promise.race([
+      watcher.timeoutOrTerminationPromise(),
+      watcher.lifecyclePromise()
+    ]);
+    watcher.dispose();
+    if (error)
+      throw error;
+  }
+  async addScriptTag(options) {
+    const { url = null, path: path4 = null, content = null, id = "", type = "" } = options;
+    if (url !== null) {
+      try {
+        const context = await this.executionContext();
+        return (await context.evaluateHandle(addScriptUrl, url, id, type)).asElement();
+      } catch (error) {
+        throw new Error(`Loading script from ${url} failed`);
+      }
+    }
+    if (path4 !== null) {
+      if (!isNode) {
+        throw new Error("Cannot pass a filepath to addScriptTag in the browser environment.");
+      }
+      const fs4 = await helper.importFSModule();
+      let contents = await fs4.promises.readFile(path4, "utf8");
+      contents += "//# sourceURL=" + path4.replace(/\n/g, "");
+      const context = await this.executionContext();
+      return (await context.evaluateHandle(addScriptContent, contents, id, type)).asElement();
+    }
+    if (content !== null) {
+      const context = await this.executionContext();
+      return (await context.evaluateHandle(addScriptContent, content, id, type)).asElement();
+    }
+    throw new Error("Provide an object with a `url`, `path` or `content` property");
+    async function addScriptUrl(url2, id2, type2) {
+      const script = document.createElement("script");
+      script.src = url2;
+      if (id2)
+        script.id = id2;
+      if (type2)
+        script.type = type2;
+      const promise = new Promise((res, rej) => {
+        script.onload = res;
+        script.onerror = rej;
+      });
+      document.head.appendChild(script);
+      await promise;
+      return script;
+    }
+    function addScriptContent(content2, id2, type2 = "text/javascript") {
+      const script = document.createElement("script");
+      script.type = type2;
+      script.text = content2;
+      if (id2)
+        script.id = id2;
+      let error = null;
+      script.onerror = (e) => error = e;
+      document.head.appendChild(script);
+      if (error)
+        throw error;
+      return script;
+    }
+  }
+  async addStyleTag(options) {
+    const { url = null, path: path4 = null, content = null } = options;
+    if (url !== null) {
+      try {
+        const context = await this.executionContext();
+        return (await context.evaluateHandle(addStyleUrl, url)).asElement();
+      } catch (error) {
+        throw new Error(`Loading style from ${url} failed`);
+      }
+    }
+    if (path4 !== null) {
+      if (!isNode) {
+        throw new Error("Cannot pass a filepath to addStyleTag in the browser environment.");
+      }
+      const fs4 = await helper.importFSModule();
+      let contents = await fs4.promises.readFile(path4, "utf8");
+      contents += "/*# sourceURL=" + path4.replace(/\n/g, "") + "*/";
+      const context = await this.executionContext();
+      return (await context.evaluateHandle(addStyleContent, contents)).asElement();
+    }
+    if (content !== null) {
+      const context = await this.executionContext();
+      return (await context.evaluateHandle(addStyleContent, content)).asElement();
+    }
+    throw new Error("Provide an object with a `url`, `path` or `content` property");
+    async function addStyleUrl(url2) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = url2;
+      const promise = new Promise((res, rej) => {
+        link.onload = res;
+        link.onerror = rej;
+      });
+      document.head.appendChild(link);
+      await promise;
+      return link;
+    }
+    async function addStyleContent(content2) {
+      const style = document.createElement("style");
+      style.type = "text/css";
+      style.appendChild(document.createTextNode(content2));
+      const promise = new Promise((res, rej) => {
+        style.onload = res;
+        style.onerror = rej;
+      });
+      document.head.appendChild(style);
+      await promise;
+      return style;
+    }
+  }
+  async click(selector, options) {
+    const handle = await this.$(selector);
+    assert(handle, "No node found for selector: " + selector);
+    await handle.click(options);
+    await handle.dispose();
+  }
+  async focus(selector) {
+    const handle = await this.$(selector);
+    assert(handle, "No node found for selector: " + selector);
+    await handle.focus();
+    await handle.dispose();
+  }
+  async hover(selector) {
+    const handle = await this.$(selector);
+    assert(handle, "No node found for selector: " + selector);
+    await handle.hover();
+    await handle.dispose();
+  }
+  async select(selector, ...values) {
+    const handle = await this.$(selector);
+    assert(handle, "No node found for selector: " + selector);
+    const result = await handle.select(...values);
+    await handle.dispose();
+    return result;
+  }
+  async tap(selector) {
+    const handle = await this.$(selector);
+    await handle.tap();
+    await handle.dispose();
+  }
+  async type(selector, text, options) {
+    const handle = await this.$(selector);
+    assert(handle, "No node found for selector: " + selector);
+    await handle.type(text, options);
+    await handle.dispose();
+  }
+  async waitForSelector(selector, options) {
+    const { updatedSelector, queryHandler } = getQueryHandlerAndSelector(selector);
+    return queryHandler.waitFor(this, updatedSelector, options);
+  }
+  async addBindingToContext(context, name) {
+    if (this._ctxBindings.has(DOMWorld.bindingIdentifier(name, context._contextId))) {
+      return;
+    }
+    if (this._settingUpBinding) {
+      await this._settingUpBinding;
+      return this.addBindingToContext(context, name);
+    }
+    const bind = async (name2) => {
+      const expression = helper.pageBindingInitString("internal", name2);
+      try {
+        await context._client.send("Runtime.addBinding", {
+          name: name2,
+          executionContextName: context._contextName
+        });
+        await context.evaluate(expression);
+      } catch (error) {
+        const ctxDestroyed = error.message.includes("Execution context was destroyed");
+        const ctxNotFound = error.message.includes("Cannot find context with specified id");
+        if (ctxDestroyed || ctxNotFound) {
+          return;
+        } else {
+          debugError(error);
+          return;
+        }
+      }
+      this._ctxBindings.add(DOMWorld.bindingIdentifier(name2, context._contextId));
+    };
+    this._settingUpBinding = bind(name);
+    await this._settingUpBinding;
+    this._settingUpBinding = null;
+  }
+  async _onBindingCalled(event) {
+    let payload;
+    if (!this._hasContext())
+      return;
+    const context = await this.executionContext();
+    try {
+      payload = JSON.parse(event.payload);
+    } catch {
+      return;
+    }
+    const { type, name, seq, args } = payload;
+    if (type !== "internal" || !this._ctxBindings.has(DOMWorld.bindingIdentifier(name, context._contextId)))
+      return;
+    if (context._contextId !== event.executionContextId)
+      return;
+    try {
+      const result = await this._boundFunctions.get(name)(...args);
+      await context.evaluate(deliverResult, name, seq, result);
+    } catch (error) {
+      if (error.message.includes("Protocol error"))
+        return;
+      debugError(error);
+    }
+    function deliverResult(name2, seq2, result) {
+      globalThis[name2].callbacks.get(seq2).resolve(result);
+      globalThis[name2].callbacks.delete(seq2);
+    }
+  }
+  async waitForSelectorInPage(queryOne2, selector, options, binding) {
+    const { visible: waitForVisible = false, hidden: waitForHidden = false, timeout = this._timeoutSettings.timeout() } = options;
+    const polling = waitForVisible || waitForHidden ? "raf" : "mutation";
+    const title = `selector \`${selector}\`${waitForHidden ? " to be hidden" : ""}`;
+    async function predicate(root, selector2, waitForVisible2, waitForHidden2) {
+      const node = predicateQueryHandler ? await predicateQueryHandler(root, selector2) : root.querySelector(selector2);
+      return checkWaitForOptions(node, waitForVisible2, waitForHidden2);
+    }
+    const waitTaskOptions = {
+      domWorld: this,
+      predicateBody: helper.makePredicateString(predicate, queryOne2),
+      predicateAcceptsContextElement: true,
+      title,
+      polling,
+      timeout,
+      args: [selector, waitForVisible, waitForHidden],
+      binding,
+      root: options.root
+    };
+    const waitTask = new WaitTask(waitTaskOptions);
+    const jsHandle = await waitTask.promise;
+    const elementHandle = jsHandle.asElement();
+    if (!elementHandle) {
+      await jsHandle.dispose();
+      return null;
+    }
+    return elementHandle;
+  }
+  async waitForXPath(xpath, options) {
+    const { visible: waitForVisible = false, hidden: waitForHidden = false, timeout = this._timeoutSettings.timeout() } = options;
+    const polling = waitForVisible || waitForHidden ? "raf" : "mutation";
+    const title = `XPath \`${xpath}\`${waitForHidden ? " to be hidden" : ""}`;
+    function predicate(root, xpath2, waitForVisible2, waitForHidden2) {
+      const node = document.evaluate(xpath2, root, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+      return checkWaitForOptions(node, waitForVisible2, waitForHidden2);
+    }
+    const waitTaskOptions = {
+      domWorld: this,
+      predicateBody: helper.makePredicateString(predicate),
+      predicateAcceptsContextElement: true,
+      title,
+      polling,
+      timeout,
+      args: [xpath, waitForVisible, waitForHidden],
+      root: options.root
+    };
+    const waitTask = new WaitTask(waitTaskOptions);
+    const jsHandle = await waitTask.promise;
+    const elementHandle = jsHandle.asElement();
+    if (!elementHandle) {
+      await jsHandle.dispose();
+      return null;
+    }
+    return elementHandle;
+  }
+  waitForFunction(pageFunction, options = {}, ...args) {
+    const { polling = "raf", timeout = this._timeoutSettings.timeout() } = options;
+    const waitTaskOptions = {
+      domWorld: this,
+      predicateBody: pageFunction,
+      predicateAcceptsContextElement: false,
+      title: "function",
+      polling,
+      timeout,
+      args
+    };
+    const waitTask = new WaitTask(waitTaskOptions);
+    return waitTask.promise;
+  }
+  async title() {
+    return this.evaluate(() => document.title);
+  }
+};
+DOMWorld.bindingIdentifier = (name, contextId) => `${name}_${contextId}`;
+var WaitTask = class {
+  constructor(options) {
+    this._runCount = 0;
+    this._terminated = false;
+    this._root = null;
+    if (helper.isString(options.polling))
+      assert(options.polling === "raf" || options.polling === "mutation", "Unknown polling option: " + options.polling);
+    else if (helper.isNumber(options.polling))
+      assert(options.polling > 0, "Cannot poll with non-positive interval: " + options.polling);
+    else
+      throw new Error("Unknown polling options: " + options.polling);
+    function getPredicateBody(predicateBody) {
+      if (helper.isString(predicateBody))
+        return `return (${predicateBody});`;
+      return `return (${predicateBody})(...args);`;
+    }
+    this._domWorld = options.domWorld;
+    this._polling = options.polling;
+    this._timeout = options.timeout;
+    this._root = options.root;
+    this._predicateBody = getPredicateBody(options.predicateBody);
+    this._predicateAcceptsContextElement = options.predicateAcceptsContextElement;
+    this._args = options.args;
+    this._binding = options.binding;
+    this._runCount = 0;
+    this._domWorld._waitTasks.add(this);
+    if (this._binding) {
+      this._domWorld._boundFunctions.set(this._binding.name, this._binding.pptrFunction);
+    }
+    this.promise = new Promise((resolve3, reject) => {
+      this._resolve = resolve3;
+      this._reject = reject;
+    });
+    if (options.timeout) {
+      const timeoutError = new TimeoutError(`waiting for ${options.title} failed: timeout ${options.timeout}ms exceeded`);
+      this._timeoutTimer = setTimeout(() => this.terminate(timeoutError), options.timeout);
+    }
+    this.rerun();
+  }
+  terminate(error) {
+    this._terminated = true;
+    this._reject(error);
+    this._cleanup();
+  }
+  async rerun() {
+    const runCount = ++this._runCount;
+    let success = null;
+    let error = null;
+    const context = await this._domWorld.executionContext();
+    if (this._terminated || runCount !== this._runCount)
+      return;
+    if (this._binding) {
+      await this._domWorld.addBindingToContext(context, this._binding.name);
+    }
+    if (this._terminated || runCount !== this._runCount)
+      return;
+    try {
+      success = await context.evaluateHandle(waitForPredicatePageFunction, this._root || null, this._predicateBody, this._predicateAcceptsContextElement, this._polling, this._timeout, ...this._args);
+    } catch (error_) {
+      error = error_;
+    }
+    if (this._terminated || runCount !== this._runCount) {
+      if (success)
+        await success.dispose();
+      return;
+    }
+    if (!error && await this._domWorld.evaluate((s) => !s, success).catch(() => true)) {
+      await success.dispose();
+      return;
+    }
+    if (error) {
+      if (error.message.includes("TypeError: binding is not a function")) {
+        return this.rerun();
+      }
+      if (error.message.includes("Execution context is not available in detached frame")) {
+        this.terminate(new Error("waitForFunction failed: frame got detached."));
+        return;
+      }
+      if (error.message.includes("Execution context was destroyed"))
+        return;
+      if (error.message.includes("Cannot find context with specified id"))
+        return;
+      this._reject(error);
+    } else {
+      this._resolve(success);
+    }
+    this._cleanup();
+  }
+  _cleanup() {
+    clearTimeout(this._timeoutTimer);
+    this._domWorld._waitTasks.delete(this);
+  }
+};
+async function waitForPredicatePageFunction(root, predicateBody, predicateAcceptsContextElement, polling, timeout, ...args) {
+  root = root || document;
+  const predicate = new Function("...args", predicateBody);
+  let timedOut = false;
+  if (timeout)
+    setTimeout(() => timedOut = true, timeout);
+  if (polling === "raf")
+    return await pollRaf();
+  if (polling === "mutation")
+    return await pollMutation();
+  if (typeof polling === "number")
+    return await pollInterval(polling);
+  async function pollMutation() {
+    const success = predicateAcceptsContextElement ? await predicate(root, ...args) : await predicate(...args);
+    if (success)
+      return Promise.resolve(success);
+    let fulfill;
+    const result = new Promise((x) => fulfill = x);
+    const observer = new MutationObserver(async () => {
+      if (timedOut) {
+        observer.disconnect();
+        fulfill();
+      }
+      const success2 = predicateAcceptsContextElement ? await predicate(root, ...args) : await predicate(...args);
+      if (success2) {
+        observer.disconnect();
+        fulfill(success2);
+      }
+    });
+    observer.observe(root, {
+      childList: true,
+      subtree: true,
+      attributes: true
+    });
+    return result;
+  }
+  async function pollRaf() {
+    let fulfill;
+    const result = new Promise((x) => fulfill = x);
+    await onRaf();
+    return result;
+    async function onRaf() {
+      if (timedOut) {
+        fulfill();
+        return;
+      }
+      const success = predicateAcceptsContextElement ? await predicate(root, ...args) : await predicate(...args);
+      if (success)
+        fulfill(success);
+      else
+        requestAnimationFrame(onRaf);
+    }
+  }
+  async function pollInterval(pollInterval2) {
+    let fulfill;
+    const result = new Promise((x) => fulfill = x);
+    await onTimeout();
+    return result;
+    async function onTimeout() {
+      if (timedOut) {
+        fulfill();
+        return;
+      }
+      const success = predicateAcceptsContextElement ? await predicate(root, ...args) : await predicate(...args);
+      if (success)
+        fulfill(success);
+      else
+        setTimeout(onTimeout, pollInterval2);
+    }
+  }
+}
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/FrameManager.js
+var UTILITY_WORLD_NAME = "__puppeteer_utility_world__";
+var xPathPattern = /^\(\/\/[^\)]+\)|^\/\//;
+var FrameManagerEmittedEvents = {
+  FrameAttached: Symbol("FrameManager.FrameAttached"),
+  FrameNavigated: Symbol("FrameManager.FrameNavigated"),
+  FrameDetached: Symbol("FrameManager.FrameDetached"),
+  FrameSwapped: Symbol("FrameManager.FrameSwapped"),
+  LifecycleEvent: Symbol("FrameManager.LifecycleEvent"),
+  FrameNavigatedWithinDocument: Symbol("FrameManager.FrameNavigatedWithinDocument"),
+  ExecutionContextCreated: Symbol("FrameManager.ExecutionContextCreated"),
+  ExecutionContextDestroyed: Symbol("FrameManager.ExecutionContextDestroyed")
+};
+var FrameManager = class extends EventEmitter {
+  constructor(client, page, ignoreHTTPSErrors, timeoutSettings) {
+    super();
+    this._frames = /* @__PURE__ */ new Map();
+    this._contextIdToContext = /* @__PURE__ */ new Map();
+    this._isolatedWorlds = /* @__PURE__ */ new Set();
+    this._client = client;
+    this._page = page;
+    this._networkManager = new NetworkManager(client, ignoreHTTPSErrors, this);
+    this._timeoutSettings = timeoutSettings;
+    this.setupEventListeners(this._client);
+  }
+  setupEventListeners(session) {
+    session.on("Page.frameAttached", (event) => {
+      this._onFrameAttached(session, event.frameId, event.parentFrameId);
+    });
+    session.on("Page.frameNavigated", (event) => {
+      this._onFrameNavigated(event.frame);
+    });
+    session.on("Page.navigatedWithinDocument", (event) => {
+      this._onFrameNavigatedWithinDocument(event.frameId, event.url);
+    });
+    session.on("Page.frameDetached", (event) => {
+      this._onFrameDetached(event.frameId, event.reason);
+    });
+    session.on("Page.frameStartedLoading", (event) => {
+      this._onFrameStartedLoading(event.frameId);
+    });
+    session.on("Page.frameStoppedLoading", (event) => {
+      this._onFrameStoppedLoading(event.frameId);
+    });
+    session.on("Runtime.executionContextCreated", (event) => {
+      this._onExecutionContextCreated(event.context, session);
+    });
+    session.on("Runtime.executionContextDestroyed", (event) => {
+      this._onExecutionContextDestroyed(event.executionContextId, session);
+    });
+    session.on("Runtime.executionContextsCleared", () => {
+      this._onExecutionContextsCleared(session);
+    });
+    session.on("Page.lifecycleEvent", (event) => {
+      this._onLifecycleEvent(event);
+    });
+    session.on("Target.attachedToTarget", async (event) => {
+      this._onAttachedToTarget(event);
+    });
+    session.on("Target.detachedFromTarget", async (event) => {
+      this._onDetachedFromTarget(event);
+    });
+  }
+  async initialize(client = this._client) {
+    try {
+      const result = await Promise.all([
+        client.send("Page.enable"),
+        client.send("Page.getFrameTree"),
+        client !== this._client ? client.send("Target.setAutoAttach", {
+          autoAttach: true,
+          waitForDebuggerOnStart: false,
+          flatten: true
+        }) : Promise.resolve()
+      ]);
+      const { frameTree } = result[1];
+      this._handleFrameTree(client, frameTree);
+      await Promise.all([
+        client.send("Page.setLifecycleEventsEnabled", { enabled: true }),
+        client.send("Runtime.enable").then(() => this._ensureIsolatedWorld(client, UTILITY_WORLD_NAME)),
+        client === this._client ? this._networkManager.initialize() : Promise.resolve()
+      ]);
+    } catch (error) {
+      if (error.message.includes("Target closed") || error.message.includes("Session closed")) {
+        return;
+      }
+      throw error;
+    }
+  }
+  networkManager() {
+    return this._networkManager;
+  }
+  async navigateFrame(frame, url, options = {}) {
+    assertNoLegacyNavigationOptions(options);
+    const { referer = this._networkManager.extraHTTPHeaders()["referer"], waitUntil = ["load"], timeout = this._timeoutSettings.navigationTimeout() } = options;
+    const watcher = new LifecycleWatcher(this, frame, waitUntil, timeout);
+    let ensureNewDocumentNavigation = false;
+    let error = await Promise.race([
+      navigate(this._client, url, referer, frame._id),
+      watcher.timeoutOrTerminationPromise()
+    ]);
+    if (!error) {
+      error = await Promise.race([
+        watcher.timeoutOrTerminationPromise(),
+        ensureNewDocumentNavigation ? watcher.newDocumentNavigationPromise() : watcher.sameDocumentNavigationPromise()
+      ]);
+    }
+    watcher.dispose();
+    if (error)
+      throw error;
+    return await watcher.navigationResponse();
+    async function navigate(client, url2, referrer, frameId) {
+      try {
+        const response = await client.send("Page.navigate", {
+          url: url2,
+          referrer,
+          frameId
+        });
+        ensureNewDocumentNavigation = !!response.loaderId;
+        return response.errorText ? new Error(`${response.errorText} at ${url2}`) : null;
+      } catch (error2) {
+        return error2;
+      }
+    }
+  }
+  async waitForFrameNavigation(frame, options = {}) {
+    assertNoLegacyNavigationOptions(options);
+    const { waitUntil = ["load"], timeout = this._timeoutSettings.navigationTimeout() } = options;
+    const watcher = new LifecycleWatcher(this, frame, waitUntil, timeout);
+    const error = await Promise.race([
+      watcher.timeoutOrTerminationPromise(),
+      watcher.sameDocumentNavigationPromise(),
+      watcher.newDocumentNavigationPromise()
+    ]);
+    watcher.dispose();
+    if (error)
+      throw error;
+    return await watcher.navigationResponse();
+  }
+  async _onAttachedToTarget(event) {
+    if (event.targetInfo.type !== "iframe") {
+      return;
+    }
+    const frame = this._frames.get(event.targetInfo.targetId);
+    const session = Connection.fromSession(this._client).session(event.sessionId);
+    if (frame)
+      frame._updateClient(session);
+    this.setupEventListeners(session);
+    await this.initialize(session);
+  }
+  async _onDetachedFromTarget(event) {
+    const frame = this._frames.get(event.targetId);
+    if (frame && frame.isOOPFrame()) {
+      this._removeFramesRecursively(frame);
+    }
+  }
+  _onLifecycleEvent(event) {
+    const frame = this._frames.get(event.frameId);
+    if (!frame)
+      return;
+    frame._onLifecycleEvent(event.loaderId, event.name);
+    this.emit(FrameManagerEmittedEvents.LifecycleEvent, frame);
+  }
+  _onFrameStartedLoading(frameId) {
+    const frame = this._frames.get(frameId);
+    if (!frame)
+      return;
+    frame._onLoadingStarted();
+  }
+  _onFrameStoppedLoading(frameId) {
+    const frame = this._frames.get(frameId);
+    if (!frame)
+      return;
+    frame._onLoadingStopped();
+    this.emit(FrameManagerEmittedEvents.LifecycleEvent, frame);
+  }
+  _handleFrameTree(session, frameTree) {
+    if (frameTree.frame.parentId) {
+      this._onFrameAttached(session, frameTree.frame.id, frameTree.frame.parentId);
+    }
+    this._onFrameNavigated(frameTree.frame);
+    if (!frameTree.childFrames)
+      return;
+    for (const child of frameTree.childFrames) {
+      this._handleFrameTree(session, child);
+    }
+  }
+  page() {
+    return this._page;
+  }
+  mainFrame() {
+    return this._mainFrame;
+  }
+  frames() {
+    return Array.from(this._frames.values());
+  }
+  frame(frameId) {
+    return this._frames.get(frameId) || null;
+  }
+  _onFrameAttached(session, frameId, parentFrameId) {
+    if (this._frames.has(frameId)) {
+      const frame2 = this._frames.get(frameId);
+      if (session && frame2.isOOPFrame()) {
+        frame2._updateClient(session);
+      }
+      return;
+    }
+    assert(parentFrameId);
+    const parentFrame = this._frames.get(parentFrameId);
+    const frame = new Frame(this, parentFrame, frameId, session);
+    this._frames.set(frame._id, frame);
+    this.emit(FrameManagerEmittedEvents.FrameAttached, frame);
+  }
+  _onFrameNavigated(framePayload) {
+    const isMainFrame = !framePayload.parentId;
+    let frame = isMainFrame ? this._mainFrame : this._frames.get(framePayload.id);
+    assert(isMainFrame || frame, "We either navigate top level or have old version of the navigated frame");
+    if (frame) {
+      for (const child of frame.childFrames())
+        this._removeFramesRecursively(child);
+    }
+    if (isMainFrame) {
+      if (frame) {
+        this._frames.delete(frame._id);
+        frame._id = framePayload.id;
+      } else {
+        frame = new Frame(this, null, framePayload.id, this._client);
+      }
+      this._frames.set(framePayload.id, frame);
+      this._mainFrame = frame;
+    }
+    frame._navigated(framePayload);
+    this.emit(FrameManagerEmittedEvents.FrameNavigated, frame);
+  }
+  async _ensureIsolatedWorld(session, name) {
+    const key = `${session.id()}:${name}`;
+    if (this._isolatedWorlds.has(key))
+      return;
+    this._isolatedWorlds.add(key);
+    await session.send("Page.addScriptToEvaluateOnNewDocument", {
+      source: `//# sourceURL=${EVALUATION_SCRIPT_URL}`,
+      worldName: name
+    });
+    await Promise.all(this.frames().filter((frame) => frame._client === session).map((frame) => session.send("Page.createIsolatedWorld", {
+      frameId: frame._id,
+      worldName: name,
+      grantUniveralAccess: true
+    }).catch(debugError)));
+  }
+  _onFrameNavigatedWithinDocument(frameId, url) {
+    const frame = this._frames.get(frameId);
+    if (!frame)
+      return;
+    frame._navigatedWithinDocument(url);
+    this.emit(FrameManagerEmittedEvents.FrameNavigatedWithinDocument, frame);
+    this.emit(FrameManagerEmittedEvents.FrameNavigated, frame);
+  }
+  _onFrameDetached(frameId, reason) {
+    const frame = this._frames.get(frameId);
+    if (reason === "remove") {
+      if (frame)
+        this._removeFramesRecursively(frame);
+    } else if (reason === "swap") {
+      this.emit(FrameManagerEmittedEvents.FrameSwapped, frame);
+    }
+  }
+  _onExecutionContextCreated(contextPayload, session) {
+    const auxData = contextPayload.auxData;
+    const frameId = auxData ? auxData.frameId : null;
+    const frame = this._frames.get(frameId) || null;
+    let world = null;
+    if (frame) {
+      if (frame._client !== session)
+        return;
+      if (contextPayload.auxData && !!contextPayload.auxData["isDefault"]) {
+        world = frame._mainWorld;
+      } else if (contextPayload.name === UTILITY_WORLD_NAME && !frame._secondaryWorld._hasContext()) {
+        world = frame._secondaryWorld;
+      }
+    }
+    const context = new ExecutionContext((frame === null || frame === void 0 ? void 0 : frame._client) || this._client, contextPayload, world);
+    if (world)
+      world._setContext(context);
+    const key = `${session.id()}:${contextPayload.id}`;
+    this._contextIdToContext.set(key, context);
+  }
+  _onExecutionContextDestroyed(executionContextId, session) {
+    const key = `${session.id()}:${executionContextId}`;
+    const context = this._contextIdToContext.get(key);
+    if (!context)
+      return;
+    this._contextIdToContext.delete(key);
+    if (context._world)
+      context._world._setContext(null);
+  }
+  _onExecutionContextsCleared(session) {
+    for (const [key, context] of this._contextIdToContext.entries()) {
+      if (context._client !== session)
+        continue;
+      if (context._world)
+        context._world._setContext(null);
+      this._contextIdToContext.delete(key);
+    }
+  }
+  executionContextById(contextId, session = this._client) {
+    const key = `${session.id()}:${contextId}`;
+    const context = this._contextIdToContext.get(key);
+    assert(context, "INTERNAL ERROR: missing context with id = " + contextId);
+    return context;
+  }
+  _removeFramesRecursively(frame) {
+    for (const child of frame.childFrames())
+      this._removeFramesRecursively(child);
+    frame._detach();
+    this._frames.delete(frame._id);
+    this.emit(FrameManagerEmittedEvents.FrameDetached, frame);
+  }
+};
+var Frame = class {
+  constructor(frameManager, parentFrame, frameId, client) {
+    this._url = "";
+    this._detached = false;
+    this._loaderId = "";
+    this._hasStartedLoading = false;
+    this._lifecycleEvents = /* @__PURE__ */ new Set();
+    this._frameManager = frameManager;
+    this._parentFrame = parentFrame;
+    this._url = "";
+    this._id = frameId;
+    this._detached = false;
+    this._loaderId = "";
+    this._childFrames = /* @__PURE__ */ new Set();
+    if (this._parentFrame)
+      this._parentFrame._childFrames.add(this);
+    this._updateClient(client);
+  }
+  _updateClient(client) {
+    this._client = client;
+    this._mainWorld = new DOMWorld(this._client, this._frameManager, this, this._frameManager._timeoutSettings);
+    this._secondaryWorld = new DOMWorld(this._client, this._frameManager, this, this._frameManager._timeoutSettings);
+  }
+  isOOPFrame() {
+    return this._client !== this._frameManager._client;
+  }
+  async goto(url, options = {}) {
+    return await this._frameManager.navigateFrame(this, url, options);
+  }
+  async waitForNavigation(options = {}) {
+    return await this._frameManager.waitForFrameNavigation(this, options);
+  }
+  client() {
+    return this._client;
+  }
+  executionContext() {
+    return this._mainWorld.executionContext();
+  }
+  async evaluateHandle(pageFunction, ...args) {
+    return this._mainWorld.evaluateHandle(pageFunction, ...args);
+  }
+  async evaluate(pageFunction, ...args) {
+    return this._mainWorld.evaluate(pageFunction, ...args);
+  }
+  async $(selector) {
+    return this._mainWorld.$(selector);
+  }
+  async $x(expression) {
+    return this._mainWorld.$x(expression);
+  }
+  async $eval(selector, pageFunction, ...args) {
+    return this._mainWorld.$eval(selector, pageFunction, ...args);
+  }
+  async $$eval(selector, pageFunction, ...args) {
+    return this._mainWorld.$$eval(selector, pageFunction, ...args);
+  }
+  async $$(selector) {
+    return this._mainWorld.$$(selector);
+  }
+  async content() {
+    return this._secondaryWorld.content();
+  }
+  async setContent(html, options = {}) {
+    return this._secondaryWorld.setContent(html, options);
+  }
+  name() {
+    return this._name || "";
+  }
+  url() {
+    return this._url;
+  }
+  parentFrame() {
+    return this._parentFrame;
+  }
+  childFrames() {
+    return Array.from(this._childFrames);
+  }
+  isDetached() {
+    return this._detached;
+  }
+  async addScriptTag(options) {
+    return this._mainWorld.addScriptTag(options);
+  }
+  async addStyleTag(options) {
+    return this._mainWorld.addStyleTag(options);
+  }
+  async click(selector, options = {}) {
+    return this._secondaryWorld.click(selector, options);
+  }
+  async focus(selector) {
+    return this._secondaryWorld.focus(selector);
+  }
+  async hover(selector) {
+    return this._secondaryWorld.hover(selector);
+  }
+  select(selector, ...values) {
+    return this._secondaryWorld.select(selector, ...values);
+  }
+  async tap(selector) {
+    return this._secondaryWorld.tap(selector);
+  }
+  async type(selector, text, options) {
+    return this._mainWorld.type(selector, text, options);
+  }
+  waitFor(selectorOrFunctionOrTimeout, options = {}, ...args) {
+    console.warn("waitFor is deprecated and will be removed in a future release. See https://github.com/puppeteer/puppeteer/issues/6214 for details and how to migrate your code.");
+    if (helper.isString(selectorOrFunctionOrTimeout)) {
+      const string = selectorOrFunctionOrTimeout;
+      if (xPathPattern.test(string))
+        return this.waitForXPath(string, options);
+      return this.waitForSelector(string, options);
+    }
+    if (helper.isNumber(selectorOrFunctionOrTimeout))
+      return new Promise((fulfill) => setTimeout(fulfill, selectorOrFunctionOrTimeout));
+    if (typeof selectorOrFunctionOrTimeout === "function")
+      return this.waitForFunction(selectorOrFunctionOrTimeout, options, ...args);
+    return Promise.reject(new Error("Unsupported target type: " + typeof selectorOrFunctionOrTimeout));
+  }
+  waitForTimeout(milliseconds) {
+    return new Promise((resolve3) => {
+      setTimeout(resolve3, milliseconds);
+    });
+  }
+  async waitForSelector(selector, options = {}) {
+    const handle = await this._secondaryWorld.waitForSelector(selector, options);
+    if (!handle)
+      return null;
+    const mainExecutionContext = await this._mainWorld.executionContext();
+    const result = await mainExecutionContext._adoptElementHandle(handle);
+    await handle.dispose();
+    return result;
+  }
+  async waitForXPath(xpath, options = {}) {
+    const handle = await this._secondaryWorld.waitForXPath(xpath, options);
+    if (!handle)
+      return null;
+    const mainExecutionContext = await this._mainWorld.executionContext();
+    const result = await mainExecutionContext._adoptElementHandle(handle);
+    await handle.dispose();
+    return result;
+  }
+  waitForFunction(pageFunction, options = {}, ...args) {
+    return this._mainWorld.waitForFunction(pageFunction, options, ...args);
+  }
+  async title() {
+    return this._secondaryWorld.title();
+  }
+  _navigated(framePayload) {
+    this._name = framePayload.name;
+    this._url = `${framePayload.url}${framePayload.urlFragment || ""}`;
+  }
+  _navigatedWithinDocument(url) {
+    this._url = url;
+  }
+  _onLifecycleEvent(loaderId, name) {
+    if (name === "init") {
+      this._loaderId = loaderId;
+      this._lifecycleEvents.clear();
+    }
+    this._lifecycleEvents.add(name);
+  }
+  _onLoadingStopped() {
+    this._lifecycleEvents.add("DOMContentLoaded");
+    this._lifecycleEvents.add("load");
+  }
+  _onLoadingStarted() {
+    this._hasStartedLoading = true;
+  }
+  _detach() {
+    this._detached = true;
+    this._mainWorld._detach();
+    this._secondaryWorld._detach();
+    if (this._parentFrame)
+      this._parentFrame._childFrames.delete(this);
+    this._parentFrame = null;
+  }
+};
+function assertNoLegacyNavigationOptions(options) {
+  assert(options["networkIdleTimeout"] === void 0, "ERROR: networkIdleTimeout option is no longer supported.");
+  assert(options["networkIdleInflight"] === void 0, "ERROR: networkIdleInflight option is no longer supported.");
+  assert(options.waitUntil !== "networkidle", 'ERROR: "networkidle" option is no longer supported. Use "networkidle2" instead');
+}
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/USKeyboardLayout.js
+var keyDefinitions = {
+  "0": { keyCode: 48, key: "0", code: "Digit0" },
+  "1": { keyCode: 49, key: "1", code: "Digit1" },
+  "2": { keyCode: 50, key: "2", code: "Digit2" },
+  "3": { keyCode: 51, key: "3", code: "Digit3" },
+  "4": { keyCode: 52, key: "4", code: "Digit4" },
+  "5": { keyCode: 53, key: "5", code: "Digit5" },
+  "6": { keyCode: 54, key: "6", code: "Digit6" },
+  "7": { keyCode: 55, key: "7", code: "Digit7" },
+  "8": { keyCode: 56, key: "8", code: "Digit8" },
+  "9": { keyCode: 57, key: "9", code: "Digit9" },
+  Power: { key: "Power", code: "Power" },
+  Eject: { key: "Eject", code: "Eject" },
+  Abort: { keyCode: 3, code: "Abort", key: "Cancel" },
+  Help: { keyCode: 6, code: "Help", key: "Help" },
+  Backspace: { keyCode: 8, code: "Backspace", key: "Backspace" },
+  Tab: { keyCode: 9, code: "Tab", key: "Tab" },
+  Numpad5: {
+    keyCode: 12,
+    shiftKeyCode: 101,
+    key: "Clear",
+    code: "Numpad5",
+    shiftKey: "5",
+    location: 3
+  },
+  NumpadEnter: {
+    keyCode: 13,
+    code: "NumpadEnter",
+    key: "Enter",
+    text: "\r",
+    location: 3
+  },
+  Enter: { keyCode: 13, code: "Enter", key: "Enter", text: "\r" },
+  "\r": { keyCode: 13, code: "Enter", key: "Enter", text: "\r" },
+  "\n": { keyCode: 13, code: "Enter", key: "Enter", text: "\r" },
+  ShiftLeft: { keyCode: 16, code: "ShiftLeft", key: "Shift", location: 1 },
+  ShiftRight: { keyCode: 16, code: "ShiftRight", key: "Shift", location: 2 },
+  ControlLeft: {
+    keyCode: 17,
+    code: "ControlLeft",
+    key: "Control",
+    location: 1
+  },
+  ControlRight: {
+    keyCode: 17,
+    code: "ControlRight",
+    key: "Control",
+    location: 2
+  },
+  AltLeft: { keyCode: 18, code: "AltLeft", key: "Alt", location: 1 },
+  AltRight: { keyCode: 18, code: "AltRight", key: "Alt", location: 2 },
+  Pause: { keyCode: 19, code: "Pause", key: "Pause" },
+  CapsLock: { keyCode: 20, code: "CapsLock", key: "CapsLock" },
+  Escape: { keyCode: 27, code: "Escape", key: "Escape" },
+  Convert: { keyCode: 28, code: "Convert", key: "Convert" },
+  NonConvert: { keyCode: 29, code: "NonConvert", key: "NonConvert" },
+  Space: { keyCode: 32, code: "Space", key: " " },
+  Numpad9: {
+    keyCode: 33,
+    shiftKeyCode: 105,
+    key: "PageUp",
+    code: "Numpad9",
+    shiftKey: "9",
+    location: 3
+  },
+  PageUp: { keyCode: 33, code: "PageUp", key: "PageUp" },
+  Numpad3: {
+    keyCode: 34,
+    shiftKeyCode: 99,
+    key: "PageDown",
+    code: "Numpad3",
+    shiftKey: "3",
+    location: 3
+  },
+  PageDown: { keyCode: 34, code: "PageDown", key: "PageDown" },
+  End: { keyCode: 35, code: "End", key: "End" },
+  Numpad1: {
+    keyCode: 35,
+    shiftKeyCode: 97,
+    key: "End",
+    code: "Numpad1",
+    shiftKey: "1",
+    location: 3
+  },
+  Home: { keyCode: 36, code: "Home", key: "Home" },
+  Numpad7: {
+    keyCode: 36,
+    shiftKeyCode: 103,
+    key: "Home",
+    code: "Numpad7",
+    shiftKey: "7",
+    location: 3
+  },
+  ArrowLeft: { keyCode: 37, code: "ArrowLeft", key: "ArrowLeft" },
+  Numpad4: {
+    keyCode: 37,
+    shiftKeyCode: 100,
+    key: "ArrowLeft",
+    code: "Numpad4",
+    shiftKey: "4",
+    location: 3
+  },
+  Numpad8: {
+    keyCode: 38,
+    shiftKeyCode: 104,
+    key: "ArrowUp",
+    code: "Numpad8",
+    shiftKey: "8",
+    location: 3
+  },
+  ArrowUp: { keyCode: 38, code: "ArrowUp", key: "ArrowUp" },
+  ArrowRight: { keyCode: 39, code: "ArrowRight", key: "ArrowRight" },
+  Numpad6: {
+    keyCode: 39,
+    shiftKeyCode: 102,
+    key: "ArrowRight",
+    code: "Numpad6",
+    shiftKey: "6",
+    location: 3
+  },
+  Numpad2: {
+    keyCode: 40,
+    shiftKeyCode: 98,
+    key: "ArrowDown",
+    code: "Numpad2",
+    shiftKey: "2",
+    location: 3
+  },
+  ArrowDown: { keyCode: 40, code: "ArrowDown", key: "ArrowDown" },
+  Select: { keyCode: 41, code: "Select", key: "Select" },
+  Open: { keyCode: 43, code: "Open", key: "Execute" },
+  PrintScreen: { keyCode: 44, code: "PrintScreen", key: "PrintScreen" },
+  Insert: { keyCode: 45, code: "Insert", key: "Insert" },
+  Numpad0: {
+    keyCode: 45,
+    shiftKeyCode: 96,
+    key: "Insert",
+    code: "Numpad0",
+    shiftKey: "0",
+    location: 3
+  },
+  Delete: { keyCode: 46, code: "Delete", key: "Delete" },
+  NumpadDecimal: {
+    keyCode: 46,
+    shiftKeyCode: 110,
+    code: "NumpadDecimal",
+    key: "\0",
+    shiftKey: ".",
+    location: 3
+  },
+  Digit0: { keyCode: 48, code: "Digit0", shiftKey: ")", key: "0" },
+  Digit1: { keyCode: 49, code: "Digit1", shiftKey: "!", key: "1" },
+  Digit2: { keyCode: 50, code: "Digit2", shiftKey: "@", key: "2" },
+  Digit3: { keyCode: 51, code: "Digit3", shiftKey: "#", key: "3" },
+  Digit4: { keyCode: 52, code: "Digit4", shiftKey: "$", key: "4" },
+  Digit5: { keyCode: 53, code: "Digit5", shiftKey: "%", key: "5" },
+  Digit6: { keyCode: 54, code: "Digit6", shiftKey: "^", key: "6" },
+  Digit7: { keyCode: 55, code: "Digit7", shiftKey: "&", key: "7" },
+  Digit8: { keyCode: 56, code: "Digit8", shiftKey: "*", key: "8" },
+  Digit9: { keyCode: 57, code: "Digit9", shiftKey: "(", key: "9" },
+  KeyA: { keyCode: 65, code: "KeyA", shiftKey: "A", key: "a" },
+  KeyB: { keyCode: 66, code: "KeyB", shiftKey: "B", key: "b" },
+  KeyC: { keyCode: 67, code: "KeyC", shiftKey: "C", key: "c" },
+  KeyD: { keyCode: 68, code: "KeyD", shiftKey: "D", key: "d" },
+  KeyE: { keyCode: 69, code: "KeyE", shiftKey: "E", key: "e" },
+  KeyF: { keyCode: 70, code: "KeyF", shiftKey: "F", key: "f" },
+  KeyG: { keyCode: 71, code: "KeyG", shiftKey: "G", key: "g" },
+  KeyH: { keyCode: 72, code: "KeyH", shiftKey: "H", key: "h" },
+  KeyI: { keyCode: 73, code: "KeyI", shiftKey: "I", key: "i" },
+  KeyJ: { keyCode: 74, code: "KeyJ", shiftKey: "J", key: "j" },
+  KeyK: { keyCode: 75, code: "KeyK", shiftKey: "K", key: "k" },
+  KeyL: { keyCode: 76, code: "KeyL", shiftKey: "L", key: "l" },
+  KeyM: { keyCode: 77, code: "KeyM", shiftKey: "M", key: "m" },
+  KeyN: { keyCode: 78, code: "KeyN", shiftKey: "N", key: "n" },
+  KeyO: { keyCode: 79, code: "KeyO", shiftKey: "O", key: "o" },
+  KeyP: { keyCode: 80, code: "KeyP", shiftKey: "P", key: "p" },
+  KeyQ: { keyCode: 81, code: "KeyQ", shiftKey: "Q", key: "q" },
+  KeyR: { keyCode: 82, code: "KeyR", shiftKey: "R", key: "r" },
+  KeyS: { keyCode: 83, code: "KeyS", shiftKey: "S", key: "s" },
+  KeyT: { keyCode: 84, code: "KeyT", shiftKey: "T", key: "t" },
+  KeyU: { keyCode: 85, code: "KeyU", shiftKey: "U", key: "u" },
+  KeyV: { keyCode: 86, code: "KeyV", shiftKey: "V", key: "v" },
+  KeyW: { keyCode: 87, code: "KeyW", shiftKey: "W", key: "w" },
+  KeyX: { keyCode: 88, code: "KeyX", shiftKey: "X", key: "x" },
+  KeyY: { keyCode: 89, code: "KeyY", shiftKey: "Y", key: "y" },
+  KeyZ: { keyCode: 90, code: "KeyZ", shiftKey: "Z", key: "z" },
+  MetaLeft: { keyCode: 91, code: "MetaLeft", key: "Meta", location: 1 },
+  MetaRight: { keyCode: 92, code: "MetaRight", key: "Meta", location: 2 },
+  ContextMenu: { keyCode: 93, code: "ContextMenu", key: "ContextMenu" },
+  NumpadMultiply: {
+    keyCode: 106,
+    code: "NumpadMultiply",
+    key: "*",
+    location: 3
+  },
+  NumpadAdd: { keyCode: 107, code: "NumpadAdd", key: "+", location: 3 },
+  NumpadSubtract: {
+    keyCode: 109,
+    code: "NumpadSubtract",
+    key: "-",
+    location: 3
+  },
+  NumpadDivide: { keyCode: 111, code: "NumpadDivide", key: "/", location: 3 },
+  F1: { keyCode: 112, code: "F1", key: "F1" },
+  F2: { keyCode: 113, code: "F2", key: "F2" },
+  F3: { keyCode: 114, code: "F3", key: "F3" },
+  F4: { keyCode: 115, code: "F4", key: "F4" },
+  F5: { keyCode: 116, code: "F5", key: "F5" },
+  F6: { keyCode: 117, code: "F6", key: "F6" },
+  F7: { keyCode: 118, code: "F7", key: "F7" },
+  F8: { keyCode: 119, code: "F8", key: "F8" },
+  F9: { keyCode: 120, code: "F9", key: "F9" },
+  F10: { keyCode: 121, code: "F10", key: "F10" },
+  F11: { keyCode: 122, code: "F11", key: "F11" },
+  F12: { keyCode: 123, code: "F12", key: "F12" },
+  F13: { keyCode: 124, code: "F13", key: "F13" },
+  F14: { keyCode: 125, code: "F14", key: "F14" },
+  F15: { keyCode: 126, code: "F15", key: "F15" },
+  F16: { keyCode: 127, code: "F16", key: "F16" },
+  F17: { keyCode: 128, code: "F17", key: "F17" },
+  F18: { keyCode: 129, code: "F18", key: "F18" },
+  F19: { keyCode: 130, code: "F19", key: "F19" },
+  F20: { keyCode: 131, code: "F20", key: "F20" },
+  F21: { keyCode: 132, code: "F21", key: "F21" },
+  F22: { keyCode: 133, code: "F22", key: "F22" },
+  F23: { keyCode: 134, code: "F23", key: "F23" },
+  F24: { keyCode: 135, code: "F24", key: "F24" },
+  NumLock: { keyCode: 144, code: "NumLock", key: "NumLock" },
+  ScrollLock: { keyCode: 145, code: "ScrollLock", key: "ScrollLock" },
+  AudioVolumeMute: {
+    keyCode: 173,
+    code: "AudioVolumeMute",
+    key: "AudioVolumeMute"
+  },
+  AudioVolumeDown: {
+    keyCode: 174,
+    code: "AudioVolumeDown",
+    key: "AudioVolumeDown"
+  },
+  AudioVolumeUp: { keyCode: 175, code: "AudioVolumeUp", key: "AudioVolumeUp" },
+  MediaTrackNext: {
+    keyCode: 176,
+    code: "MediaTrackNext",
+    key: "MediaTrackNext"
+  },
+  MediaTrackPrevious: {
+    keyCode: 177,
+    code: "MediaTrackPrevious",
+    key: "MediaTrackPrevious"
+  },
+  MediaStop: { keyCode: 178, code: "MediaStop", key: "MediaStop" },
+  MediaPlayPause: {
+    keyCode: 179,
+    code: "MediaPlayPause",
+    key: "MediaPlayPause"
+  },
+  Semicolon: { keyCode: 186, code: "Semicolon", shiftKey: ":", key: ";" },
+  Equal: { keyCode: 187, code: "Equal", shiftKey: "+", key: "=" },
+  NumpadEqual: { keyCode: 187, code: "NumpadEqual", key: "=", location: 3 },
+  Comma: { keyCode: 188, code: "Comma", shiftKey: "<", key: "," },
+  Minus: { keyCode: 189, code: "Minus", shiftKey: "_", key: "-" },
+  Period: { keyCode: 190, code: "Period", shiftKey: ">", key: "." },
+  Slash: { keyCode: 191, code: "Slash", shiftKey: "?", key: "/" },
+  Backquote: { keyCode: 192, code: "Backquote", shiftKey: "~", key: "`" },
+  BracketLeft: { keyCode: 219, code: "BracketLeft", shiftKey: "{", key: "[" },
+  Backslash: { keyCode: 220, code: "Backslash", shiftKey: "|", key: "\\" },
+  BracketRight: { keyCode: 221, code: "BracketRight", shiftKey: "}", key: "]" },
+  Quote: { keyCode: 222, code: "Quote", shiftKey: '"', key: "'" },
+  AltGraph: { keyCode: 225, code: "AltGraph", key: "AltGraph" },
+  Props: { keyCode: 247, code: "Props", key: "CrSel" },
+  Cancel: { keyCode: 3, key: "Cancel", code: "Abort" },
+  Clear: { keyCode: 12, key: "Clear", code: "Numpad5", location: 3 },
+  Shift: { keyCode: 16, key: "Shift", code: "ShiftLeft", location: 1 },
+  Control: { keyCode: 17, key: "Control", code: "ControlLeft", location: 1 },
+  Alt: { keyCode: 18, key: "Alt", code: "AltLeft", location: 1 },
+  Accept: { keyCode: 30, key: "Accept" },
+  ModeChange: { keyCode: 31, key: "ModeChange" },
+  " ": { keyCode: 32, key: " ", code: "Space" },
+  Print: { keyCode: 42, key: "Print" },
+  Execute: { keyCode: 43, key: "Execute", code: "Open" },
+  "\0": { keyCode: 46, key: "\0", code: "NumpadDecimal", location: 3 },
+  a: { keyCode: 65, key: "a", code: "KeyA" },
+  b: { keyCode: 66, key: "b", code: "KeyB" },
+  c: { keyCode: 67, key: "c", code: "KeyC" },
+  d: { keyCode: 68, key: "d", code: "KeyD" },
+  e: { keyCode: 69, key: "e", code: "KeyE" },
+  f: { keyCode: 70, key: "f", code: "KeyF" },
+  g: { keyCode: 71, key: "g", code: "KeyG" },
+  h: { keyCode: 72, key: "h", code: "KeyH" },
+  i: { keyCode: 73, key: "i", code: "KeyI" },
+  j: { keyCode: 74, key: "j", code: "KeyJ" },
+  k: { keyCode: 75, key: "k", code: "KeyK" },
+  l: { keyCode: 76, key: "l", code: "KeyL" },
+  m: { keyCode: 77, key: "m", code: "KeyM" },
+  n: { keyCode: 78, key: "n", code: "KeyN" },
+  o: { keyCode: 79, key: "o", code: "KeyO" },
+  p: { keyCode: 80, key: "p", code: "KeyP" },
+  q: { keyCode: 81, key: "q", code: "KeyQ" },
+  r: { keyCode: 82, key: "r", code: "KeyR" },
+  s: { keyCode: 83, key: "s", code: "KeyS" },
+  t: { keyCode: 84, key: "t", code: "KeyT" },
+  u: { keyCode: 85, key: "u", code: "KeyU" },
+  v: { keyCode: 86, key: "v", code: "KeyV" },
+  w: { keyCode: 87, key: "w", code: "KeyW" },
+  x: { keyCode: 88, key: "x", code: "KeyX" },
+  y: { keyCode: 89, key: "y", code: "KeyY" },
+  z: { keyCode: 90, key: "z", code: "KeyZ" },
+  Meta: { keyCode: 91, key: "Meta", code: "MetaLeft", location: 1 },
+  "*": { keyCode: 106, key: "*", code: "NumpadMultiply", location: 3 },
+  "+": { keyCode: 107, key: "+", code: "NumpadAdd", location: 3 },
+  "-": { keyCode: 109, key: "-", code: "NumpadSubtract", location: 3 },
+  "/": { keyCode: 111, key: "/", code: "NumpadDivide", location: 3 },
+  ";": { keyCode: 186, key: ";", code: "Semicolon" },
+  "=": { keyCode: 187, key: "=", code: "Equal" },
+  ",": { keyCode: 188, key: ",", code: "Comma" },
+  ".": { keyCode: 190, key: ".", code: "Period" },
+  "`": { keyCode: 192, key: "`", code: "Backquote" },
+  "[": { keyCode: 219, key: "[", code: "BracketLeft" },
+  "\\": { keyCode: 220, key: "\\", code: "Backslash" },
+  "]": { keyCode: 221, key: "]", code: "BracketRight" },
+  "'": { keyCode: 222, key: "'", code: "Quote" },
+  Attn: { keyCode: 246, key: "Attn" },
+  CrSel: { keyCode: 247, key: "CrSel", code: "Props" },
+  ExSel: { keyCode: 248, key: "ExSel" },
+  EraseEof: { keyCode: 249, key: "EraseEof" },
+  Play: { keyCode: 250, key: "Play" },
+  ZoomOut: { keyCode: 251, key: "ZoomOut" },
+  ")": { keyCode: 48, key: ")", code: "Digit0" },
+  "!": { keyCode: 49, key: "!", code: "Digit1" },
+  "@": { keyCode: 50, key: "@", code: "Digit2" },
+  "#": { keyCode: 51, key: "#", code: "Digit3" },
+  $: { keyCode: 52, key: "$", code: "Digit4" },
+  "%": { keyCode: 53, key: "%", code: "Digit5" },
+  "^": { keyCode: 54, key: "^", code: "Digit6" },
+  "&": { keyCode: 55, key: "&", code: "Digit7" },
+  "(": { keyCode: 57, key: "(", code: "Digit9" },
+  A: { keyCode: 65, key: "A", code: "KeyA" },
+  B: { keyCode: 66, key: "B", code: "KeyB" },
+  C: { keyCode: 67, key: "C", code: "KeyC" },
+  D: { keyCode: 68, key: "D", code: "KeyD" },
+  E: { keyCode: 69, key: "E", code: "KeyE" },
+  F: { keyCode: 70, key: "F", code: "KeyF" },
+  G: { keyCode: 71, key: "G", code: "KeyG" },
+  H: { keyCode: 72, key: "H", code: "KeyH" },
+  I: { keyCode: 73, key: "I", code: "KeyI" },
+  J: { keyCode: 74, key: "J", code: "KeyJ" },
+  K: { keyCode: 75, key: "K", code: "KeyK" },
+  L: { keyCode: 76, key: "L", code: "KeyL" },
+  M: { keyCode: 77, key: "M", code: "KeyM" },
+  N: { keyCode: 78, key: "N", code: "KeyN" },
+  O: { keyCode: 79, key: "O", code: "KeyO" },
+  P: { keyCode: 80, key: "P", code: "KeyP" },
+  Q: { keyCode: 81, key: "Q", code: "KeyQ" },
+  R: { keyCode: 82, key: "R", code: "KeyR" },
+  S: { keyCode: 83, key: "S", code: "KeyS" },
+  T: { keyCode: 84, key: "T", code: "KeyT" },
+  U: { keyCode: 85, key: "U", code: "KeyU" },
+  V: { keyCode: 86, key: "V", code: "KeyV" },
+  W: { keyCode: 87, key: "W", code: "KeyW" },
+  X: { keyCode: 88, key: "X", code: "KeyX" },
+  Y: { keyCode: 89, key: "Y", code: "KeyY" },
+  Z: { keyCode: 90, key: "Z", code: "KeyZ" },
+  ":": { keyCode: 186, key: ":", code: "Semicolon" },
+  "<": { keyCode: 188, key: "<", code: "Comma" },
+  _: { keyCode: 189, key: "_", code: "Minus" },
+  ">": { keyCode: 190, key: ">", code: "Period" },
+  "?": { keyCode: 191, key: "?", code: "Slash" },
+  "~": { keyCode: 192, key: "~", code: "Backquote" },
+  "{": { keyCode: 219, key: "{", code: "BracketLeft" },
+  "|": { keyCode: 220, key: "|", code: "Backslash" },
+  "}": { keyCode: 221, key: "}", code: "BracketRight" },
+  '"': { keyCode: 222, key: '"', code: "Quote" },
+  SoftLeft: { key: "SoftLeft", code: "SoftLeft", location: 4 },
+  SoftRight: { key: "SoftRight", code: "SoftRight", location: 4 },
+  Camera: { keyCode: 44, key: "Camera", code: "Camera", location: 4 },
+  Call: { key: "Call", code: "Call", location: 4 },
+  EndCall: { keyCode: 95, key: "EndCall", code: "EndCall", location: 4 },
+  VolumeDown: {
+    keyCode: 182,
+    key: "VolumeDown",
+    code: "VolumeDown",
+    location: 4
+  },
+  VolumeUp: { keyCode: 183, key: "VolumeUp", code: "VolumeUp", location: 4 }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/Input.js
+var Keyboard = class {
+  constructor(client) {
+    this._modifiers = 0;
+    this._pressedKeys = /* @__PURE__ */ new Set();
+    this._client = client;
+  }
+  async down(key, options = { text: void 0 }) {
+    const description = this._keyDescriptionForString(key);
+    const autoRepeat = this._pressedKeys.has(description.code);
+    this._pressedKeys.add(description.code);
+    this._modifiers |= this._modifierBit(description.key);
+    const text = options.text === void 0 ? description.text : options.text;
+    await this._client.send("Input.dispatchKeyEvent", {
+      type: text ? "keyDown" : "rawKeyDown",
+      modifiers: this._modifiers,
+      windowsVirtualKeyCode: description.keyCode,
+      code: description.code,
+      key: description.key,
+      text,
+      unmodifiedText: text,
+      autoRepeat,
+      location: description.location,
+      isKeypad: description.location === 3
+    });
+  }
+  _modifierBit(key) {
+    if (key === "Alt")
+      return 1;
+    if (key === "Control")
+      return 2;
+    if (key === "Meta")
+      return 4;
+    if (key === "Shift")
+      return 8;
+    return 0;
+  }
+  _keyDescriptionForString(keyString) {
+    const shift = this._modifiers & 8;
+    const description = {
+      key: "",
+      keyCode: 0,
+      code: "",
+      text: "",
+      location: 0
+    };
+    const definition = keyDefinitions[keyString];
+    assert(definition, `Unknown key: "${keyString}"`);
+    if (definition.key)
+      description.key = definition.key;
+    if (shift && definition.shiftKey)
+      description.key = definition.shiftKey;
+    if (definition.keyCode)
+      description.keyCode = definition.keyCode;
+    if (shift && definition.shiftKeyCode)
+      description.keyCode = definition.shiftKeyCode;
+    if (definition.code)
+      description.code = definition.code;
+    if (definition.location)
+      description.location = definition.location;
+    if (description.key.length === 1)
+      description.text = description.key;
+    if (definition.text)
+      description.text = definition.text;
+    if (shift && definition.shiftText)
+      description.text = definition.shiftText;
+    if (this._modifiers & ~8)
+      description.text = "";
+    return description;
+  }
+  async up(key) {
+    const description = this._keyDescriptionForString(key);
+    this._modifiers &= ~this._modifierBit(description.key);
+    this._pressedKeys.delete(description.code);
+    await this._client.send("Input.dispatchKeyEvent", {
+      type: "keyUp",
+      modifiers: this._modifiers,
+      key: description.key,
+      windowsVirtualKeyCode: description.keyCode,
+      code: description.code,
+      location: description.location
+    });
+  }
+  async sendCharacter(char) {
+    await this._client.send("Input.insertText", { text: char });
+  }
+  charIsKey(char) {
+    return !!keyDefinitions[char];
+  }
+  async type(text, options = {}) {
+    const delay = options.delay || null;
+    for (const char of text) {
+      if (this.charIsKey(char)) {
+        await this.press(char, { delay });
+      } else {
+        if (delay)
+          await new Promise((f) => setTimeout(f, delay));
+        await this.sendCharacter(char);
+      }
+    }
+  }
+  async press(key, options = {}) {
+    const { delay = null } = options;
+    await this.down(key, options);
+    if (delay)
+      await new Promise((f) => setTimeout(f, options.delay));
+    await this.up(key);
+  }
+};
+var Mouse = class {
+  constructor(client, keyboard) {
+    this._x = 0;
+    this._y = 0;
+    this._button = "none";
+    this._client = client;
+    this._keyboard = keyboard;
+  }
+  async move(x, y, options = {}) {
+    const { steps = 1 } = options;
+    const fromX = this._x, fromY = this._y;
+    this._x = x;
+    this._y = y;
+    for (let i = 1; i <= steps; i++) {
+      await this._client.send("Input.dispatchMouseEvent", {
+        type: "mouseMoved",
+        button: this._button,
+        x: fromX + (this._x - fromX) * (i / steps),
+        y: fromY + (this._y - fromY) * (i / steps),
+        modifiers: this._keyboard._modifiers
+      });
+    }
+  }
+  async click(x, y, options = {}) {
+    const { delay = null } = options;
+    if (delay !== null) {
+      await this.move(x, y);
+      await this.down(options);
+      await new Promise((f) => setTimeout(f, delay));
+      await this.up(options);
+    } else {
+      await this.move(x, y);
+      await this.down(options);
+      await this.up(options);
+    }
+  }
+  async down(options = {}) {
+    const { button = "left", clickCount = 1 } = options;
+    this._button = button;
+    await this._client.send("Input.dispatchMouseEvent", {
+      type: "mousePressed",
+      button,
+      x: this._x,
+      y: this._y,
+      modifiers: this._keyboard._modifiers,
+      clickCount
+    });
+  }
+  async up(options = {}) {
+    const { button = "left", clickCount = 1 } = options;
+    this._button = "none";
+    await this._client.send("Input.dispatchMouseEvent", {
+      type: "mouseReleased",
+      button,
+      x: this._x,
+      y: this._y,
+      modifiers: this._keyboard._modifiers,
+      clickCount
+    });
+  }
+  async wheel(options = {}) {
+    const { deltaX = 0, deltaY = 0 } = options;
+    await this._client.send("Input.dispatchMouseEvent", {
+      type: "mouseWheel",
+      x: this._x,
+      y: this._y,
+      deltaX,
+      deltaY,
+      modifiers: this._keyboard._modifiers,
+      pointerType: "mouse"
+    });
+  }
+  async drag(start, target) {
+    const promise = new Promise((resolve3) => {
+      this._client.once("Input.dragIntercepted", (event) => resolve3(event.data));
+    });
+    await this.move(start.x, start.y);
+    await this.down();
+    await this.move(target.x, target.y);
+    return promise;
+  }
+  async dragEnter(target, data) {
+    await this._client.send("Input.dispatchDragEvent", {
+      type: "dragEnter",
+      x: target.x,
+      y: target.y,
+      modifiers: this._keyboard._modifiers,
+      data
+    });
+  }
+  async dragOver(target, data) {
+    await this._client.send("Input.dispatchDragEvent", {
+      type: "dragOver",
+      x: target.x,
+      y: target.y,
+      modifiers: this._keyboard._modifiers,
+      data
+    });
+  }
+  async drop(target, data) {
+    await this._client.send("Input.dispatchDragEvent", {
+      type: "drop",
+      x: target.x,
+      y: target.y,
+      modifiers: this._keyboard._modifiers,
+      data
+    });
+  }
+  async dragAndDrop(start, target, options = {}) {
+    const { delay = null } = options;
+    const data = await this.drag(start, target);
+    await this.dragEnter(target, data);
+    await this.dragOver(target, data);
+    if (delay) {
+      await new Promise((resolve3) => setTimeout(resolve3, delay));
+    }
+    await this.drop(target, data);
+    await this.up();
+  }
+};
+var Touchscreen = class {
+  constructor(client, keyboard) {
+    this._client = client;
+    this._keyboard = keyboard;
+  }
+  async tap(x, y) {
+    const touchPoints = [{ x: Math.round(x), y: Math.round(y) }];
+    await this._client.send("Input.dispatchTouchEvent", {
+      type: "touchStart",
+      touchPoints,
+      modifiers: this._keyboard._modifiers
+    });
+    await this._client.send("Input.dispatchTouchEvent", {
+      type: "touchEnd",
+      touchPoints: [],
+      modifiers: this._keyboard._modifiers
+    });
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/Tracing.js
+var Tracing = class {
+  constructor(client) {
+    this._recording = false;
+    this._path = "";
+    this._client = client;
+  }
+  async start(options = {}) {
+    assert(!this._recording, "Cannot start recording trace while already recording trace.");
+    const defaultCategories = [
+      "-*",
+      "devtools.timeline",
+      "v8.execute",
+      "disabled-by-default-devtools.timeline",
+      "disabled-by-default-devtools.timeline.frame",
+      "toplevel",
+      "blink.console",
+      "blink.user_timing",
+      "latencyInfo",
+      "disabled-by-default-devtools.timeline.stack",
+      "disabled-by-default-v8.cpu_profiler"
+    ];
+    const { path: path4 = null, screenshots = false, categories = defaultCategories } = options;
+    if (screenshots)
+      categories.push("disabled-by-default-devtools.screenshot");
+    const excludedCategories = categories.filter((cat) => cat.startsWith("-")).map((cat) => cat.slice(1));
+    const includedCategories = categories.filter((cat) => !cat.startsWith("-"));
+    this._path = path4;
+    this._recording = true;
+    await this._client.send("Tracing.start", {
+      transferMode: "ReturnAsStream",
+      traceConfig: {
+        excludedCategories,
+        includedCategories
+      }
+    });
+  }
+  async stop() {
+    let fulfill;
+    let reject;
+    const contentPromise = new Promise((x, y) => {
+      fulfill = x;
+      reject = y;
+    });
+    this._client.once("Tracing.tracingComplete", async (event) => {
+      try {
+        const readable = await helper.getReadableFromProtocolStream(this._client, event.stream);
+        const buffer = await helper.getReadableAsBuffer(readable, this._path);
+        fulfill(buffer);
+      } catch (error) {
+        reject(error);
+      }
+    });
+    await this._client.send("Tracing.end");
+    this._recording = false;
+    return contentPromise;
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/Coverage.js
+var Coverage = class {
+  constructor(client) {
+    this._jsCoverage = new JSCoverage(client);
+    this._cssCoverage = new CSSCoverage(client);
+  }
+  async startJSCoverage(options = {}) {
+    return await this._jsCoverage.start(options);
+  }
+  async stopJSCoverage() {
+    return await this._jsCoverage.stop();
+  }
+  async startCSSCoverage(options = {}) {
+    return await this._cssCoverage.start(options);
+  }
+  async stopCSSCoverage() {
+    return await this._cssCoverage.stop();
+  }
+};
+var JSCoverage = class {
+  constructor(client) {
+    this._enabled = false;
+    this._scriptURLs = /* @__PURE__ */ new Map();
+    this._scriptSources = /* @__PURE__ */ new Map();
+    this._eventListeners = [];
+    this._resetOnNavigation = false;
+    this._reportAnonymousScripts = false;
+    this._includeRawScriptCoverage = false;
+    this._client = client;
+  }
+  async start(options = {}) {
+    assert(!this._enabled, "JSCoverage is already enabled");
+    const { resetOnNavigation = true, reportAnonymousScripts = false, includeRawScriptCoverage = false } = options;
+    this._resetOnNavigation = resetOnNavigation;
+    this._reportAnonymousScripts = reportAnonymousScripts;
+    this._includeRawScriptCoverage = includeRawScriptCoverage;
+    this._enabled = true;
+    this._scriptURLs.clear();
+    this._scriptSources.clear();
+    this._eventListeners = [
+      helper.addEventListener(this._client, "Debugger.scriptParsed", this._onScriptParsed.bind(this)),
+      helper.addEventListener(this._client, "Runtime.executionContextsCleared", this._onExecutionContextsCleared.bind(this))
+    ];
+    await Promise.all([
+      this._client.send("Profiler.enable"),
+      this._client.send("Profiler.startPreciseCoverage", {
+        callCount: this._includeRawScriptCoverage,
+        detailed: true
+      }),
+      this._client.send("Debugger.enable"),
+      this._client.send("Debugger.setSkipAllPauses", { skip: true })
+    ]);
+  }
+  _onExecutionContextsCleared() {
+    if (!this._resetOnNavigation)
+      return;
+    this._scriptURLs.clear();
+    this._scriptSources.clear();
+  }
+  async _onScriptParsed(event) {
+    if (event.url === EVALUATION_SCRIPT_URL)
+      return;
+    if (!event.url && !this._reportAnonymousScripts)
+      return;
+    try {
+      const response = await this._client.send("Debugger.getScriptSource", {
+        scriptId: event.scriptId
+      });
+      this._scriptURLs.set(event.scriptId, event.url);
+      this._scriptSources.set(event.scriptId, response.scriptSource);
+    } catch (error) {
+      debugError(error);
+    }
+  }
+  async stop() {
+    assert(this._enabled, "JSCoverage is not enabled");
+    this._enabled = false;
+    const result = await Promise.all([
+      this._client.send("Profiler.takePreciseCoverage"),
+      this._client.send("Profiler.stopPreciseCoverage"),
+      this._client.send("Profiler.disable"),
+      this._client.send("Debugger.disable")
+    ]);
+    helper.removeEventListeners(this._eventListeners);
+    const coverage = [];
+    const profileResponse = result[0];
+    for (const entry of profileResponse.result) {
+      let url = this._scriptURLs.get(entry.scriptId);
+      if (!url && this._reportAnonymousScripts)
+        url = "debugger://VM" + entry.scriptId;
+      const text = this._scriptSources.get(entry.scriptId);
+      if (text === void 0 || url === void 0)
+        continue;
+      const flattenRanges = [];
+      for (const func of entry.functions)
+        flattenRanges.push(...func.ranges);
+      const ranges = convertToDisjointRanges(flattenRanges);
+      if (!this._includeRawScriptCoverage) {
+        coverage.push({ url, ranges, text });
+      } else {
+        coverage.push({ url, ranges, text, rawScriptCoverage: entry });
+      }
+    }
+    return coverage;
+  }
+};
+var CSSCoverage = class {
+  constructor(client) {
+    this._enabled = false;
+    this._stylesheetURLs = /* @__PURE__ */ new Map();
+    this._stylesheetSources = /* @__PURE__ */ new Map();
+    this._eventListeners = [];
+    this._resetOnNavigation = false;
+    this._reportAnonymousScripts = false;
+    this._client = client;
+  }
+  async start(options = {}) {
+    assert(!this._enabled, "CSSCoverage is already enabled");
+    const { resetOnNavigation = true } = options;
+    this._resetOnNavigation = resetOnNavigation;
+    this._enabled = true;
+    this._stylesheetURLs.clear();
+    this._stylesheetSources.clear();
+    this._eventListeners = [
+      helper.addEventListener(this._client, "CSS.styleSheetAdded", this._onStyleSheet.bind(this)),
+      helper.addEventListener(this._client, "Runtime.executionContextsCleared", this._onExecutionContextsCleared.bind(this))
+    ];
+    await Promise.all([
+      this._client.send("DOM.enable"),
+      this._client.send("CSS.enable"),
+      this._client.send("CSS.startRuleUsageTracking")
+    ]);
+  }
+  _onExecutionContextsCleared() {
+    if (!this._resetOnNavigation)
+      return;
+    this._stylesheetURLs.clear();
+    this._stylesheetSources.clear();
+  }
+  async _onStyleSheet(event) {
+    const header = event.header;
+    if (!header.sourceURL)
+      return;
+    try {
+      const response = await this._client.send("CSS.getStyleSheetText", {
+        styleSheetId: header.styleSheetId
+      });
+      this._stylesheetURLs.set(header.styleSheetId, header.sourceURL);
+      this._stylesheetSources.set(header.styleSheetId, response.text);
+    } catch (error) {
+      debugError(error);
+    }
+  }
+  async stop() {
+    assert(this._enabled, "CSSCoverage is not enabled");
+    this._enabled = false;
+    const ruleTrackingResponse = await this._client.send("CSS.stopRuleUsageTracking");
+    await Promise.all([
+      this._client.send("CSS.disable"),
+      this._client.send("DOM.disable")
+    ]);
+    helper.removeEventListeners(this._eventListeners);
+    const styleSheetIdToCoverage = /* @__PURE__ */ new Map();
+    for (const entry of ruleTrackingResponse.ruleUsage) {
+      let ranges = styleSheetIdToCoverage.get(entry.styleSheetId);
+      if (!ranges) {
+        ranges = [];
+        styleSheetIdToCoverage.set(entry.styleSheetId, ranges);
+      }
+      ranges.push({
+        startOffset: entry.startOffset,
+        endOffset: entry.endOffset,
+        count: entry.used ? 1 : 0
+      });
+    }
+    const coverage = [];
+    for (const styleSheetId of this._stylesheetURLs.keys()) {
+      const url = this._stylesheetURLs.get(styleSheetId);
+      const text = this._stylesheetSources.get(styleSheetId);
+      const ranges = convertToDisjointRanges(styleSheetIdToCoverage.get(styleSheetId) || []);
+      coverage.push({ url, ranges, text });
+    }
+    return coverage;
+  }
+};
+function convertToDisjointRanges(nestedRanges) {
+  const points = [];
+  for (const range of nestedRanges) {
+    points.push({ offset: range.startOffset, type: 0, range });
+    points.push({ offset: range.endOffset, type: 1, range });
+  }
+  points.sort((a, b) => {
+    if (a.offset !== b.offset)
+      return a.offset - b.offset;
+    if (a.type !== b.type)
+      return b.type - a.type;
+    const aLength = a.range.endOffset - a.range.startOffset;
+    const bLength = b.range.endOffset - b.range.startOffset;
+    if (a.type === 0)
+      return bLength - aLength;
+    return aLength - bLength;
+  });
+  const hitCountStack = [];
+  const results = [];
+  let lastOffset = 0;
+  for (const point of points) {
+    if (hitCountStack.length && lastOffset < point.offset && hitCountStack[hitCountStack.length - 1] > 0) {
+      const lastResult = results.length ? results[results.length - 1] : null;
+      if (lastResult && lastResult.end === lastOffset)
+        lastResult.end = point.offset;
+      else
+        results.push({ start: lastOffset, end: point.offset });
+    }
+    lastOffset = point.offset;
+    if (point.type === 0)
+      hitCountStack.push(point.range.count);
+    else
+      hitCountStack.pop();
+  }
+  return results.filter((range) => range.end - range.start > 1);
+}
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/WebWorker.js
+var WebWorker = class extends EventEmitter {
+  constructor(client, url, consoleAPICalled, exceptionThrown) {
+    super();
+    this._client = client;
+    this._url = url;
+    this._executionContextPromise = new Promise((x) => this._executionContextCallback = x);
+    let jsHandleFactory;
+    this._client.once("Runtime.executionContextCreated", async (event) => {
+      jsHandleFactory = (remoteObject) => new JSHandle(executionContext, client, remoteObject);
+      const executionContext = new ExecutionContext(client, event.context, null);
+      this._executionContextCallback(executionContext);
+    });
+    this._client.send("Runtime.enable").catch(debugError);
+    this._client.on("Runtime.consoleAPICalled", (event) => consoleAPICalled(event.type, event.args.map(jsHandleFactory), event.stackTrace));
+    this._client.on("Runtime.exceptionThrown", (exception) => exceptionThrown(exception.exceptionDetails));
+  }
+  url() {
+    return this._url;
+  }
+  async executionContext() {
+    return this._executionContextPromise;
+  }
+  async evaluate(pageFunction, ...args) {
+    return (await this._executionContextPromise).evaluate(pageFunction, ...args);
+  }
+  async evaluateHandle(pageFunction, ...args) {
+    return (await this._executionContextPromise).evaluateHandle(pageFunction, ...args);
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/Accessibility.js
+var Accessibility = class {
+  constructor(client) {
+    this._client = client;
+  }
+  async snapshot(options = {}) {
+    const { interestingOnly = true, root = null } = options;
+    const { nodes } = await this._client.send("Accessibility.getFullAXTree");
+    let backendNodeId = null;
+    if (root) {
+      const { node } = await this._client.send("DOM.describeNode", {
+        objectId: root._remoteObject.objectId
+      });
+      backendNodeId = node.backendNodeId;
+    }
+    const defaultRoot = AXNode.createTree(nodes);
+    let needle = defaultRoot;
+    if (backendNodeId) {
+      needle = defaultRoot.find((node) => node.payload.backendDOMNodeId === backendNodeId);
+      if (!needle)
+        return null;
+    }
+    if (!interestingOnly)
+      return this.serializeTree(needle)[0];
+    const interestingNodes = /* @__PURE__ */ new Set();
+    this.collectInterestingNodes(interestingNodes, defaultRoot, false);
+    if (!interestingNodes.has(needle))
+      return null;
+    return this.serializeTree(needle, interestingNodes)[0];
+  }
+  serializeTree(node, interestingNodes) {
+    const children = [];
+    for (const child of node.children)
+      children.push(...this.serializeTree(child, interestingNodes));
+    if (interestingNodes && !interestingNodes.has(node))
+      return children;
+    const serializedNode = node.serialize();
+    if (children.length)
+      serializedNode.children = children;
+    return [serializedNode];
+  }
+  collectInterestingNodes(collection, node, insideControl) {
+    if (node.isInteresting(insideControl))
+      collection.add(node);
+    if (node.isLeafNode())
+      return;
+    insideControl = insideControl || node.isControl();
+    for (const child of node.children)
+      this.collectInterestingNodes(collection, child, insideControl);
+  }
+};
+var AXNode = class {
+  constructor(payload) {
+    this.children = [];
+    this._richlyEditable = false;
+    this._editable = false;
+    this._focusable = false;
+    this._hidden = false;
+    this.payload = payload;
+    this._name = this.payload.name ? this.payload.name.value : "";
+    this._role = this.payload.role ? this.payload.role.value : "Unknown";
+    this._ignored = this.payload.ignored;
+    for (const property of this.payload.properties || []) {
+      if (property.name === "editable") {
+        this._richlyEditable = property.value.value === "richtext";
+        this._editable = true;
+      }
+      if (property.name === "focusable")
+        this._focusable = property.value.value;
+      if (property.name === "hidden")
+        this._hidden = property.value.value;
+    }
+  }
+  _isPlainTextField() {
+    if (this._richlyEditable)
+      return false;
+    if (this._editable)
+      return true;
+    return this._role === "textbox" || this._role === "searchbox";
+  }
+  _isTextOnlyObject() {
+    const role = this._role;
+    return role === "LineBreak" || role === "text" || role === "InlineTextBox";
+  }
+  _hasFocusableChild() {
+    if (this._cachedHasFocusableChild === void 0) {
+      this._cachedHasFocusableChild = false;
+      for (const child of this.children) {
+        if (child._focusable || child._hasFocusableChild()) {
+          this._cachedHasFocusableChild = true;
+          break;
+        }
+      }
+    }
+    return this._cachedHasFocusableChild;
+  }
+  find(predicate) {
+    if (predicate(this))
+      return this;
+    for (const child of this.children) {
+      const result = child.find(predicate);
+      if (result)
+        return result;
+    }
+    return null;
+  }
+  isLeafNode() {
+    if (!this.children.length)
+      return true;
+    if (this._isPlainTextField() || this._isTextOnlyObject())
+      return true;
+    switch (this._role) {
+      case "doc-cover":
+      case "graphics-symbol":
+      case "img":
+      case "Meter":
+      case "scrollbar":
+      case "slider":
+      case "separator":
+      case "progressbar":
+        return true;
+      default:
+        break;
+    }
+    if (this._hasFocusableChild())
+      return false;
+    if (this._focusable && this._name)
+      return true;
+    if (this._role === "heading" && this._name)
+      return true;
+    return false;
+  }
+  isControl() {
+    switch (this._role) {
+      case "button":
+      case "checkbox":
+      case "ColorWell":
+      case "combobox":
+      case "DisclosureTriangle":
+      case "listbox":
+      case "menu":
+      case "menubar":
+      case "menuitem":
+      case "menuitemcheckbox":
+      case "menuitemradio":
+      case "radio":
+      case "scrollbar":
+      case "searchbox":
+      case "slider":
+      case "spinbutton":
+      case "switch":
+      case "tab":
+      case "textbox":
+      case "tree":
+      case "treeitem":
+        return true;
+      default:
+        return false;
+    }
+  }
+  isInteresting(insideControl) {
+    const role = this._role;
+    if (role === "Ignored" || this._hidden || this._ignored)
+      return false;
+    if (this._focusable || this._richlyEditable)
+      return true;
+    if (this.isControl())
+      return true;
+    if (insideControl)
+      return false;
+    return this.isLeafNode() && !!this._name;
+  }
+  serialize() {
+    const properties = /* @__PURE__ */ new Map();
+    for (const property of this.payload.properties || [])
+      properties.set(property.name.toLowerCase(), property.value.value);
+    if (this.payload.name)
+      properties.set("name", this.payload.name.value);
+    if (this.payload.value)
+      properties.set("value", this.payload.value.value);
+    if (this.payload.description)
+      properties.set("description", this.payload.description.value);
+    const node = {
+      role: this._role
+    };
+    const userStringProperties = [
+      "name",
+      "value",
+      "description",
+      "keyshortcuts",
+      "roledescription",
+      "valuetext"
+    ];
+    const getUserStringPropertyValue = (key) => properties.get(key);
+    for (const userStringProperty of userStringProperties) {
+      if (!properties.has(userStringProperty))
+        continue;
+      node[userStringProperty] = getUserStringPropertyValue(userStringProperty);
+    }
+    const booleanProperties = [
+      "disabled",
+      "expanded",
+      "focused",
+      "modal",
+      "multiline",
+      "multiselectable",
+      "readonly",
+      "required",
+      "selected"
+    ];
+    const getBooleanPropertyValue = (key) => properties.get(key);
+    for (const booleanProperty of booleanProperties) {
+      if (booleanProperty === "focused" && this._role === "RootWebArea")
+        continue;
+      const value = getBooleanPropertyValue(booleanProperty);
+      if (!value)
+        continue;
+      node[booleanProperty] = getBooleanPropertyValue(booleanProperty);
+    }
+    const tristateProperties = ["checked", "pressed"];
+    for (const tristateProperty of tristateProperties) {
+      if (!properties.has(tristateProperty))
+        continue;
+      const value = properties.get(tristateProperty);
+      node[tristateProperty] = value === "mixed" ? "mixed" : value === "true" ? true : false;
+    }
+    const numericalProperties = [
+      "level",
+      "valuemax",
+      "valuemin"
+    ];
+    const getNumericalPropertyValue = (key) => properties.get(key);
+    for (const numericalProperty of numericalProperties) {
+      if (!properties.has(numericalProperty))
+        continue;
+      node[numericalProperty] = getNumericalPropertyValue(numericalProperty);
+    }
+    const tokenProperties = [
+      "autocomplete",
+      "haspopup",
+      "invalid",
+      "orientation"
+    ];
+    const getTokenPropertyValue = (key) => properties.get(key);
+    for (const tokenProperty of tokenProperties) {
+      const value = getTokenPropertyValue(tokenProperty);
+      if (!value || value === "false")
+        continue;
+      node[tokenProperty] = getTokenPropertyValue(tokenProperty);
+    }
+    return node;
+  }
+  static createTree(payloads) {
+    const nodeById = /* @__PURE__ */ new Map();
+    for (const payload of payloads)
+      nodeById.set(payload.nodeId, new AXNode(payload));
+    for (const node of nodeById.values()) {
+      for (const childId of node.payload.childIds || [])
+        node.children.push(nodeById.get(childId));
+    }
+    return nodeById.values().next().value;
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/TimeoutSettings.js
+var DEFAULT_TIMEOUT = 3e4;
+var TimeoutSettings = class {
+  constructor() {
+    this._defaultTimeout = null;
+    this._defaultNavigationTimeout = null;
+  }
+  setDefaultTimeout(timeout) {
+    this._defaultTimeout = timeout;
+  }
+  setDefaultNavigationTimeout(timeout) {
+    this._defaultNavigationTimeout = timeout;
+  }
+  navigationTimeout() {
+    if (this._defaultNavigationTimeout !== null)
+      return this._defaultNavigationTimeout;
+    if (this._defaultTimeout !== null)
+      return this._defaultTimeout;
+    return DEFAULT_TIMEOUT;
+  }
+  timeout() {
+    if (this._defaultTimeout !== null)
+      return this._defaultTimeout;
+    return DEFAULT_TIMEOUT;
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/FileChooser.js
+var FileChooser = class {
+  constructor(element, event) {
+    this._handled = false;
+    this._element = element;
+    this._multiple = event.mode !== "selectSingle";
+  }
+  isMultiple() {
+    return this._multiple;
+  }
+  async accept(filePaths) {
+    assert(!this._handled, "Cannot accept FileChooser which is already handled!");
+    this._handled = true;
+    await this._element.uploadFile(...filePaths);
+  }
+  cancel() {
+    assert(!this._handled, "Cannot cancel FileChooser which is already handled!");
+    this._handled = true;
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/ConsoleMessage.js
+var ConsoleMessage = class {
+  constructor(type, text, args, stackTraceLocations) {
+    this._type = type;
+    this._text = text;
+    this._args = args;
+    this._stackTraceLocations = stackTraceLocations;
+  }
+  type() {
+    return this._type;
+  }
+  text() {
+    return this._text;
+  }
+  args() {
+    return this._args;
+  }
+  location() {
+    return this._stackTraceLocations.length ? this._stackTraceLocations[0] : {};
+  }
+  stackTrace() {
+    return this._stackTraceLocations;
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/PDFOptions.js
+var paperFormats = {
+  letter: { width: 8.5, height: 11 },
+  legal: { width: 8.5, height: 14 },
+  tabloid: { width: 11, height: 17 },
+  ledger: { width: 17, height: 11 },
+  a0: { width: 33.1, height: 46.8 },
+  a1: { width: 23.4, height: 33.1 },
+  a2: { width: 16.54, height: 23.4 },
+  a3: { width: 11.7, height: 16.54 },
+  a4: { width: 8.27, height: 11.7 },
+  a5: { width: 5.83, height: 8.27 },
+  a6: { width: 4.13, height: 5.83 }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/Page.js
+var Page = class extends EventEmitter {
+  constructor(client, target, ignoreHTTPSErrors, screenshotTaskQueue) {
+    super();
+    this._closed = false;
+    this._timeoutSettings = new TimeoutSettings();
+    this._pageBindings = /* @__PURE__ */ new Map();
+    this._javascriptEnabled = true;
+    this._workers = /* @__PURE__ */ new Map();
+    this._fileChooserInterceptors = /* @__PURE__ */ new Set();
+    this._userDragInterceptionEnabled = false;
+    this._handlerMap = /* @__PURE__ */ new WeakMap();
+    this._client = client;
+    this._target = target;
+    this._keyboard = new Keyboard(client);
+    this._mouse = new Mouse(client, this._keyboard);
+    this._touchscreen = new Touchscreen(client, this._keyboard);
+    this._accessibility = new Accessibility(client);
+    this._frameManager = new FrameManager(client, this, ignoreHTTPSErrors, this._timeoutSettings);
+    this._emulationManager = new EmulationManager(client);
+    this._tracing = new Tracing(client);
+    this._coverage = new Coverage(client);
+    this._screenshotTaskQueue = screenshotTaskQueue;
+    this._viewport = null;
+    client.on("Target.attachedToTarget", (event) => {
+      if (event.targetInfo.type !== "worker" && event.targetInfo.type !== "iframe") {
+        client.send("Target.detachFromTarget", {
+          sessionId: event.sessionId
+        }).catch(debugError);
+        return;
+      }
+      if (event.targetInfo.type === "worker") {
+        const session = Connection.fromSession(client).session(event.sessionId);
+        const worker = new WebWorker(session, event.targetInfo.url, this._addConsoleMessage.bind(this), this._handleException.bind(this));
+        this._workers.set(event.sessionId, worker);
+        this.emit("workercreated", worker);
+      }
+    });
+    client.on("Target.detachedFromTarget", (event) => {
+      const worker = this._workers.get(event.sessionId);
+      if (!worker)
+        return;
+      this._workers.delete(event.sessionId);
+      this.emit("workerdestroyed", worker);
+    });
+    this._frameManager.on(FrameManagerEmittedEvents.FrameAttached, (event) => this.emit("frameattached", event));
+    this._frameManager.on(FrameManagerEmittedEvents.FrameDetached, (event) => this.emit("framedetached", event));
+    this._frameManager.on(FrameManagerEmittedEvents.FrameNavigated, (event) => this.emit("framenavigated", event));
+    const networkManager = this._frameManager.networkManager();
+    networkManager.on(NetworkManagerEmittedEvents.Request, (event) => this.emit("request", event));
+    networkManager.on(NetworkManagerEmittedEvents.RequestServedFromCache, (event) => this.emit("requestservedfromcache", event));
+    networkManager.on(NetworkManagerEmittedEvents.Response, (event) => this.emit("response", event));
+    networkManager.on(NetworkManagerEmittedEvents.RequestFailed, (event) => this.emit("requestfailed", event));
+    networkManager.on(NetworkManagerEmittedEvents.RequestFinished, (event) => this.emit("requestfinished", event));
+    this._fileChooserInterceptors = /* @__PURE__ */ new Set();
+    client.on("Page.domContentEventFired", () => this.emit("domcontentloaded"));
+    client.on("Page.loadEventFired", () => this.emit("load"));
+    client.on("Runtime.consoleAPICalled", (event) => this._onConsoleAPI(event));
+    client.on("Runtime.bindingCalled", (event) => this._onBindingCalled(event));
+    client.on("Page.javascriptDialogOpening", (event) => this._onDialog(event));
+    client.on("Runtime.exceptionThrown", (exception) => this._handleException(exception.exceptionDetails));
+    client.on("Inspector.targetCrashed", () => this._onTargetCrashed());
+    client.on("Performance.metrics", (event) => this._emitMetrics(event));
+    client.on("Log.entryAdded", (event) => this._onLogEntryAdded(event));
+    client.on("Page.fileChooserOpened", (event) => this._onFileChooser(event));
+    this._target._isClosedPromise.then(() => {
+      this.emit("close");
+      this._closed = true;
+    });
+  }
+  static async create(client, target, ignoreHTTPSErrors, defaultViewport, screenshotTaskQueue) {
+    const page = new Page(client, target, ignoreHTTPSErrors, screenshotTaskQueue);
+    await page._initialize();
+    if (defaultViewport)
+      await page.setViewport(defaultViewport);
+    return page;
+  }
+  async _initialize() {
+    await Promise.all([
+      this._frameManager.initialize(),
+      this._client.send("Target.setAutoAttach", {
+        autoAttach: true,
+        waitForDebuggerOnStart: false,
+        flatten: true
+      }),
+      this._client.send("Performance.enable"),
+      this._client.send("Log.enable")
+    ]);
+  }
+  async _onFileChooser(event) {
+    if (!this._fileChooserInterceptors.size)
+      return;
+    const frame = this._frameManager.frame(event.frameId);
+    const context = await frame.executionContext();
+    const element = await context._adoptBackendNodeId(event.backendNodeId);
+    const interceptors = Array.from(this._fileChooserInterceptors);
+    this._fileChooserInterceptors.clear();
+    const fileChooser = new FileChooser(element, event);
+    for (const interceptor of interceptors)
+      interceptor.call(null, fileChooser);
+  }
+  isDragInterceptionEnabled() {
+    return this._userDragInterceptionEnabled;
+  }
+  isJavaScriptEnabled() {
+    return this._javascriptEnabled;
+  }
+  on(eventName, handler) {
+    if (eventName === "request") {
+      const wrap = (event) => {
+        event.enqueueInterceptAction(() => handler(event));
+      };
+      this._handlerMap.set(handler, wrap);
+      return super.on(eventName, wrap);
+    }
+    return super.on(eventName, handler);
+  }
+  once(eventName, handler) {
+    return super.once(eventName, handler);
+  }
+  off(eventName, handler) {
+    if (eventName === "request") {
+      handler = this._handlerMap.get(handler) || handler;
+    }
+    return super.off(eventName, handler);
+  }
+  async waitForFileChooser(options = {}) {
+    if (!this._fileChooserInterceptors.size)
+      await this._client.send("Page.setInterceptFileChooserDialog", {
+        enabled: true
+      });
+    const { timeout = this._timeoutSettings.timeout() } = options;
+    let callback;
+    const promise = new Promise((x) => callback = x);
+    this._fileChooserInterceptors.add(callback);
+    return helper.waitWithTimeout(promise, "waiting for file chooser", timeout).catch((error) => {
+      this._fileChooserInterceptors.delete(callback);
+      throw error;
+    });
+  }
+  async setGeolocation(options) {
+    const { longitude, latitude, accuracy = 0 } = options;
+    if (longitude < -180 || longitude > 180)
+      throw new Error(`Invalid longitude "${longitude}": precondition -180 <= LONGITUDE <= 180 failed.`);
+    if (latitude < -90 || latitude > 90)
+      throw new Error(`Invalid latitude "${latitude}": precondition -90 <= LATITUDE <= 90 failed.`);
+    if (accuracy < 0)
+      throw new Error(`Invalid accuracy "${accuracy}": precondition 0 <= ACCURACY failed.`);
+    await this._client.send("Emulation.setGeolocationOverride", {
+      longitude,
+      latitude,
+      accuracy
+    });
+  }
+  target() {
+    return this._target;
+  }
+  client() {
+    return this._client;
+  }
+  browser() {
+    return this._target.browser();
+  }
+  browserContext() {
+    return this._target.browserContext();
+  }
+  _onTargetCrashed() {
+    this.emit("error", new Error("Page crashed!"));
+  }
+  _onLogEntryAdded(event) {
+    const { level, text, args, source, url, lineNumber } = event.entry;
+    if (args)
+      args.map((arg) => helper.releaseObject(this._client, arg));
+    if (source !== "worker")
+      this.emit("console", new ConsoleMessage(level, text, [], [{ url, lineNumber }]));
+  }
+  mainFrame() {
+    return this._frameManager.mainFrame();
+  }
+  get keyboard() {
+    return this._keyboard;
+  }
+  get touchscreen() {
+    return this._touchscreen;
+  }
+  get coverage() {
+    return this._coverage;
+  }
+  get tracing() {
+    return this._tracing;
+  }
+  get accessibility() {
+    return this._accessibility;
+  }
+  frames() {
+    return this._frameManager.frames();
+  }
+  workers() {
+    return Array.from(this._workers.values());
+  }
+  async setRequestInterception(value) {
+    return this._frameManager.networkManager().setRequestInterception(value);
+  }
+  async setDragInterception(enabled) {
+    this._userDragInterceptionEnabled = enabled;
+    return this._client.send("Input.setInterceptDrags", { enabled });
+  }
+  setOfflineMode(enabled) {
+    return this._frameManager.networkManager().setOfflineMode(enabled);
+  }
+  emulateNetworkConditions(networkConditions2) {
+    return this._frameManager.networkManager().emulateNetworkConditions(networkConditions2);
+  }
+  setDefaultNavigationTimeout(timeout) {
+    this._timeoutSettings.setDefaultNavigationTimeout(timeout);
+  }
+  setDefaultTimeout(timeout) {
+    this._timeoutSettings.setDefaultTimeout(timeout);
+  }
+  async $(selector) {
+    return this.mainFrame().$(selector);
+  }
+  async evaluateHandle(pageFunction, ...args) {
+    const context = await this.mainFrame().executionContext();
+    return context.evaluateHandle(pageFunction, ...args);
+  }
+  async queryObjects(prototypeHandle) {
+    const context = await this.mainFrame().executionContext();
+    return context.queryObjects(prototypeHandle);
+  }
+  async $eval(selector, pageFunction, ...args) {
+    return this.mainFrame().$eval(selector, pageFunction, ...args);
+  }
+  async $$eval(selector, pageFunction, ...args) {
+    return this.mainFrame().$$eval(selector, pageFunction, ...args);
+  }
+  async $$(selector) {
+    return this.mainFrame().$$(selector);
+  }
+  async $x(expression) {
+    return this.mainFrame().$x(expression);
+  }
+  async cookies(...urls) {
+    const originalCookies = (await this._client.send("Network.getCookies", {
+      urls: urls.length ? urls : [this.url()]
+    })).cookies;
+    const unsupportedCookieAttributes = ["priority"];
+    const filterUnsupportedAttributes = (cookie) => {
+      for (const attr of unsupportedCookieAttributes)
+        delete cookie[attr];
+      return cookie;
+    };
+    return originalCookies.map(filterUnsupportedAttributes);
+  }
+  async deleteCookie(...cookies) {
+    const pageURL = this.url();
+    for (const cookie of cookies) {
+      const item = Object.assign({}, cookie);
+      if (!cookie.url && pageURL.startsWith("http"))
+        item.url = pageURL;
+      await this._client.send("Network.deleteCookies", item);
+    }
+  }
+  async setCookie(...cookies) {
+    const pageURL = this.url();
+    const startsWithHTTP = pageURL.startsWith("http");
+    const items = cookies.map((cookie) => {
+      const item = Object.assign({}, cookie);
+      if (!item.url && startsWithHTTP)
+        item.url = pageURL;
+      assert(item.url !== "about:blank", `Blank page can not have cookie "${item.name}"`);
+      assert(!String.prototype.startsWith.call(item.url || "", "data:"), `Data URL page can not have cookie "${item.name}"`);
+      return item;
+    });
+    await this.deleteCookie(...items);
+    if (items.length)
+      await this._client.send("Network.setCookies", { cookies: items });
+  }
+  async addScriptTag(options) {
+    return this.mainFrame().addScriptTag(options);
+  }
+  async addStyleTag(options) {
+    return this.mainFrame().addStyleTag(options);
+  }
+  async exposeFunction(name, puppeteerFunction) {
+    if (this._pageBindings.has(name))
+      throw new Error(`Failed to add page binding with name ${name}: window['${name}'] already exists!`);
+    let exposedFunction;
+    if (typeof puppeteerFunction === "function") {
+      exposedFunction = puppeteerFunction;
+    } else if (typeof puppeteerFunction.default === "function") {
+      exposedFunction = puppeteerFunction.default;
+    } else {
+      throw new Error(`Failed to add page binding with name ${name}: ${puppeteerFunction} is not a function or a module with a default export.`);
+    }
+    this._pageBindings.set(name, exposedFunction);
+    const expression = helper.pageBindingInitString("exposedFun", name);
+    await this._client.send("Runtime.addBinding", { name });
+    await this._client.send("Page.addScriptToEvaluateOnNewDocument", {
+      source: expression
+    });
+    await Promise.all(this.frames().map((frame) => frame.evaluate(expression).catch(debugError)));
+  }
+  async authenticate(credentials) {
+    return this._frameManager.networkManager().authenticate(credentials);
+  }
+  async setExtraHTTPHeaders(headers) {
+    return this._frameManager.networkManager().setExtraHTTPHeaders(headers);
+  }
+  async setUserAgent(userAgent, userAgentMetadata) {
+    return this._frameManager.networkManager().setUserAgent(userAgent, userAgentMetadata);
+  }
+  async metrics() {
+    const response = await this._client.send("Performance.getMetrics");
+    return this._buildMetricsObject(response.metrics);
+  }
+  _emitMetrics(event) {
+    this.emit("metrics", {
+      title: event.title,
+      metrics: this._buildMetricsObject(event.metrics)
+    });
+  }
+  _buildMetricsObject(metrics) {
+    const result = {};
+    for (const metric of metrics || []) {
+      if (supportedMetrics.has(metric.name))
+        result[metric.name] = metric.value;
+    }
+    return result;
+  }
+  _handleException(exceptionDetails) {
+    const message = helper.getExceptionMessage(exceptionDetails);
+    const err = new Error(message);
+    err.stack = "";
+    this.emit("pageerror", err);
+  }
+  async _onConsoleAPI(event) {
+    if (event.executionContextId === 0) {
+      return;
+    }
+    const context = this._frameManager.executionContextById(event.executionContextId, this._client);
+    const values = event.args.map((arg) => createJSHandle(context, arg));
+    this._addConsoleMessage(event.type, values, event.stackTrace);
+  }
+  async _onBindingCalled(event) {
+    let payload;
+    try {
+      payload = JSON.parse(event.payload);
+    } catch {
+      return;
+    }
+    const { type, name, seq, args } = payload;
+    if (type !== "exposedFun" || !this._pageBindings.has(name))
+      return;
+    let expression = null;
+    try {
+      const result = await this._pageBindings.get(name)(...args);
+      expression = helper.pageBindingDeliverResultString(name, seq, result);
+    } catch (error) {
+      if (error instanceof Error)
+        expression = helper.pageBindingDeliverErrorString(name, seq, error.message, error.stack);
+      else
+        expression = helper.pageBindingDeliverErrorValueString(name, seq, error);
+    }
+    this._client.send("Runtime.evaluate", {
+      expression,
+      contextId: event.executionContextId
+    }).catch(debugError);
+  }
+  _addConsoleMessage(type, args, stackTrace) {
+    if (!this.listenerCount("console")) {
+      args.forEach((arg) => arg.dispose());
+      return;
+    }
+    const textTokens = [];
+    for (const arg of args) {
+      const remoteObject = arg._remoteObject;
+      if (remoteObject.objectId)
+        textTokens.push(arg.toString());
+      else
+        textTokens.push(helper.valueFromRemoteObject(remoteObject));
+    }
+    const stackTraceLocations = [];
+    if (stackTrace) {
+      for (const callFrame of stackTrace.callFrames) {
+        stackTraceLocations.push({
+          url: callFrame.url,
+          lineNumber: callFrame.lineNumber,
+          columnNumber: callFrame.columnNumber
+        });
+      }
+    }
+    const message = new ConsoleMessage(type, textTokens.join(" "), args, stackTraceLocations);
+    this.emit("console", message);
+  }
+  _onDialog(event) {
+    let dialogType = null;
+    const validDialogTypes = /* @__PURE__ */ new Set([
+      "alert",
+      "confirm",
+      "prompt",
+      "beforeunload"
+    ]);
+    if (validDialogTypes.has(event.type)) {
+      dialogType = event.type;
+    }
+    assert(dialogType, "Unknown javascript dialog type: " + event.type);
+    const dialog = new Dialog(this._client, dialogType, event.message, event.defaultPrompt);
+    this.emit("dialog", dialog);
+  }
+  async _resetDefaultBackgroundColor() {
+    await this._client.send("Emulation.setDefaultBackgroundColorOverride");
+  }
+  async _setTransparentBackgroundColor() {
+    await this._client.send("Emulation.setDefaultBackgroundColorOverride", {
+      color: { r: 0, g: 0, b: 0, a: 0 }
+    });
+  }
+  url() {
+    return this.mainFrame().url();
+  }
+  async content() {
+    return await this._frameManager.mainFrame().content();
+  }
+  async setContent(html, options = {}) {
+    await this._frameManager.mainFrame().setContent(html, options);
+  }
+  async goto(url, options = {}) {
+    return await this._frameManager.mainFrame().goto(url, options);
+  }
+  async reload(options) {
+    const result = await Promise.all([
+      this.waitForNavigation(options),
+      this._client.send("Page.reload")
+    ]);
+    return result[0];
+  }
+  async waitForNavigation(options = {}) {
+    return await this._frameManager.mainFrame().waitForNavigation(options);
+  }
+  _sessionClosePromise() {
+    if (!this._disconnectPromise)
+      this._disconnectPromise = new Promise((fulfill) => this._client.once(CDPSessionEmittedEvents.Disconnected, () => fulfill(new Error("Target closed"))));
+    return this._disconnectPromise;
+  }
+  async waitForRequest(urlOrPredicate, options = {}) {
+    const { timeout = this._timeoutSettings.timeout() } = options;
+    return helper.waitForEvent(this._frameManager.networkManager(), NetworkManagerEmittedEvents.Request, (request3) => {
+      if (helper.isString(urlOrPredicate))
+        return urlOrPredicate === request3.url();
+      if (typeof urlOrPredicate === "function")
+        return !!urlOrPredicate(request3);
+      return false;
+    }, timeout, this._sessionClosePromise());
+  }
+  async waitForResponse(urlOrPredicate, options = {}) {
+    const { timeout = this._timeoutSettings.timeout() } = options;
+    return helper.waitForEvent(this._frameManager.networkManager(), NetworkManagerEmittedEvents.Response, async (response) => {
+      if (helper.isString(urlOrPredicate))
+        return urlOrPredicate === response.url();
+      if (typeof urlOrPredicate === "function")
+        return !!await urlOrPredicate(response);
+      return false;
+    }, timeout, this._sessionClosePromise());
+  }
+  async waitForNetworkIdle(options = {}) {
+    const { idleTime = 500, timeout = this._timeoutSettings.timeout() } = options;
+    const networkManager = this._frameManager.networkManager();
+    let idleResolveCallback;
+    const idlePromise = new Promise((resolve3) => {
+      idleResolveCallback = resolve3;
+    });
+    let abortRejectCallback;
+    const abortPromise = new Promise((_, reject) => {
+      abortRejectCallback = reject;
+    });
+    let idleTimer;
+    const onIdle = () => idleResolveCallback();
+    const cleanup = () => {
+      idleTimer && clearTimeout(idleTimer);
+      abortRejectCallback(new Error("abort"));
+    };
+    const evaluate = () => {
+      idleTimer && clearTimeout(idleTimer);
+      if (networkManager.numRequestsInProgress() === 0)
+        idleTimer = setTimeout(onIdle, idleTime);
+    };
+    evaluate();
+    const eventHandler = () => {
+      evaluate();
+      return false;
+    };
+    const listenToEvent = (event) => helper.waitForEvent(networkManager, event, eventHandler, timeout, abortPromise);
+    const eventPromises = [
+      listenToEvent(NetworkManagerEmittedEvents.Request),
+      listenToEvent(NetworkManagerEmittedEvents.Response)
+    ];
+    await Promise.race([
+      idlePromise,
+      ...eventPromises,
+      this._sessionClosePromise()
+    ]).then((r) => {
+      cleanup();
+      return r;
+    }, (error) => {
+      cleanup();
+      throw error;
+    });
+  }
+  async waitForFrame(urlOrPredicate, options = {}) {
+    const { timeout = this._timeoutSettings.timeout() } = options;
+    async function predicate(frame) {
+      if (helper.isString(urlOrPredicate))
+        return urlOrPredicate === frame.url();
+      if (typeof urlOrPredicate === "function")
+        return !!await urlOrPredicate(frame);
+      return false;
+    }
+    const eventRace = Promise.race([
+      helper.waitForEvent(this._frameManager, FrameManagerEmittedEvents.FrameAttached, predicate, timeout, this._sessionClosePromise()),
+      helper.waitForEvent(this._frameManager, FrameManagerEmittedEvents.FrameNavigated, predicate, timeout, this._sessionClosePromise())
+    ]);
+    return Promise.race([
+      eventRace,
+      (async () => {
+        for (const frame of this.frames()) {
+          if (await predicate(frame)) {
+            return frame;
+          }
+        }
+        await eventRace;
+      })()
+    ]);
+  }
+  async goBack(options = {}) {
+    return this._go(-1, options);
+  }
+  async goForward(options = {}) {
+    return this._go(1, options);
+  }
+  async _go(delta, options) {
+    const history = await this._client.send("Page.getNavigationHistory");
+    const entry = history.entries[history.currentIndex + delta];
+    if (!entry)
+      return null;
+    const result = await Promise.all([
+      this.waitForNavigation(options),
+      this._client.send("Page.navigateToHistoryEntry", { entryId: entry.id })
+    ]);
+    return result[0];
+  }
+  async bringToFront() {
+    await this._client.send("Page.bringToFront");
+  }
+  async emulate(options) {
+    await Promise.all([
+      this.setViewport(options.viewport),
+      this.setUserAgent(options.userAgent)
+    ]);
+  }
+  async setJavaScriptEnabled(enabled) {
+    if (this._javascriptEnabled === enabled)
+      return;
+    this._javascriptEnabled = enabled;
+    await this._client.send("Emulation.setScriptExecutionDisabled", {
+      value: !enabled
+    });
+  }
+  async setBypassCSP(enabled) {
+    await this._client.send("Page.setBypassCSP", { enabled });
+  }
+  async emulateMediaType(type) {
+    assert(type === "screen" || type === "print" || type === null, "Unsupported media type: " + type);
+    await this._client.send("Emulation.setEmulatedMedia", {
+      media: type || ""
+    });
+  }
+  async emulateCPUThrottling(factor) {
+    assert(factor === null || factor >= 1, "Throttling rate should be greater or equal to 1");
+    await this._client.send("Emulation.setCPUThrottlingRate", {
+      rate: factor !== null ? factor : 1
+    });
+  }
+  async emulateMediaFeatures(features) {
+    if (features === null)
+      await this._client.send("Emulation.setEmulatedMedia", { features: null });
+    if (Array.isArray(features)) {
+      features.every((mediaFeature) => {
+        const name = mediaFeature.name;
+        assert(/^(?:prefers-(?:color-scheme|reduced-motion)|color-gamut)$/.test(name), "Unsupported media feature: " + name);
+        return true;
+      });
+      await this._client.send("Emulation.setEmulatedMedia", {
+        features
+      });
+    }
+  }
+  async emulateTimezone(timezoneId) {
+    try {
+      await this._client.send("Emulation.setTimezoneOverride", {
+        timezoneId: timezoneId || ""
+      });
+    } catch (error) {
+      if (error.message.includes("Invalid timezone"))
+        throw new Error(`Invalid timezone ID: ${timezoneId}`);
+      throw error;
+    }
+  }
+  async emulateIdleState(overrides) {
+    if (overrides) {
+      await this._client.send("Emulation.setIdleOverride", {
+        isUserActive: overrides.isUserActive,
+        isScreenUnlocked: overrides.isScreenUnlocked
+      });
+    } else {
+      await this._client.send("Emulation.clearIdleOverride");
+    }
+  }
+  async emulateVisionDeficiency(type) {
+    const visionDeficiencies = /* @__PURE__ */ new Set([
+      "none",
+      "achromatopsia",
+      "blurredVision",
+      "deuteranopia",
+      "protanopia",
+      "tritanopia"
+    ]);
+    try {
+      assert(!type || visionDeficiencies.has(type), `Unsupported vision deficiency: ${type}`);
+      await this._client.send("Emulation.setEmulatedVisionDeficiency", {
+        type: type || "none"
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+  async setViewport(viewport) {
+    const needsReload = await this._emulationManager.emulateViewport(viewport);
+    this._viewport = viewport;
+    if (needsReload)
+      await this.reload();
+  }
+  viewport() {
+    return this._viewport;
+  }
+  async evaluate(pageFunction, ...args) {
+    return this._frameManager.mainFrame().evaluate(pageFunction, ...args);
+  }
+  async evaluateOnNewDocument(pageFunction, ...args) {
+    const source = helper.evaluationString(pageFunction, ...args);
+    await this._client.send("Page.addScriptToEvaluateOnNewDocument", {
+      source
+    });
+  }
+  async setCacheEnabled(enabled = true) {
+    await this._frameManager.networkManager().setCacheEnabled(enabled);
+  }
+  async screenshot(options = {}) {
+    let screenshotType = null;
+    if (options.type) {
+      const type = options.type;
+      if (type !== "png" && type !== "jpeg" && type !== "webp") {
+        assertNever(type, "Unknown options.type value: " + type);
+      }
+      screenshotType = options.type;
+    } else if (options.path) {
+      const filePath = options.path;
+      const extension = filePath.slice(filePath.lastIndexOf(".") + 1).toLowerCase();
+      if (extension === "png")
+        screenshotType = "png";
+      else if (extension === "jpg" || extension === "jpeg")
+        screenshotType = "jpeg";
+      else if (extension === "webp")
+        screenshotType = "webp";
+      assert(screenshotType, `Unsupported screenshot type for extension \`.${extension}\``);
+    }
+    if (!screenshotType)
+      screenshotType = "png";
+    if (options.quality) {
+      assert(screenshotType === "jpeg" || screenshotType === "webp", "options.quality is unsupported for the " + screenshotType + " screenshots");
+      assert(typeof options.quality === "number", "Expected options.quality to be a number but found " + typeof options.quality);
+      assert(Number.isInteger(options.quality), "Expected options.quality to be an integer");
+      assert(options.quality >= 0 && options.quality <= 100, "Expected options.quality to be between 0 and 100 (inclusive), got " + options.quality);
+    }
+    assert(!options.clip || !options.fullPage, "options.clip and options.fullPage are exclusive");
+    if (options.clip) {
+      assert(typeof options.clip.x === "number", "Expected options.clip.x to be a number but found " + typeof options.clip.x);
+      assert(typeof options.clip.y === "number", "Expected options.clip.y to be a number but found " + typeof options.clip.y);
+      assert(typeof options.clip.width === "number", "Expected options.clip.width to be a number but found " + typeof options.clip.width);
+      assert(typeof options.clip.height === "number", "Expected options.clip.height to be a number but found " + typeof options.clip.height);
+      assert(options.clip.width !== 0, "Expected options.clip.width not to be 0.");
+      assert(options.clip.height !== 0, "Expected options.clip.height not to be 0.");
+    }
+    return this._screenshotTaskQueue.postTask(() => this._screenshotTask(screenshotType, options));
+  }
+  async _screenshotTask(format2, options) {
+    await this._client.send("Target.activateTarget", {
+      targetId: this._target._targetId
+    });
+    let clip = options.clip ? processClip(options.clip) : void 0;
+    let { captureBeyondViewport = true } = options;
+    captureBeyondViewport = typeof captureBeyondViewport === "boolean" ? captureBeyondViewport : true;
+    if (options.fullPage) {
+      const metrics = await this._client.send("Page.getLayoutMetrics");
+      const { width, height } = metrics.cssContentSize || metrics.contentSize;
+      clip = { x: 0, y: 0, width, height, scale: 1 };
+      if (!captureBeyondViewport) {
+        const { isMobile = false, deviceScaleFactor = 1, isLandscape = false } = this._viewport || {};
+        const screenOrientation = isLandscape ? { angle: 90, type: "landscapePrimary" } : { angle: 0, type: "portraitPrimary" };
+        await this._client.send("Emulation.setDeviceMetricsOverride", {
+          mobile: isMobile,
+          width,
+          height,
+          deviceScaleFactor,
+          screenOrientation
+        });
+      }
+    }
+    const shouldSetDefaultBackground = options.omitBackground && (format2 === "png" || format2 === "webp");
+    if (shouldSetDefaultBackground) {
+      await this._setTransparentBackgroundColor();
+    }
+    const result = await this._client.send("Page.captureScreenshot", {
+      format: format2,
+      quality: options.quality,
+      clip,
+      captureBeyondViewport
+    });
+    if (shouldSetDefaultBackground) {
+      await this._resetDefaultBackgroundColor();
+    }
+    if (options.fullPage && this._viewport)
+      await this.setViewport(this._viewport);
+    const buffer = options.encoding === "base64" ? result.data : Buffer.from(result.data, "base64");
+    if (options.path) {
+      if (!isNode) {
+        throw new Error("Screenshots can only be written to a file path in a Node environment.");
+      }
+      const fs4 = await helper.importFSModule();
+      await fs4.promises.writeFile(options.path, buffer);
+    }
+    return buffer;
+    function processClip(clip2) {
+      const x = Math.round(clip2.x);
+      const y = Math.round(clip2.y);
+      const width = Math.round(clip2.width + clip2.x - x);
+      const height = Math.round(clip2.height + clip2.y - y);
+      return { x, y, width, height, scale: 1 };
+    }
+  }
+  async createPDFStream(options = {}) {
+    const { scale = 1, displayHeaderFooter = false, headerTemplate = "", footerTemplate = "", printBackground = false, landscape = false, pageRanges = "", preferCSSPageSize = false, margin = {}, omitBackground = false, timeout = 3e4 } = options;
+    let paperWidth = 8.5;
+    let paperHeight = 11;
+    if (options.format) {
+      const format2 = paperFormats[options.format.toLowerCase()];
+      assert(format2, "Unknown paper format: " + options.format);
+      paperWidth = format2.width;
+      paperHeight = format2.height;
+    } else {
+      paperWidth = convertPrintParameterToInches(options.width) || paperWidth;
+      paperHeight = convertPrintParameterToInches(options.height) || paperHeight;
+    }
+    const marginTop = convertPrintParameterToInches(margin.top) || 0;
+    const marginLeft = convertPrintParameterToInches(margin.left) || 0;
+    const marginBottom = convertPrintParameterToInches(margin.bottom) || 0;
+    const marginRight = convertPrintParameterToInches(margin.right) || 0;
+    if (omitBackground) {
+      await this._setTransparentBackgroundColor();
+    }
+    const printCommandPromise = this._client.send("Page.printToPDF", {
+      transferMode: "ReturnAsStream",
+      landscape,
+      displayHeaderFooter,
+      headerTemplate,
+      footerTemplate,
+      printBackground,
+      scale,
+      paperWidth,
+      paperHeight,
+      marginTop,
+      marginBottom,
+      marginLeft,
+      marginRight,
+      pageRanges,
+      preferCSSPageSize
+    });
+    const result = await helper.waitWithTimeout(printCommandPromise, "Page.printToPDF", timeout);
+    if (omitBackground) {
+      await this._resetDefaultBackgroundColor();
+    }
+    return helper.getReadableFromProtocolStream(this._client, result.stream);
+  }
+  async pdf(options = {}) {
+    const { path: path4 = void 0 } = options;
+    const readable = await this.createPDFStream(options);
+    return await helper.getReadableAsBuffer(readable, path4);
+  }
+  async title() {
+    return this.mainFrame().title();
+  }
+  async close(options = { runBeforeUnload: void 0 }) {
+    assert(!!this._client._connection, "Protocol error: Connection closed. Most likely the page has been closed.");
+    const runBeforeUnload = !!options.runBeforeUnload;
+    if (runBeforeUnload) {
+      await this._client.send("Page.close");
+    } else {
+      await this._client._connection.send("Target.closeTarget", {
+        targetId: this._target._targetId
+      });
+      await this._target._isClosedPromise;
+    }
+  }
+  isClosed() {
+    return this._closed;
+  }
+  get mouse() {
+    return this._mouse;
+  }
+  click(selector, options = {}) {
+    return this.mainFrame().click(selector, options);
+  }
+  focus(selector) {
+    return this.mainFrame().focus(selector);
+  }
+  hover(selector) {
+    return this.mainFrame().hover(selector);
+  }
+  select(selector, ...values) {
+    return this.mainFrame().select(selector, ...values);
+  }
+  tap(selector) {
+    return this.mainFrame().tap(selector);
+  }
+  type(selector, text, options) {
+    return this.mainFrame().type(selector, text, options);
+  }
+  waitFor(selectorOrFunctionOrTimeout, options = {}, ...args) {
+    return this.mainFrame().waitFor(selectorOrFunctionOrTimeout, options, ...args);
+  }
+  waitForTimeout(milliseconds) {
+    return this.mainFrame().waitForTimeout(milliseconds);
+  }
+  waitForSelector(selector, options = {}) {
+    return this.mainFrame().waitForSelector(selector, options);
+  }
+  waitForXPath(xpath, options = {}) {
+    return this.mainFrame().waitForXPath(xpath, options);
+  }
+  waitForFunction(pageFunction, options = {}, ...args) {
+    return this.mainFrame().waitForFunction(pageFunction, options, ...args);
+  }
+};
+var supportedMetrics = /* @__PURE__ */ new Set([
+  "Timestamp",
+  "Documents",
+  "Frames",
+  "JSEventListeners",
+  "Nodes",
+  "LayoutCount",
+  "RecalcStyleCount",
+  "LayoutDuration",
+  "RecalcStyleDuration",
+  "ScriptDuration",
+  "TaskDuration",
+  "JSHeapUsedSize",
+  "JSHeapTotalSize"
+]);
+var unitToPixels = {
+  px: 1,
+  in: 96,
+  cm: 37.8,
+  mm: 3.78
+};
+function convertPrintParameterToInches(parameter) {
+  if (typeof parameter === "undefined")
+    return void 0;
+  let pixels;
+  if (helper.isNumber(parameter)) {
+    pixels = parameter;
+  } else if (helper.isString(parameter)) {
+    const text = parameter;
+    let unit = text.substring(text.length - 2).toLowerCase();
+    let valueText = "";
+    if (unitToPixels.hasOwnProperty(unit)) {
+      valueText = text.substring(0, text.length - 2);
+    } else {
+      unit = "px";
+      valueText = text;
+    }
+    const value = Number(valueText);
+    assert(!isNaN(value), "Failed to parse parameter value: " + text);
+    pixels = value * unitToPixels[unit];
+  } else {
+    throw new Error("page.pdf() Cannot handle parameter type: " + typeof parameter);
+  }
+  return pixels / 96;
+}
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/Target.js
+var Target = class {
+  constructor(targetInfo, browserContext, sessionFactory, ignoreHTTPSErrors, defaultViewport, screenshotTaskQueue, isPageTargetCallback) {
+    this._targetInfo = targetInfo;
+    this._browserContext = browserContext;
+    this._targetId = targetInfo.targetId;
+    this._sessionFactory = sessionFactory;
+    this._ignoreHTTPSErrors = ignoreHTTPSErrors;
+    this._defaultViewport = defaultViewport;
+    this._screenshotTaskQueue = screenshotTaskQueue;
+    this._isPageTargetCallback = isPageTargetCallback;
+    this._pagePromise = null;
+    this._workerPromise = null;
+    this._initializedPromise = new Promise((fulfill) => this._initializedCallback = fulfill).then(async (success) => {
+      if (!success)
+        return false;
+      const opener = this.opener();
+      if (!opener || !opener._pagePromise || this.type() !== "page")
+        return true;
+      const openerPage = await opener._pagePromise;
+      if (!openerPage.listenerCount("popup"))
+        return true;
+      const popupPage = await this.page();
+      openerPage.emit("popup", popupPage);
+      return true;
+    });
+    this._isClosedPromise = new Promise((fulfill) => this._closedCallback = fulfill);
+    this._isInitialized = !this._isPageTargetCallback(this._targetInfo) || this._targetInfo.url !== "";
+    if (this._isInitialized)
+      this._initializedCallback(true);
+  }
+  createCDPSession() {
+    return this._sessionFactory();
+  }
+  async page() {
+    if (this._isPageTargetCallback(this._targetInfo) && !this._pagePromise) {
+      this._pagePromise = this._sessionFactory().then((client) => Page.create(client, this, this._ignoreHTTPSErrors, this._defaultViewport, this._screenshotTaskQueue));
+    }
+    return this._pagePromise;
+  }
+  async worker() {
+    if (this._targetInfo.type !== "service_worker" && this._targetInfo.type !== "shared_worker")
+      return null;
+    if (!this._workerPromise) {
+      this._workerPromise = this._sessionFactory().then((client) => new WebWorker(client, this._targetInfo.url, () => {
+      }, () => {
+      }));
+    }
+    return this._workerPromise;
+  }
+  url() {
+    return this._targetInfo.url;
+  }
+  type() {
+    const type = this._targetInfo.type;
+    if (type === "page" || type === "background_page" || type === "service_worker" || type === "shared_worker" || type === "browser" || type === "webview")
+      return type;
+    return "other";
+  }
+  browser() {
+    return this._browserContext.browser();
+  }
+  browserContext() {
+    return this._browserContext;
+  }
+  opener() {
+    const { openerId } = this._targetInfo;
+    if (!openerId)
+      return null;
+    return this.browser()._targets.get(openerId);
+  }
+  _targetInfoChanged(targetInfo) {
+    this._targetInfo = targetInfo;
+    if (!this._isInitialized && (!this._isPageTargetCallback(this._targetInfo) || this._targetInfo.url !== "")) {
+      this._isInitialized = true;
+      this._initializedCallback(true);
+      return;
+    }
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/TaskQueue.js
+var TaskQueue = class {
+  constructor() {
+    this._chain = Promise.resolve();
+  }
+  postTask(task) {
+    const result = this._chain.then(task);
+    this._chain = result.then(() => void 0, () => void 0);
+    return result;
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/Browser.js
+var WEB_PERMISSION_TO_PROTOCOL_PERMISSION = /* @__PURE__ */ new Map([
+  ["geolocation", "geolocation"],
+  ["midi", "midi"],
+  ["notifications", "notifications"],
+  ["camera", "videoCapture"],
+  ["microphone", "audioCapture"],
+  ["background-sync", "backgroundSync"],
+  ["ambient-light-sensor", "sensors"],
+  ["accelerometer", "sensors"],
+  ["gyroscope", "sensors"],
+  ["magnetometer", "sensors"],
+  ["accessibility-events", "accessibilityEvents"],
+  ["clipboard-read", "clipboardReadWrite"],
+  ["clipboard-write", "clipboardReadWrite"],
+  ["payment-handler", "paymentHandler"],
+  ["persistent-storage", "durableStorage"],
+  ["idle-detection", "idleDetection"],
+  ["midi-sysex", "midiSysex"]
+]);
+var Browser = class extends EventEmitter {
+  constructor(connection, contextIds, ignoreHTTPSErrors, defaultViewport, process2, closeCallback, targetFilterCallback, isPageTargetCallback) {
+    super();
+    this._ignoredTargets = /* @__PURE__ */ new Set();
+    this._ignoreHTTPSErrors = ignoreHTTPSErrors;
+    this._defaultViewport = defaultViewport;
+    this._process = process2;
+    this._screenshotTaskQueue = new TaskQueue();
+    this._connection = connection;
+    this._closeCallback = closeCallback || function() {
+    };
+    this._targetFilterCallback = targetFilterCallback || (() => true);
+    this._setIsPageTargetCallback(isPageTargetCallback);
+    this._defaultContext = new BrowserContext(this._connection, this);
+    this._contexts = /* @__PURE__ */ new Map();
+    for (const contextId of contextIds)
+      this._contexts.set(contextId, new BrowserContext(this._connection, this, contextId));
+    this._targets = /* @__PURE__ */ new Map();
+    this._connection.on(ConnectionEmittedEvents.Disconnected, () => this.emit("disconnected"));
+    this._connection.on("Target.targetCreated", this._targetCreated.bind(this));
+    this._connection.on("Target.targetDestroyed", this._targetDestroyed.bind(this));
+    this._connection.on("Target.targetInfoChanged", this._targetInfoChanged.bind(this));
+  }
+  static async create(connection, contextIds, ignoreHTTPSErrors, defaultViewport, process2, closeCallback, targetFilterCallback, isPageTargetCallback) {
+    const browser = new Browser(connection, contextIds, ignoreHTTPSErrors, defaultViewport, process2, closeCallback, targetFilterCallback, isPageTargetCallback);
+    await connection.send("Target.setDiscoverTargets", { discover: true });
+    return browser;
+  }
+  process() {
+    var _a;
+    return (_a = this._process) !== null && _a !== void 0 ? _a : null;
+  }
+  _setIsPageTargetCallback(isPageTargetCallback) {
+    this._isPageTargetCallback = isPageTargetCallback || ((target) => {
+      return target.type === "page" || target.type === "background_page" || target.type === "webview";
+    });
+  }
+  async createIncognitoBrowserContext(options = {}) {
+    const { proxyServer, proxyBypassList } = options;
+    const { browserContextId } = await this._connection.send("Target.createBrowserContext", {
+      proxyServer,
+      proxyBypassList: proxyBypassList && proxyBypassList.join(",")
+    });
+    const context = new BrowserContext(this._connection, this, browserContextId);
+    this._contexts.set(browserContextId, context);
+    return context;
+  }
+  browserContexts() {
+    return [this._defaultContext, ...Array.from(this._contexts.values())];
+  }
+  defaultBrowserContext() {
+    return this._defaultContext;
+  }
+  async _disposeContext(contextId) {
+    if (!contextId) {
+      return;
+    }
+    await this._connection.send("Target.disposeBrowserContext", {
+      browserContextId: contextId
+    });
+    this._contexts.delete(contextId);
+  }
+  async _targetCreated(event) {
+    var _a;
+    const targetInfo = event.targetInfo;
+    const { browserContextId } = targetInfo;
+    const context = browserContextId && this._contexts.has(browserContextId) ? this._contexts.get(browserContextId) : this._defaultContext;
+    if (!context) {
+      throw new Error("Missing browser context");
+    }
+    const shouldAttachToTarget = this._targetFilterCallback(targetInfo);
+    if (!shouldAttachToTarget) {
+      this._ignoredTargets.add(targetInfo.targetId);
+      return;
+    }
+    const target = new Target(targetInfo, context, () => this._connection.createSession(targetInfo), this._ignoreHTTPSErrors, (_a = this._defaultViewport) !== null && _a !== void 0 ? _a : null, this._screenshotTaskQueue, this._isPageTargetCallback);
+    assert(!this._targets.has(event.targetInfo.targetId), "Target should not exist before targetCreated");
+    this._targets.set(event.targetInfo.targetId, target);
+    if (await target._initializedPromise) {
+      this.emit("targetcreated", target);
+      context.emit("targetcreated", target);
+    }
+  }
+  async _targetDestroyed(event) {
+    if (this._ignoredTargets.has(event.targetId))
+      return;
+    const target = this._targets.get(event.targetId);
+    if (!target) {
+      throw new Error(`Missing target in _targetDestroyed (id = ${event.targetId})`);
+    }
+    target._initializedCallback(false);
+    this._targets.delete(event.targetId);
+    target._closedCallback();
+    if (await target._initializedPromise) {
+      this.emit("targetdestroyed", target);
+      target.browserContext().emit("targetdestroyed", target);
+    }
+  }
+  _targetInfoChanged(event) {
+    if (this._ignoredTargets.has(event.targetInfo.targetId))
+      return;
+    const target = this._targets.get(event.targetInfo.targetId);
+    if (!target) {
+      throw new Error(`Missing target in targetInfoChanged (id = ${event.targetInfo.targetId})`);
+    }
+    const previousURL = target.url();
+    const wasInitialized = target._isInitialized;
+    target._targetInfoChanged(event.targetInfo);
+    if (wasInitialized && previousURL !== target.url()) {
+      this.emit("targetchanged", target);
+      target.browserContext().emit("targetchanged", target);
+    }
+  }
+  wsEndpoint() {
+    return this._connection.url();
+  }
+  async newPage() {
+    return this._defaultContext.newPage();
+  }
+  async _createPageInContext(contextId) {
+    const { targetId } = await this._connection.send("Target.createTarget", {
+      url: "about:blank",
+      browserContextId: contextId || void 0
+    });
+    const target = this._targets.get(targetId);
+    if (!target) {
+      throw new Error(`Missing target for page (id = ${targetId})`);
+    }
+    const initialized = await target._initializedPromise;
+    if (!initialized) {
+      throw new Error(`Failed to create target for page (id = ${targetId})`);
+    }
+    const page = await target.page();
+    if (!page) {
+      throw new Error(`Failed to create a page for context (id = ${contextId})`);
+    }
+    return page;
+  }
+  targets() {
+    return Array.from(this._targets.values()).filter((target) => target._isInitialized);
+  }
+  target() {
+    const browserTarget = this.targets().find((target) => target.type() === "browser");
+    if (!browserTarget) {
+      throw new Error("Browser target is not found");
+    }
+    return browserTarget;
+  }
+  async waitForTarget(predicate, options = {}) {
+    const { timeout = 3e4 } = options;
+    let resolve3;
+    const targetPromise = new Promise((x) => resolve3 = x);
+    this.on("targetcreated", check);
+    this.on("targetchanged", check);
+    try {
+      if (!timeout)
+        return await targetPromise;
+      return await helper.waitWithTimeout(Promise.race([
+        targetPromise,
+        (async () => {
+          for (const target of this.targets()) {
+            if (await predicate(target)) {
+              return target;
+            }
+          }
+          await targetPromise;
+        })()
+      ]), "target", timeout);
+    } finally {
+      this.removeListener("targetcreated", check);
+      this.removeListener("targetchanged", check);
+    }
+    async function check(target) {
+      if (await predicate(target))
+        resolve3(target);
+    }
+  }
+  async pages() {
+    const contextPages = await Promise.all(this.browserContexts().map((context) => context.pages()));
+    return contextPages.reduce((acc, x) => acc.concat(x), []);
+  }
+  async version() {
+    const version = await this._getVersion();
+    return version.product;
+  }
+  async userAgent() {
+    const version = await this._getVersion();
+    return version.userAgent;
+  }
+  async close() {
+    await this._closeCallback.call(null);
+    this.disconnect();
+  }
+  disconnect() {
+    this._connection.dispose();
+  }
+  isConnected() {
+    return !this._connection._closed;
+  }
+  _getVersion() {
+    return this._connection.send("Browser.getVersion");
+  }
+};
+var BrowserContext = class extends EventEmitter {
+  constructor(connection, browser, contextId) {
+    super();
+    this._connection = connection;
+    this._browser = browser;
+    this._id = contextId;
+  }
+  targets() {
+    return this._browser.targets().filter((target) => target.browserContext() === this);
+  }
+  waitForTarget(predicate, options = {}) {
+    return this._browser.waitForTarget((target) => target.browserContext() === this && predicate(target), options);
+  }
+  async pages() {
+    const pages = await Promise.all(this.targets().filter((target) => target.type() === "page").map((target) => target.page()));
+    return pages.filter((page) => !!page);
+  }
+  isIncognito() {
+    return !!this._id;
+  }
+  async overridePermissions(origin, permissions) {
+    const protocolPermissions = permissions.map((permission) => {
+      const protocolPermission = WEB_PERMISSION_TO_PROTOCOL_PERMISSION.get(permission);
+      if (!protocolPermission)
+        throw new Error("Unknown permission: " + permission);
+      return protocolPermission;
+    });
+    await this._connection.send("Browser.grantPermissions", {
+      origin,
+      browserContextId: this._id || void 0,
+      permissions: protocolPermissions
+    });
+  }
+  async clearPermissionOverrides() {
+    await this._connection.send("Browser.resetPermissions", {
+      browserContextId: this._id || void 0
+    });
+  }
+  newPage() {
+    return this._browser._createPageInContext(this._id);
+  }
+  browser() {
+    return this._browser;
+  }
+  async close() {
+    assert(this._id, "Non-incognito profiles cannot be closed!");
+    await this._browser._disposeContext(this._id);
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/fetch.js
+var getFetch = async () => {
+  return isNode ? (await Promise.resolve().then(() => __toESM(require_node_ponyfill(), 1))).fetch : globalThis.fetch;
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/BrowserConnector.js
+var getWebSocketTransportClass = async () => {
+  return isNode ? (await Promise.resolve().then(() => (init_NodeWebSocketTransport(), NodeWebSocketTransport_exports))).NodeWebSocketTransport : (await Promise.resolve().then(() => (init_BrowserWebSocketTransport(), BrowserWebSocketTransport_exports))).BrowserWebSocketTransport;
+};
+var connectToBrowser = async (options) => {
+  const { browserWSEndpoint, browserURL, ignoreHTTPSErrors = false, defaultViewport = { width: 800, height: 600 }, transport, slowMo = 0, targetFilter, isPageTarget } = options;
+  assert(Number(!!browserWSEndpoint) + Number(!!browserURL) + Number(!!transport) === 1, "Exactly one of browserWSEndpoint, browserURL or transport must be passed to puppeteer.connect");
+  let connection = null;
+  if (transport) {
+    connection = new Connection("", transport, slowMo);
+  } else if (browserWSEndpoint) {
+    const WebSocketClass = await getWebSocketTransportClass();
+    const connectionTransport = await WebSocketClass.create(browserWSEndpoint);
+    connection = new Connection(browserWSEndpoint, connectionTransport, slowMo);
+  } else if (browserURL) {
+    const connectionURL = await getWSEndpoint(browserURL);
+    const WebSocketClass = await getWebSocketTransportClass();
+    const connectionTransport = await WebSocketClass.create(connectionURL);
+    connection = new Connection(connectionURL, connectionTransport, slowMo);
+  }
+  const { browserContextIds } = await connection.send("Target.getBrowserContexts");
+  return Browser.create(connection, browserContextIds, ignoreHTTPSErrors, defaultViewport, null, () => connection.send("Browser.close").catch(debugError), targetFilter, isPageTarget);
+};
+async function getWSEndpoint(browserURL) {
+  const endpointURL = new URL("/json/version", browserURL);
+  const fetch = await getFetch();
+  try {
+    const result = await fetch(endpointURL.toString(), {
+      method: "GET"
+    });
+    if (!result.ok) {
+      throw new Error(`HTTP ${result.statusText}`);
+    }
+    const data = await result.json();
+    return data.webSocketDebuggerUrl;
+  } catch (error) {
+    error.message = `Failed to fetch browser webSocket URL from ${endpointURL}: ` + error.message;
+    throw error;
+  }
+}
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/NetworkConditions.js
+var networkConditions = {
+  "Slow 3G": {
+    download: 500 * 1e3 / 8 * 0.8,
+    upload: 500 * 1e3 / 8 * 0.8,
+    latency: 400 * 5
+  },
+  "Fast 3G": {
+    download: 1.6 * 1e3 * 1e3 / 8 * 0.9,
+    upload: 750 * 1e3 / 8 * 0.9,
+    latency: 150 * 3.75
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/common/Puppeteer.js
+var Puppeteer = class {
+  constructor(settings) {
+    this._changedProduct = false;
+    this._isPuppeteerCore = settings.isPuppeteerCore;
+  }
+  connect(options) {
+    return connectToBrowser(options);
+  }
+  get devices() {
+    return devicesMap;
+  }
+  get errors() {
+    return puppeteerErrors;
+  }
+  get networkConditions() {
+    return networkConditions;
+  }
+  registerCustomQueryHandler(name, queryHandler) {
+    registerCustomQueryHandler(name, queryHandler);
+  }
+  unregisterCustomQueryHandler(name) {
+    unregisterCustomQueryHandler(name);
+  }
+  customQueryHandlerNames() {
+    return customQueryHandlerNames();
+  }
+  clearCustomQueryHandlers() {
+    clearCustomQueryHandlers();
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/node/BrowserFetcher.js
+var import_extract_zip = __toESM(require_extract_zip(), 1);
+import * as os from "os";
+import * as fs from "fs";
+import * as path from "path";
+import * as util from "util";
+import * as childProcess from "child_process";
+import * as https from "https";
+import * as http from "http";
+var import_rimraf = __toESM(require_rimraf(), 1);
+var import_https_proxy_agent = __toESM(require_dist(), 1);
+var import_proxy_from_env = __toESM(require_proxy_from_env(), 1);
+import { promisify } from "util";
+import * as URL2 from "url";
+var import_tar_fs = __toESM(require_tar_fs(), 1);
+var import_unbzip2_stream = __toESM(require_unbzip2_stream(), 1);
+var { PUPPETEER_EXPERIMENTAL_CHROMIUM_MAC_ARM } = process.env;
+var debugFetcher = debug("puppeteer:fetcher");
+var downloadURLs = {
+  chrome: {
+    linux: "%s/chromium-browser-snapshots/Linux_x64/%d/%s.zip",
+    mac: "%s/chromium-browser-snapshots/Mac/%d/%s.zip",
+    mac_arm: "%s/chromium-browser-snapshots/Mac_Arm/%d/%s.zip",
+    win32: "%s/chromium-browser-snapshots/Win/%d/%s.zip",
+    win64: "%s/chromium-browser-snapshots/Win_x64/%d/%s.zip"
+  },
+  firefox: {
+    linux: "%s/firefox-%s.en-US.%s-x86_64.tar.bz2",
+    mac: "%s/firefox-%s.en-US.%s.dmg",
+    win32: "%s/firefox-%s.en-US.%s.zip",
+    win64: "%s/firefox-%s.en-US.%s.zip"
+  }
+};
+var browserConfig = {
+  chrome: {
+    host: "https://storage.googleapis.com",
+    destination: ".local-chromium"
+  },
+  firefox: {
+    host: "https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central",
+    destination: ".local-firefox"
+  }
+};
+function archiveName(product, platform3, revision) {
+  if (product === "chrome") {
+    if (platform3 === "linux")
+      return "chrome-linux";
+    if (platform3 === "mac" || platform3 === "mac_arm")
+      return "chrome-mac";
+    if (platform3 === "win32" || platform3 === "win64") {
+      return parseInt(revision, 10) > 591479 ? "chrome-win" : "chrome-win32";
+    }
+  } else if (product === "firefox") {
+    return platform3;
+  }
+}
+function downloadURL(product, platform3, host, revision) {
+  const url = util.format(downloadURLs[product][platform3], host, revision, archiveName(product, platform3, revision));
+  return url;
+}
+function handleArm64() {
+  fs.stat("/usr/bin/chromium-browser", function(err, stats) {
+    if (stats === void 0) {
+      fs.stat("/usr/bin/chromium", function(err2, stats2) {
+        if (stats2 === void 0) {
+          console.error("The chromium binary is not available for arm64.\nIf you are on Ubuntu, you can install with: \n\n sudo apt install chromium\n\n\n sudo apt install chromium-browser\n");
+          throw new Error();
+        }
+      });
+    }
+  });
+}
+var readdirAsync = promisify(fs.readdir.bind(fs));
+var mkdirAsync = promisify(fs.mkdir.bind(fs));
+var unlinkAsync = promisify(fs.unlink.bind(fs));
+var chmodAsync = promisify(fs.chmod.bind(fs));
+function existsAsync(filePath) {
+  return new Promise((resolve3) => {
+    fs.access(filePath, (err) => resolve3(!err));
+  });
+}
+var BrowserFetcher = class {
+  constructor(projectRoot, options = {}) {
+    this._product = (options.product || "chrome").toLowerCase();
+    assert(this._product === "chrome" || this._product === "firefox", `Unknown product: "${options.product}"`);
+    this._downloadsFolder = options.path || path.join(projectRoot, browserConfig[this._product].destination);
+    this._downloadHost = options.host || browserConfig[this._product].host;
+    this.setPlatform(options.platform, this._product);
+    assert(downloadURLs[this._product][this._platform], "Unsupported platform: " + this._platform);
+  }
+  setPlatform(platformFromOptions, productFromOptions) {
+    if (platformFromOptions) {
+      this._platform = platformFromOptions;
+      return;
+    }
+    const platform3 = os.platform();
+    if (platform3 === "darwin") {
+      if (productFromOptions === "chrome") {
+        this._platform = os.arch() === "arm64" && PUPPETEER_EXPERIMENTAL_CHROMIUM_MAC_ARM ? "mac_arm" : "mac";
+      } else if (productFromOptions === "firefox") {
+        this._platform = "mac";
+      }
+    } else if (platform3 === "linux")
+      this._platform = "linux";
+    else if (platform3 === "win32")
+      this._platform = os.arch() === "x64" ? "win64" : "win32";
+    else
+      assert(this._platform, "Unsupported platform: " + platform3);
+  }
+  platform() {
+    return this._platform;
+  }
+  product() {
+    return this._product;
+  }
+  host() {
+    return this._downloadHost;
+  }
+  canDownload(revision) {
+    const url = downloadURL(this._product, this._platform, this._downloadHost, revision);
+    return new Promise((resolve3) => {
+      const request3 = httpRequest(url, "HEAD", (response) => {
+        resolve3(response.statusCode === 200);
+      }, false);
+      request3.on("error", (error) => {
+        console.error(error);
+        resolve3(false);
+      });
+    });
+  }
+  async download(revision, progressCallback = () => {
+  }) {
+    const url = downloadURL(this._product, this._platform, this._downloadHost, revision);
+    const fileName = url.split("/").pop();
+    const archivePath = path.join(this._downloadsFolder, fileName);
+    const outputPath = this._getFolderPath(revision);
+    if (await existsAsync(outputPath))
+      return this.revisionInfo(revision);
+    if (!await existsAsync(this._downloadsFolder))
+      await mkdirAsync(this._downloadsFolder);
+    if (os.platform() !== "darwin" && os.arch() === "arm64") {
+      handleArm64();
+      return;
+    }
+    try {
+      await downloadFile(url, archivePath, progressCallback);
+      await install(archivePath, outputPath);
+    } finally {
+      if (await existsAsync(archivePath))
+        await unlinkAsync(archivePath);
+    }
+    const revisionInfo = this.revisionInfo(revision);
+    if (revisionInfo)
+      await chmodAsync(revisionInfo.executablePath, 493);
+    return revisionInfo;
+  }
+  async localRevisions() {
+    if (!await existsAsync(this._downloadsFolder))
+      return [];
+    const fileNames = await readdirAsync(this._downloadsFolder);
+    return fileNames.map((fileName) => parseFolderPath(this._product, fileName)).filter((entry) => entry && entry.platform === this._platform).map((entry) => entry.revision);
+  }
+  async remove(revision) {
+    const folderPath = this._getFolderPath(revision);
+    assert(await existsAsync(folderPath), `Failed to remove: revision ${revision} is not downloaded`);
+    await new Promise((fulfill) => (0, import_rimraf.default)(folderPath, fulfill));
+  }
+  revisionInfo(revision) {
+    const folderPath = this._getFolderPath(revision);
+    let executablePath = "";
+    if (this._product === "chrome") {
+      if (this._platform === "mac" || this._platform === "mac_arm")
+        executablePath = path.join(folderPath, archiveName(this._product, this._platform, revision), "Chromium.app", "Contents", "MacOS", "Chromium");
+      else if (this._platform === "linux")
+        executablePath = path.join(folderPath, archiveName(this._product, this._platform, revision), "chrome");
+      else if (this._platform === "win32" || this._platform === "win64")
+        executablePath = path.join(folderPath, archiveName(this._product, this._platform, revision), "chrome.exe");
+      else
+        throw new Error("Unsupported platform: " + this._platform);
+    } else if (this._product === "firefox") {
+      if (this._platform === "mac" || this._platform === "mac_arm")
+        executablePath = path.join(folderPath, "Firefox Nightly.app", "Contents", "MacOS", "firefox");
+      else if (this._platform === "linux")
+        executablePath = path.join(folderPath, "firefox", "firefox");
+      else if (this._platform === "win32" || this._platform === "win64")
+        executablePath = path.join(folderPath, "firefox", "firefox.exe");
+      else
+        throw new Error("Unsupported platform: " + this._platform);
+    } else
+      throw new Error("Unsupported product: " + this._product);
+    const url = downloadURL(this._product, this._platform, this._downloadHost, revision);
+    const local = fs.existsSync(folderPath);
+    debugFetcher({
+      revision,
+      executablePath,
+      folderPath,
+      local,
+      url,
+      product: this._product
+    });
+    return {
+      revision,
+      executablePath,
+      folderPath,
+      local,
+      url,
+      product: this._product
+    };
+  }
+  _getFolderPath(revision) {
+    return path.resolve(this._downloadsFolder, `${this._platform}-${revision}`);
+  }
+};
+function parseFolderPath(product, folderPath) {
+  const name = path.basename(folderPath);
+  const splits = name.split("-");
+  if (splits.length !== 2)
+    return null;
+  const [platform3, revision] = splits;
+  if (!downloadURLs[product][platform3])
+    return null;
+  return { product, platform: platform3, revision };
+}
+function downloadFile(url, destinationPath, progressCallback) {
+  debugFetcher(`Downloading binary from ${url}`);
+  let fulfill, reject;
+  let downloadedBytes = 0;
+  let totalBytes = 0;
+  const promise = new Promise((x, y) => {
+    fulfill = x;
+    reject = y;
+  });
+  const request3 = httpRequest(url, "GET", (response) => {
+    if (response.statusCode !== 200) {
+      const error = new Error(`Download failed: server returned code ${response.statusCode}. URL: ${url}`);
+      response.resume();
+      reject(error);
+      return;
+    }
+    const file = fs.createWriteStream(destinationPath);
+    file.on("finish", () => fulfill());
+    file.on("error", (error) => reject(error));
+    response.pipe(file);
+    totalBytes = parseInt(response.headers["content-length"], 10);
+    if (progressCallback)
+      response.on("data", onData);
+  });
+  request3.on("error", (error) => reject(error));
+  return promise;
+  function onData(chunk) {
+    downloadedBytes += chunk.length;
+    progressCallback(downloadedBytes, totalBytes);
+  }
+}
+function install(archivePath, folderPath) {
+  debugFetcher(`Installing ${archivePath} to ${folderPath}`);
+  if (archivePath.endsWith(".zip"))
+    return (0, import_extract_zip.default)(archivePath, { dir: folderPath });
+  else if (archivePath.endsWith(".tar.bz2"))
+    return extractTar(archivePath, folderPath);
+  else if (archivePath.endsWith(".dmg"))
+    return mkdirAsync(folderPath).then(() => installDMG(archivePath, folderPath));
+  else
+    throw new Error(`Unsupported archive format: ${archivePath}`);
+}
+function extractTar(tarPath, folderPath) {
+  return new Promise((fulfill, reject) => {
+    const tarStream = import_tar_fs.default.extract(folderPath);
+    tarStream.on("error", reject);
+    tarStream.on("finish", fulfill);
+    const readStream = fs.createReadStream(tarPath);
+    readStream.pipe((0, import_unbzip2_stream.default)()).pipe(tarStream);
+  });
+}
+function installDMG(dmgPath, folderPath) {
+  let mountPath;
+  function mountAndCopy(fulfill, reject) {
+    const mountCommand = `hdiutil attach -nobrowse -noautoopen "${dmgPath}"`;
+    childProcess.exec(mountCommand, (err, stdout) => {
+      if (err)
+        return reject(err);
+      const volumes = stdout.match(/\/Volumes\/(.*)/m);
+      if (!volumes)
+        return reject(new Error(`Could not find volume path in ${stdout}`));
+      mountPath = volumes[0];
+      readdirAsync(mountPath).then((fileNames) => {
+        const appName = fileNames.find((item) => typeof item === "string" && item.endsWith(".app"));
+        if (!appName)
+          return reject(new Error(`Cannot find app in ${mountPath}`));
+        const copyPath = path.join(mountPath, appName);
+        debugFetcher(`Copying ${copyPath} to ${folderPath}`);
+        childProcess.exec(`cp -R "${copyPath}" "${folderPath}"`, (err2) => {
+          if (err2)
+            reject(err2);
+          else
+            fulfill();
+        });
+      }).catch(reject);
+    });
+  }
+  function unmount() {
+    if (!mountPath)
+      return;
+    const unmountCommand = `hdiutil detach "${mountPath}" -quiet`;
+    debugFetcher(`Unmounting ${mountPath}`);
+    childProcess.exec(unmountCommand, (err) => {
+      if (err)
+        console.error(`Error unmounting dmg: ${err}`);
+    });
+  }
+  return new Promise(mountAndCopy).catch((error) => {
+    console.error(error);
+  }).finally(unmount);
+}
+function httpRequest(url, method, response, keepAlive = true) {
+  const urlParsed = URL2.parse(url);
+  let options = __spreadProps(__spreadValues({}, urlParsed), {
+    method,
+    headers: keepAlive ? {
+      Connection: "keep-alive"
+    } : void 0
+  });
+  const proxyURL = (0, import_proxy_from_env.getProxyForUrl)(url);
+  if (proxyURL) {
+    if (url.startsWith("http:")) {
+      const proxy = URL2.parse(proxyURL);
+      options = {
+        path: options.href,
+        host: proxy.hostname,
+        port: proxy.port
+      };
+    } else {
+      const parsedProxyURL = URL2.parse(proxyURL);
+      const proxyOptions = __spreadProps(__spreadValues({}, parsedProxyURL), {
+        secureProxy: parsedProxyURL.protocol === "https:"
+      });
+      options.agent = (0, import_https_proxy_agent.default)(proxyOptions);
+      options.rejectUnauthorized = false;
+    }
+  }
+  const requestCallback = (res) => {
+    if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location)
+      httpRequest(res.headers.location, method, response);
+    else
+      response(res);
+  };
+  const request3 = options.protocol === "https:" ? https.request(options, requestCallback) : http.request(options, requestCallback);
+  request3.end();
+  return request3;
+}
+
+// node_modules/puppeteer/lib/esm/puppeteer/node/Launcher.js
+import * as os2 from "os";
+import * as path3 from "path";
+import * as fs3 from "fs";
+
+// node_modules/puppeteer/lib/esm/puppeteer/node/BrowserRunner.js
+var import_rimraf2 = __toESM(require_rimraf(), 1);
+import * as childProcess2 from "child_process";
+import * as fs2 from "fs";
+import * as path2 from "path";
+import * as readline from "readline";
+import { promisify as promisify2 } from "util";
+init_NodeWebSocketTransport();
+
+// node_modules/puppeteer/lib/esm/puppeteer/node/PipeTransport.js
+var PipeTransport = class {
+  constructor(pipeWrite, pipeRead) {
+    this._pipeWrite = pipeWrite;
+    this._pendingMessage = "";
+    this._eventListeners = [
+      helper.addEventListener(pipeRead, "data", (buffer) => this._dispatch(buffer)),
+      helper.addEventListener(pipeRead, "close", () => {
+        if (this.onclose)
+          this.onclose.call(null);
+      }),
+      helper.addEventListener(pipeRead, "error", debugError),
+      helper.addEventListener(pipeWrite, "error", debugError)
+    ];
+    this.onmessage = null;
+    this.onclose = null;
+  }
+  send(message) {
+    this._pipeWrite.write(message);
+    this._pipeWrite.write("\0");
+  }
+  _dispatch(buffer) {
+    let end = buffer.indexOf("\0");
+    if (end === -1) {
+      this._pendingMessage += buffer.toString();
+      return;
+    }
+    const message = this._pendingMessage + buffer.toString(void 0, 0, end);
+    if (this.onmessage)
+      this.onmessage.call(null, message);
+    let start = end + 1;
+    end = buffer.indexOf("\0", start);
+    while (end !== -1) {
+      if (this.onmessage)
+        this.onmessage.call(null, buffer.toString(void 0, start, end));
+      start = end + 1;
+      end = buffer.indexOf("\0", start);
+    }
+    this._pendingMessage = buffer.toString(void 0, start);
+  }
+  close() {
+    this._pipeWrite = null;
+    helper.removeEventListeners(this._eventListeners);
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/node/BrowserRunner.js
+var removeFolderAsync = promisify2(import_rimraf2.default);
+var renameAsync = promisify2(fs2.rename);
+var unlinkAsync2 = promisify2(fs2.unlink);
+var debugLauncher = debug("puppeteer:launcher");
+var PROCESS_ERROR_EXPLANATION = `Puppeteer was unable to kill the process which ran the browser binary.
+This means that, on future Puppeteer launches, Puppeteer might not be able to launch the browser.
+Please check your open processes and ensure that the browser processes that Puppeteer launched have been killed.
+If you think this is a bug, please report it on the Puppeteer issue tracker.`;
+var BrowserRunner = class {
+  constructor(product, executablePath, processArguments, userDataDir, isTempUserDataDir) {
+    this.proc = null;
+    this.connection = null;
+    this._closed = true;
+    this._listeners = [];
+    this._product = product;
+    this._executablePath = executablePath;
+    this._processArguments = processArguments;
+    this._userDataDir = userDataDir;
+    this._isTempUserDataDir = isTempUserDataDir;
+  }
+  start(options) {
+    const { handleSIGINT, handleSIGTERM, handleSIGHUP, dumpio, env, pipe } = options;
+    let stdio;
+    if (pipe) {
+      if (dumpio)
+        stdio = ["ignore", "pipe", "pipe", "pipe", "pipe"];
+      else
+        stdio = ["ignore", "ignore", "ignore", "pipe", "pipe"];
+    } else {
+      if (dumpio)
+        stdio = ["pipe", "pipe", "pipe"];
+      else
+        stdio = ["pipe", "ignore", "pipe"];
+    }
+    assert(!this.proc, "This process has previously been started.");
+    debugLauncher(`Calling ${this._executablePath} ${this._processArguments.join(" ")}`);
+    this.proc = childProcess2.spawn(this._executablePath, this._processArguments, {
+      detached: process.platform !== "win32",
+      env,
+      stdio
+    });
+    if (dumpio) {
+      this.proc.stderr.pipe(process.stderr);
+      this.proc.stdout.pipe(process.stdout);
+    }
+    this._closed = false;
+    this._processClosing = new Promise((fulfill, reject) => {
+      this.proc.once("exit", async () => {
+        this._closed = true;
+        if (this._isTempUserDataDir) {
+          try {
+            await removeFolderAsync(this._userDataDir);
+            fulfill();
+          } catch (error) {
+            debugError(error);
+            reject(error);
+          }
+        } else {
+          if (this._product === "firefox") {
+            try {
+              await unlinkAsync2(path2.join(this._userDataDir, "user.js"));
+              const prefsBackupPath = path2.join(this._userDataDir, "prefs.js.puppeteer");
+              if (fs2.existsSync(prefsBackupPath)) {
+                const prefsPath = path2.join(this._userDataDir, "prefs.js");
+                await unlinkAsync2(prefsPath);
+                await renameAsync(prefsBackupPath, prefsPath);
+              }
+            } catch (error) {
+              debugError(error);
+              reject(error);
+            }
+          }
+          fulfill();
+        }
+      });
+    });
+    this._listeners = [
+      helper.addEventListener(process, "exit", this.kill.bind(this))
+    ];
+    if (handleSIGINT)
+      this._listeners.push(helper.addEventListener(process, "SIGINT", () => {
+        this.kill();
+        process.exit(130);
+      }));
+    if (handleSIGTERM)
+      this._listeners.push(helper.addEventListener(process, "SIGTERM", this.close.bind(this)));
+    if (handleSIGHUP)
+      this._listeners.push(helper.addEventListener(process, "SIGHUP", this.close.bind(this)));
+  }
+  close() {
+    if (this._closed)
+      return Promise.resolve();
+    if (this._isTempUserDataDir) {
+      this.kill();
+    } else if (this.connection) {
+      this.connection.send("Browser.close").catch((error) => {
+        debugError(error);
+        this.kill();
+      });
+    }
+    helper.removeEventListeners(this._listeners);
+    return this._processClosing;
+  }
+  kill() {
+    if (this.proc && this.proc.pid && pidExists(this.proc.pid)) {
+      try {
+        if (process.platform === "win32") {
+          childProcess2.exec(`taskkill /pid ${this.proc.pid} /T /F`, (error) => {
+            if (error) {
+              this.proc.kill();
+            }
+          });
+        } else {
+          const processGroupId = -this.proc.pid;
+          process.kill(processGroupId, "SIGKILL");
+        }
+      } catch (error) {
+        throw new Error(`${PROCESS_ERROR_EXPLANATION}
+Error cause: ${error.stack}`);
+      }
+    }
+    try {
+      if (this._isTempUserDataDir) {
+        import_rimraf2.default.sync(this._userDataDir);
+      }
+    } catch (error) {
+    }
+    helper.removeEventListeners(this._listeners);
+  }
+  async setupConnection(options) {
+    const { usePipe, timeout, slowMo, preferredRevision } = options;
+    if (!usePipe) {
+      const browserWSEndpoint = await waitForWSEndpoint(this.proc, timeout, preferredRevision);
+      const transport = await NodeWebSocketTransport.create(browserWSEndpoint);
+      this.connection = new Connection(browserWSEndpoint, transport, slowMo);
+    } else {
+      const { 3: pipeWrite, 4: pipeRead } = this.proc.stdio;
+      const transport = new PipeTransport(pipeWrite, pipeRead);
+      this.connection = new Connection("", transport, slowMo);
+    }
+    return this.connection;
+  }
+};
+function waitForWSEndpoint(browserProcess, timeout, preferredRevision) {
+  return new Promise((resolve3, reject) => {
+    const rl = readline.createInterface({ input: browserProcess.stderr });
+    let stderr = "";
+    const listeners = [
+      helper.addEventListener(rl, "line", onLine),
+      helper.addEventListener(rl, "close", () => onClose()),
+      helper.addEventListener(browserProcess, "exit", () => onClose()),
+      helper.addEventListener(browserProcess, "error", (error) => onClose(error))
+    ];
+    const timeoutId = timeout ? setTimeout(onTimeout, timeout) : 0;
+    function onClose(error) {
+      cleanup();
+      reject(new Error([
+        "Failed to launch the browser process!" + (error ? " " + error.message : ""),
+        stderr,
+        "",
+        "TROUBLESHOOTING: https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md",
+        ""
+      ].join("\n")));
+    }
+    function onTimeout() {
+      cleanup();
+      reject(new TimeoutError(`Timed out after ${timeout} ms while trying to connect to the browser! Only Chrome at revision r${preferredRevision} is guaranteed to work.`));
+    }
+    function onLine(line) {
+      stderr += line + "\n";
+      const match = line.match(/^DevTools listening on (ws:\/\/.*)$/);
+      if (!match)
+        return;
+      cleanup();
+      resolve3(match[1]);
+    }
+    function cleanup() {
+      if (timeoutId)
+        clearTimeout(timeoutId);
+      helper.removeEventListeners(listeners);
+    }
+  });
+}
+function pidExists(pid) {
+  try {
+    return process.kill(pid, 0);
+  } catch (error) {
+    if (error && error.code && error.code === "ESRCH") {
+      return false;
+    } else {
+      throw error;
+    }
+  }
+}
+
+// node_modules/puppeteer/lib/esm/puppeteer/node/Launcher.js
+import { promisify as promisify3 } from "util";
+var copyFileAsync = promisify3(fs3.copyFile);
+var mkdtempAsync = promisify3(fs3.mkdtemp);
+var writeFileAsync = promisify3(fs3.writeFile);
+var tmpDir = () => process.env.PUPPETEER_TMP_DIR || os2.tmpdir();
+var ChromeLauncher = class {
+  constructor(projectRoot, preferredRevision, isPuppeteerCore) {
+    this._projectRoot = projectRoot;
+    this._preferredRevision = preferredRevision;
+    this._isPuppeteerCore = isPuppeteerCore;
+  }
+  async launch(options = {}) {
+    var _a;
+    const { ignoreDefaultArgs = false, args = [], dumpio = false, channel = null, executablePath = null, pipe = false, env = process.env, handleSIGINT = true, handleSIGTERM = true, handleSIGHUP = true, ignoreHTTPSErrors = false, defaultViewport = { width: 800, height: 600 }, slowMo = 0, timeout = 3e4, waitForInitialPage = true, debuggingPort = null } = options;
+    const chromeArguments = [];
+    if (!ignoreDefaultArgs)
+      chromeArguments.push(...this.defaultArgs(options));
+    else if (Array.isArray(ignoreDefaultArgs))
+      chromeArguments.push(...this.defaultArgs(options).filter((arg) => !ignoreDefaultArgs.includes(arg)));
+    else
+      chromeArguments.push(...args);
+    if (!chromeArguments.some((argument) => argument.startsWith("--remote-debugging-"))) {
+      if (pipe) {
+        assert(debuggingPort === null, "Browser should be launched with either pipe or debugging port - not both.");
+        chromeArguments.push("--remote-debugging-pipe");
+      } else {
+        chromeArguments.push(`--remote-debugging-port=${debuggingPort || 0}`);
+      }
+    }
+    let userDataDir;
+    let isTempUserDataDir = true;
+    const userDataDirIndex = chromeArguments.findIndex((arg) => {
+      return arg.startsWith("--user-data-dir");
+    });
+    if (userDataDirIndex !== -1) {
+      userDataDir = chromeArguments[userDataDirIndex].split("=")[1];
+      isTempUserDataDir = false;
+    } else {
+      userDataDir = await mkdtempAsync(path3.join(tmpDir(), "puppeteer_dev_chrome_profile-"));
+      chromeArguments.push(`--user-data-dir=${userDataDir}`);
+    }
+    let chromeExecutable = executablePath;
+    if (channel) {
+      assert(!executablePath, "`executablePath` must not be specified when `channel` is given.");
+      chromeExecutable = executablePathForChannel(channel);
+    } else if (!executablePath) {
+      const { missingText, executablePath: executablePath2 } = resolveExecutablePath(this);
+      if (missingText)
+        throw new Error(missingText);
+      chromeExecutable = executablePath2;
+    }
+    if (!chromeExecutable) {
+      throw new Error("chromeExecutable is not found.");
+    }
+    const usePipe = chromeArguments.includes("--remote-debugging-pipe");
+    const runner = new BrowserRunner(this.product, chromeExecutable, chromeArguments, userDataDir, isTempUserDataDir);
+    runner.start({
+      handleSIGHUP,
+      handleSIGTERM,
+      handleSIGINT,
+      dumpio,
+      env,
+      pipe: usePipe
+    });
+    let browser;
+    try {
+      const connection = await runner.setupConnection({
+        usePipe,
+        timeout,
+        slowMo,
+        preferredRevision: this._preferredRevision
+      });
+      browser = await Browser.create(connection, [], ignoreHTTPSErrors, defaultViewport, (_a = runner.proc) !== null && _a !== void 0 ? _a : void 0, runner.close.bind(runner));
+    } catch (error) {
+      runner.kill();
+      throw error;
+    }
+    if (waitForInitialPage) {
+      try {
+        await browser.waitForTarget((t) => t.type() === "page", { timeout });
+      } catch (error) {
+        await browser.close();
+        throw error;
+      }
+    }
+    return browser;
+  }
+  defaultArgs(options = {}) {
+    const chromeArguments = [
+      "--allow-pre-commit-input",
+      "--disable-background-networking",
+      "--enable-features=NetworkService,NetworkServiceInProcess",
+      "--disable-background-timer-throttling",
+      "--disable-backgrounding-occluded-windows",
+      "--disable-breakpad",
+      "--disable-client-side-phishing-detection",
+      "--disable-component-extensions-with-background-pages",
+      "--disable-default-apps",
+      "--disable-dev-shm-usage",
+      "--disable-extensions",
+      "--disable-features=Translate,BackForwardCache,AvoidUnnecessaryBeforeUnloadCheckSync",
+      "--disable-hang-monitor",
+      "--disable-ipc-flooding-protection",
+      "--disable-popup-blocking",
+      "--disable-prompt-on-repost",
+      "--disable-renderer-backgrounding",
+      "--disable-sync",
+      "--force-color-profile=srgb",
+      "--metrics-recording-only",
+      "--no-first-run",
+      "--enable-automation",
+      "--password-store=basic",
+      "--use-mock-keychain",
+      "--enable-blink-features=IdleDetection",
+      "--export-tagged-pdf"
+    ];
+    const { devtools = false, headless = !devtools, args = [], userDataDir = null } = options;
+    if (userDataDir)
+      chromeArguments.push(`--user-data-dir=${path3.resolve(userDataDir)}`);
+    if (devtools)
+      chromeArguments.push("--auto-open-devtools-for-tabs");
+    if (headless) {
+      chromeArguments.push(headless === "chrome" ? "--headless=chrome" : "--headless", "--hide-scrollbars", "--mute-audio");
+    }
+    if (args.every((arg) => arg.startsWith("-")))
+      chromeArguments.push("about:blank");
+    chromeArguments.push(...args);
+    return chromeArguments;
+  }
+  executablePath(channel) {
+    if (channel) {
+      return executablePathForChannel(channel);
+    } else {
+      return resolveExecutablePath(this).executablePath;
+    }
+  }
+  get product() {
+    return "chrome";
+  }
+};
+var FirefoxLauncher = class {
+  constructor(projectRoot, preferredRevision, isPuppeteerCore) {
+    this._projectRoot = projectRoot;
+    this._preferredRevision = preferredRevision;
+    this._isPuppeteerCore = isPuppeteerCore;
+  }
+  async launch(options = {}) {
+    const { ignoreDefaultArgs = false, args = [], dumpio = false, executablePath = null, pipe = false, env = process.env, handleSIGINT = true, handleSIGTERM = true, handleSIGHUP = true, ignoreHTTPSErrors = false, defaultViewport = { width: 800, height: 600 }, slowMo = 0, timeout = 3e4, extraPrefsFirefox = {}, waitForInitialPage = true, debuggingPort = null } = options;
+    const firefoxArguments = [];
+    if (!ignoreDefaultArgs)
+      firefoxArguments.push(...this.defaultArgs(options));
+    else if (Array.isArray(ignoreDefaultArgs))
+      firefoxArguments.push(...this.defaultArgs(options).filter((arg) => !ignoreDefaultArgs.includes(arg)));
+    else
+      firefoxArguments.push(...args);
+    if (!firefoxArguments.some((argument) => argument.startsWith("--remote-debugging-"))) {
+      if (pipe) {
+        assert(debuggingPort === null, "Browser should be launched with either pipe or debugging port - not both.");
+      }
+      firefoxArguments.push(`--remote-debugging-port=${debuggingPort || 0}`);
+    }
+    let userDataDir = null;
+    let isTempUserDataDir = true;
+    const profileArgIndex = firefoxArguments.findIndex((arg) => {
+      return ["-profile", "--profile"].includes(arg);
+    });
+    if (profileArgIndex !== -1) {
+      userDataDir = firefoxArguments[profileArgIndex + 1];
+      if (!fs3.existsSync(userDataDir)) {
+        throw new Error(`Firefox profile not found at '${userDataDir}'`);
+      }
+      isTempUserDataDir = false;
+      const prefs = this.defaultPreferences(extraPrefsFirefox);
+      this.writePreferences(prefs, userDataDir);
+    } else {
+      userDataDir = await this._createProfile(extraPrefsFirefox);
+      firefoxArguments.push("--profile");
+      firefoxArguments.push(userDataDir);
+    }
+    await this._updateRevision();
+    let firefoxExecutable = executablePath;
+    if (!executablePath) {
+      const { missingText, executablePath: executablePath2 } = resolveExecutablePath(this);
+      if (missingText)
+        throw new Error(missingText);
+      firefoxExecutable = executablePath2;
+    }
+    if (!firefoxExecutable) {
+      throw new Error("firefoxExecutable is not found.");
+    }
+    const runner = new BrowserRunner(this.product, firefoxExecutable, firefoxArguments, userDataDir, isTempUserDataDir);
+    runner.start({
+      handleSIGHUP,
+      handleSIGTERM,
+      handleSIGINT,
+      dumpio,
+      env,
+      pipe
+    });
+    let browser;
+    try {
+      const connection = await runner.setupConnection({
+        usePipe: pipe,
+        timeout,
+        slowMo,
+        preferredRevision: this._preferredRevision
+      });
+      browser = await Browser.create(connection, [], ignoreHTTPSErrors, defaultViewport, runner.proc, runner.close.bind(runner));
+    } catch (error) {
+      runner.kill();
+      throw error;
+    }
+    if (waitForInitialPage) {
+      try {
+        await browser.waitForTarget((t) => t.type() === "page", { timeout });
+      } catch (error) {
+        await browser.close();
+        throw error;
+      }
+    }
+    return browser;
+  }
+  executablePath() {
+    return resolveExecutablePath(this).executablePath;
+  }
+  async _updateRevision() {
+    if (this._preferredRevision === "latest") {
+      if (!this._projectRoot) {
+        throw new Error("_projectRoot is undefined. Unable to create a BrowserFetcher.");
+      }
+      const browserFetcher = new BrowserFetcher(this._projectRoot, {
+        product: this.product
+      });
+      const localRevisions = await browserFetcher.localRevisions();
+      if (localRevisions[0])
+        this._preferredRevision = localRevisions[0];
+    }
+  }
+  get product() {
+    return "firefox";
+  }
+  defaultArgs(options = {}) {
+    const { devtools = false, headless = !devtools, args = [], userDataDir = null } = options;
+    const firefoxArguments = ["--no-remote"];
+    if (os2.platform() === "darwin")
+      firefoxArguments.push("--foreground");
+    else if (os2.platform().startsWith("win")) {
+      firefoxArguments.push("--wait-for-browser");
+    }
+    if (userDataDir) {
+      firefoxArguments.push("--profile");
+      firefoxArguments.push(userDataDir);
+    }
+    if (headless)
+      firefoxArguments.push("--headless");
+    if (devtools)
+      firefoxArguments.push("--devtools");
+    if (args.every((arg) => arg.startsWith("-")))
+      firefoxArguments.push("about:blank");
+    firefoxArguments.push(...args);
+    return firefoxArguments;
+  }
+  defaultPreferences(extraPrefs) {
+    const server = "dummy.test";
+    const defaultPrefs = {
+      "app.normandy.api_url": "",
+      "app.update.checkInstallTime": false,
+      "app.update.disabledForTesting": true,
+      "apz.content_response_timeout": 6e4,
+      "browser.contentblocking.features.standard": "-tp,tpPrivate,cookieBehavior0,-cm,-fp",
+      "browser.dom.window.dump.enabled": true,
+      "browser.newtabpage.activity-stream.feeds.system.topstories": false,
+      "browser.newtabpage.enabled": false,
+      "browser.pagethumbnails.capturing_disabled": true,
+      "browser.safebrowsing.blockedURIs.enabled": false,
+      "browser.safebrowsing.downloads.enabled": false,
+      "browser.safebrowsing.malware.enabled": false,
+      "browser.safebrowsing.passwords.enabled": false,
+      "browser.safebrowsing.phishing.enabled": false,
+      "browser.search.update": false,
+      "browser.sessionstore.resume_from_crash": false,
+      "browser.shell.checkDefaultBrowser": false,
+      "browser.startup.homepage": "about:blank",
+      "browser.startup.homepage_override.mstone": "ignore",
+      "browser.startup.page": 0,
+      "browser.tabs.disableBackgroundZombification": false,
+      "browser.tabs.warnOnCloseOtherTabs": false,
+      "browser.tabs.warnOnOpen": false,
+      "browser.uitour.enabled": false,
+      "browser.urlbar.suggest.searches": false,
+      "browser.usedOnWindows10.introURL": "",
+      "browser.warnOnQuit": false,
+      "datareporting.healthreport.documentServerURI": `http://${server}/dummy/healthreport/`,
+      "datareporting.healthreport.logging.consoleEnabled": false,
+      "datareporting.healthreport.service.enabled": false,
+      "datareporting.healthreport.service.firstRun": false,
+      "datareporting.healthreport.uploadEnabled": false,
+      "datareporting.policy.dataSubmissionEnabled": false,
+      "datareporting.policy.dataSubmissionPolicyBypassNotification": true,
+      "devtools.jsonview.enabled": false,
+      "dom.disable_open_during_load": false,
+      "dom.file.createInChild": true,
+      "dom.ipc.reportProcessHangs": false,
+      "dom.max_chrome_script_run_time": 0,
+      "dom.max_script_run_time": 0,
+      "extensions.autoDisableScopes": 0,
+      "extensions.enabledScopes": 5,
+      "extensions.getAddons.cache.enabled": false,
+      "extensions.installDistroAddons": false,
+      "extensions.screenshots.disabled": true,
+      "extensions.update.enabled": false,
+      "extensions.update.notifyUser": false,
+      "extensions.webservice.discoverURL": `http://${server}/dummy/discoveryURL`,
+      "fission.bfcacheInParent": false,
+      "fission.webContentIsolationStrategy": 0,
+      "focusmanager.testmode": true,
+      "general.useragent.updates.enabled": false,
+      "geo.provider.testing": true,
+      "geo.wifi.scan": false,
+      "hangmonitor.timeout": 0,
+      "javascript.options.showInConsole": true,
+      "media.gmp-manager.updateEnabled": false,
+      "network.cookie.cookieBehavior": 0,
+      "network.cookie.sameSite.laxByDefault": false,
+      "network.http.prompt-temp-redirect": false,
+      "network.http.speculative-parallel-limit": 0,
+      "network.manage-offline-status": false,
+      "network.sntp.pools": server,
+      "plugin.state.flash": 0,
+      "privacy.trackingprotection.enabled": false,
+      "remote.enabled": true,
+      "security.certerrors.mitm.priming.enabled": false,
+      "security.fileuri.strict_origin_policy": false,
+      "security.notification_enable_delay": 0,
+      "services.settings.server": `http://${server}/dummy/blocklist/`,
+      "signon.autofillForms": false,
+      "signon.rememberSignons": false,
+      "startup.homepage_welcome_url": "about:blank",
+      "startup.homepage_welcome_url.additional": "",
+      "toolkit.cosmeticAnimations.enabled": false,
+      "toolkit.startup.max_resumed_crashes": -1
+    };
+    return Object.assign(defaultPrefs, extraPrefs);
+  }
+  async writePreferences(prefs, profilePath) {
+    const lines = Object.entries(prefs).map(([key, value]) => {
+      return `user_pref(${JSON.stringify(key)}, ${JSON.stringify(value)});`;
+    });
+    await writeFileAsync(path3.join(profilePath, "user.js"), lines.join("\n"));
+    const prefsPath = path3.join(profilePath, "prefs.js");
+    if (fs3.existsSync(prefsPath)) {
+      const prefsBackupPath = path3.join(profilePath, "prefs.js.puppeteer");
+      await copyFileAsync(prefsPath, prefsBackupPath);
+    }
+  }
+  async _createProfile(extraPrefs) {
+    const temporaryProfilePath = await mkdtempAsync(path3.join(tmpDir(), "puppeteer_dev_firefox_profile-"));
+    const prefs = this.defaultPreferences(extraPrefs);
+    await this.writePreferences(prefs, temporaryProfilePath);
+    return temporaryProfilePath;
+  }
+};
+function executablePathForChannel(channel) {
+  const platform3 = os2.platform();
+  let chromePath;
+  switch (platform3) {
+    case "win32":
+      switch (channel) {
+        case "chrome":
+          chromePath = `${process.env.PROGRAMFILES}\\Google\\Chrome\\Application\\chrome.exe`;
+          break;
+        case "chrome-beta":
+          chromePath = `${process.env.PROGRAMFILES}\\Google\\Chrome Beta\\Application\\chrome.exe`;
+          break;
+        case "chrome-canary":
+          chromePath = `${process.env.PROGRAMFILES}\\Google\\Chrome SxS\\Application\\chrome.exe`;
+          break;
+        case "chrome-dev":
+          chromePath = `${process.env.PROGRAMFILES}\\Google\\Chrome Dev\\Application\\chrome.exe`;
+          break;
+      }
+      break;
+    case "darwin":
+      switch (channel) {
+        case "chrome":
+          chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+          break;
+        case "chrome-beta":
+          chromePath = "/Applications/Google Chrome Beta.app/Contents/MacOS/Google Chrome Beta";
+          break;
+        case "chrome-canary":
+          chromePath = "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary";
+          break;
+        case "chrome-dev":
+          chromePath = "/Applications/Google Chrome Dev.app/Contents/MacOS/Google Chrome Dev";
+          break;
+      }
+      break;
+    case "linux":
+      switch (channel) {
+        case "chrome":
+          chromePath = "/opt/google/chrome/chrome";
+          break;
+        case "chrome-beta":
+          chromePath = "/opt/google/chrome-beta/chrome";
+          break;
+        case "chrome-dev":
+          chromePath = "/opt/google/chrome-unstable/chrome";
+          break;
+      }
+      break;
+  }
+  if (!chromePath) {
+    throw new Error(`Unable to detect browser executable path for '${channel}' on ${platform3}.`);
+  }
+  try {
+    fs3.accessSync(chromePath);
+  } catch (error) {
+    throw new Error(`Could not find Google Chrome executable for channel '${channel}' at '${chromePath}'.`);
+  }
+  return chromePath;
+}
+function resolveExecutablePath(launcher) {
+  const { product, _isPuppeteerCore, _projectRoot, _preferredRevision } = launcher;
+  let downloadPath;
+  if (!_isPuppeteerCore) {
+    const executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || process.env.npm_config_puppeteer_executable_path || process.env.npm_package_config_puppeteer_executable_path;
+    if (executablePath) {
+      const missingText2 = !fs3.existsSync(executablePath) ? "Tried to use PUPPETEER_EXECUTABLE_PATH env variable to launch browser but did not find any executable at: " + executablePath : void 0;
+      return { executablePath, missingText: missingText2 };
+    }
+    const ubuntuChromiumPath = "/usr/bin/chromium-browser";
+    if (product === "chrome" && os2.platform() !== "darwin" && os2.arch() === "arm64" && fs3.existsSync(ubuntuChromiumPath)) {
+      return { executablePath: ubuntuChromiumPath, missingText: void 0 };
+    }
+    downloadPath = process.env.PUPPETEER_DOWNLOAD_PATH || process.env.npm_config_puppeteer_download_path || process.env.npm_package_config_puppeteer_download_path;
+  }
+  if (!_projectRoot) {
+    throw new Error("_projectRoot is undefined. Unable to create a BrowserFetcher.");
+  }
+  const browserFetcher = new BrowserFetcher(_projectRoot, {
+    product,
+    path: downloadPath
+  });
+  if (!_isPuppeteerCore && product === "chrome") {
+    const revision = process.env["PUPPETEER_CHROMIUM_REVISION"];
+    if (revision) {
+      const revisionInfo2 = browserFetcher.revisionInfo(revision);
+      const missingText2 = !revisionInfo2.local ? "Tried to use PUPPETEER_CHROMIUM_REVISION env variable to launch browser but did not find executable at: " + revisionInfo2.executablePath : void 0;
+      return { executablePath: revisionInfo2.executablePath, missingText: missingText2 };
+    }
+  }
+  const revisionInfo = browserFetcher.revisionInfo(_preferredRevision);
+  const firefoxHelp = `Run \`PUPPETEER_PRODUCT=firefox npm install\` to download a supported Firefox browser binary.`;
+  const chromeHelp = `Run \`npm install\` to download the correct Chromium revision (${launcher._preferredRevision}).`;
+  const missingText = !revisionInfo.local ? `Could not find expected browser (${product}) locally. ${product === "chrome" ? chromeHelp : firefoxHelp}` : void 0;
+  return { executablePath: revisionInfo.executablePath, missingText };
+}
+function Launcher(projectRoot, preferredRevision, isPuppeteerCore, product) {
+  if (!product && !isPuppeteerCore)
+    product = process.env.PUPPETEER_PRODUCT || process.env.npm_config_puppeteer_product || process.env.npm_package_config_puppeteer_product;
+  switch (product) {
+    case "firefox":
+      return new FirefoxLauncher(projectRoot, preferredRevision, isPuppeteerCore);
+    case "chrome":
+    default:
+      if (typeof product !== "undefined" && product !== "chrome") {
+        console.warn(`Warning: unknown product name ${product}. Falling back to chrome.`);
+      }
+      return new ChromeLauncher(projectRoot, preferredRevision, isPuppeteerCore);
+  }
+}
+
+// node_modules/puppeteer/lib/esm/puppeteer/revisions.js
+var PUPPETEER_REVISIONS = {
+  chromium: "991974",
+  firefox: "latest"
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/node/Puppeteer.js
+var PuppeteerNode = class extends Puppeteer {
+  constructor(settings) {
+    const _a = settings, { projectRoot, preferredRevision, productName } = _a, commonSettings = __objRest(_a, ["projectRoot", "preferredRevision", "productName"]);
+    super(commonSettings);
+    this._projectRoot = projectRoot;
+    this.__productName = productName;
+    this._preferredRevision = preferredRevision;
+  }
+  connect(options) {
+    if (options.product)
+      this._productName = options.product;
+    return super.connect(options);
+  }
+  get _productName() {
+    return this.__productName;
+  }
+  set _productName(name) {
+    if (this.__productName !== name)
+      this._changedProduct = true;
+    this.__productName = name;
+  }
+  launch(options = {}) {
+    if (options.product)
+      this._productName = options.product;
+    return this._launcher.launch(options);
+  }
+  executablePath(channel) {
+    return this._launcher.executablePath(channel);
+  }
+  get _launcher() {
+    if (!this._lazyLauncher || this._lazyLauncher.product !== this._productName || this._changedProduct) {
+      switch (this._productName) {
+        case "firefox":
+          this._preferredRevision = PUPPETEER_REVISIONS.firefox;
+          break;
+        case "chrome":
+        default:
+          this._preferredRevision = PUPPETEER_REVISIONS.chromium;
+      }
+      this._changedProduct = false;
+      this._lazyLauncher = Launcher(this._projectRoot, this._preferredRevision, this._isPuppeteerCore, this._productName);
+    }
+    return this._lazyLauncher;
+  }
+  get product() {
+    return this._launcher.product;
+  }
+  defaultArgs(options = {}) {
+    return this._launcher.defaultArgs(options);
+  }
+  createBrowserFetcher(options) {
+    if (!this._projectRoot) {
+      throw new Error("_projectRoot is undefined. Unable to create a BrowserFetcher.");
+    }
+    return new BrowserFetcher(this._projectRoot, options);
+  }
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/initialize-node.js
+var import_pkg_dir = __toESM(require_pkg_dir(), 1);
+
+// node_modules/puppeteer/lib/esm/puppeteer/constants.js
+import { dirname as dirname2 } from "path";
+
+// node_modules/puppeteer/lib/esm/puppeteer/compat.js
+import { createRequire } from "module";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+var require2 = createRequire(import.meta.url);
+var puppeteerDirname;
+try {
+  puppeteerDirname = dirname(require2.resolve("./compat"));
+} catch (error) {
+  puppeteerDirname = dirname(fileURLToPath(import.meta.url));
+}
+
+// node_modules/puppeteer/lib/esm/puppeteer/constants.js
+var rootDirname = dirname2(dirname2(dirname2(puppeteerDirname)));
+
+// node_modules/puppeteer/lib/esm/puppeteer/initialize-node.js
+var initializePuppeteerNode = (packageName) => {
+  const puppeteerRootDirectory = (0, import_pkg_dir.sync)(rootDirname);
+  let preferredRevision = PUPPETEER_REVISIONS.chromium;
+  const isPuppeteerCore = packageName === "puppeteer-core";
+  const productName = isPuppeteerCore ? void 0 : process.env.PUPPETEER_PRODUCT || process.env.npm_config_puppeteer_product || process.env.npm_package_config_puppeteer_product;
+  if (!isPuppeteerCore && productName === "firefox")
+    preferredRevision = PUPPETEER_REVISIONS.firefox;
+  return new PuppeteerNode({
+    projectRoot: puppeteerRootDirectory,
+    preferredRevision,
+    isPuppeteerCore,
+    productName
+  });
+};
+
+// node_modules/puppeteer/lib/esm/puppeteer/node.js
+if (!isNode) {
+  throw new Error("Trying to run Puppeteer-Node in a web environment.");
+}
+var node_default = initializePuppeteerNode("puppeteer");
 
 // index.ts
-var import_puppeteer = __toESM(require_cjs_entry(), 1);
 function wait(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve3) => setTimeout(resolve3, ms));
 }
 async function puppeteerWorkflow(urlToTest) {
-  const browser = await import_puppeteer.default.launch(__spreadValues({}, process.platform === "linux" ? {
-    executablePath: "/usr/bin/google-chrome-stable"
+  const browser = await node_default.launch(__spreadValues({}, process.platform === "linux" ? {
+    executablePath: "/usr/bin/chromium-browser",
+    headless: false
   } : {
     headless: false
   }));
   const page = await browser.newPage();
   await page.goto(urlToTest);
+  const img = await page.$('[data-test-id="meme-image"]');
+  img.click();
+  const [element] = await page.$x(`//label[contains(text(), 'Top text')]`);
+  element.type("lol");
+  img.click();
   await wait(5e3);
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
   await page.close();
   await browser.close();
 }
-puppeteerWorkflow("https://example.com");
+puppeteerWorkflow("https://drone-break-test.netlify.app/");
 export {
   puppeteerWorkflow
 };
