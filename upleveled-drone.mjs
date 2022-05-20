@@ -1,4 +1,4 @@
-import { createRequire as topLevelCreateRequire } from 'module'; import { dirname } from 'node:path'; import { fileURLToPath } from 'node:url'; const __filename = fileURLToPath(import.meta.url); const __dirname = dirname(__filename); const require = topLevelCreateRequire(import.meta.url);
+import { createRequire as topLevelCreateRequire } from 'module'; const require = topLevelCreateRequire(import.meta.url);
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __defProps = Object.defineProperties;
