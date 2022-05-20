@@ -16,8 +16,31 @@ export async function puppeteerWorkflow(urlToTest: string) {
   const [element] = await page.$x(`//label[contains(text(), 'Top text')]`);
   element.type('lol');
   img.click();
+
   await page.waitForNetworkIdle();
   await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
+
   await page.close();
   await browser.close();
 }
