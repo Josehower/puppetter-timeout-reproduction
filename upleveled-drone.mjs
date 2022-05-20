@@ -25481,11 +25481,12 @@ if (!isNode) {
 var node_default = initializePuppeteerNode("puppeteer");
 
 // index.ts
-async function puppeteerWorkflow() {
+async function puppeteerWorkflow(urlToTest) {
   const browser = await node_default.launch({
     executablePath: "/usr/bin/google-chrome-stable"
   });
   const page = await browser.newPage();
+  await page.goto(urlToTest);
   console.log("network test start...");
   await page.waitForNetworkIdle();
   console.log("network check 1 pass");
@@ -25530,7 +25531,7 @@ async function puppeteerWorkflow() {
   await page.close();
   await browser.close();
 }
-await puppeteerWorkflow();
+await puppeteerWorkflow("https://drone-break-test.netlify.app/");
 export {
   puppeteerWorkflow
 };

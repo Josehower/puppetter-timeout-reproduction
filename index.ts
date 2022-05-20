@@ -1,10 +1,11 @@
 import puppeteer from 'puppeteer';
 
-export async function puppeteerWorkflow() {
+export async function puppeteerWorkflow(urlToTest: string) {
   const browser = await puppeteer.launch({
     executablePath: '/usr/bin/google-chrome-stable',
   });
   const page = await browser.newPage();
+  await page.goto(urlToTest);
 
   console.log('network test start...');
   await page.waitForNetworkIdle();
@@ -55,4 +56,4 @@ export async function puppeteerWorkflow() {
   await browser.close();
 }
 
-await puppeteerWorkflow();
+await puppeteerWorkflow('https://drone-break-test.netlify.app/');
