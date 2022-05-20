@@ -9,8 +9,6 @@ export async function puppeteerWorkflow(urlToTest: string) {
     ...(process.platform === 'linux'
       ? {
           executablePath: '/usr/bin/google-chrome-stable',
-          // executablePath: '/usr/bin/chromium-browser',
-          // headless: false,
         }
       : {
           // If we're not on Linux, then maybe we're in development,
