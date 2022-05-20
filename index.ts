@@ -17,6 +17,7 @@ export async function puppeteerWorkflow(urlToTest: string) {
   element.type('lol');
   img.click();
   await page.waitForNetworkIdle();
+  await page.waitForNetworkIdle();
   await page.close();
   await browser.close();
 }
